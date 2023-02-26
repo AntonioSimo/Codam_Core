@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/24 18:56:21 by asimone       ########   odam.nl         */
+/*   Updated: 2023/02/26 20:56:04 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
+
+#define GREEN "\033[32;1m"
+#define BOLD "\033[1m"
+#define RESET "\033[0m"
 
 void	signal_handler(int sig)
 {
@@ -41,7 +45,7 @@ int	main(void)
 	sa.sa_handler = signal_handler;
 	sa.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	printf("PID: %d\n", pid);
+	printf(GREEN BOLD "[CONNECTING] " RESET "PID: %d\n", pid);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

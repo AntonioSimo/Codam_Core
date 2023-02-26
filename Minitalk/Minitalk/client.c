@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:35 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/24 18:58:42 by asimone       ########   odam.nl         */
+/*   Updated: 2023/02/26 20:56:05 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,16 @@ void	send_message(pid_t pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(80);
+			usleep(120);
 			x++;
 		}
 		i++;
 	}
+}
+
+void	message_handler(int sig)
+{
+	
 }
 
 int	main(int argc, char *argv[])

@@ -25,9 +25,11 @@ void	send_message(pid_t pid, char *str)
 {
 	int	i;
 	int	x;
+	int len;
 
 	i = 0;
-	while (str[i] != '\0')
+	len = strlen(str);
+	while (i <= len)
 	{
 		x = 0;
 		while (x < 8)
@@ -36,7 +38,7 @@ void	send_message(pid_t pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(80);
+			pause();
 			x++;
 		}
 		i++;
@@ -57,6 +59,10 @@ int	main(int argc, char *argv[])
 	int					pid;
 	struct sigaction	action;
 
+	action.sa_handler = message_handler;
+	sigemptyset(&(action.sa_mask));
+	sigaction(SIGUSR1, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL);
 	pid = atoi(argv[1]);
 	if (argc < 3)
 	{	

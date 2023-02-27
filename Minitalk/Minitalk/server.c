@@ -19,7 +19,7 @@
 #define BOLD "\033[1m"
 #define RESET "\033[0m"
 
-void	signal_handler(int sig)
+void	signal_handler(int sig, siginfo_t *client, void *ucontext)
 {
 	static char	c;
 	static int	x;
@@ -33,8 +33,11 @@ void	signal_handler(int sig)
 	if (x == 8)
 	{
 		write(1, &c, 1);
+		if (!c)
+			kill(client->si_pid, SIGUSR2);
 		x = 0;
 	}
+	kill(client->si_pid, SIGUSR1);
 }
 
 int	main(void)
@@ -42,8 +45,9 @@ int	main(void)
 	struct sigaction	sa;
 	pid_t				pid;
 
-	sa.sa_handler = signal_handler;
-	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = signal_handler;
+	sa.sa_flags = SA_NODEFER | SA_RESTART;
+	sigemptyset(&(sa.sa_mask));
 	pid = getpid();
 	printf(GREEN BOLD "[CONNECTING]\n" RESET "PID: %d\n", pid);
 	sigaction(SIGUSR1, &sa, NULL);

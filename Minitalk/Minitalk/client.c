@@ -38,7 +38,7 @@ void	send_message(pid_t pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			pause();
+			usleep(160);
 			x++;
 		}
 		i++;

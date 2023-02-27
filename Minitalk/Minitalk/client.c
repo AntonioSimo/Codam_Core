@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:35 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/26 20:56:05 by asimone       ########   odam.nl         */
+/*   Updated: 2023/02/27 17:53:41 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
+
+#define GREEN "\033[32;1m"
+#define RED "\033[31;1m"
+#define BOLD "\033[1m"
+#define RESET "\033[0m"
 
 void	send_message(pid_t pid, char *str)
 {
@@ -31,7 +36,7 @@ void	send_message(pid_t pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(120);
+			usleep(80);
 			x++;
 		}
 		i++;
@@ -40,20 +45,29 @@ void	send_message(pid_t pid, char *str)
 
 void	message_handler(int sig)
 {
-	
+	if (sig == SIGUSR2)
+	{
+		printf(GREEN BOLD "Message sent\n" RESET);
+		exit (EXIT_SUCCESS);
+	}
 }
 
 int	main(int argc, char *argv[])
 {
-	int	pid;
+	int					pid;
+	struct sigaction	action;
 
 	pid = atoi(argv[1]);
-	if (argc != 3)
-	{
-		printf("No mate, You are doing something wrong");
+	if (argc < 3)
+	{	
+		printf(RED BOLD "Too few arguments. You should send the program name, the correct PID and the message you want to send in quotes.\n" RESET);
 		exit(EXIT_FAILURE);
 	}
-	else
-		send_message(pid, argv[2]);
+	else if (argc > 3)
+	{
+		printf(RED BOLD "You should use quotes if you want to send a sentence with more than one word.\n" RESET);
+		exit(EXIT_FAILURE);
+	}
+	send_message(pid, argv[2]);
 	return (0);
 }

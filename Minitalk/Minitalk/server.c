@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/26 20:56:04 by asimone       ########   odam.nl         */
+/*   Updated: 2023/02/27 17:25:59 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	signal_handler(int sig)
 	else if (sig == SIGUSR2)
 		c += 0;
 	x++;
-	if (x==8)
+	if (x == 8)
 	{
 		write(1, &c, 1);
 		x = 0;
@@ -45,7 +45,7 @@ int	main(void)
 	sa.sa_handler = signal_handler;
 	sa.sa_flags = SA_SIGINFO;
 	pid = getpid();
-	printf(GREEN BOLD "[CONNECTING] " RESET "PID: %d\n", pid);
+	printf(GREEN BOLD "[CONNECTING]\n" RESET "PID: %d\n", pid);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)

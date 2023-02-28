@@ -24,6 +24,7 @@ void	signal_handler(int sig, siginfo_t *client, void *ucontext)
 	static char	c;
 	static int	x;
 
+	(void) ucontext;
 	c <<= 1;
 	if (sig == SIGUSR1)
 		c += 1;

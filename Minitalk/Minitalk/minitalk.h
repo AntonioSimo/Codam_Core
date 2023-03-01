@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   server.c                                           :+:    :+:            */
+/*   minitalk.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
@@ -10,42 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void	signal_handler(int sig, siginfo_t *client, void *ucontext)
-{
-	static char	c;
-	static int	x;
+# include "libft.h"
+# include <signal.h>
 
-	(void) ucontext;
-	c <<= 1;
-	if (sig == SIGUSR1)
-		c += 1;
-	else if (sig == SIGUSR2)
-		c += 0;
-	x++;
-	if (x == 8)
-	{
-		write(1, &c, 1);
-		if (!c)
-			kill(client->si_pid, SIGUSR2);
-		x = 0;
-	}
-	kill(client->si_pid, SIGUSR1);
-}
+# define RED "\033[31;1m"
+# define GREEN "\033[32;1m"
+# define BOLD "\033[1m"
+# define RESET "\033[0m"
 
-int	main(void)
-{
-	struct sigaction	sa;
-	pid_t				pid;
+void	message_handler(int sig);
+void	send_message(pid_t pid, char *str);
+void	signal_handler(int sig, siginfo_t *client, void *ucontext);
 
-	sa.sa_sigaction = signal_handler;
-	sa.sa_flags = SA_NODEFER | SA_RESTART;
-	sigemptyset(&(sa.sa_mask));
-	pid = getpid();
-	ft_printf(GREEN BOLD "[CONNECTING]\n" RESET "PID: %d\n", pid);
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	while (1)
-		pause();
-}
+#endif

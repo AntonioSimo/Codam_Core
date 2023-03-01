@@ -13,7 +13,7 @@
 SRC =	server.c \
 		client.c
 OBJ :=	$(SRC:.c=.o)
-CFLAGS ?= -Wall -Wextra -Werror
+CFLAGS ?= gcc -Wall -Wextra -Werror -ILibft/Header_Files -o $@ $^
 
 all: server client
 

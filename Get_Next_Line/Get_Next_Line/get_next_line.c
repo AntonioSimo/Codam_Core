@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/25 11:31:07 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/09 14:40:21 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 15:54:18 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_read_file(int fd, char *buffer)
 		if (x == 0)
 			break ;
 		text[x] = '\0';
-		buffer = ft_strjoin(buffer, text);
+		buffer = ft_free_strjoin(buffer, text);
 		if (buffer == NULL)
 			return (NULL);
 	}

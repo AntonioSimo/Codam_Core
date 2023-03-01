@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 11:29:16 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/06 13:58:18 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 18:14:11 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ be used while writing large C programs.*/
 # define LIBFT_H
 
 # include <ctype.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 # include <xlocale.h>
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 typedef struct s_list
 {

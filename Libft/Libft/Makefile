@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    makefile                                           :+:    :+:             #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2022/11/10 18:26:24 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/01 18:12:07 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRC =	ft_atoi.c \
 		ft_memcpy.c \
 		ft_memmove.c \
 		ft_memset.c \
+		ft_printf_utils.c \
+		ft_printf.c \
 		ft_putchar_fd.c \
 		ft_putnbr_fd.c \
 		ft_putendl_fd.c \
@@ -45,7 +47,8 @@ SRC =	ft_atoi.c \
 		ft_strtrim.c \
 		ft_substr.c \
 		ft_tolower.c \
-		ft_toupper.c
+		ft_toupper.c \
+		get_next_line.c
 
 BONUS =	ft_lstadd_back.c \
 		ft_lstadd_front.c \
@@ -72,7 +75,8 @@ all : $(NAME)
 
 $(NAME): $(OBJECT_ALL)
 	ar rc $@ $^
-
+%.o: %.c
+	cc -Wall -Wextra -Werror -IHeader_Files  -c -o $@ $^
 bonus: 
 	$(MAKE) ISBONUS=1
 		

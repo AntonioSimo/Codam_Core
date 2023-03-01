@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 14:49:26 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/06 13:57:27 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 17:50:33 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ char	*ft_strchr(const char *str, int c)
 	int		i;
 	char	*nstr;
 
+	if (!str)
+		return (0);
 	nstr = (char *) str;
 	i = 0;
-	while (str[i] != '\0')
+	while (str && str[i] != '\0')
 	{
 		if (str[i] == (char)c)
 			return (&nstr[i]);

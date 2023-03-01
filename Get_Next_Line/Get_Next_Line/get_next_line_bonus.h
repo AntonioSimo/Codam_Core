@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/01 11:42:46 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/08 15:05:30 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 15:55:26 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd);
 char	*ft_find_leftover(char *str);
 char	*ft_read_file(int fd, char *buffer);
 char	*ft_strchr(char *str, int c);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_free_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *str);
 
 #endif

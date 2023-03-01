@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/25 11:31:10 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/09 14:41:10 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 17:53:42 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str && str[i] != '\0')
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -31,7 +31,7 @@ char	*ft_strchr(char *str, int c)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str && str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (str[i] == (char)c)
 			return (&str[i]);
@@ -40,7 +40,7 @@ char	*ft_strchr(char *str, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_free_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len;

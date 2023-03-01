@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   get_next_line.h                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/04 19:49:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/01 17:47:28 by asimone       ########   odam.nl         */
+/*   Created: 2023/01/25 11:31:03 by asimone       #+#    #+#                 */
+/*   Updated: 2023/03/01 17:57:53 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-/*The function computes the length of the string using the while loop.*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-size_t	ft_strlen(const char *str)
-{
-	int	count;
+# include <fcntl.h>
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-	count = 0;
-	if (!str)
-		return (0);
-	while (str && str[count] != '\0')
-		count++;
-	return (count);
-}
+char	*get_next_line(int fd);
+char	*ft_find_leftover(char *str);
+char	*ft_read_file(int fd, char *buffer);
+char	*ft_free_strjoin(char *s1, char *s2);
 
-// int	main(void)
-// {
-// 	char	str[50];
-
-// 	printf("mine: %zu\n", ft_strlen("Codam"));
-// 	printf("not mine: %zu", strlen("Codam"));
-// 	return (0);
-// }
+#endif

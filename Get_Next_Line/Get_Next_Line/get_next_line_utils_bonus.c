@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/01 11:42:38 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/09 14:41:27 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/01 15:54:59 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_strchr(char *str, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_free_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	len;

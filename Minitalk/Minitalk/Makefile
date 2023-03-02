@@ -1,43 +1,39 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: asimone <asimone@student.42.fr>              +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/02/13 14:28:39 by asimone       #+#    #+#                  #
-#    Updated: 2023/02/15 12:45:35 by asimone       ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
+SERVER = server.c
+CLIENT = client.c
 
-SRC =	server.c \
-		client.c
-OBJ :=	$(SRC:.c=.o)
-CFLAGS ?= gcc -Wall -Wextra -Werror -ILibft/Header_Files -o $@ $^
+OSERVER = $(SERVER:.c=.o)
+OCLIENT = $(CLIENT:.c=.o)
 
-all: server client
+NSERVER = server
+NCLIENT = client
 
-bonus: server client
+LIBFT = libft/libft.a
 
-server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+CFLAGS = -Wall -Wextra -Werror
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+headers = libft.h
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+RM = rm -f
 
-libft:
+all: $(NSERVER) $(NCLIENT)
+
+$(NSERVER): $(OSERVER) $(LIBFT)
+	cc $(CFLAGS) $(SERVER) $(LIBFT) -o $(NSERVER)
+
+$(NCLIENT): $(OCLIENT) $(LIBFT)
+	cc $(CFLAGS) $(CLIENT) $(LIBFT) -o $(NCLIENT)
+
+$(LIBFT):
 	make -C libft
 
 clean:
-	rm -f $(OBJECTS)
-	make -C libft clean
-	
+	$(RM) $(OSERVER) $(OCLIENT)
+	make clean -C libft
+
 fclean: clean
-	rm -f server client libft/libft.a
+	$(RM) $(NSERVER) $(NCLIENT)
+	make fclean -C libft
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all clean fclean

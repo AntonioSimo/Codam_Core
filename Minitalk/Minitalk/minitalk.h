@@ -6,14 +6,14 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/27 17:25:59 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/02 17:36:27 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include "libft.h"
+# include "Libft/Header_Files/libft.h"
 # include <signal.h>
 
 # define RED "\033[31;1m"

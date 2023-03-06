@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 10:50:26 by asimone       #+#    #+#                 */
-/*   Updated: 2023/02/06 14:01:28 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/06 17:26:10 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,97 +24,32 @@ t_list	*ft_lstnew(void *content)
 	return (new_node);
 }
 
-//void    ft_print_result(char const *s)
+//void	print_node(t_list *new_node, char *comment)
 //{
-//        int             len;
-
-//        len = 0;
-//        while (s[len])
-//                len++;
-//        write(1, s, len);
+//	if (new_node == NULL)
+//		printf ("%s is NULL\n", comment);
+//	else
+//		printf ("%s: content:%d address:%p next:%p\n", comment, new_node->content, new_node, new_node->next);
 //}
 
-//void    ft_print_result2(int n)
+//int main(void)
 //{
-//        char c;
+//	t_list *a = NULL;
+//	t_list *b = NULL;
 
-//        if (n >= 10)
-//                ft_print_result2(n / 10);
-//        c = n % 10 + '0';
-//        write (1, &c, 1);
-//}
-
-//int main(int argc, const char *argv[])
-//{
-//t_list	*elem;
-//int		arg;
-
-//alarm(TIMEOUT);
-//if (argc == 1)
-//return (0);
-//else if ((arg = atoi(argv[1])) == 1)
-//        {
-//                char    str [] = "lorem ipsum dolor sit";
-
-//                if (!(elem = ft_lstnew(str)))
-//                                ft_print_result("NULL");
-//                else
-//                {
-//                        if (!(elem->content))
-//                                ft_print_result("NULL");
-//                        else
-//                        {
-//                                ft_print_result(elem->content);
-//                        }
-//                        if (!(elem->next))
-//                        {
-//                                write(1, "\n", 1);
-//                                ft_print_result("NULL");
-//                        }
-//                }
-//        }
-//        else if (arg == 2)
-//        {
-//                int             i;
-
-//                i = 42;
-//                if (!(elem = ft_lstnew(&i)))
-//                                ft_print_result("NULL");
-//                else
-//                {
-//                        if (!(elem->content))
-//                                ft_print_result("NULL");
-//                        else
-//                        {
-//                                ft_print_result2(*(int *)(elem->content));
-//                        }
-//                        if (!(elem->next))
-//                        {
-//                                write(1, "\n", 1);
-//                                ft_print_result("NULL");
-//                        }
-//                }
-//        }
-//        else if (arg == 3)
-//        {
-//                if (!(elem = ft_lstnew(NULL)))
-//                                ft_print_result("NULL");
-//                else
-//                {
-//                        if (!(elem->content))
-//                        {
-//                                ft_print_result("NULL");
-//                        }
-//                        else
-//                        {
-//                                ft_print_result(elem->content);
-//                        }
-//                        if (!(elem->next))
-//                        {
-//                                write(1, "\n", 1);
-//                                ft_print_result("NULL");
-//                        }
-//                }
-//        }
-//        return (0);
+//	print_node (a, "first");
+//	print_node (b, "second");
+//	a = ft_lstnew (100);
+//	b = ft_lstnew (75);
+//	print_node (a, "first");
+//	print_node (b, "second");
+//	a->next = b;
+//	print_node (a, "first");
+//	print_node (a->next, "first->next");
+//	print_node (b, "second");
+//	free (a);
+//	free (b);
+//	a = NULL;
+//	b = NULL;
+//	return (0);
 //}

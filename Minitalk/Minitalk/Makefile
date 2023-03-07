@@ -11,8 +11,6 @@ LIBFT = libft/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-headers = libft.h
-
 RM = rm -f
 
 all: $(NSERVER) $(NCLIENT)

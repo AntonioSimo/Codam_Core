@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/07 18:43:59 by asimone       #+#    #+#                 */
-/*   Updated: 2022/11/09 19:15:19 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/07 16:55:41 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ int	ft_itoh(unsigned long n, int check)
 // 	int b = ft_itoh(i, 0);
 // 	printf("\n%i", b);
 // }
+

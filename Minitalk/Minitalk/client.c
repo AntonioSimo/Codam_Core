@@ -6,11 +6,11 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:35 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/02 20:28:08 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/08 15:30:19 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "Minitalk.h"
 
 void	send_message(pid_t pid, char *str)
 {

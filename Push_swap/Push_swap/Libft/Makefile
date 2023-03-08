@@ -6,89 +6,94 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/01 18:12:07 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/08 15:05:48 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
 HEADERFILES := libft.h
-SRC =	ft_atoi.c \
-		ft_bzero.c \
-		ft_calloc.c \
-		ft_isalnum.c \
-		ft_isalpha.c \
-		ft_isascii.c \
-		ft_isdigit.c \
-		ft_isprint.c \
-		ft_itoa.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_memcpy.c \
-		ft_memmove.c \
-		ft_memset.c \
-		ft_printf_utils.c \
-		ft_printf.c \
-		ft_putchar_fd.c \
-		ft_putnbr_fd.c \
-		ft_putendl_fd.c \
-		ft_putstr_fd.c \
-		ft_split.c \
-		ft_strdup.c \
-		ft_strchr.c \
-		ft_striteri.c \
-		ft_strjoin.c \
-		ft_strlcat.c \
-		ft_strlcpy.c \
-		ft_strlen.c \
-		ft_strmapi.c \
-		ft_strncmp.c \
-		ft_strnstr.c \
-		ft_strrchr.c \
-		ft_strtrim.c \
-		ft_substr.c \
-		ft_tolower.c \
-		ft_toupper.c \
-		get_next_line.c
+SRC =	src/ft_atoi.c \
+		src/ft_bzero.c \
+		src/ft_calloc.c \
+		src/ft_isalnum.c \
+		src/ft_isalpha.c \
+		src/ft_isascii.c \
+		src/ft_isdigit.c \
+		src/ft_isprint.c \
+		src/ft_itoa.c \
+		src/ft_lstadd_back.c \
+		src/ft_lstadd_front.c \
+		src/ft_lstclear.c \
+		src/ft_lstiter.c \
+		src/ft_lstdelone.c \
+		src/ft_lstlast.c \
+		src/ft_lstmap.c \
+		src/ft_lstnew.c \
+		src/ft_lstsize.c \
+		src/ft_memchr.c \
+		src/ft_memcmp.c \
+		src/ft_memcpy.c \
+		src/ft_memmove.c \
+		src/ft_memset.c \
+		src/ft_printf.c \
+		src/ft_printf_utils.c \
+		src/ft_putchar_fd.c \
+		src/ft_putnbr_fd.c \
+		src/ft_putendl_fd.c \
+		src/ft_putstr_fd.c \
+		src/ft_split.c \
+		src/ft_strdup.c \
+		src/ft_strchr.c \
+		src/ft_striteri.c \
+		src/ft_strjoin.c \
+		src/ft_strlcat.c \
+		src/ft_strlcpy.c \
+		src/ft_strlen.c \
+		src/ft_strmapi.c \
+		src/ft_strncmp.c \
+		src/ft_strnstr.c \
+		src/ft_strrchr.c \
+		src/ft_strtrim.c \
+		src/ft_substr.c \
+		src/ft_tolower.c \
+		src/ft_toupper.c \
+		src/get_next_line.c
 
-BONUS =	ft_lstadd_back.c \
-		ft_lstadd_front.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstdelone.c \
-		ft_lstlast.c \
-		ft_lstmap.c \
-		ft_lstnew.c \
-		ft_lstsize.c
-
-OBJ := $(SRC:.c=.o) #you convert the .c files in .o files
-OBJ_BONUS := $(BONUS:.c=.o)
-CFLAGS ?= -Wall -Wextra -Werror
+SRC_DIR = src
+OBJ_DIR := OBJ_files
+OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+GREEN = \x1b[32;01m
+RED = \x1b[31;01m
+BOLD = \033[1m
+RESET = \x1b[0m
+AR = ar
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+LFLAGS = -rcs
 RM := /bin/rm -f
-
-ifdef	ISBONUS
-OBJECT_ALL = $(OBJ) $(OBJ_BONUS)
-else
-OBJECT_ALL = $(OBJ)
-endif
 
 all : $(NAME)
 
-$(NAME): $(OBJECT_ALL)
-	ar rc $@ $^
-%.o: %.c
-	cc -Wall -Wextra -Werror -IHeader_Files  -c -o $@ $^
-bonus: 
-	$(MAKE) ISBONUS=1
+$(NAME): $(OBJ_DIR) $(OBJ)
+	@$(AR) $(LFLAGS) $(NAME) $(OBJ)
+
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) -Iinclude $(CFLAGS) -c $^ -o $@
+	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
 		
 clean:
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) -rf $(OBJ_DIR)
+	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 
 # $@ calling the target
 # $< calling the first element in the target (prerequisite)

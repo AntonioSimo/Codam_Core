@@ -1,36 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: asimone <asimone@student.42.fr>              +#+                      #
+#                                                    +#+                       #
+#    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
+#    Updated: 2023/03/08 16:37:02 by asimone       ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
 SERVER = server.c
 CLIENT = client.c
 
-OSERVER = $(SERVER:.c=.o)
-OCLIENT = $(CLIENT:.c=.o)
-
-NSERVER = server
-NCLIENT = client
-
+OBJ_SERVER = server.o
+OBJ_CLIENT = client.o
 LIBFT = libft/libft.a
-
+EXE_SERVER = server
+EXE_CLIENT = client
+GREEN = \x1b[32;01m
+RED = \x1b[31;01m
+BOLD = \033[1m
+RESET = \x1b[0m
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+RM = /bin/rm -f
 
-RM = rm -f
+all: $(EXE_SERVER) $(EXE_CLIENT)
 
-all: $(NSERVER) $(NCLIENT)
+$(EXE_SERVER): $(OBJ_SERVER) $(LIBFT)
+	@$(CC) $(CFLAGS) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
+	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
 
-$(NSERVER): $(OSERVER) $(LIBFT)
-	cc $(CFLAGS) $(SERVER) $(LIBFT) -o $(NSERVER)
+$(EXE_CLIENT): $(OBJ_CLIENT) $(LIBFT)
+	@$(CC) $(CFLAGS) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
+	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
 
-$(NCLIENT): $(OCLIENT) $(LIBFT)
-	cc $(CFLAGS) $(CLIENT) $(LIBFT) -o $(NCLIENT)
+%.o: %.c
+	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 clean:
-	$(RM) $(OSERVER) $(OCLIENT)
-	make clean -C libft
+	@$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
+	@make clean -C libft
+	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
 
 fclean: clean
-	$(RM) $(NSERVER) $(NCLIENT)
-	make fclean -C libft
+	@$(RM) $(EXE_SERVER) $(EXE_CLIENT)
+	@make fclean -C libft
 
 re: fclean all
 

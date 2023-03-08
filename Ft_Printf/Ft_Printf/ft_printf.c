@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/07 10:45:20 by asimone       #+#    #+#                 */
-/*   Updated: 2022/11/17 09:29:09 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/08 17:12:55 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	ft_putptr(unsigned long ptr)
 	int	counter;
 
 	counter = 0;
-		counter += write(1, "0x", 2);
+	counter += write(1, "0x", 2);
+	if (counter < 0)
+		return (-1);
 	counter += ft_itoh(ptr, 1);
 	return (counter);
 }
@@ -64,6 +66,8 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 			counter += ft_putchar((char)format[i]);
+		if (counter < 0)
+			return (-1);
 		i++;
 	}
 	va_end(args);

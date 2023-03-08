@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/08 15:05:48 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/07 20:51:53 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRC =	src/ft_atoi.c \
 
 SRC_DIR = src
 OBJ_DIR := OBJ_files
-OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o)) #you convert the .c files in .o files
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m
 BOLD = \033[1m

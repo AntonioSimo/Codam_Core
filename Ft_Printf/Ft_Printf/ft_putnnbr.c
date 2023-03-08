@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/08 17:34:57 by asimone       #+#    #+#                 */
-/*   Updated: 2022/11/16 15:56:57 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/08 17:12:01 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_putnnbr(unsigned int n)
 	counter = 0;
 	if (n >= 10)
 		counter += ft_putnnbr(n / 10);
+	if (counter < 0)
+		return (-1);
 	i = n % 10 + 48;
 	counter += write(1, &i, 1);
 	return (counter);

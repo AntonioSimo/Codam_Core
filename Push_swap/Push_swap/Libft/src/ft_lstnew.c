@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/31 10:50:26 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/06 17:26:10 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/08 17:34:07 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_list	*ft_lstnew(void *content)
 //	if (new_node == NULL)
 //		printf ("%s is NULL\n", comment);
 //	else
-//		printf ("%s: content:%d address:%p next:%p\n", comment, new_node->content, new_node, new_node->next);
+//		printf ("%s: content:%d address:%p next:%p\n", 
+//		comment, new_node->content, new_node, new_node->next);
 //}
 
 //int main(void)

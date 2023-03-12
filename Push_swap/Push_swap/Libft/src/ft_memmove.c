@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/07 13:47:02 by asimone       #+#    #+#                 */
-/*   Updated: 2022/11/02 14:45:54 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/12 13:10:23 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ may overlap. */
 
 void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	size_t			i;
 	unsigned char	*dcopy;
 	unsigned char	*scopy;
 
 	dcopy = (unsigned char *) dest;
 	scopy = (unsigned char *) src;
-	i = 0;
 	if (dcopy == 0 && scopy == 0)
 		return (0);
 	if (dcopy > scopy)

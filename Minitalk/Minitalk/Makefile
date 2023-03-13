@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/08 18:20:38 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/13 16:23:35 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ all: $(EXE_SERVER) $(EXE_CLIENT)
 
 $(EXE_SERVER): $(OBJ_SERVER) $(LIBFT)
 	@$(CC) $(CFLAGS) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
-	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 $(EXE_CLIENT): $(OBJ_CLIENT) $(LIBFT)
 	@$(CC) $(CFLAGS) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
-	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 %.o: %.c
 	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $^ -o $@

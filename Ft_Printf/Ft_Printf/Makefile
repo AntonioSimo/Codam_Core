@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/11/07 10:37:55 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/08 17:24:23 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/13 16:22:45 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADERFILES)
 	@ar rcs $(NAME) $(OBJ)
-	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $^ -o $@

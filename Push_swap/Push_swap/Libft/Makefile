@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/07 20:51:53 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/20 12:47:01 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC =	src/ft_atoi.c \
 		src/ft_isascii.c \
 		src/ft_isdigit.c \
 		src/ft_isprint.c \
+		src/ft_isspace.c \
 		src/ft_itoa.c \
 		src/ft_lstadd_back.c \
 		src/ft_lstadd_front.c \

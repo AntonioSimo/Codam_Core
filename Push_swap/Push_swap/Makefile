@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/08 16:40:23 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/23 18:52:49 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ $(EXE_PUSH_SWAP): $(OBJ_PUSH_SWAP) $(LIBFT)
 	@$(CC) $(CFLAGS) $(PUSH_SWAP) $(LIBFT) -o $(EXE_PUSH_SWAP)
 	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
 
-%.o: %.c
-	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
+%.o: %.c push_swap.h
+	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	@make -C libft

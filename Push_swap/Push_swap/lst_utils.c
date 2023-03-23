@@ -6,53 +6,59 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/20 15:14:32 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/23 20:37:04 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-//void	ft_lstadd_back(t_list **lst, t_list *new)
-//{
-//	t_list	*lst_node;
+#include "push_swap.h"
 
-//	if (*lst == NULL)
-//	{
-//		*lst = new;
-//		return ;
-//	}
-//	lst_node = ft_lstlast(*lst);
-//	lst_node->next = new;
-//}
+void	ft_lstadd_back(t_node **lst, t_node *new)
+{
+	t_node	*lst_node;
 
-//t_list	*ft_lstlast(t_list *lst)
-//{
-//	if (lst == NULL)
-//		return (NULL);
-//	while (lst->next != NULL)
-//		lst = lst->next;
-//	return (lst);
-//}
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	lst_node = ft_lstlast(*lst);
+	lst_node->next = new;
+}
 
-//t_list	*ft_lstnew(void *content)
-//{
-//	t_list	*new_node;
+t_node	*ft_lstlast(t_node *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
 
-//	new_node = malloc(sizeof(t_list));
-//	if (!new_node)
-//		return (NULL);
-//	new_node->content = content;
-//	new_node->next = NULL;
-//	return (new_node);
-//}
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*node;
 
-//int	ft_lstsize(t_list *lst)
+	if (*lst == NULL)
+		return ;
+	while (*lst != NULL)
+	{
+		node = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = node;
+	}
+	*lst = NULL;
+}
+
+//void	set_index(t_node *stack)
 //{
 //	int	i;
 
 //	i = 0;
-//	while (lst)
+//	while (stack)
 //	{
+//		stack->index = i;
 //		i++;
-//		lst = lst->next;
+//		stack = stack->next;
 //	}
-//	return (i);
 //}
+

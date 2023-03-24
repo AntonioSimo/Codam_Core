@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/23 18:51:58 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/24 16:45:46 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct node {
 } t_node;
 
 typedef struct stack {
-    struct node *stack_a;
-    struct node *stack_b;
+    t_node *stack_a;
+    t_node *stack_b;
 } t_two_stack;
 
 void	**check_inputs(int counter, char **arguments);

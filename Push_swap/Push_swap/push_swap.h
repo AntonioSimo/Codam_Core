@@ -31,6 +31,5 @@ int		check_atoi(char *str, int *temp);
 int	    ft_atoi_push_swap(char *str);
 int	    lstsize(t_node *lst);
 t_node	*lstnew(int data);
-int		sa(t_two_stack *stack);
 
 #endif

@@ -31,5 +31,6 @@ int		check_atoi(char *str, int *temp);
 int	    ft_atoi_push_swap(char *str);
 int	    lstsize(t_node *lst);
 t_node	*lstnew(int data);
+void	lstadd_back(t_node **top_stack, int number);
 
 #endif

@@ -15,12 +15,12 @@
 //sa Swap the first 2 elements at the top of stack a.
 //Do nothing if there is only one or no elements.
 
-void push(t_node **head_ref, int new_data)
-{
-    t_node *new_node = lstnew(new_data);
-    new_node->next = *head_ref;
-    *head_ref = new_node;
-}
+//void push(t_node **head_ref, int new_data)
+//{
+//    t_node *new_node = lstnew(new_data);
+//    new_node->next = *head_ref;
+//    *head_ref = new_node;
+//}
 
 void print_list(t_node *head)
 {
@@ -54,85 +54,48 @@ void	del_first(t_two_stack *stack, int control)
 	}
 }
 
-void	lstadd_front(t_node **lst, t_node *new)
+int		pa(t_node **stack_a, t_node **stack_b)
 {
-	new->next = *lst;
-	*lst = new;
-	(*lst)->prev = NULL;
+	t_node	*head_a;
+	t_node	*head_b;
+	t_node	*second_element_a;
+	t_node	*second_element_b;
+
+	head_a = *stack_a;
+	head_b = *stack_b;
+	second_element_a = head_a->next;
+
+	head_a->next = head_b;
+	if (head_b)
+		head_b->prev = head_a;
+	else
+		head_b = head_a;
+	if (second_element_a)
+		second_element_a->prev = NULL;
+	*stack_a = second_element_a;
+	*stack_b = head_a;
+
+	return (0);
 }
-
-void	lstadd_back(t_node **top_stack, int number)
-{
-	t_node *new_node = lstnew(number);
-    t_node *last_node;
-
-	if (*top_stack == NULL) //if empty, new node becomes the stack
-	{
-		*top_stack = new_node;
-		return;
-	}
-	last_node = *top_stack; //last node is now head
-	while (last_node->next != NULL) // anything under the head?
-        last_node = last_node->next;
-	new_node->prev = last_node;
-	//new_node->next = NULL; //already done
-	last_node->next = new_node;
-
-    return;
-}
-
-int	lstsize(t_node *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
-
-t_node	*lstnew(int data)
-{
-	t_node	*new_node;
-
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->data = data;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	return (new_node);
-}
-
-//int		pa(t_two_stack *stack)
-//{
-//	t_node	*head;
-
-//	if(stack->stack_b)
-//	{
-//		lstadd_front(stack, lstnew(stack->stack_b->data));
-//		free(stack->stack_b); //delete the first element of the stack
-//	}
-//	write(1, "pa\n", 3);
-//	return (0);
-//}
 
 int		sa(t_node **stack_a_or_b)
 {
 	t_node	*head;
+	t_node	*second_element;
+	t_node	*third_element;
 
 	if (lstsize(*stack_a_or_b) <= 1)
 		return (1);
 	head = *stack_a_or_b;
-	*stack_a_or_b = head->next;
-	head->next->next->prev = head;
-	head->next->next = head->prev;
-	head->next = head->next->next;
-	head->next->prev = NULL;
-	head->prev = head->next;
+	second_element = (*stack_a_or_b)->next;
+	third_element = (*stack_a_or_b)->next->next;
+	if(third_element)
+		third_element->prev = head;
+	second_element->prev = NULL;
+	second_element->next = head;
+	head->prev = second_element;
+	head->next = third_element;
+	*stack_a_or_b = second_element;
 
 	return (0);
 }
@@ -143,10 +106,7 @@ int		ra(t_node **stack_a_or_b)
 	t_node	*tail;
 
 	if (lstsize(*stack_a_or_b) <= 1)
-	{
 		return (1);
-	}
-
 	head = *stack_a_or_b;
 	tail = *stack_a_or_b;
 	while (tail->next != NULL)
@@ -160,18 +120,13 @@ int		ra(t_node **stack_a_or_b)
 	return (0);
 }
 
-
-
 int		rra(t_node **stack_a_or_b)
 {
 	t_node	*head;
 	t_node	*tail;
 
 	if (lstsize(*stack_a_or_b) <= 1)
-	{
 		return (1);
-	}
-
 	head = *stack_a_or_b;
 	tail = *stack_a_or_b;
 	while (tail->next != NULL)
@@ -185,7 +140,7 @@ int		rra(t_node **stack_a_or_b)
 	return (0);
 }
 
-int main()
+int main(void)
 {
 	t_two_stack *stack = malloc(sizeof(t_two_stack));
     //t_node *stack_a = malloc(sizeof(t_node)); // Alloca la memoria per la struct t_two_stack
@@ -197,16 +152,21 @@ int main()
     lstadd_back(&stack->stack_a, 3);
     lstadd_back(&stack->stack_a, 2);
     lstadd_back(&stack->stack_a, 1);
+	lstadd_back(&stack->stack_b, 7);
+    lstadd_back(&stack->stack_b, 4);
+    lstadd_back(&stack->stack_b, 2);
 
-    printf("Lista stack_a prima della chiamata a ra:\n");
+    printf("Lista stack_a prima della chiamata a pa:\n");
     print_list(stack->stack_a); // Stampa la lista stack_a prima della chiamata a sa
+	print_list(stack->stack_b);
 
     // Chiamata alla funzione sa
 	
-    sa(&stack->stack_a);
+    rra(&stack->stack_a);
 
-    printf("Lista stack_a dopo la chiamata a ra:\n");
+    printf("Lista stack_a dopo la chiamata a pa:\n");
     print_list(stack->stack_a); // Stampa la lista stack_a dopo la chiamata a sa
+	print_list(stack->stack_b);
 
     return 0;
 }

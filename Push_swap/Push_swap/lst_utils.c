@@ -6,23 +6,17 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/23 20:37:04 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/28 20:06:29 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//void	lstadd_back(t_node **lst, t_node *new)
+//void push(t_node **head_ref, int new_data)
 //{
-//	t_node	*lst_node;
-
-//	if (*lst == NULL)
-//	{
-//		*lst = new;
-//		return ;
-//	}
-//	lst_node = ft_lstlast(*lst);
-//	lst_node->next = new;
+//    t_node *new_node = lstnew(new_data);
+//    new_node->next = *head_ref;
+//    *head_ref = new_node;
 //}
 
 t_node	*lstlast(t_node *lst)
@@ -49,6 +43,24 @@ t_node	*lstlast(t_node *lst)
 //	*lst = NULL;
 //}
 
+void	del_first(t_two_stack *stack, int control)
+{
+	t_node	*head;
+
+	if (control)
+	{
+		head = stack->stack_a->next;
+		free(stack->stack_a);
+		stack->stack_a = head;
+	}
+	else
+	{
+		head = stack->stack_b->next;
+		free(stack->stack_b);
+		stack->stack_b = head;
+	}
+}
+
 void	lstadd_front(t_node **lst, t_node *new)
 {
 	new->next = *lst;
@@ -64,13 +76,14 @@ void	lstadd_back(t_node **top_stack, int number)
 	if (*top_stack == NULL) //if empty, new node becomes the stack
 	{
 		*top_stack = new_node;
+		new_node->prev = new_node; //inizializzare il campo prev del primo elemento
 		return;
 	}
 	last_node = *top_stack; //last node is now head
 	while (last_node->next != NULL) // anything under the head?
         last_node = last_node->next;
-	new_node->prev = last_node;
 	last_node->next = new_node;
+	new_node->prev = last_node;
 
     return;
 }

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 17:51:12 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/28 19:04:29 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/29 20:25:32 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atol(const char *str)
 {
-	int	i;
-	int	neg;
+	int		i;
+	int		neg;
 	long	result;
 
 	i = 0;

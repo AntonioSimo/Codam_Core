@@ -6,13 +6,25 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/23 18:52:49 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/29 22:30:14 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-PUSH_SWAP = push_swap.c
+SRC = 	src/check.c \
+		src/lst_utils.c \
+		src/push_swap.c \
+		src/parse.c \
+		src/push.c \
+		src/rotate.c \
+		src/sort.c \
+		src/swap.c \
+		src/utils.c
 
-OBJ_PUSH_SWAP = push_swap.o
+HEADERFILES = 	-I./include
+
+SRC_DIR = src
+OBJ_DIR := obj_files
+OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
 LIBFT = libft/libft.a
 EXE_PUSH_SWAP = push_swap
 GREEN = \x1b[32;01m
@@ -25,23 +37,26 @@ RM = /bin/rm -f
 
 all: $(EXE_PUSH_SWAP)
 
-$(EXE_PUSH_SWAP): $(OBJ_PUSH_SWAP) $(LIBFT)
-	@$(CC) $(CFLAGS) $(PUSH_SWAP) $(LIBFT) -o $(EXE_PUSH_SWAP)
-	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
+$(EXE_PUSH_SWAP): $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(SRC) $(LIBFT) -o $(EXE_PUSH_SWAP)
 
-%.o: %.c push_swap.h
-	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(HEADERFILES) -Ilibft/libft.a $(CFLAGS) -c $< -o $@
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 $(LIBFT):
 	@make -C libft
 
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
 clean:
-	@$(RM) $(OBJ_PUSH_SWAP)
+	@$(RM) -rf $(OBJ_DIR)
 	@make clean -C libft
 	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
 
 fclean: clean
-	@$(RM) $(EXE_PUSH_SWAP)
+	@$(RM) -rf $(EXE_PUSH_SWAP)
 	@make fclean -C libft
 
 re: fclean all

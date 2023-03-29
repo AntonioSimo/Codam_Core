@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/28 20:06:29 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/29 20:27:29 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ void	lstadd_front(t_node **lst, t_node *new)
 
 void	lstadd_back(t_node **top_stack, int number)
 {
-	t_node *new_node = lstnew(number);
-    t_node *last_node;
+	t_node	*new_node;
+	t_node	*last_node;
 
+	new_node = lstnew(number);
 	if (*top_stack == NULL) //if empty, new node becomes the stack
 	{
 		*top_stack = new_node;
 		new_node->prev = new_node; //inizializzare il campo prev del primo elemento
-		return;
+		return ;
 	}
 	last_node = *top_stack; //last node is now head
 	while (last_node->next != NULL) // anything under the head?
-        last_node = last_node->next;
+	last_node = last_node->next;
 	last_node->next = new_node;
 	new_node->prev = last_node;
-
-    return;
+	return ;
 }
 
 int	lstsize(t_node *lst)

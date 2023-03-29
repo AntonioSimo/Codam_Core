@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/29 16:31:27 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/29 20:16:05 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ $(OBJ_DIR):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) -Iinclude $(CFLAGS) -c $^ -o $@
-	@printf "$(GREEN) $(BOLD)Compiling... $$(basename $@) $(RESET)\n"
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 		
 clean:
 	@$(RM) -rf $(OBJ_DIR)

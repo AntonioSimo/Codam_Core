@@ -6,29 +6,28 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 19:24:13 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/28 19:59:50 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/29 20:57:37 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	swap_time(t_node **stack_a, t_node **stack_b, char *str)
+void	swap_time(t_node **stack_a, t_node **stack_b, char *str)
 {
 	swap(stack_a, NULL);
 	swap(stack_b, NULL);
 	if (str)
 		write(1, str, strlen(str));
-	return (0);
 }
 
-int	swap(t_node **stack, char *str)
+void	swap(t_node **stack, char *str)
 {
 	t_node	*head;
 	t_node	*second_element;
 	t_node	*third_element;
 
 	if (lstsize(*stack) <= 1)
-		return (1);
+		return ;
 	head = *stack;
 	second_element = (*stack)->next;
 	third_element = (*stack)->next->next;
@@ -41,5 +40,4 @@ int	swap(t_node **stack, char *str)
 	*stack = second_element;
 	if (str)
 		write(1, str, strlen(str));
-	return (0);
 }

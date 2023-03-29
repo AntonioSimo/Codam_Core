@@ -6,18 +6,25 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/13 16:23:35 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/29 16:08:42 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-SERVER = server.c
-CLIENT = client.c
-
-OBJ_SERVER = server.o
-OBJ_CLIENT = client.o
+SERVER = src/server.c
+CLIENT = src/client.c
+SERVER_BONUS = src/server_bonus.c
+CLIENT_BONUS = src/client_bonus.c
+		
+HEADERFILES = 	-I./include
+				
+SRC_DIR  = src
+OBJ_DIR := obj_files
+OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
 LIBFT = libft/libft.a
 EXE_SERVER = server
 EXE_CLIENT = client
+EXE_SERVER_BONUS = server_bonus
+EXE_CLIENT_BONUS = client_bonus
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m
 BOLD = \033[1m
@@ -26,29 +33,37 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = /bin/rm -f
 
-all: $(EXE_SERVER) $(EXE_CLIENT)
+all: $(EXE_SERVER) $(EXE_CLIENT) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
 
-$(EXE_SERVER): $(OBJ_SERVER) $(LIBFT)
-	@$(CC) $(CFLAGS) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
+$(EXE_SERVER): $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
+
+$(EXE_CLIENT): $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
+
+$(EXE_SERVER_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER_BONUS) $(LIBFT) -o $(EXE_SERVER_BONUS)
+
+$(EXE_CLIENT_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(HEADERFILES) -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
 	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
-
-$(EXE_CLIENT): $(OBJ_CLIENT) $(LIBFT)
-	@$(CC) $(CFLAGS) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
-	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
-
-%.o: %.c
-	@$(CC) -Iinclude -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
 
 $(LIBFT):
 	@make -C libft
 
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
 clean:
-	@$(RM) $(OBJ_SERVER) $(OBJ_CLIENT)
+	@$(RM) -rf $(OBJ_DIR) 
 	@make clean -C libft
 	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
 
 fclean: clean
-	@$(RM) $(EXE_SERVER) $(EXE_CLIENT)
+	@$(RM) -rf $(EXE_SERVER) $(EXE_CLIENT) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
 	@make fclean -C libft
 
 re: fclean all

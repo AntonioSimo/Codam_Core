@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   server.c                                           :+:    :+:            */
+/*   server_bonus.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/09 12:33:44 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/29 15:57:51 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minitalk.h"
+#include "minitalk_bonus.h"
 
 void	signal_handler(int sig, siginfo_t *client, void *ucontext)
 {

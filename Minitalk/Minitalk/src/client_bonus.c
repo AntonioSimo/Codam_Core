@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   client.c                                           :+:    :+:            */
+/*   client_bonus.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/12 13:11:17 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/12 13:15:50 by asimone       ########   odam.nl         */
+/*   Updated: 2023/03/29 15:07:51 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minitalk.h"
+#include "minitalk_bonus.h"
 
 void	send_message(pid_t pid, char *str)
 {

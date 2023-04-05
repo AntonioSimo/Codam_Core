@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/12 13:11:17 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 15:07:51 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/05 13:04:16 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	action.sa_handler = message_handler;
-	signal(SIGUSR1, message_handler);
+	sigaction(SIGUSR1, &action, NULL);
 	pid = ft_atoi(argv[1]);
 	send_message(pid, argv[2]);
 	return (0);

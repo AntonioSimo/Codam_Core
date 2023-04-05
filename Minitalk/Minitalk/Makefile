@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/29 20:14:42 by asimone       ########   odam.nl          #
+#    Updated: 2023/04/05 13:40:58 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = /bin/rm -f
 
-all: $(EXE_SERVER) $(EXE_CLIENT) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
+all: $(EXE_CLIENT) $(EXE_SERVER) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
 
 $(EXE_SERVER): $(OBJ_DIR) $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER) $(LIBFT) -o $(EXE_SERVER)

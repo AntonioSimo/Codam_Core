@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 22:15:18 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/05 16:48:10 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct stack {
 int		check_atoi(char *str, int *temp);
 long	ft_atol(const char *str);
 int		ft_is_number(char c);
-int		lstsize(t_node *lst);
+size_t	lstsize(t_node *lst);
 t_node	*lstnew(int data);
 void	lstadd_back(t_node **top_stack, int number);
 void	push(t_node **stack_a, t_node **stack_b, char *str);
@@ -44,7 +44,11 @@ void	rotate_time(t_node **stack_a, t_node **stack_b, char *str);
 void	reverse_rotate(t_node **stack, char *str);
 void	reverse_rotate_time(t_node **stack_a, t_node **stack_b, char *str);
 void	check_inputs(char **input, int argc);
-void	input_whitout_quotes(int argc, char **argv);
+void	input_without_quotes(int argc, char **argv);
 void	input_quotes(int argc, char **input);
+
+size_t	list_size(t_node *stack);
+void	print_stacks(t_node *stack_a, t_node *stack_b);
+void	sort_elements(t_node** stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 22:17:12 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/05 16:57:21 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	input_quotes(int argc, char **input)
 		input = ft_split(input[1], ' ');
 		argc = 0;
 		while (input[argc])
+		{
 			argc++;
+		}
 	}
 	while (input[i])
 	{
@@ -42,10 +44,22 @@ void	input_quotes(int argc, char **input)
 	}
 }
 
-void	input_whitout_quotes(int argc, char **argv)
+void	input_without_quotes(int argc, char **argv)
 {
-	else
+	int	i;
+
+	i = 0;
+	if (argc > 2)
 	{
-		input++;
+		argc--;
+		argv++;
+		while (argv[i])
+		{
+			{
+				write(2, "Error\n", 6);
+				exit(EXIT_FAILURE);
+			}
+			i++;
+		}
 	}
 }

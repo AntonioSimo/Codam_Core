@@ -6,25 +6,11 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 19:34:11 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 20:57:17 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/05 14:57:24 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	print_list(t_node *head)
-{
-	if (head)
-	{
-		while (head->next != NULL)
-		{
-			printf("%d ", head->data);
-			head = head->next;
-		}
-		printf("%d ", head->data);
-	}
-	printf("\n");
-}
 
 void	rotate_time(t_node **stack_a, t_node **stack_b, char *str)
 {

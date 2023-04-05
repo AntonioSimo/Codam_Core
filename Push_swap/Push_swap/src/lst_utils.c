@@ -6,18 +6,11 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 20:27:29 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/05 15:42:49 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//void push(t_node **head_ref, int new_data)
-//{
-//    t_node *new_node = lstnew(new_data);
-//    new_node->next = *head_ref;
-//    *head_ref = new_node;
-//}
 
 t_node	*lstlast(t_node *lst)
 {
@@ -26,46 +19,6 @@ t_node	*lstlast(t_node *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
-}
-
-//void	lstclear(t_node **lst, void (*del)(void *))
-//{
-//	t_node	*node;
-
-//	if (*lst == NULL)
-//		return ;
-//	while (*lst != NULL)
-//	{
-//		node = (*lst)->next;
-//		ft_lstdelone(*lst, del);
-//		*lst = node;
-//	}
-//	*lst = NULL;
-//}
-
-void	del_first(t_two_stack *stack, int control)
-{
-	t_node	*head;
-
-	if (control)
-	{
-		head = stack->stack_a->next;
-		free(stack->stack_a);
-		stack->stack_a = head;
-	}
-	else
-	{
-		head = stack->stack_b->next;
-		free(stack->stack_b);
-		stack->stack_b = head;
-	}
-}
-
-void	lstadd_front(t_node **lst, t_node *new)
-{
-	new->next = *lst;
-	*lst = new;
-	(*lst)->prev = NULL;
 }
 
 void	lstadd_back(t_node **top_stack, int number)
@@ -88,7 +41,7 @@ void	lstadd_back(t_node **top_stack, int number)
 	return ;
 }
 
-int	lstsize(t_node *lst)
+size_t	lstsize(t_node *lst)
 {
 	int	i;
 
@@ -99,6 +52,25 @@ int	lstsize(t_node *lst)
 		lst = lst->next;
 	}
 	return (i);
+}
+
+
+size_t	list_size(t_node *stack)
+{
+	size_t	size;
+	t_node	*home;
+
+	if (!stack)
+		return (0);
+	size = 1;
+	home = stack;
+	stack = stack->next;
+	while (stack != home)
+	{
+		stack = stack->next;
+		size++;
+	}
+	return (size);
 }
 
 t_node	*lstnew(int data)

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 13:41:50 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 16:49:29 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/13 15:46:26 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	main(int argc, char **argv)
 	else
 		input_without_quotes(argc, argv);
 	stack_a = allocate_stack(argc, argv);
-	sort_elements(&stack_a);
-	print_stacks(stack_a, stack_b);
+	//printf("%d", stack_a->data);
+	sort_elements(&stack_a, argc);
+	//print_stacks(stack_a, stack_b);
 	return (0);
 }

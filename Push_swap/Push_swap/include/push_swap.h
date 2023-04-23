@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 16:48:10 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/18 16:24:52 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct node {
 	int				data;
+	int				pos;
 	struct node		*next;
 	struct node		*prev;
 }	t_node;
@@ -49,6 +50,6 @@ void	input_quotes(int argc, char **input);
 
 size_t	list_size(t_node *stack);
 void	print_stacks(t_node *stack_a, t_node *stack_b);
-void	sort_elements(t_node** stack);
+void	sort_elements(t_node** stack_a, t_node** stack_b, int argc);
 
 #endif

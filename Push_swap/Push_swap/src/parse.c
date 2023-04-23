@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 16:57:21 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/18 15:44:08 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int	ft_is_number(char c)
 void	input_quotes(int argc, char **input)
 {
 	int	i;
+	int	temp;
 
 	i = 0;
+	temp = 0;
 	if (argc == 2)
 	{
 		input = ft_split(input[1], ' ');
 		argc = 0;
-		while (input[argc])
+		while (input[i])
 		{
-			argc++;
+			temp = ft_atol(input[i]);
+			//argc++;
+			i++;
 		}
 	}
 	while (input[i])

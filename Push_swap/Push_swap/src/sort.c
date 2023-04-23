@@ -6,21 +6,40 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 16:47:38 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/18 16:24:12 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// 4 elementi
-// 1 2 3 4 gia ordinati
-// 2 4 1 3 reverse_rotate + reverse_rotate + push
-// 3 1 4 2 swap
-// 1 2 4 3 push
-// 3 4 2 1 reverse_rotate + push
-// usa il sort_three_element
-// push back the smallest number
+//// 4 elementi
+//// 1 2 3  gia ordinati
+//   1 3 2
+//// 2 3 1  reverse_rotate + reverse_rotate + push
+//   2 1 3
+//// 3 1 2  swa
+//   3 2 1
+//// usa il sort_three_element
+//// push back the smallest number
 
+int	ordered_stack(t_node **stack)
+{
+	t_node	*current;
+	int		previous;
+
+	if (!*stack)
+		return (1);
+	current = *stack;
+	previous = current->data;
+	while (current)
+	{
+		if (current->data < previous)
+			return (0);
+		previous = current->data;
+		current = current->next;
+	}
+	return (1);
+}
 
 void	sort_three_elements(t_node **stack)
 {
@@ -51,15 +70,31 @@ void	sort_three_elements(t_node **stack)
 		return ;
 }
 
-void	sort_elements(t_node** stack)
+//void	sort_four_elements(t_node **stack)
+//{
+//	get_the_smallest(stack);
+//}
+
+//void	sort_five_elements(t_node **stack)
+//{
+
+//}
+
+void	sort_elements(t_node** stack_a, t_node**stack_b, int argc)
 {
-	if (!(*stack)->next)
+	if (ordered_stack(stack_a))
 		return ;
-	else if (!(*stack)->next->next)
+	if (argc <= 5)
 	{
-		if ((*stack)->data > (*stack)->next->data)
-			swap(stack, "sa\n");
+		if (argc == 2)
+			swap(stack_a, "sa\n");
+		else if (argc == 3)
+			sort_three_elements(stack_a);
+		else if (argc == 4)
+			sort_four_elements(stack_a, stack_b, argc);
+		else if (argc == 5)
+			sort_five_elements(stack_a, stack_b, argc);
 	}
-	else if (!(*stack)->next->next->next)
-		sort_three_elements(stack);
+	else
+		radix_sort(stack_a, stack_b, argc);
 }

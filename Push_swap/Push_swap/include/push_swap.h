@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/23 17:09:08 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/24 19:05:00 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ typedef struct stack {
 
 int		check_atoi(char *str, int *temp);
 long	ft_atol(const char *str);
+//void	duplicate_check()
+void	duplicate_check(t_node *stack);
 int		ft_is_number(char c);
 size_t	lstsize(t_node *lst);
 t_node	*lstnew(int data);
-void	lstadd_back(t_node **top_stack, int number);
+void	lstadd_back(t_node **top_stack, t_node	*new_node);
 void	push(t_node **stack_a, t_node **stack_b, char *str);
 void	swap(t_node **stack, char *str);
 void	swap_time(t_node **stack_a, t_node **stack_b, char *str);
@@ -46,10 +48,11 @@ void	reverse_rotate(t_node **stack, char *str);
 void	reverse_rotate_time(t_node **stack_a, t_node **stack_b, char *str);
 void	check_inputs(char **input, int argc);
 void	input_without_quotes(int argc, char **argv);
-void	input_quotes(int argc, char **input);
-
+t_node	*input_quotes(int *argc, char **input);
+int is_number(char *number);
+int		input_duplicate(t_node **stack);
 size_t	list_size(t_node *stack);
-void	print_stacks(t_node *stack_a, t_node *stack_b);
-void	sort_elements(t_node** stack_a, t_node** stack_b, int argc);
+void	sort_elements(t_node** stack_a, int argc);
+void	print_stacks(t_node *stack_a, t_node *stack); //t_node** stack_b
 
 #endif

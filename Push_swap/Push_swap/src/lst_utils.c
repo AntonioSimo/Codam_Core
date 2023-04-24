@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 15:42:49 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/24 18:52:07 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ t_node	*lstlast(t_node *lst)
 	return (lst);
 }
 
-void	lstadd_back(t_node **top_stack, int number)
+void	lstadd_back(t_node **top_stack, t_node *new_node)
 {
-	t_node	*new_node;
 	t_node	*last_node;
 
-	new_node = lstnew(number);
 	if (*top_stack == NULL) //if empty, new node becomes the stack
 	{
 		*top_stack = new_node;
@@ -77,7 +75,7 @@ t_node	*lstnew(int data)
 {
 	t_node	*new_node;
 
-	new_node = malloc(sizeof(t_node));
+	new_node = ft_calloc(1, sizeof(t_node));
 	if (!new_node)
 		return (NULL);
 	new_node->data = data;

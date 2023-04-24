@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/18 16:24:12 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/24 12:44:25 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	sort_three_elements(t_node **stack)
 
 //}
 
-void	sort_elements(t_node** stack_a, t_node**stack_b, int argc)
+void	sort_elements(t_node** stack_a, int argc) //t_node**stack_b
 {
 	if (ordered_stack(stack_a))
 		return ;
@@ -90,11 +90,11 @@ void	sort_elements(t_node** stack_a, t_node**stack_b, int argc)
 			swap(stack_a, "sa\n");
 		else if (argc == 3)
 			sort_three_elements(stack_a);
-		else if (argc == 4)
-			sort_four_elements(stack_a, stack_b, argc);
-		else if (argc == 5)
-			sort_five_elements(stack_a, stack_b, argc);
+		//else if (argc == 4)
+		//	sort_four_elements(stack_a, stack_b, argc);
+		//else if (argc == 5)
+		//	sort_five_elements(stack_a, stack_b, argc);
 	}
-	else
-		radix_sort(stack_a, stack_b, argc);
+	//else
+	//	radix_sort(stack_a, stack_b, argc);
 }

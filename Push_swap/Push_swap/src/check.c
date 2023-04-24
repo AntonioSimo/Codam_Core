@@ -6,11 +6,12 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/29 22:17:56 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/18 15:43:23 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/24 19:09:07 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <string.h>
 
 //void	print_stacks(t_node *stack_a, t_node *stack_b)
 //{
@@ -51,50 +52,3 @@
 //	}
 //	printf("\n\tEND PRINT FUNC\n");
 //}
-
-int	ft_error(char *number)
-{
-	int	i;
-
-	i = 0;
-	while (number[i])
-	{
-		if (number[i] == '+' || number[i] == '-')
-		{
-			if (number[i+1] == '0')
-				return (1);
-		}
-		else if ((number[i] == '+' || number[i] == '-') && (number[i+1]) != '\0')
-		{
-			number++;
-			return (1);
-		}
-		else if (number[i] < '0' || number[i] > '9')
-			return (1);
-		i++;
-	}
-	if (ft_atoi(number) != ft_atol(number))
-		return (1);
-	return (0);
-}
-
-int	input_duplicate(char **input)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (input[i])
-	{
-		j = i + 1;
-		while(input[j])
-		{
-			if (ft_atoi(input[i]) == ft_atoi(input[j]))
-				return (1);
-			j++;
-			printf("PORCO DIO");
-		}
-		i++;
-	}
-	return (0);
-}

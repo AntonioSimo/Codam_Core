@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/04/23 17:04:40 by asimone       ########   odam.nl          #
+#    Updated: 2023/04/24 12:27:02 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ SERVER = src/server.c
 CLIENT = src/client.c
 SERVER_BONUS = src/server_bonus.c
 CLIENT_BONUS = src/client_bonus.c
-		
 HEADERFILES = 	-I./include
 				
 SRC_DIR  = src
@@ -47,7 +46,7 @@ $(EXE_SERVER_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
 $(EXE_CLIENT_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERFILES)
 	$(CC) $(HEADERFILES) -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
 	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 

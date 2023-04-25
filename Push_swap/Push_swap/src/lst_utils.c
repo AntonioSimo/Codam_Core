@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/24 18:52:07 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/25 16:51:12 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,19 @@ t_node	*lstnew(int data)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
+}
+
+void	ft_printlst(t_node **stack)
+{
+	t_node *temp;
+
+	if (!*stack)
+		ft_printf("Vaffammocca a mammita\n");
+	temp = *stack;
+
+	while (temp != NULL)
+	{
+		ft_printf("%d\n", temp->data);
+		temp = temp->next;
+	}
 }

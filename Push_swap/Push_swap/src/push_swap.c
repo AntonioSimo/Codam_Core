@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 13:41:50 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/24 19:17:05 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/25 20:20:44 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc == 1)
 		exit (EXIT_SUCCESS);
-	else if (argc == 2)
+	if (argc == 2)
 	{
-		stack_a = input_quotes(&argc, argv);
-		input_duplicate(&stack_a);
+		stack_a = input_quotes(argv);
+		argc++;
 	}
 	else
-		input_without_quotes(argc, argv);
+	{
+		stack_a = input_without_quotes(argc, argv);
+		argc--;
+	}
+	input_duplicate(&stack_a);
+	ft_printlst(&stack_a);
+	printf("argc = %d\n", argc);
+	sort_elements(&stack_a, &stack_b, argc);
+	ft_printlst(&stack_a);
 	return (0);
 }

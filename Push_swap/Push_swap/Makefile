@@ -6,19 +6,19 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/03/29 22:30:14 by asimone       ########   odam.nl          #
+#    Updated: 2023/04/25 15:39:59 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = 	src/check.c \
-		src/lst_utils.c \
+SRC = 	src/lst_utils.c \
 		src/push_swap.c \
 		src/parse.c \
 		src/push.c \
 		src/rotate.c \
 		src/sort.c \
 		src/swap.c \
-		src/utils.c
+		src/utils.c \
+		src/get_lowest.c
 
 HEADERFILES = 	-I./include
 

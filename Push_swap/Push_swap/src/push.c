@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 19:21:20 by asimone       #+#    #+#                 */
-/*   Updated: 2023/03/29 20:56:43 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/25 18:06:11 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	push(t_node **stack_a, t_node **stack_b, char *str)
 	head_b = *stack_b;
 	second_element_a = head_a->next;
 	head_a->next = head_b;
+	if (!stack_a)
+		return ;
 	if (head_b)
 		head_b->prev = head_a;
 	else

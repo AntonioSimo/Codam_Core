@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/24 12:44:25 by asimone       ########   odam.nl         */
+/*   Updated: 2023/04/25 20:29:59 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,28 +70,39 @@ void	sort_three_elements(t_node **stack)
 		return ;
 }
 
-//void	sort_four_elements(t_node **stack)
-//{
-//	get_the_smallest(stack);
-//}
+void sort_four_elements(t_node **stack_a, t_node **stack_b)
+{
+	t_node *lowest;
+
+	//int pos;
+	int		abs_lowest = INT_MIN; 
+	
+	lowest = get_lowest(stack_a, abs_lowest);
+	abs_lowest = lowest->data;
+	printf("abs_low = %d\n", abs_lowest);
+	sort_three_elements(stack_a);
+	push(stack_b, stack_a, "pa\n");
+}
 
 //void	sort_five_elements(t_node **stack)
 //{
 
 //}
 
-void	sort_elements(t_node** stack_a, int argc) //t_node**stack_b
+void	sort_elements(t_node** stack_a, t_node **stack_b, int size) //t_node**stack_b
 {
+
 	if (ordered_stack(stack_a))
 		return ;
-	if (argc <= 5)
+	get_pos(stack_a, size);
+	if (size <= 5)
 	{
-		if (argc == 2)
+		if (size == 2)
 			swap(stack_a, "sa\n");
-		else if (argc == 3)
+		if (size == 3)
 			sort_three_elements(stack_a);
-		//else if (argc == 4)
-		//	sort_four_elements(stack_a, stack_b, argc);
+		if (size == 4)
+			sort_four_elements(stack_a, stack_b);
 		//else if (argc == 5)
 		//	sort_five_elements(stack_a, stack_b, argc);
 	}

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/25 16:51:12 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/01 17:30:05 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	lstadd_back(t_node **top_stack, t_node *new_node)
 {
 	t_node	*last_node;
 
-	if (*top_stack == NULL) //if empty, new node becomes the stack
+	if (*top_stack == NULL)
 	{
 		*top_stack = new_node;
-		new_node->prev = new_node; //inizializzare il campo prev del primo elemento
+		new_node->prev = new_node;
 		return ;
 	}
-	last_node = *top_stack; //last node is now head
-	while (last_node->next != NULL) // anything under the head?
+	last_node = *top_stack;
+	while (last_node->next != NULL)
 	last_node = last_node->next;
 	last_node->next = new_node;
 	new_node->prev = last_node;
@@ -88,13 +88,18 @@ void	ft_printlst(t_node **stack)
 {
 	t_node *temp;
 
-	if (!*stack)
-		ft_printf("Vaffammocca a mammita\n");
 	temp = *stack;
-
+	if (temp == NULL)
+		ft_printf("Vaffammocca a mammita\n");
 	while (temp != NULL)
 	{
 		ft_printf("%d\n", temp->data);
 		temp = temp->next;
 	}
+}
+
+void	lstadd_front(t_node **lst, t_node *new)
+{
+	new->next = *lst;
+	*lst = new;
 }

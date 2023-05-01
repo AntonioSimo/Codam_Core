@@ -6,52 +6,51 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/25 15:02:47 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/25 20:27:05 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/01 18:14:47 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*get_lowest(t_node **head, int lowest_number)
+t_node	*get_lowest(t_node **head)
 {
 	t_node	*stack;
 	t_node	*min;
-	int 	biggest_number;
+	int lowest_number;
 
 	stack = (*head);
-	biggest_number = INT_MAX;
-	min = (*head);
+	lowest_number = stack->data;
+	min = stack;
 	while (stack)
 	{
-		if (stack->data <= biggest_number && stack->data > lowest_number)
+		if (stack->data < lowest_number)
 		{
-			biggest_number = stack->data;
 			min = stack;
-			//tmp->pos = i;
-			//i++;
+			lowest_number = stack->data;
 		}
-		//printf("lowest = %d", biggest_number);
-		//printf("pos = %d\n", tmp->pos);
 		stack = stack->next;
 	}
+	printf("This is the lowest %d\n", lowest_number);
+	printf("-----------------------------\n");
+	ft_printlst(&min);
 	return (min);
 }
 
-void	get_pos(t_node **head, int size)
+int	get_pos(t_node **head)
 {
 	int		i;
-	long	min_found;
 	t_node	*min;
+	t_node	*stack;
 
-	min_found = INT_MIN;
 	i = 0;
-	while (i < size)
+	stack = (*head);
+	while (stack)
 	{
-		min = get_lowest(head, min_found);
-		min->pos = i;
-		min_found = min->data;
+		min = get_lowest(head);
+		if (stack->data == min->data)
+			break;
+		stack = stack->next;
 		i++;
 	}
-	printf("lowest number = %ld\n", min_found);
-	printf("pos = %d\n", i);
+	return (i);
 }

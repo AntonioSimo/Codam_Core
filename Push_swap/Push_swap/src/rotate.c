@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 19:34:11 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/05 14:57:24 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/01 17:19:51 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,51 +51,37 @@ void	rotate(t_node **stack, char *str)
 
 void	reverse_rotate(t_node **stack, char *str)
 {
-	t_node	*head;
-	t_node	*tail;
+	t_node	*new_node;
 
-	if (lstsize(*stack) <= 1)
-		return ;
-	head = *stack;
-	tail = *stack;
-	while (tail->next != NULL)
-		tail = tail->next;
-	tail->next = head;
-	head->prev = tail;
-	*stack = tail;
-	tail->prev->next = NULL;
-	tail->prev = NULL;
+	//if (lstsize(*stack) <= 1)
+	//	return ;
+	//printf("lst size: %zu\n", lstsize(*stack));
+	//head = *stack;
+	//tail = *stack;
+	//printf("list: \n");
+	//ft_printlst(&head);
+	//printf("---------\n");
+	//while (tail->next != NULL)
+	//	tail = tail->next;
+	//tail->next = head;
+	//head->prev = tail;
+	//*stack = tail;
+	//tail->prev->next = NULL;
+	//printf("lol\n");
+	//tail->prev = NULL;
+	
+	new_node = lstnew((lstlast(*stack))->data);
+	lstadd_front(stack, new_node);
+	while ((*stack) != NULL)
+	{
+		if ((*stack)->next->next == NULL)
+		{
+			free((*stack)->next);
+			(*stack)->next = NULL;
+		}
+		(*stack) = (*stack)->next;
+	}
+	(*stack) = new_node;
 	if (str)
 		write(1, str, strlen(str));
 }
-
-//int main(void)
-//{
-//	t_two_stack *stack = malloc(sizeof(t_two_stack));
-//    //t_node *stack_a = malloc(sizeof(t_node)); // Alloca la memoria per la struct t_two_stack
-
-//    stack->stack_a = NULL;
-//    stack->stack_b = NULL;
-
-//    // Aggiungi alcuni nodi alla lista stack_a
-//    lstadd_back(&stack->stack_a, 3);
-//    lstadd_back(&stack->stack_a, 2);
-//    lstadd_back(&stack->stack_a, 1);
-//	lstadd_back(&stack->stack_b, 7);
-//    lstadd_back(&stack->stack_b, 4);
-//    lstadd_back(&stack->stack_b, 2);
-
-//    printf("Lista stack_a prima della chiamata a pa:\n");
-//    print_list(stack->stack_a); // Stampa la lista stack_a prima della chiamata a sa
-//	print_list(stack->stack_b);
-
-//    // Chiamata alla funzione sa
-	
-//    rotate(&stack->stack_a, "ra\n");
-
-//    printf("Lista stack_a dopo la chiamata a pa:\n");
-//    print_list(stack->stack_a); // Stampa la lista stack_a dopo la chiamata a sa
-//	print_list(stack->stack_b);
-
-//    return 0;
-//}

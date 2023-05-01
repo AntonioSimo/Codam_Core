@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/25 19:09:02 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/01 17:50:14 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ typedef struct node {
 	struct node		*next;
 	struct node		*prev;
 }	t_node;
-
-//typedef struct stack {
-//	t_node	*stack_a;
-//	t_node	*stack_b;
-//}	t_two_stack;
 
 int		check_atoi(char *str, int *temp);
 long	ft_atol(const char *str);
@@ -53,8 +48,12 @@ int		input_duplicate(t_node **stack);
 size_t	list_size(t_node *stack);
 void	sort_elements(t_node** stack_a, t_node **stack_b, int len);
 void	print_stacks(t_node *stack_a, t_node *stack); //t_node** stack_b
-t_node	*get_lowest(t_node **head, int lowest_number);
+t_node	*get_lowest(t_node **head);
 void 	ft_printlst(t_node **stack);
-void	get_pos(t_node **head, int size);
+int		get_pos(t_node **head);
 
+t_node	*lstlast(t_node *lst);
+void	get_pos_radix(t_node **head);
+void	lstadd_front(t_node **lst, t_node *new);
+void	radix_sort(t_node **stack_a, t_node **stack_b, int argc);
 #endif

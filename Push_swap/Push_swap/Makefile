@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/04/25 15:39:59 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/01 17:47:07 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC = 	src/lst_utils.c \
 		src/sort.c \
 		src/swap.c \
 		src/utils.c \
-		src/get_lowest.c
+		src/get_lowest.c \
+		src/radix_sort.c
 
 HEADERFILES = 	-I./include
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: asimone <asimone@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/25 16:57:24 by asimone       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/28 12:33:48 by asimone           #+#    #+#             */
+/*   Updated: 2023/05/03 01:02:49 by fra              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_node	*input_quotes(char **input)
 	char **numbers;
 	long temp;
 	t_node *stack_a;
+	t_node *new_ele;
 
 	stack_a = NULL;
 	i = 0;
@@ -35,7 +36,10 @@ t_node	*input_quotes(char **input)
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
-		lstadd_back(&stack_a, lstnew(temp)); //Protect it. For you in the future- gr chino.
+		new_ele = lstnew(temp); 
+		if (! new_ele)	// NB SISTEMARE
+			return (NULL);
+		lstadd_back(&stack_a, new_ele); //Protect it. For you in the future- gr chino. 	PORCODDIO
 		i++;
 	}
 	return (stack_a);

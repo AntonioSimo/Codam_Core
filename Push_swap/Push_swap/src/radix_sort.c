@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   radix_sort.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: asimone <asimone@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/04/13 15:37:34 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/02 22:24:06 by asimone       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/13 15:37:34 by asimone           #+#    #+#             */
+/*   Updated: 2023/05/03 01:32:51 by fra              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,21 @@ int	get_biggest(t_node **head)
 	return (max_number);
 }
 
-static int	second_biggest_number(t_node *stack, long biggest_number)
+int	second_biggest_number(t_node *stack, long biggest_number)
 {
 	int new_big;
 	int i;
 
 	i = 0;
+	while (stack && stack->pos != -1)
+		stack = stack->next;
 	new_big = stack->data;
 	while(stack)
 	{
+		// ft_printf("\t\tcurrent: %d\n", stack->data);
 		if (stack->data > new_big && stack->data < biggest_number)
 		{
+			// ft_printf("\t\tnew max: %d\n", stack->data);
 			new_big = stack->data;
 		}
 		i++;
@@ -92,7 +96,7 @@ static int	second_biggest_number(t_node *stack, long biggest_number)
 	return (new_big);
 }		
 
-void	counting_sort(t_node **head, int size)
+void	counting_sort_bk(t_node **head, int size)
 {
 	int		i;
 	long		biggest_number;
@@ -120,6 +124,42 @@ void	counting_sort(t_node **head, int size)
 	*head = copy;
 }
 
+void	counting_sort(t_node *head, int size)
+{
+	int		i;
+	// int		j;
+	long		biggest_number;
+	t_node	*copy;
+	// t_node	*copy2:
+
+	i = size;
+	// copy2 = *head;
+	biggest_number = 2147483648;
+	while(i)
+	{
+		copy = head;
+		biggest_number = second_biggest_number(copy, biggest_number);
+		// printf("\tbiggest number: %ld\n", biggest_number);
+		// j = 0;
+		while (copy)
+		{
+			// ft_printf("\element: %d pos: %d\n", copy->data, copy->pos);
+			if (copy->data == biggest_number)
+			{
+				copy->pos = i - 1;
+				// ft_printf("\tmax: %d pos: %d\n", copy->data, copy->pos);
+				// break;
+			}
+			// j++;
+			copy = copy->next;
+		}
+			// ft_printf("\n");
+		// ft_printf("%d\n", copy->pos);
+		// copy2 = copy2->next; 
+		i--;
+	}
+	// ft_printlst(head);
+}
 //void	radix_sort(t_node **stack_a, t_node **stack_b, int size)
 //{
 //	int 	i;
@@ -156,9 +196,8 @@ void	radix_sort(t_node **stack_a, t_node **stack_b, int size)
 	int bit;
 	
 	bit = 1;
-	counting_sort(stack_a, size);
-	i = 0;
-	while (i < 5)
+	counting_sort(*stack_a, size);
+	while (!ordered_stack(*stack_a))
 	{
 		i = 0;
 		while (i < size)

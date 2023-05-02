@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_memcpy.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: asimone <asimone@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/06 15:37:42 by asimone       #+#    #+#                 */
-/*   Updated: 2022/10/17 10:52:30 by asimone       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/06 15:37:42 by asimone           #+#    #+#             */
+/*   Updated: 2023/05/03 00:21:16 by fra              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		return (0);
 	if (dcopy == scopy && n == 0)
 		return (dst);
-	if (n < 0)
-		return (0);
 	while (i < n)
 	{
 		dcopy[i] = scopy[i];

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   sort.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: asimone <asimone@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/02 21:04:04 by asimone       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/28 12:33:40 by asimone           #+#    #+#             */
+/*   Updated: 2023/05/03 00:14:35 by fra              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sort_three_elements(t_node **stack)
 	int third;
 
 	first = (*stack)->data;
-	second = (*stack)->next->data;
+	second = (*stack)->next->data;	
 	third = (*stack)->next->next->data;
 	if (first > second && first < third && second < third)
 		swap (stack, "sa\n");
@@ -58,10 +58,10 @@ void	sort_three_elements(t_node **stack)
 
 void sort_four_elements(t_node **stack_a, t_node **stack_b)
 {
-	int 	lowest;
+	// int 	lowest;
 	int 	pos;
 	
-	lowest = get_lowest(stack_a);
+	// lowest = get_lowest(stack_a);
 	pos = get_pos(stack_a);
 	if (pos == 1)
 		swap(stack_a, "sa\n");
@@ -79,10 +79,10 @@ void sort_four_elements(t_node **stack_a, t_node **stack_b)
 
 void	sort_five_elements(t_node **stack_a, t_node **stack_b)
 {
-	int lowest;
+	// int lowest;
 	int pos;
 
-	lowest = get_lowest(stack_a);
+	// lowest = get_lowest(stack_a);
 	pos = get_pos(stack_a);
 	if (pos == 1)
 		swap (stack_a, "sa\n");

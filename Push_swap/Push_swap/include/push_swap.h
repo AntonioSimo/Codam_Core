@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   push_swap.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: asimone <asimone@student.42.fr>              +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/07 14:43:43 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/02 21:03:41 by asimone       ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 14:43:43 by asimone           #+#    #+#             */
+/*   Updated: 2023/05/03 01:14:08 by fra              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ size_t	list_size(t_node *stack);
 void	sort_elements(t_node** stack_a, t_node **stack_b, int len);
 void	print_stacks(t_node *stack_a, t_node *stack); //t_node** stack_b
 int		get_lowest(t_node **head);
-void 	ft_printlst(t_node **stack);
+void 	ft_printlst(t_node *stack);
 int		get_pos(t_node **head);
 
 t_node	*lstlast(t_node *lst);

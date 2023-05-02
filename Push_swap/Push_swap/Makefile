@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/01 17:47:07 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/02 21:59:40 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ RED = \x1b[31;01m
 BOLD = \033[1m
 RESET = \x1b[0m
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = /bin/rm -f
 
 all: $(EXE_PUSH_SWAP)

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 13:41:50 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/01 17:29:49 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/02 20:45:06 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	main(int argc, char **argv)
 		argc--;
 	}
 	input_duplicate(&stack_a);
-	ft_printlst(&stack_a);
 	sort_elements(&stack_a, &stack_b, argc);
-	ft_printlst(&stack_a);
+	//if (ordered_stack(&stack_a))
+	//	printf("MAMMITA\n");
 	return (0);
 }

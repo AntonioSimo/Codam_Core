@@ -6,27 +6,21 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/01 17:48:47 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/02 21:04:04 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ordered_stack(t_node **stack)
+int	ordered_stack(t_node *stack)
 {
-	t_node	*current;
-	int		previous;
-
-	if (!*stack)
+	if (!stack)
 		return (1);
-	current = *stack;
-	previous = current->data;
-	while (current)
+	while (stack->next)
 	{
-		if (current->data < previous)
+		if (stack->data > stack->next->data)
 			return (0);
-		previous = current->data;
-		current = current->next;
+		stack = stack->next;
 	}
 	return (1);
 }
@@ -64,7 +58,7 @@ void	sort_three_elements(t_node **stack)
 
 void sort_four_elements(t_node **stack_a, t_node **stack_b)
 {
-	t_node *lowest;
+	int 	lowest;
 	int 	pos;
 	
 	lowest = get_lowest(stack_a);
@@ -78,14 +72,14 @@ void sort_four_elements(t_node **stack_a, t_node **stack_b)
 	}
 	else if (pos == 3)
 		reverse_rotate(stack_a, "rra\n");
-	push(stack_a, stack_b, "pb\n");
+	push(stack_a, stack_b, 'b');
 	sort_three_elements(stack_a);
-	push(stack_b, stack_a, "pa\n");
+	push(stack_b, stack_a, 'a');
 }
 
 void	sort_five_elements(t_node **stack_a, t_node **stack_b)
 {
-	t_node *lowest;
+	int lowest;
 	int pos;
 
 	lowest = get_lowest(stack_a);
@@ -104,15 +98,15 @@ void	sort_five_elements(t_node **stack_a, t_node **stack_b)
 	}
 	else if (pos == 4)
 		reverse_rotate(stack_a, "rra\n");
-	push(stack_a, stack_b, "pb\n");
+	push(stack_a, stack_b, 'b');
 	sort_four_elements(stack_a, stack_b);
-	push(stack_b, stack_a, "pa\n");
+	push(stack_b, stack_a, 'a');
 }
 
 void	sort_elements(t_node** stack_a, t_node **stack_b, int size)
 {
 
-	if (ordered_stack(stack_a))
+	if (ordered_stack(*stack_a))
 		return ;
 	if (size <= 5)
 	{

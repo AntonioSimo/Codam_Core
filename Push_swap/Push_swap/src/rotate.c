@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 19:34:11 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/01 17:19:51 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/02 20:56:43 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,6 @@ void	rotate(t_node **stack, char *str)
 void	reverse_rotate(t_node **stack, char *str)
 {
 	t_node	*new_node;
-
-	//if (lstsize(*stack) <= 1)
-	//	return ;
-	//printf("lst size: %zu\n", lstsize(*stack));
-	//head = *stack;
-	//tail = *stack;
-	//printf("list: \n");
-	//ft_printlst(&head);
-	//printf("---------\n");
-	//while (tail->next != NULL)
-	//	tail = tail->next;
-	//tail->next = head;
-	//head->prev = tail;
-	//*stack = tail;
-	//tail->prev->next = NULL;
-	//printf("lol\n");
-	//tail->prev = NULL;
 	
 	new_node = lstnew((lstlast(*stack))->data);
 	lstadd_front(stack, new_node);

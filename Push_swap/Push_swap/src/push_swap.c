@@ -6,11 +6,23 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/07 13:41:50 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/03 12:51:47 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/03 18:46:46 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_stack(t_node *stack)
+{
+	t_node	*tmp;
+
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
+}
 
 int	number_of_elements(t_node *stack_a)
 {
@@ -46,5 +58,6 @@ int	main(int argc, char **argv)
 	}
 	input_duplicate(&stack_a);
 	sort_elements(&stack_a, &stack_b, argc);
+	free_stack(stack_a);
 	return (0);
 }

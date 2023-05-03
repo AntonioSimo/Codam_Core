@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 15:14:31 by asimone           #+#    #+#             */
-/*   Updated: 2023/05/03 01:14:38 by fra              ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   lst_utils.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: asimone <asimone@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/20 15:14:31 by asimone       #+#    #+#                 */
+/*   Updated: 2023/05/03 12:39:27 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	lstadd_back(t_node **top_stack, t_node *new_node)
 	if (*top_stack == NULL)
 	{
 		*top_stack = new_node;
-		// new_node->prev = new_node;
 		return ;
 	}
 	last_node = *top_stack;
@@ -51,7 +50,6 @@ size_t	lstsize(t_node *lst)
 	}
 	return (i);
 }
-
 
 size_t	list_size(t_node *stack)
 {
@@ -76,7 +74,7 @@ t_node	*lstnew(int data)
 	t_node	*new_node;
 
 	new_node = ft_calloc(1, sizeof(t_node));
-	if (! new_node)
+	if (!new_node)
 		return (NULL);
 	new_node->data = data;
 	new_node->pos = -1;
@@ -87,9 +85,6 @@ t_node	*lstnew(int data)
 
 void	ft_printlst(t_node *stack)
 {
-	// t_node *temp;
-
-	// temp = *stack;
 	while (stack)
 	{
 		ft_printf("element: %d pos: %d\n", stack->data, stack->pos);

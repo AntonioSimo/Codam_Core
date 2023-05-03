@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 12:33:40 by asimone           #+#    #+#             */
-/*   Updated: 2023/05/03 00:14:35 by fra              ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   sort.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: asimone <asimone@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
+/*   Updated: 2023/05/03 12:55:44 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	sort_three_elements(t_node **stack)
 {
 	int	first;
 	int	second;
-	int third;
+	int	third;
 
 	first = (*stack)->data;
-	second = (*stack)->next->data;	
+	second = (*stack)->next->data;
 	third = (*stack)->next->next->data;
 	if (first > second && first < third && second < third)
 		swap (stack, "sa\n");
@@ -52,16 +52,14 @@ void	sort_three_elements(t_node **stack)
 		reverse_rotate (stack, "rra\n");
 		swap (stack, "sa\n");
 	}
-	else 
+	else
 		return ;
 }
 
-void sort_four_elements(t_node **stack_a, t_node **stack_b)
+void	sort_four_elements(t_node **stack_a, t_node **stack_b)
 {
-	// int 	lowest;
-	int 	pos;
-	
-	// lowest = get_lowest(stack_a);
+	int	pos;
+
 	pos = get_pos(stack_a);
 	if (pos == 1)
 		swap(stack_a, "sa\n");
@@ -72,17 +70,15 @@ void sort_four_elements(t_node **stack_a, t_node **stack_b)
 	}
 	else if (pos == 3)
 		reverse_rotate(stack_a, "rra\n");
-	push(stack_a, stack_b, 'b');
+	push(stack_a, stack_b, "pb\n");
 	sort_three_elements(stack_a);
-	push(stack_b, stack_a, 'a');
+	push(stack_b, stack_a, "pa\n");
 }
 
 void	sort_five_elements(t_node **stack_a, t_node **stack_b)
 {
-	// int lowest;
-	int pos;
+	int	pos;
 
-	// lowest = get_lowest(stack_a);
 	pos = get_pos(stack_a);
 	if (pos == 1)
 		swap (stack_a, "sa\n");
@@ -98,14 +94,13 @@ void	sort_five_elements(t_node **stack_a, t_node **stack_b)
 	}
 	else if (pos == 4)
 		reverse_rotate(stack_a, "rra\n");
-	push(stack_a, stack_b, 'b');
+	push(stack_a, stack_b, "pb\n");
 	sort_four_elements(stack_a, stack_b);
-	push(stack_b, stack_a, 'a');
+	push(stack_b, stack_a, "pa\n");
 }
 
-void	sort_elements(t_node** stack_a, t_node **stack_b, int size)
+void	sort_elements(t_node **stack_a, t_node **stack_b, int size)
 {
-
 	if (ordered_stack(*stack_a))
 		return ;
 	if (size <= 5)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 12:33:48 by asimone           #+#    #+#             */
-/*   Updated: 2023/05/03 01:02:49 by fra              ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: asimone <asimone@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
+/*   Updated: 2023/05/03 12:51:09 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 t_node	*input_quotes(char **input)
 {
-	int i;
-	char **numbers;
-	long temp;
-	t_node *stack_a;
-	t_node *new_ele;
+	int		i;
+	char	**numbers;
+	long	temp;
+	t_node	*stack_a;
+	t_node	*new_ele;
 
 	stack_a = NULL;
 	i = 0;
 	numbers = ft_split(input[1], ' ');
-	while(numbers[i])
+	while (numbers[i])
 	{
-		if(!is_number(numbers[i]))
+		if (!is_number(numbers[i]))
 		{
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
@@ -36,8 +36,8 @@ t_node	*input_quotes(char **input)
 			ft_putstr_fd("Error\n", 2);
 			exit(EXIT_FAILURE);
 		}
-		new_ele = lstnew(temp); 
-		if (! new_ele)	// NB SISTEMARE
+		new_ele = lstnew(temp);
+		if (!new_ele)
 			return (NULL);
 		lstadd_back(&stack_a, new_ele); //Protect it. For you in the future- gr chino. 	PORCODDIO
 		i++;
@@ -47,9 +47,9 @@ t_node	*input_quotes(char **input)
 
 t_node	*input_without_quotes(int argc, char **argv)
 {
-	int	i;
-	long temp;
-	t_node *stack_a;
+	int		i;
+	long	temp;
+	t_node	*stack_a;
 
 	stack_a = NULL;
 	i = 0;
@@ -59,26 +59,26 @@ t_node	*input_without_quotes(int argc, char **argv)
 		argv++;
 		while (argv[i++])
 		{
-			if(!is_number(argv[i-1]))
+			if (!is_number(argv[i - 1]))
 			{
 				ft_putstr_fd("Error\n", 2);
 				exit(EXIT_FAILURE);
 			}
-			temp = ft_atol(argv[i-1]);
+			temp = ft_atol(argv[i - 1]);
 			if (temp > INT_MAX || temp < INT_MIN)
 			{
 				ft_putstr_fd("Error\n", 2);
 				exit(EXIT_FAILURE);
 			}
-			lstadd_back(&stack_a, lstnew(temp)); 
+			lstadd_back(&stack_a, lstnew(temp));
 		}
 	}
 	return (stack_a);
 }
 
-int is_number(char *number)
+int	is_number(char *number)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!number)
@@ -99,7 +99,7 @@ int is_number(char *number)
 	return (1);
 }
 
-int input_duplicate(t_node **stack)
+int	input_duplicate(t_node **stack)
 {
 	t_node	*head;
 	t_node	*temp;

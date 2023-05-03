@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/25 15:02:47 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/02 21:02:26 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/03 12:38:48 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	get_lowest(t_node **head)
 {
 	t_node	*stack;
-	int 	lowest_number;
+	int		lowest_number;
 
 	stack = (*head);
 	lowest_number = stack->data;
@@ -40,7 +40,7 @@ int	get_pos(t_node **head)
 	{
 		min = get_lowest(head);
 		if (stack->data == min)
-			break;
+			break ;
 		stack = stack->next;
 		i++;
 	}

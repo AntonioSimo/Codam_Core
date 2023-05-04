@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/03 18:47:26 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/04 11:48:58 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ int	is_number(char *number)
 	while (number[i])
 	{
 		if (!ft_isdigit(number[i]))
+		{
+			ft_putstr_fd("Error\n", 2);
 			return (0);
+		}
 		i++;
 	}
 	return (1);

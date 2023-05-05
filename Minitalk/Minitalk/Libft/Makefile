@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/04/23 16:59:57 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/05 14:30:50 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,9 +86,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		
 clean:
 	@$(RM) -rf $(OBJ_DIR)
-	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
+	@printf "$(RED) $(BOLD) Deleting Libft... $(RESET)\n"
 
-fclean: clean
+fclean:
 	@$(RM) -rf $(NAME)
 
 re: fclean all

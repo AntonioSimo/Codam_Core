@@ -6,19 +6,18 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/04/24 12:27:02 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/05 14:30:09 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = src/server.c
 CLIENT = src/client.c
-SERVER_BONUS = src/server_bonus.c
-CLIENT_BONUS = src/client_bonus.c
+SERVER_BONUS = src_bonus/server_bonus.c
+CLIENT_BONUS = src_bonus/client_bonus.c
 HEADERFILES = 	-I./include
 				
 SRC_DIR  = src
-OBJ_DIR := obj_files
-OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+SRC_DIR_BONUS = src_bonus
 LIBFT = libft/libft.a
 EXE_SERVER = server
 EXE_CLIENT = client
@@ -32,34 +31,32 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = /bin/rm -f
 
-all: $(EXE_CLIENT) $(EXE_SERVER) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
+all: $(EXE_CLIENT) $(EXE_SERVER)
 
-$(EXE_SERVER): $(OBJ_DIR) $(OBJ) $(LIBFT)
+$(EXE_SERVER): $(LIBFT) $(SERVER)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
+	@printf "$(GREEN) $(BOLD) create exe $(SERVER)$(RESET)\n"
 
-$(EXE_CLIENT): $(OBJ_DIR) $(OBJ) $(LIBFT)
+$(EXE_CLIENT): $(LIBFT) $(CLIENT)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
+	@printf "$(GREEN) $(BOLD) create exe $(CLIENT)$(RESET)\n"
 
-$(EXE_SERVER_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
+$(EXE_SERVER_BONUS): $(LIBFT) $(SERVER_BONUS)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER_BONUS) $(LIBFT) -o $(EXE_SERVER_BONUS)
+	@printf "$(GREEN) $(BOLD) create exe $(SERVER_BONUS)$(RESET)\n"
 
-$(EXE_CLIENT_BONUS): $(OBJ_DIR) $(OBJ) $(LIBFT)
+$(EXE_CLIENT_BONUS): $(LIBFT) $(CLIENT_BONUS)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERFILES)
-	$(CC) $(HEADERFILES) -Ilibft/libft.a $(CFLAGS) -c $^ -o $@
-	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
+	@printf "$(GREEN) $(BOLD) create exe $(CLIENT_BONUS)$(RESET)\n"
 
 $(LIBFT):
 	@make -C libft
 
-$(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+bonus:  $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)
 
 clean:
-	@$(RM) -rf $(OBJ_DIR) 
 	@make clean -C libft
-	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
+	@printf "$(RED) $(BOLD) Deleting Minitalk... $(RESET)\n"
 
 fclean: clean
 	@$(RM) -rf $(EXE_SERVER) $(EXE_CLIENT) $(EXE_SERVER_BONUS) $(EXE_CLIENT_BONUS)

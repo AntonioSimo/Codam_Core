@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/04/23 17:14:45 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/05 12:55:40 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 void	signal_handler(int sig, siginfo_t *client, void *ucontext)
 {
 	static char	c = 0;
-	static int	x = 0;
+	static int	bit = 0;
 
-	(void) ucontext;
-	if (sig == SIGUSR2)
-		x++;
-	else if (sig == SIGUSR1)
+	(void)ucontext;
+	c = c << 1 | (sig == SIGUSR1);
+	bit++;
+	if (bit == 8)
 	{
-		c |= 1 << x;
-		x++;
-	}
-	if (x == 8)
-	{
-		if ((int)c == 0)
-			kill(client->si_pid, SIGUSR1);
-		else
-			write(1, &c, 1);
+		write(1, &c, 1);
+		if (c == '\0')
+			kill(client->si_pid, SIGUSR2);
 		c = 0;
-		x = 0;
+		bit = 0;
 	}
+	kill(client->si_pid, SIGUSR1);
 }
 
 int	main(void)

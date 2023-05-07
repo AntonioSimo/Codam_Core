@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/13 14:28:42 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/05 14:29:27 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/07 15:43:44 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(void)
 	pid_t				pid;
 
 	sa.sa_sigaction = signal_handler;
-	sa.sa_flags = SA_SIGINFO | SA_NODEFER;;
+	sa.sa_flags = SA_SIGINFO | SA_NODEFER;
 	pid = getpid();
 	sigemptyset(&sa.sa_mask);
 	ft_printf(GREEN BOLD "[CONNECTING]\n" RESET "PID: %d\n", pid);

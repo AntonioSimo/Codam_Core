@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/12 13:11:17 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/05 12:55:29 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/07 15:43:30 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,22 @@ void	message_handler(int sig)
 	}
 }
 
-void	send_message(pid_t pid, char *str)
+int	send_bit(pid_t pid, int bit)
+{
+	if (bit)
+	{
+		if (kill(pid, SIGUSR1))
+			return (0);
+	}
+	else
+	{
+		if (kill(pid, SIGUSR2))
+			return (0);
+	}
+	return (1);
+}
+
+int	send_message(pid_t pid, char *str)
 {
 	int	i;
 	int	x;
@@ -38,43 +53,41 @@ void	send_message(pid_t pid, char *str)
 		x = 7;
 		while (x >= 0)
 		{
-			if (str[i] & (1 << x))
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
+			if (!send_bit(pid, str[i] & (1 << x)))
+				return (0);
 			x--;
 			while (1)
 			{
 				if (g_variable == 1)
-					break;
+					break ;
 			}
 			g_variable = 0;
 		}
 		i++;
 	}
+	return (1);
 }
 
 int	main(int argc, char *argv[])
 {
-	int	pid;
-	int i;
+	int					pid;
 	struct sigaction	action;
 
-	i = 0;
 	action.sa_handler = message_handler;
 	action.sa_flags = SA_SIGINFO | SA_NODEFER;
 	sigaction(SIGUSR1, &action, NULL);
 	sigaction(SIGUSR2, &action, NULL);
-	pid = ft_atoi(argv[1]);
-	send_message(pid, argv[2]);
 	if (argc == 3)
 	{	
 		pid = ft_atoi(argv[1]);
-		send_message(pid, argv[2]);
+		if (pid <= 0)
+			ft_printf(RED BOLD "Invalid [PID]\n");
+		else if (!send_message(pid, argv[2]))
+			ft_printf(RED BOLD "Fail sending message.\n" RESET);
 	}
 	else
 	{
-		ft_printf(RED BOLD "Too few arguments. You should send the program name, the correct PID and the message you want to send in quotes.\n" RESET);
+		ft_printf(RED BOLD "Too few arguments.\n" RESET);
 		exit(EXIT_FAILURE);
 	}
 	return (0);

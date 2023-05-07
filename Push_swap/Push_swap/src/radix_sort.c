@@ -31,9 +31,9 @@ int	get_biggest(t_node **head)
 int	second_biggest_number(t_node *stack, long biggest_number)
 {
 	int	new_big;
-	int	i;
+	//int	i;
 
-	i = 0;
+	//i = 0;
 	while (stack && stack->pos != -1)
 		stack = stack->next;
 	new_big = stack->data;
@@ -43,7 +43,7 @@ int	second_biggest_number(t_node *stack, long biggest_number)
 		{
 			new_big = stack->data;
 		}
-		i++;
+		//i++;
 		stack = stack->next;
 	}
 	return (new_big);

@@ -22,6 +22,7 @@ SRC = 	src/lst_utils.c \
 		src/radix_sort.c
 
 HEADERFILES = 	-I./include
+HEAD = ./include/push_swap.h
 
 SRC_DIR = src
 OBJ_DIR := obj_files
@@ -30,6 +31,7 @@ LIBFT = Libft/libft.a
 EXE_PUSH_SWAP = push_swap
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m
+YELLOW = \033[33;1m
 BOLD = \033[1m
 RESET = \x1b[0m
 CC = gcc
@@ -38,7 +40,7 @@ CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 all: $(EXE_PUSH_SWAP)
 
-$(EXE_PUSH_SWAP): $(OBJ_DIR) $(OBJ) $(LIBFT)
+$(EXE_PUSH_SWAP): $(HEAD) $(OBJ_DIR) $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SRC) $(LIBFT) -o $(EXE_PUSH_SWAP)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -54,7 +56,7 @@ $(OBJ_DIR):
 clean:
 	@$(RM) -rf $(OBJ_DIR)
 	@make clean -C Libft
-	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
+	@printf "$(RED) $(BOLD) Deleting Push_Swap... $(RESET)\n"
 
 fclean: clean
 	@$(RM) -rf $(EXE_PUSH_SWAP)

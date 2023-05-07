@@ -87,9 +87,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		
 clean:
 	@$(RM) -rf $(OBJ_DIR)
-	@printf "$(RED) $(BOLD) Deleting... $(RESET)\n"
+	@printf "$(RED) $(BOLD) Deleting Libft... $(RESET)\n"
 
-fclean: clean
+fclean:
 	@$(RM) -rf $(NAME)
 
 re: fclean all

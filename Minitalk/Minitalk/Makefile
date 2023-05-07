@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/08 14:40:17 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/07 15:41:52 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/07 18:09:44 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ SERVER = src/server.c
 CLIENT = src/client.c
 SERVER_BONUS = src_bonus/server_bonus.c
 CLIENT_BONUS = src_bonus/client_bonus.c
-HEADERFILES = 	-I./include
+HEADERFILES = -I./include
+HEAD = ./include/minitalk.h
+HEAD_BONUS = ./include/minitalk_bonus.h
 				
 SRC_DIR  = src
 SRC_DIR_BONUS = src_bonus
@@ -35,19 +37,19 @@ RM = /bin/rm -f
 
 all: $(EXE_CLIENT) $(EXE_SERVER)
 
-$(EXE_SERVER): $(LIBFT) $(SERVER)
+$(EXE_SERVER): $(LIBFT) $(HEAD) $(SERVER)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
 	@printf "$(YELLOW) $(BOLD) create exe $(SERVER)$(RESET)\n"
 
-$(EXE_CLIENT): $(LIBFT) $(CLIENT)
+$(EXE_CLIENT): $(LIBFT) $(HEAD) $(CLIENT)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
 	@printf "$(YELLOW) $(BOLD) create exe $(CLIENT)$(RESET)\n"
 
-$(EXE_SERVER_BONUS): $(LIBFT) $(SERVER_BONUS)
+$(EXE_SERVER_BONUS): $(LIBFT) $(HEAD_BONUS) $(SERVER_BONUS)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER_BONUS) $(LIBFT) -o $(EXE_SERVER_BONUS)
 	@printf "$(BLUE) $(BOLD) create exe $(SERVER_BONUS)$(RESET)\n"
 
-$(EXE_CLIENT_BONUS): $(LIBFT) $(CLIENT_BONUS)
+$(EXE_CLIENT_BONUS): $(LIBFT) $(HEAD_BONUS) $(CLIENT_BONUS)
 	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
 	@printf "$(BLUE) $(BOLD) create exe $(CLIENT_BONUS)$(RESET)\n"
 

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:48 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/08 11:53:23 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/08 14:08:30 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,24 @@ int	is_number(char *number)
 	int	i;
 
 	i = 0;
-	if (number[i] == '-' || number[i] == '+')
-		i++;
 	if (number[i] == '\0')
 		return (0);
-	if (ft_atol(&number[i]) > INT_MAX || ft_atol(&number[i]) < INT_MIN)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
 	while (number[i])
 	{
+		if (number[i] == '-' || number[i] == '+')
+			i++;
 		if (!ft_isdigit(number[i]))
 		{
 			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
 		i++;
+	}
+	i = 0;
+	if (ft_atol(&number[i]) > INT_MAX || ft_atol(&number[i]) < INT_MIN)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (0);
 	}
 	return (1);
 }

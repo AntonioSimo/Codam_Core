@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/13 15:37:34 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/03 12:53:51 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/08 11:12:24 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int	get_biggest(t_node **head)
 int	second_biggest_number(t_node *stack, long biggest_number)
 {
 	int	new_big;
-	//int	i;
 
-	//i = 0;
 	while (stack && stack->pos != -1)
 		stack = stack->next;
 	new_big = stack->data;
@@ -43,7 +41,6 @@ int	second_biggest_number(t_node *stack, long biggest_number)
 		{
 			new_big = stack->data;
 		}
-		//i++;
 		stack = stack->next;
 	}
 	return (new_big);

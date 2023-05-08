@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/28 12:33:40 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/03 12:55:44 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/08 11:13:30 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	sort_three_elements(t_node **stack)
 	if (first > second && first < third && second < third)
 		swap (stack, "sa\n");
 	else if (first < second && first > third && second > third)
-	{
 		reverse_rotate (stack, "rra\n");
-	}
 	else if (first > second && first > third && second < third)
 		rotate (stack, "ra\n");
 	else if (first > second && first > third && second > third)

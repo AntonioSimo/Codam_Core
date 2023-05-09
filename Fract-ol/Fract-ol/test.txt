@@ -1,0 +1,54 @@
+EXE_FRACTOL = fractol
+SRC =	src/mandelbrot.c
+CFLAGS = -Wall -Wextra -Werror $(HEADERS)
+
+#HEADERFILES = -I./include
+#HEAD = ./include/fractol.h
+
+LIBFT = lib/Libft
+LIBMLX = lib/MLX42
+LIBS = $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a
+HEADERS= -I include -I $(LIBFT)/include -I $(LIBMLX)/include
+
+SRC_DIR  = src
+OBJ_DIR := obj_files
+OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+RED = \x1b[31;01m
+GREEN = \x1b[32;01m
+BOLD = \033[1m
+RESET = \x1b[0m
+CC = gcc
+RM = /bin/rm -f
+
+all: $(EXE_FRACTOL)
+
+mlx:
+	@cmake $(LIBMLX) -B $(LIBMLX)/build
+	@cmake --build $(LIBMLX)/build -j4
+
+$(EXE_FRACTOL): mlx $(HEAD) $(OBJ_DIR) $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(HEADERFILES) $(SRC) $(LIBS) -o $(EXE_FRACTOL) -lm -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@$(CC) $(HEADERFILES) $(CFLAGS) -c $< -o $@
+	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
+
+$(LIBFT):
+	@make -C $(LIBFT)
+
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
+clean:
+	@$(RM) -rf $(OBJ_DIR)
+	@make clean -C $(LIBFT)
+	@printf "$(RED) $(BOLD) Deleting Fractol... $(RESET)\n"
+
+fclean: clean
+	@$(RM) -rf $(EXE_FRACTOL)
+	@make fclean -C $(LIBFT)
+	@make fclean -C MLX42
+
+re: fclean all
+
+.PHONY: all clean fclean

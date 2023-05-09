@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/03 16:36:01 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/08 11:56:17 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/09 14:56:36 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ BOLD = \033[1m
 RESET = \x1b[0m
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
- RM = /bin/rm -f
+RM = /bin/rm -f
 
 all: $(EXE_PUSH_SWAP)
 

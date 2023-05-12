@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/05/09 11:09:38 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/10 12:36:51 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/12 15:28:57 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,10 @@ CC := gcc
 CFLAGS := -Wall -Wextra -Werror $(HEADERS)
 LFLAGS := -lm -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
-RED = \x1b[31;01m
+BLUE = \033[34;1m
 GREEN = \x1b[32;01m
+RED = \x1b[31;01m
+YELLOW = \033[33;1m
 BOLD = \033[1m
 RESET = \x1b[0m
 RM = /bin/rm -f
@@ -43,14 +45,14 @@ $(LIBFT):
 
 $(NAME): $(MLX42) $(LIBFT) $(HEAD) $(OBJ_DIR) $(OBJECTS) 
 	@$(CC) $(CFLAGS) $(SOURCES) $(MLX42) $(LIBFT) $(LFLAGS) -o $(NAME)
-	@printf "$(GREEN) $(BOLD)Created program $(NAME)$(RESET)\n"
+	@printf "$(BLUE) $(BOLD)Created program $(NAME)$(RESET)\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(HEADERS) $(CFLAGS) -c $< -o $@
-	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
+	@printf "$(YELLOW) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 clean:
 	@$(RM) -rf $(OBJ_DIR)

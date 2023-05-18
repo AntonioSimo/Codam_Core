@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/05/09 11:09:38 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/12 15:28:57 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/18 13:36:11 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,13 @@ MLX42 := $(MLX42_DIR)/build/libmlx42.a
 LIBFT := $(LIBFT_DIR)/libft.a
 HEADERS := -Iinclude -I$(MLX42_DIR)/include -I$(LIBFT_DIR)/include
 HEAD = ./include/fractol.h
-SOURCES := $(SRC_DIR)/mandelbrot.c
+SOURCES := 	$(SRC_DIR)/colors.c \
+			$(SRC_DIR)/hook.c \
+			$(SRC_DIR)/julia.c \
+			$(SRC_DIR)/main.c \
+			$(SRC_DIR)/mandelbrot.c \
+			$(SRC_DIR)/map.c \
+			$(SRC_DIR)/parsing.c
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.c=.o))
 
 CC := gcc
@@ -45,7 +51,7 @@ $(LIBFT):
 
 $(NAME): $(MLX42) $(LIBFT) $(HEAD) $(OBJ_DIR) $(OBJECTS) 
 	@$(CC) $(CFLAGS) $(SOURCES) $(MLX42) $(LIBFT) $(LFLAGS) -o $(NAME)
-	@printf "$(BLUE) $(BOLD)Created program $(NAME)$(RESET)\n"
+	@printf "$(BLUE) $(BOLD)======= Created program $(NAME) ======= $(RESET)\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mandelbrot.c                                       :+:    :+:            */
+/*   colors.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/15 15:32:27 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/18 11:48:58 by asimone       ########   odam.nl         */
+/*   Created: 2023/05/18 10:49:15 by asimone       #+#    #+#                 */
+/*   Updated: 2023/05/18 14:10:17 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_mandelbrot(mlx_t *mlx, mlx_image_t *image)
+uint32_t ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
-	mlx_image_to_window(mlx, image, 0, 100);
-	ft_printf("This is Mandelbrot");
+	return (r << 24 | g << 16 | b << 8 | a);
 }

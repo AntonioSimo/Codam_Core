@@ -6,30 +6,30 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 13:30:58 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/24 19:56:14 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/29 19:06:40 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double change_imaginary_image_x(image_t *immagine, uint32_t x_coordinate)
+double	change_imaginary_image_x(t_image *image, uint32_t x_coordinate)
 {
-    double interval;
-    double coordinate;
+	double	interval;
+	double	coordinate;
 
-    immagine->moveX = immagine->zoom;
-    interval = immagine->zoom * (immagine->z_max_x - immagine->zx) / immagine->image->width;
-    coordinate = immagine->zx + interval * (double)x_coordinate - immagine->moveX;
-    return (coordinate);
+	image->move_x = image->zoom;
+	interval = image->zoom * image->z_max_x / image->image->width;
+	coordinate = interval * (double)x_coordinate - image->move_x;
+	return (coordinate);
 }
 
-double change_imaginary_image_y(image_t *immagine, uint32_t y_coordinate)
+double	change_imaginary_image_y(t_image *image, uint32_t y_coordinate)
 {
-    double interval;
-    double coordinate;
+	double	interval;
+	double	coordinate;
 
-    immagine->moveY = immagine->moveX * 3 / 4;
-    interval = immagine->zoom * (immagine->zy - immagine->z_max_y) / immagine->image->height;
-    coordinate = immagine->zy + interval * (double)y_coordinate - immagine->moveY;
-    return (coordinate);
+	image->move_y = image->move_x * 3 / 4;
+	interval = image->zoom * image->z_max_y / image->image->height;
+	coordinate = interval * (double)y_coordinate - image->move_y;
+	return (coordinate);
 }

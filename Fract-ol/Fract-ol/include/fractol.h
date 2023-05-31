@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/09 14:43:25 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/29 19:14:08 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/31 17:20:31 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/Libft/include/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <stdbool.h>
 
 # define HEIGHT 2000
 # define WIDTH 2000
@@ -43,7 +44,10 @@ typedef struct color_s
 	uint32_t	g;
 	uint32_t	b;
 	uint32_t	a;
-	double	brightness;
+	uint32_t	new_r;
+	uint32_t	new_g;
+	uint32_t	new_b;
+	double		shape;
 }	t_color;
 
 // Rappresentazione di un'immagine all'interno di un programma grafico.
@@ -70,34 +74,49 @@ typedef struct s_image
 	double		cy;
 	double		x;
 	double		y;
+	t_complex	z;
+	double		x_temp;
+	double		y_temp;
 	double		z_max_x;
 	double		z_max_y;
 	double		zoom;
 	uint32_t	color;
 	int32_t		mouse_x;
 	int32_t		mouse_y;
+	t_color		color_s;
+	t_complex	input_julia;
 }	t_image;
-
-double	change_imaginary_image_x(t_image *image, uint32_t x_coordinate);
-
-double	change_imaginary_image_y(t_image *image, uint32_t y_coordinate);
-
-void	color_mandelbrot(t_image *image, int iter);
-
-void	mandelbrot(t_image *image, int iter);
-
-void    draw_mandelbrot(t_image *image);
-
-void	ft_hook(struct mlx_key_data key_data, void *param);
-
-void	ft_mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
-
-void	ft_scroll_hook(double move_x, double move_y, void *param);
 
 uint32_t	ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 
-int		julia_or_mandelbrot(char *fractal, t_image *image);
+void		color_mandelbrot(t_image *image, int iter);
 
-void	check_parmeters(mlx_t *mlx, t_image *image, int argc, char **argv);
+void		color_julia(t_image *image, int iter);
+
+void		ft_hook(struct mlx_key_data key_data, void *param);
+
+void		ft_scroll_hook(double move_x, double move_y, void *param);
+
+void		draw_julia(t_image *image);
+
+void		julia(t_image *image, t_complex c, int i);
+
+void		mandelbrot(t_image *image, int iter);
+
+void		draw_mandelbrot(t_image *image);
+
+double		change_imaginary_image_x(t_image *image, uint32_t x_coordinate);
+
+double		change_imaginary_image_y(t_image *image, uint32_t y_coordinate);
+
+int			julia_or_mandelbrot(char *fractal, t_image *image);
+
+bool		check_parmeters(int argc, char **argv);
+
+void		julia_set(t_image *image, char *sec_arg);
+
+void		color_mandelbrot_choice(t_image *image, char *sec_arg);
+
+void		config_pre_draw(t_image *image, int argc, char **argv);
 
 #endif

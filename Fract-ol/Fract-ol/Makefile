@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/05/09 11:09:38 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/18 13:36:11 by asimone       ########   odam.nl          #
+#    Updated: 2023/05/31 17:14:40 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SOURCES := 	$(SRC_DIR)/colors.c \
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.c=.o))
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror $(HEADERS)
+CFLAGS := -Wall -Wextra -Werror $(HEADERS) -Ofast
 LFLAGS := -lm -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 
 BLUE = \033[34;1m

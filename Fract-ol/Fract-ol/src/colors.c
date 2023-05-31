@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 10:49:15 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/29 19:04:52 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/31 17:21:35 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,26 @@ void	color_mandelbrot(t_image *image, int iter)
 {
 	t_color	color;
 
-	color.brightness = log2(1.75 + iter - log(log2(sqrt(image->zx * image->zx + image->zy * image->zy)))) / log2(100);
-	color.r = (int)(color.brightness * 100 / iter * 20);
-	color.g = (int)(color.brightness);
-	color.b = (int)(color.brightness * 10 / iter * 25);
+	color.shape = log2(1.75 + iter - log2(log2(sqrt(image->zx * image->zx
+						+ image->zy * image->zy))));
+	if (!image->color_s.new_r || !image->color_s.new_g || !image->color_s.new_b)
+	{
+		color.r = (int)(color.shape * 100 / iter * 20);
+		color.g = (int)(color.shape);
+		color.b = (int)(color.shape * 10 / iter * 25);
+	}
+	else
+	{
+		color.r = (int)(color.shape * image->color_s.new_r / iter * 50);
+		color.g = (int)(color.shape * image->color_s.new_g / iter * 50);
+		color.b = (int)(color.shape * image->color_s.new_b / iter * 50);
+	}
 	color.a = 255;
 	image->color = ft_pixel(color.r, color.g, color.b, color.a);
+}
+
+void	color_julia(t_image *image, int iter)
+{
+	image->color = 0xFFFFFF * sin(iter);
+	mlx_put_pixel(image->image, image->x, image->y, image->color);
 }

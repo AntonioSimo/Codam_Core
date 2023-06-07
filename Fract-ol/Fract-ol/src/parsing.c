@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/18 13:16:50 by asimone       #+#    #+#                 */
-/*   Updated: 2023/05/31 17:11:58 by asimone       ########   odam.nl         */
+/*   Updated: 2023/05/31 19:29:50 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	config_pre_draw(t_image *image, int argc, char **argv)
 	}
 	else if (image->julia_or_mandelbrot == 1)
 	{
-		image->input_julia.x = -0.8;
-		image->input_julia.y = 0.156;
+
 	}
 }
 

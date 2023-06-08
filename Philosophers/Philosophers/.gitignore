@@ -1,5 +1,5 @@
 .DS_STORE
-minitalk
+philosophers
 libft.h.gch
 *.o
 libft.a

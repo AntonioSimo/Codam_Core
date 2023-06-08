@@ -1,5 +1,5 @@
 .DS_STORE
-minitalk
+minishell
 libft.h.gch
 *.o
 libft.a

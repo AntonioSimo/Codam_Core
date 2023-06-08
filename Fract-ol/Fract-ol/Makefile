@@ -10,15 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := fractol
+NAME := fract-ol
 SRC_DIR := src
-OBJ_DIR := obj_files
+OBJ_DIR := obj
 MLX42_DIR := lib/MLX42
 LIBFT_DIR := lib/Libft
 MLX42 := $(MLX42_DIR)/build/libmlx42.a
 LIBFT := $(LIBFT_DIR)/libft.a
-HEADERS := -Iinclude -I$(MLX42_DIR)/include -I$(LIBFT_DIR)/include
-HEAD = ./include/fractol.h
+HEADER := ./include/fractol.h
 SOURCES := 	$(SRC_DIR)/colors.c \
 			$(SRC_DIR)/hook.c \
 			$(SRC_DIR)/julia.c \
@@ -29,8 +28,9 @@ SOURCES := 	$(SRC_DIR)/colors.c \
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.c=.o))
 
 CC := gcc
-CFLAGS := -fsanitize=address -g -Wall -Wextra -Werror $(HEADERS) -Ofast
 LFLAGS := -lm -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+IFLAGS := -Iinclude -I$(MLX42_DIR)/include -I$(LIBFT_DIR)/include
+CFLAGS := -fsanitize=address -g -Wall -Wextra -Werror $(IFLAGS) -Ofast
 
 BLUE = \033[34;1m
 GREEN = \x1b[32;01m
@@ -49,7 +49,7 @@ $(MLX42):
 $(LIBFT):
 	@make -C $(LIBFT_DIR) --quiet
 
-$(NAME): $(MLX42) $(LIBFT) $(HEAD) $(OBJ_DIR) $(OBJECTS) 
+$(NAME): $(MLX42) $(LIBFT) $(HEADER) $(OBJ_DIR) $(OBJECTS) 
 	@$(CC) $(CFLAGS) $(SOURCES) $(MLX42) $(LIBFT) $(LFLAGS) -o $(NAME)
 	@printf "$(BLUE) $(BOLD)======= Created program $(NAME) ======= $(RESET)\n"
 
@@ -57,7 +57,7 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(HEADERS) $(CFLAGS) -c $< -o $@
+	@$(CC) $(IFLAGS) $(CFLAGS) -c $< -o $@
 	@printf "$(YELLOW) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 clean:

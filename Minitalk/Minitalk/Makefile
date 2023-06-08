@@ -14,9 +14,8 @@ SERVER = src/server.c
 CLIENT = src/client.c
 SERVER_BONUS = src_bonus/server_bonus.c
 CLIENT_BONUS = src_bonus/client_bonus.c
-HEADERFILES = -I./include
-HEAD = ./include/minitalk.h
-HEAD_BONUS = ./include/minitalk_bonus.h
+HEADER = ./include/minitalk.h
+HEADER_BONUS = ./include/minitalk_bonus.h
 				
 SRC_DIR  = src
 SRC_DIR_BONUS = src_bonus
@@ -33,25 +32,26 @@ BOLD = \033[1m
 RESET = \x1b[0m
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+IFLAGS = -I./include
 RM = /bin/rm -f
 
 all: $(EXE_CLIENT) $(EXE_SERVER)
 
-$(EXE_SERVER): $(LIBFT) $(HEAD) $(SERVER)
-	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
-	@printf "$(YELLOW) $(BOLD) create exe $(SERVER)$(RESET)\n"
+$(EXE_SERVER): $(LIBFT) $(HEADER) $(SERVER)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(SERVER) $(LIBFT) -o $(EXE_SERVER)
+	@printf "$(YELLOW) $(BOLD) ======= Created $(SERVER) ======= $(RESET)\n"
 
-$(EXE_CLIENT): $(LIBFT) $(HEAD) $(CLIENT)
-	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
-	@printf "$(YELLOW) $(BOLD) create exe $(CLIENT)$(RESET)\n"
+$(EXE_CLIENT): $(LIBFT) $(HEADER) $(CLIENT)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(CLIENT) $(LIBFT) -o $(EXE_CLIENT)
+	@printf "$(YELLOW) $(BOLD) ======= Created $(CLIENT) ======= $(RESET)\n"
 
-$(EXE_SERVER_BONUS): $(LIBFT) $(HEAD_BONUS) $(SERVER_BONUS)
-	@$(CC) $(CFLAGS) $(HEADERFILES) $(SERVER_BONUS) $(LIBFT) -o $(EXE_SERVER_BONUS)
-	@printf "$(BLUE) $(BOLD) create exe $(SERVER_BONUS)$(RESET)\n"
+$(EXE_SERVER_BONUS): $(LIBFT) $(HEADER_BONUS) $(SERVER_BONUS)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(SERVER_BONUS) $(LIBFT) -o $(EXE_SERVER_BONUS)
+	@printf "$(BLUE) $(BOLD) ======= Created $(SERVER_BONUS) ======= $(RESET)\n"
 
-$(EXE_CLIENT_BONUS): $(LIBFT) $(HEAD_BONUS) $(CLIENT_BONUS)
-	@$(CC) $(CFLAGS) $(HEADERFILES) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
-	@printf "$(BLUE) $(BOLD) create exe $(CLIENT_BONUS)$(RESET)\n"
+$(EXE_CLIENT_BONUS): $(LIBFT) $(HEADER_BONUS) $(CLIENT_BONUS)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(CLIENT_BONUS) $(LIBFT) -o $(EXE_CLIENT_BONUS)
+	@printf "$(BLUE) $(BOLD) ======= Created $(CLIENT_BONUS) $(RESET)\n"
 
 $(LIBFT):
 	@make -C libft

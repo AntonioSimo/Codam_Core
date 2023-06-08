@@ -1,5 +1,5 @@
 .DS_STORE
-a.out
+push_swap
 libft.h.gch
 *.o
 libft.a

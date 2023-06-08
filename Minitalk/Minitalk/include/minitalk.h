@@ -13,7 +13,7 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include "../Libft/include/libft.h"
+# include "../lib/Libft/include/libft.h"
 # include <signal.h>
 
 # define RED "\033[31;1m"

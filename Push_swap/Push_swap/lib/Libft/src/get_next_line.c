@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fra <fra@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 11:42:41 by asimone           #+#    #+#             */
-/*   Updated: 2023/05/03 00:22:00 by fra              ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_next_line.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: asimone <asimone@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/01 11:42:41 by asimone       #+#    #+#                 */
+/*   Updated: 2023/03/01 17:56:12 by asimone       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ char	*ft_read_line(char	*str)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[FOPEN_MAX];
+	static char	*buffer[OPEN_MAX];
 	char		*line;
 
 	if (BUFFER_SIZE < 1 && read(fd, 0, 0) < 0)

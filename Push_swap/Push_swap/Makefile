@@ -10,56 +10,57 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = 	src/lst_utils.c \
-		src/push_swap.c \
-		src/parse.c \
-		src/push.c \
-		src/rotate.c \
-		src/sort.c \
-		src/swap.c \
-		src/utils.c \
-		src/get_lowest.c \
-		src/radix_sort.c
+NAME = push_swap
+SOURCES = 	$(SRC_DIR)/lst_utils.c \
+		$(SRC_DIR)/push_swap.c \
+		$(SRC_DIR)/parse.c \
+		$(SRC_DIR)/push.c \
+		$(SRC_DIR)/rotate.c \
+		$(SRC_DIR)/sort.c \
+		$(SRC_DIR)/swap.c \
+		$(SRC_DIR)/utils.c \
+		$(SRC_DIR)/get_lowest.c \
+		$(SRC_DIR)/radix_sort.c
 
-HEADERFILES = 	-I./include
-HEAD = ./include/push_swap.h
+HEADER = ./include/push_swap.h
 
 SRC_DIR = src
 OBJ_DIR := obj_files
-OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
-LIBFT = Libft/libft.a
-EXE_PUSH_SWAP = push_swap
+LIBFT_DIR := lib/Libft
+OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o))
+LIBFT = $(LIBFT_DIR)/libft.a
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m
 BOLD = \033[1m
 RESET = \x1b[0m
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+IFLAGS = -Iinclude
 RM = /bin/rm -f
 
-all: $(EXE_PUSH_SWAP)
+all: $(NAME)
 
-$(EXE_PUSH_SWAP): $(HEAD) $(OBJ_DIR) $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(HEADERFILES) $(SRC) $(LIBFT) -o $(EXE_PUSH_SWAP)
+$(NAME): $(HEADER) $(OBJ_DIR) $(OBJECTS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(IFLAGS) $(SOURCES) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(HEADERFILES) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 
 $(LIBFT):
-	@make -C Libft
+	@make -C $(LIBFT_DIR)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 		
 clean:
 	@$(RM) -rf $(OBJ_DIR)
-	@make clean -C Libft
+	@make clean -C $(LIBFT_DIR)
 	@printf "$(RED) $(BOLD) Deleting Push_Swap... $(RESET)\n"
 
 fclean: clean
-	@$(RM) -rf $(EXE_PUSH_SWAP)
-	@make fclean -C Libft
+	@$(RM) -rf $(NAME)
+	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all
 

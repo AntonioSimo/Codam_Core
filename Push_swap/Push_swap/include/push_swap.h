@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../Libft/include/libft.h"
+# include "../lib/Libft/include/libft.h"
 
 # define RED "\033[31;1m"
 # define BOLD "\033[1m"

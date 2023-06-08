@@ -6,62 +6,62 @@
 #    By: asimone <asimone@student.42.fr>              +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/12 14:58:37 by asimone       #+#    #+#                  #
-#    Updated: 2023/05/05 14:30:50 by asimone       ########   odam.nl          #
+#    Updated: 2023/03/29 16:33:57 by asimone       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libft.a
-HEADERFILES := libft.h
-SRC =	src/ft_atoi.c \
-		src/ft_bzero.c \
-		src/ft_calloc.c \
-		src/ft_isalnum.c \
-		src/ft_isalpha.c \
-		src/ft_isascii.c \
-		src/ft_isdigit.c \
-		src/ft_isprint.c \
-		src/ft_itoa.c \
-		src/ft_lstadd_back.c \
-		src/ft_lstadd_front.c \
-		src/ft_lstclear.c \
-		src/ft_lstiter.c \
-		src/ft_lstdelone.c \
-		src/ft_lstlast.c \
-		src/ft_lstmap.c \
-		src/ft_lstnew.c \
-		src/ft_lstsize.c \
-		src/ft_memchr.c \
-		src/ft_memcmp.c \
-		src/ft_memcpy.c \
-		src/ft_memmove.c \
-		src/ft_memset.c \
-		src/ft_printf.c \
-		src/ft_printf_utils.c \
-		src/ft_putchar_fd.c \
-		src/ft_putnbr_fd.c \
-		src/ft_putendl_fd.c \
-		src/ft_putstr_fd.c \
-		src/ft_split.c \
-		src/ft_strdup.c \
-		src/ft_strchr.c \
-		src/ft_striteri.c \
-		src/ft_strjoin.c \
-		src/ft_strlcat.c \
-		src/ft_strlcpy.c \
-		src/ft_strlen.c \
-		src/ft_strmapi.c \
-		src/ft_strncmp.c \
-		src/ft_strnstr.c \
-		src/ft_strrchr.c \
-		src/ft_strtrim.c \
-		src/ft_substr.c \
-		src/ft_tolower.c \
-		src/ft_toupper.c \
-		src/get_next_line.c
-
+HEADER := libft.h
 SRC_DIR = src
-OBJ_DIR := obj_files
-OBJ := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SRC:.c=.o)) #you convert the .c files in .o files
+OBJ_DIR := obj
+SOURCES =	$(SRC_DIR)/ft_atoi.c \
+		$(SRC_DIR)/ft_bzero.c \
+		$(SRC_DIR)/ft_calloc.c \
+		$(SRC_DIR)/ft_isalnum.c \
+		$(SRC_DIR)/ft_isalpha.c \
+		$(SRC_DIR)/ft_isascii.c \
+		$(SRC_DIR)/ft_isdigit.c \
+		$(SRC_DIR)/ft_isprint.c \
+		$(SRC_DIR)/ft_itoa.c \
+		$(SRC_DIR)/ft_lstadd_back.c \
+		$(SRC_DIR)/ft_lstadd_front.c \
+		$(SRC_DIR)/ft_lstclear.c \
+		$(SRC_DIR)/ft_lstiter.c \
+		$(SRC_DIR)/ft_lstdelone.c \
+		$(SRC_DIR)/ft_lstlast.c \
+		$(SRC_DIR)/ft_lstmap.c \
+		$(SRC_DIR)/ft_lstnew.c \
+		$(SRC_DIR)/ft_lstsize.c \
+		$(SRC_DIR)/ft_memchr.c \
+		$(SRC_DIR)/ft_memcmp.c \
+		$(SRC_DIR)/ft_memcpy.c \
+		$(SRC_DIR)/ft_memmove.c \
+		$(SRC_DIR)/ft_memset.c \
+		$(SRC_DIR)/ft_printf.c \
+		$(SRC_DIR)/ft_printf_utils.c \
+		$(SRC_DIR)/ft_putchar_fd.c \
+		$(SRC_DIR)/ft_putnbr_fd.c \
+		$(SRC_DIR)/ft_putendl_fd.c \
+		$(SRC_DIR)/ft_putstr_fd.c \
+		$(SRC_DIR)/ft_split.c \
+		$(SRC_DIR)/ft_strdup.c \
+		$(SRC_DIR)/ft_strchr.c \
+		$(SRC_DIR)/ft_striteri.c \
+		$(SRC_DIR)/ft_strjoin.c \
+		$(SRC_DIR)/ft_strlcat.c \
+		$(SRC_DIR)/ft_strlcpy.c \
+		$(SRC_DIR)/ft_strlen.c \
+		$(SRC_DIR)/ft_strmapi.c \
+		$(SRC_DIR)/ft_strncmp.c \
+		$(SRC_DIR)/ft_strnstr.c \
+		$(SRC_DIR)/ft_strrchr.c \
+		$(SRC_DIR)/ft_strtrim.c \
+		$(SRC_DIR)/ft_substr.c \
+		$(SRC_DIR)/ft_tolower.c \
+		$(SRC_DIR)/ft_toupper.c \
+		$(SRC_DIR)/get_next_line.c
+
+OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.c=.o)) #you convert the .c files in .o files
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m
 BOLD = \033[1m
@@ -70,25 +70,26 @@ AR = ar
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LFLAGS = -rcs
+IFLAGS = -Iinclude
 RM := /bin/rm -f
 
 all : $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJ)
-	@$(AR) $(LFLAGS) $(NAME) $(OBJ)
+$(NAME): $(OBJ_DIR) $(OBJECTS)
+	@$(AR) $(LFLAGS) $(NAME) $(OBJECTS)
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) -Iinclude $(CFLAGS) -c $^ -o $@
+	@$(CC) $(IFLAGS) $(CFLAGS) -c $^ -o $@
 	@printf "$(GREEN) $(BOLD)Compiling... $(RESET) $(notdir $<)\n"
 		
 clean:
 	@$(RM) -rf $(OBJ_DIR)
-	@printf "$(RED) $(BOLD) Deleting Libft... $(RESET)\n"
+	@printf "$(RED) $(BOLD) Deleting files... $(RESET)\n"
 
-fclean:
+fclean: clean
 	@$(RM) -rf $(NAME)
 
 re: fclean all

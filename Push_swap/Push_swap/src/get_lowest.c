@@ -35,6 +35,8 @@ int	get_pos(t_node **head)
 	t_node	*stack;
 
 	i = 0;
+	if (!*head || !head)
+		return (0);
 	stack = (*head);
 	while (stack)
 	{

@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
+#include "printf.h"
+/**
+* @brief	Convert an unsigned long integer to its hexadecimal 
+*			representation and write it to the standard output.
+* @param	n Represents the unsigned long integer to be converted.
+* @param	check Rapresents a flag used for special character encoding.
+* @return	The function returns the total counter, which represents 
+*			the number of characters written.
+*/
 int	ft_itoh(unsigned long n, int check)
 {
 	int	i;

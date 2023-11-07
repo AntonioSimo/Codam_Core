@@ -10,8 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Searches for the last occurrence of the character c in the string s. 
+*			It returns a pointer to the located character or NULL if the 
+*			character is not found.
+* @param	s Represent a pointer to the string in which we want to search for 
+*			the character.
+* @param	c Represent the character we are searching for, represented as 
+*			an integer.
+* @return	Return a pointer to the located character, or NULL if the character 
+*			does not appear in the string.
+*/
 char	*ft_strrchr(const char *s, int c)
 {
 	int	length;

@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Performs a push operation, moving the top element from one stack to 
+*			another, and optionally prints a string.
+* @param	stack_a Pointer to the top of the source stack.
+* @param	stack_b Pointer to the top of the destination stack.
+* @param	str String to be printed.
+*/
 void	push(t_node **stack_a, t_node **stack_b, char *str)
 {
 	t_node	*head_a;

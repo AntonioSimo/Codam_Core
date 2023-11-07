@@ -26,7 +26,6 @@ be used while writing large C programs.*/
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <xlocale.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 
@@ -80,4 +79,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
+void	*ft_createarray(size_t size);
 #endif

@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
+#include "../include/printf.h"
+/**
+* @brief	Write the hexadecimal representation of a pointer to the standard output.
+* @param	ptr Representsthe unsigned long integer representing the pointer.
+* @return	The function returns the total counter, which represents the number
+* 			of characters written.
+*/
 int	ft_putptr(unsigned long ptr)
 {
 	int	counter;
@@ -24,6 +29,14 @@ int	ft_putptr(unsigned long ptr)
 	return (counter);
 }
 
+/**
+* @brief	Handle and print different format specifiers in a formatted string.
+* @param	format Represents the format specifier.
+* @param	args Rapresents a va_list containing the variable arguments.
+* @param	counter  Tracks the number of characters written
+* @return	The function returns the total counter, which represents the number
+* 			of characters written.
+*/
 int	ft_printflags(const char format, va_list args, int counter)
 {
 	if (format == 'c')
@@ -45,6 +58,13 @@ int	ft_printflags(const char format, va_list args, int counter)
 	return (counter);
 }
 
+/**
+* @brief	A simplified implementation of the printf function.
+* @param	format Represents a format string that specifies the desired 
+*			format for the output.
+* @return	The function returns the total counter, which represents the number
+* 			of characters written.
+*/
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;

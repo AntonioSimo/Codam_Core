@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Deallocate memory occupied by an array of strings 
+* @param	input The array of strings to be freed. 
+* @return	It frees the memory allocated for the array itself using the free function.
+*/
 void	free_array(char **input)
 {
 	int	i;
@@ -25,6 +29,12 @@ void	free_array(char **input)
 	free(input);
 }
 
+/**
+* @brief	Processes the input array of strings and creates a linked list 
+*			containing the parsed numbers.
+* @param	input The array of strings containing the input numbers.
+* @return	The head of the linked list
+*/
 t_node	*input_quotes(char **input)
 {
 	int		i;
@@ -51,6 +61,13 @@ t_node	*input_quotes(char **input)
 	return (stack_a);
 }
 
+/**
+* @brief	Processes the command-line arguments and creates a linked list
+*			containing the parsed numbers.
+* @param	argc The number of command-line arguments.
+* @param	argv An array of strings representing the command-line arguments.
+* @return	The head of the linked list
+*/
 t_node	*input_without_quotes(int argc, char **argv)
 {
 	int		i;
@@ -78,6 +95,13 @@ t_node	*input_without_quotes(int argc, char **argv)
 	return (stack_a);
 }
 
+/**
+* @brief	Checks whether a given string represents a valid integer number.
+* @param	number The string to be checked.
+* @return	If the string passes all the checks and is determined to be a 
+*			valid number, the function returns 1 to indicate that it is a 
+*			valid number, otherwise it returns 0.
+*/
 int	is_number(char *number)
 {
 	int	i;
@@ -105,6 +129,11 @@ int	is_number(char *number)
 	return (1);
 }
 
+/**
+* @brief	Checks for duplicate values in a linked list.
+* @param	stack  A pointer to the head of the linked list.
+* @return	It returns 0 to indicate that no duplicate values were found.
+*/
 int	input_duplicate(t_node **stack)
 {
 	t_node	*head;

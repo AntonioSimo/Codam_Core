@@ -11,7 +11,12 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Locates the lowest value in a linked list of nodes.
+* @param	head Represent pointer to the pointer of the head node of the 
+*			linked list.
+* @return	Returns the lowest value found in the linked list.
+*/
 int	get_lowest(t_node **head)
 {
 	t_node	*stack;
@@ -28,6 +33,14 @@ int	get_lowest(t_node **head)
 	return (lowest_number);
 }
 
+/**
+* @brief	Locates the position (index) of the node with the lowest value in 
+*			a linked list.
+* @param	head Represent pointer to the pointer of the head node of the 
+*			linked list.
+* @return	Returns the position (index) of the node with the lowest value 
+*			in the linked list.
+*/
 int	get_pos(t_node **head)
 {
 	int		i;
@@ -35,8 +48,6 @@ int	get_pos(t_node **head)
 	t_node	*stack;
 
 	i = 0;
-	if (!*head || !head)
-		return (0);
 	stack = (*head);
 	while (stack)
 	{

@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-/*The function tests for a decimal digit character using the if statements. 
-!IT'S NOT THE SAME isnumber!*/
-
+#include "../include/libft.h"
+/**
+* @brief	Tests for a decimal digit character. 
+* @param	c Represents the character to be checked.
+* @return 	If c is either a digit character, the function returns a non-zero 
+			value (typically 1), otherwise the function returns 0.
+*/
 int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');

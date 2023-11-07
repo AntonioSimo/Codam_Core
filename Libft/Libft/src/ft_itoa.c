@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	This function calculates the number of digits in an integer, taking 
+			into account positive and negative numbers.
+* @param	nbr Represents the integer to count the digits.
+* @return 	The number of digits present in the integer nbr.
+*/
 int	ft_countnbr(int nbr)
 {
 	int	count_digit;
@@ -37,6 +42,11 @@ int	ft_countnbr(int nbr)
 	return (count_digit);
 }
 
+/**
+* @brief	Converts the integer n into a string representation.
+* @param	str This parameter represents the integer value to be converted.
+* @return 	It returns the resulting string as the output of the function.
+*/
 char	*ft_itoa(int n)
 {
 	char	*ptr;

@@ -11,7 +11,15 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
+/**
+* @brief	Signal handler function used for processing signals received by 
+*			a process.
+* @param	sig The signal number that triggered the handler.
+* @param	client A pointer to a structure containing additional information 
+*			about the signal and the process that sent it.
+* @param	ucontext A pointer to a structure representing the process's 
+*			user context.
+*/
 void	signal_handler(int sig, siginfo_t *client, void *ucontext)
 {
 	static char	c = 0;

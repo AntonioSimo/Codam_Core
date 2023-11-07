@@ -10,8 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Compares byte string s1 against byte string s2.  Both strings are 
+*			assumed to be n bytes long.
+* @param	s1 Represents a pointers to the memory blocks to compare.
+* @param	s2 Represents a pointers to the memory blocks to compare.
+* @param	n Represents the number of bytes to compare.
+* @return	If the loop completes without finding any differences the function 
+*			will reach the return (0) statement, indicating that the memory 
+*			blocks are identical.
+*/
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t				i;

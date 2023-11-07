@@ -10,8 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Locates the first occurrence of the null-terminated string needle in 
+*			the string haystack, where not more than len characters are searched.
+*			Characters that appear after a ‘\0’ character are not searched. 
+* @param	haystack Represent a pointer to the string in which we want to search 
+*			for the substring.
+* @param	needle Represent a pointer to the substring we are searching for.
+* @param	len The maximum number of characters in haystack to search within.
+* @return	If needle is an empty string, haystack is returned; if needle occurs 
+*			nowhere in haystack, NULL is returned; otherwise a pointer to the 
+*			first character of the first occurrence of needle is returned.
+*/
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t			i;

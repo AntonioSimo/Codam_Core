@@ -10,8 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Allocates sufficient memory for a copy of the string s1, does the 
+*			copy, and returns a pointer to it.
+* @param	s1 Represents the source string.
+* @return	Returns a pointer to the newly allocated memory block containing 
+*			the duplicated string.
+*/
 char	*ft_strdup(const char *s1)
 {
 	int		i;
@@ -22,7 +28,7 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	ptr = (char *)malloc(len * sizeof(char));
 	if (ptr == NULL)
-		return (NULL);
+		return (free(ptr), NULL);
 	while (s1[i] != '\0')
 	{
 		ptr[i] = s1[i];

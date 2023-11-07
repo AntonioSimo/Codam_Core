@@ -10,8 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Helper function used in other functions. It checks whether a character
+*			s is present in a given set of characters set
+* @param	s The character to check.
+* @param	set A pointer to a null-terminated string representing the set 
+*			of characters.
+* @return	- 1 if the character s is found in the set.
+*			- 0 if the character s is not found in the set.
+*/
 static	int	ft_check(char s, char const *set)
 {
 	while (*set)
@@ -20,6 +28,15 @@ static	int	ft_check(char s, char const *set)
 	return (0);
 }
 
+/**
+* @brief	Trims the leading and trailing characters from a string s1 based on 
+*			a set of characters specified in the set string. 
+* @param	s1 Represent the input string from which we want to remove the 
+*			leading and trailing characters.
+* @param	set Represent the set of characters that we want to remove from the 
+*			beginning and end of s1.
+* @return	It returns a new dynamically allocated string with the trimmed content.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;

@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Returns the last node of the list.
+* @param	lst Represents a pointer to the head of the linked list.
+* @return	The last node of the list.
+*/
 t_node	*lstlast(t_node *lst)
 {
 	if (lst == NULL)
@@ -20,7 +24,12 @@ t_node	*lstlast(t_node *lst)
 		lst = lst->next;
 	return (lst);
 }
-
+/**
+* @brief	Adds a new element to the end of a linked list. 
+* @param	top_stack Represents a pointer to a pointer of the head of the 
+*			linked list
+* @param	new_node Represents a pointer to the new element to be added.
+*/
 void	lstadd_back(t_node **top_stack, t_node *new_node)
 {
 	t_node	*last_node;
@@ -38,6 +47,12 @@ void	lstadd_back(t_node **top_stack, t_node *new_node)
 	return ;
 }
 
+/**
+* @brief	The function is used to determine the number of elements in a 
+*			linked list.
+* @param	lst Represents a pointer to the head of the linked list.
+* @return	The number of elements in the linked list.
+*/
 size_t	lstsize(t_node *lst)
 {
 	int	i;
@@ -51,6 +66,11 @@ size_t	lstsize(t_node *lst)
 	return (i);
 }
 
+/**
+* @brief	Create a new node for a linked list with the provided content.
+* @param	data Represents the value to be stored in the node.
+* @return	Returns the new_node pointer, which points to the newly created node.
+*/
 t_node	*lstnew(int data)
 {
 	t_node	*new_node;
@@ -65,6 +85,11 @@ t_node	*lstnew(int data)
 	return (new_node);
 }
 
+/**
+* @brief	Adds a new element to the front of a linked list. 
+* @param	lst Represents a pointer to a pointer of the head of the linked list
+* @param	new Represents a pointer to the new element to be added.
+*/
 void	lstadd_front(t_node **lst, t_node *new)
 {
 	new->next = *lst;

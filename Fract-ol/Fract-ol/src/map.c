@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 double	change_imaginary_image_x(t_image *image, uint32_t x_coordinate)
 {

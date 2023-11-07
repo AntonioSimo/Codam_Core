@@ -10,8 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Copy a string from the source to the destination, ensuring that the
+*			destination string does not overflow. 
+* @param	dst Represents a pointer to the destination string where the copy 
+*			operation will occur. It should be large enough to accommodate 
+*			the copied string,
+* @param	src Represents a pointer to the source string that will be copied 
+*			to the destination string.
+* @param	dstsize Represents the size limit of the destination string, 
+*			including the null-terminating character.
+* @return	The total length of the source string, regardless of the 
+*			destination size limit.
+*/
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -30,12 +42,11 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (srcsize);
 }
 
-// int	main(void)
-// {
-// 	char dst[50] = "Ciao sono Antonio";
-// 	// char dst1[50] = "Ciao sono Antonio";
-// 	ft_strlcpy(dst, dst+2, -1);
-// 	// strlcpy(dst1, dst1+2, -1);
-// 	printf("%s\n", dst);
-// 	// printf("%s", dst1);
-// }
+//int main(void)
+//{
+//	char	dst[50];
+//	char	src[50] = "Ciao sono Antonio";
+//	//ft_strlcpy(dst, src, sizeof(dst));
+//	strlcpy(dst, src, sizeof(dst));
+//	printf("%s\n", dst);
+//}

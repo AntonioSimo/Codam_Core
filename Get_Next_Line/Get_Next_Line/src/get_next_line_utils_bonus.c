@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
-
+#include "../include/get_next_line_bonus.h"
+/**
+* @brief	Computes the length of a given string by counting the number of 
+*			characters until it reaches the null-terminating character '\0'.
+* @param	str Represent a pointer to the input string whose length we want 
+*			to calculate. 
+* @return	Represents the length of the string (excluding the null-terminating 
+*			character).
+*/
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
@@ -24,6 +31,16 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
+/**
+* @brief	Locates the first occurrence of c (converted to a char) in the string 
+*			pointed to by s. The terminating null character is considered to be 
+*			part of the string; therefore if c is ‘\0’, the functions locate the 
+*			terminating ‘\0’.
+* @param	str Represents the string in which the search will be performed.
+* @param	c  Represents the character to be found in the string.
+* @return	Returns a pointer to that location in the string. If the character 
+*			is not found, it returns NULL.
+*/
 char	*ft_strchr(char *str, int c)
 {
 	size_t	i;
@@ -40,6 +57,16 @@ char	*ft_strchr(char *str, int c)
 	return (0);
 }
 
+/**
+* @brief	The function concatenates two strings into a new dynamically 
+*			allocated string. The resulting string str is created by allocating 
+*			memory based on the combined lengths of s1 and s2, including space 
+*			for the null terminator.
+* @param	s1 Represents the first string to concatenates.
+* @param	s2 Represents the second string to concatenates.
+* @return	The function frees the memory allocated for s1 using free and returns
+*			the newly concatenated string str.
+*/
 char	*ft_free_strjoin(char *s1, char *s2)
 {
 	char	*str;

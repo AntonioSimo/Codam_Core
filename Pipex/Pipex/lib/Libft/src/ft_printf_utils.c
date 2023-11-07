@@ -10,13 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Write a single character to the standard output.
+* @param	c Represents the character to be written to the standard output.
+* @return	Writes the character c to the standard output and returns the result
+*			of the write function.
+*/
 int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
+/**
+* @brief	Write a string to the standard output. 
+* @param	s Represents a pointer to the string to be written.
+* @return	If the string pointer s is NULL, it means that the string is empty 
+*			or uninitialized. In this case, the function writes the string 
+*			"(null)". If the string pointer s is not NULL, it means that a valid
+*			string is passed. The function calls the ft_strlen function to 
+*			determine the length of the string s. The function then calls the 
+*			write function to write the string s to the standard output.
+*/
 int	ft_putstr(char *s)
 {
 	if (s == NULL)
@@ -24,6 +39,12 @@ int	ft_putstr(char *s)
 	return (write(1, s, ft_strlen(s)));
 }
 
+/**
+* @brief	Write an integer to the standard output. 
+* @param	n Represents the integer to be written.
+* @return	The function returns the total counter, which represents the 
+*			number of characters written.
+*/
 int	ft_putnbr(int n)
 {
 	int	i;
@@ -48,6 +69,12 @@ int	ft_putnbr(int n)
 	return (counter);
 }
 
+/**
+* @brief	Write an unsigned integer to the standard output
+* @param	n Represents the unsigned integer to be written.
+* @return	The function returns the total counter, which represents
+*			the number of characters written.
+*/
 int	ft_putnnbr(unsigned int n)
 {
 	unsigned int	i;
@@ -63,6 +90,14 @@ int	ft_putnnbr(unsigned int n)
 	return (counter);
 }
 
+/**
+* @brief	Convert an unsigned long integer to its hexadecimal 
+*			representation and write it to the standard output.
+* @param	n Represents the unsigned long integer to be converted.
+* @param	check Rapresents a flag used for special character encoding.
+* @return	The function returns the total counter, which represents 
+*			the number of characters written.
+*/
 int	ft_itoh(unsigned long n, int check)
 {
 	int	i;

@@ -10,8 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Write a string s, followed by a newline character, to a specified 
+*			file descriptor fd.
+* @param	s Represents the string to be written.
+* @param	fd Represents the file descriptor specifies the output stream where 
+*			the string should be written.
+* @return	Writes the string s to the file descriptor specified and returns the
+*			result of the write function.
+*/
 void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;

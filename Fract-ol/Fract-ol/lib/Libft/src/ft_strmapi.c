@@ -10,14 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 //char	ft_test(unsigned int i, char c)
 //{
 //	char str = c + 1;
 //	return (str);
 //}
-
+/**
+* @brief	Applies a function f to each character of the input string s.
+* @param	s Represent a pointer to the input string on which the mapping 
+*			function will be applied.
+* @param	f Represent a pointer to a function that takes an unsigned integer 
+*			(representing the index) and a character as arguments and returns 
+*			a character. The purpose of this function is to transform each 
+*			character of the string.
+* @return	It returns a new string with the modified characters.
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;

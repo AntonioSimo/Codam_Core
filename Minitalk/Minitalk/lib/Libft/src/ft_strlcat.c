@@ -10,8 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Used to concatenate two strings, src and dst, with a specified size 
+*			limit dstsize. It ensures that the resulting concatenated string does 
+*			not exceed the size limit of the destination string.
+* @param	dst Represents a pointer to the destination string where the 
+*			concatenation will occur. 
+* @param	src Represents a pointer to the source string that will be 
+*			appended to the destination string.
+* @param	dstsize Represents the size limit of the destination string, 
+*			including the null-terminating character.
+* @return	The function returns the length of src plus the original length of 
+*			dst (len_or), representing the total length of the concatenated string. 
+*			Note that the returned value does not exceed the value of dstsize, 
+*			even if the actual length of the concatenated string is longer.
+*/
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;

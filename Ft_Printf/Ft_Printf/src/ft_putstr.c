@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
+#include "../include/printf.h"
+/**
+* @brief	Computes the length of a given string by counting the number of 
+*			characters until it reaches the null-terminating character '\0'.
+* @param	str Represent a pointer to the input string whose length we want 
+*			to calculate. 
+* @return	Represents the length of the string (excluding the null-terminating 
+*			character).
+*/
 size_t	ft_strlen(const char *s)
 {
 	int	i;
@@ -22,6 +29,16 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+/**
+* @brief	Write a string to the standard output. 
+* @param	s Represents a pointer to the string to be written.
+* @return	If the string pointer s is NULL, it means that the string is empty 
+*			or uninitialized. In this case, the function writes the string 
+*			"(null)". If the string pointer s is not NULL, it means that a valid
+*			string is passed. The function calls the ft_strlen function to 
+*			determine the length of the string s. The function then calls the 
+*			write function to write the string s to the standard output.
+*/
 int	ft_putstr(char *s)
 {
 	if (s == NULL)

@@ -10,11 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-/*The function copies len bytes from string src to string dest. The two strings
-may overlap. */
-
+#include "../include/libft.h"
+/**
+* @brief	Copies len bytes from string src to string dst. The two strings may 
+*			overlap; the copy is always done in a non-destructive manner.
+* @param	dst Represents a pointer to the destination memory where the data 
+*			will be copied.
+* @param	src Represents a pointer to the source memory containing the data 
+*			to be copied.
+* @param	len Represents the number of bytes to be copied.
+* @return	The function returns the dest pointer, which now points to the 
+*			copied memory block.
+*/
 void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	unsigned char	*dcopy;

@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Delete a single element from a linked list.
+* @param	lst Represents a pointer to the element to be deleted.
+* @param	del Represents a function pointer to the function responsible for 
+			deleting/freeing the content of the element.
+*/
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	del(lst->content);

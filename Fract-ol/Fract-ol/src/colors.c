@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 uint32_t	ft_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {

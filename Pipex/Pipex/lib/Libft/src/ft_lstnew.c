@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Create a new node for a linked list with the provided content
+* @param	content Represents a pointer to the content that will be stored 
+*			in the new node.
+* @return	Returns the new_node pointer, which points to the newly created node.
+*/
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new_node;

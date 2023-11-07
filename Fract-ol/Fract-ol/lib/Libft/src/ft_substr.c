@@ -10,8 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Extract a portion of a string starting from a specified index with 
+*			a given length.
+* @param	s Represent the input string from which the substring will be extracted.
+* @param	start Represent the starting index of the substring.
+* @param	len Represent the maximum length of the substring.
+* @return	It returns the dynamically allocated string ptr, which contains 
+*			the extracted substring
+*/
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*ptr;

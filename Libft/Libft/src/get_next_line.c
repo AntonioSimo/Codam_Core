@@ -10,8 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	The function concatenates two strings into a new dynamically 
+*			allocated string. The resulting string str is created by allocating 
+*			memory based on the combined lengths of s1 and s2, including space 
+*			for the null terminator.
+* @param	s1 Represents the first string to concatenates.
+* @param	s2 Represents the second string to concatenates.
+* @return	The function frees the memory allocated for s1 using free and returns
+*			the newly concatenated string str.
+*/
 char	*ft_free_strjoin(char *s1, char *s2)
 {
 	char	*str;
@@ -35,6 +44,15 @@ char	*ft_free_strjoin(char *s1, char *s2)
 	return (str);
 }
 
+/**
+* @brief	Reads data from a file descriptor fd in chunks of size BUFFER_SIZE
+*			and appends it to a buffer.
+* @param	fd Represents the file descriptor of the file being read.
+* @param	buffer Represents a pointer to a character array that serves as a 
+*			buffer to store the contents of the file being read
+* @return	The function returns the final concatenated buffer containing the
+* 			contents of the file.
+*/
 char	*ft_read_file(int fd, char *buffer)
 {
 	char	*text;
@@ -64,6 +82,14 @@ char	*ft_read_file(int fd, char *buffer)
 	return (buffer);
 }
 
+/**
+* @brief	Helper function to locate the leftover inside the string.
+* @param	str Represent a pointer to the string from which the leftover 
+*			characters are extracted.
+* @return	The function returns a new string that contains the leftover 
+*			characters from str after the first newline character '\n' 
+*			encountered.
+*/
 char	*ft_find_leftover(char *str)
 {
 	char	*leftover;
@@ -89,6 +115,13 @@ char	*ft_find_leftover(char *str)
 	return (free(str), leftover);
 }
 
+/**
+* @brief	Helper function to locate the end of the string.
+* @param	str Represent a pointer to the string from which the line 
+*			of text is extracted. It 
+* @return	The function returns a new string that represents a line of 
+*			text from str up to the first newline character '\n' encountered.
+*/
 char	*ft_read_line(char	*str)
 {
 	char	*to_read;
@@ -117,6 +150,16 @@ char	*ft_read_line(char	*str)
 	return (to_read);
 }
 
+/**
+* @brief	Implementation of a function that reads one line at a time from 
+*			a file descriptor (fd) and returns them as individual strings. 
+*			It maintains a static buffer for each file descriptor to store 
+*			any remaining content from previous reads.
+* @param	fd Represent the file descriptor from which to read the line.
+* @return	A pointer to the string representing the read line. It returns 
+*			NULL if there was an error or if the end of the file has been 
+*			reached.
+*/
 char	*get_next_line(int fd)
 {
 	static char	*buffer[OPEN_MAX];

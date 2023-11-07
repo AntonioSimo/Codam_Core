@@ -11,7 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Swaps the top elements of two stacks (stack_a and stack_b) at the 
+*			same time and prints a given string.
+* @param	stack_a Pointer to the top of the first stack.
+* @param	stack_b Pointer to the top of the second stack.
+* @param	str String to be printed.
+*/
 void	swap_time(t_node **stack_a, t_node **stack_b, char *str)
 {
 	swap(stack_a, NULL);
@@ -20,6 +26,11 @@ void	swap_time(t_node **stack_a, t_node **stack_b, char *str)
 		write(1, str, strlen(str));
 }
 
+/**
+* @brief	Swaps the top two elements of a stack and prints a given string.
+* @param	stack Pointer to the top of the stack.
+* @param	str String to be printed.
+*/
 void	swap(t_node **stack, char *str)
 {
 	t_node	*head;

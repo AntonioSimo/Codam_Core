@@ -10,8 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Locates the first occurrence of c (converted to a char) in the string 
+*			pointed to by s. The terminating null character is considered to be 
+*			part of the string; therefore if c is ‘\0’, the functions locate the 
+*			terminating ‘\0’.
+* @param	str Represents the string in which the search will be performed.
+* @param	c  Represents the character to be found in the string.
+* @return	Returns a pointer to that location in the string. If the character 
+*			is not found, it returns NULL.
+*/
 char	*ft_strchr(const char *str, int c)
 {
 	int		i;

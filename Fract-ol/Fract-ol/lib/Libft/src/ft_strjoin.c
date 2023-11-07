@@ -10,8 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	The function concatenates two strings into a new dynamically 
+*			allocated string.
+* @param	s1 Represents the first string to concatenates.
+* @param	s2 Represents the second string to concatenates.
+* @return	Returns a pointer to the new string.
+*/
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
@@ -24,7 +30,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	str = malloc(len * sizeof(char));
 	if (str == NULL)
-		return (NULL);
+		return (free(str), NULL);
 	ft_strlcpy(str, s1, len);
 	ft_strlcat(str, s2, len);
 	return (str);

@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Write an integer to a specified file descriptor fd.
+* @param	n Represents the integer to be written.
+* @param	fd Represents the file descriptor specifies the output stream where 
+*			the integer should be written.
+* @return	Writes the integer n to the file descriptor specified and returns the
+*			result of the write function.
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
 	int	i;

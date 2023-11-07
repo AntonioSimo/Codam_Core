@@ -10,8 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Locates the first occurrence of the null-terminated string needle in 
+*			the string haystack, where not more than len characters are searched.
+*			Characters that appear after a ‘\0’ character are not searched. 
+* @param	haystack Represent a pointer to the string in which we want to search 
+*			for the substring.
+* @param	needle Represent a pointer to the substring we are searching for.
+* @param	len The maximum number of characters in haystack to search within.
+* @return	If needle is an empty string, haystack is returned; if needle occurs 
+*			nowhere in haystack, NULL is returned; otherwise a pointer to the 
+*			first character of the first occurrence of needle is returned.
+*/
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t			i;
@@ -39,22 +50,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (NULL);
 }
 
-// int	main(void)
-// {
-// // 	const char 	needle[50] = "sx";
-// // 	const char 	haystack[50] = "Ciao sono Antonio";
-// // 	size_t		len;
-// // 	char 		*ptr;
+ int	main(void)
+ {
+ // 	const char 	needle[50] = "sx";
+ // 	const char 	haystack[50] = "Ciao sono Antonio";
+ // 	size_t		len;
+ // 	char 		*ptr;
 
-// // 	len = 20;
-// // 	ptr = ft_strnstr(haystack, needle, len);
-// // 	//ptr = strnstr(haystack, needle, len);
-// // 	printf("mine: %s", ptr);
-// // 	//printf("not mine: %s", ptr);
-// // 	return (0);
+ // 	len = 20;
+ // 	ptr = ft_strnstr(haystack, needle, len);
+ // 	//ptr = strnstr(haystack, needle, len);
+ // 	printf("mine: %s", ptr);
+ // 	//printf("not mine: %s", ptr);
+ // 	return (0);
 
-// 	char haystack[30] = "aaabcabcd";
-// 	char needle[10] = "aabc";
-// 	printf("%s",ft_strnstr(haystack, needle, 0));
+ 	char haystack[30] = "aaabcabcd";
+ 	char needle[10] = "aabc";
+ 	printf("%s",ft_strnstr(haystack, needle, 5));
 
-// }
+ }

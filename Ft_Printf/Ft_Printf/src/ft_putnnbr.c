@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
+#include "../include/printf.h"
+/**
+* @brief	Write an unsigned integer to the standard output
+* @param	n Represents the unsigned integer to be written.
+* @return	The function returns the total counter, which represents
+*			the number of characters written.
+*/
 int	ft_putnnbr(unsigned int n)
 {
 	unsigned int	i;

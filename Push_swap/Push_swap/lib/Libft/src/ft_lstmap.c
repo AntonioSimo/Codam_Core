@@ -10,8 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Creates a new linked list by applying a given function to each 
+*			element of an existing linked list.
+* @param	lst Represents a pointer to the head of the original linked list.
+* @param	f Represents a function pointer to the function that will be 
+*			applied to each element.
+* @param	del Represents a function pointer to the function responsible for 
+*			deleting/freeing the content of an element.
+* @return	The function returns the new_list, which contains the transformed 
+*			elements of the original list.
+*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_list;

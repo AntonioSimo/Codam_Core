@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../include/fractol.h"
 
 int	julia_or_mandelbrot(char *fractal, t_image *image)
 {

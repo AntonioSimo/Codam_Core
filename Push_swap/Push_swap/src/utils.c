@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/**
+* @brief	Converts a string representation of a number to a long integer.
+* @param	str The input string to be converted.
+* @return	The converted long integer value.
+*/
 long	ft_atol(const char *str)
 {
 	int		i;

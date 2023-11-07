@@ -10,16 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-static	int	ft_check(char s, char const *set)
-{
-	while (*set)
-		if (*set++ == s)
-			return (1);
-	return (0);
-}
-
+//static	int	ft_check(char s, char const *set)
+//{
+//	while (*set)
+//		if (*set++ == s)
+//			return (1);
+//	return (0);
+//}
+/**
+* @brief	Trims the leading and trailing characters from a string s1 based on 
+*			a set of characters specified in the set string. 
+* @param	s1 Represent the input string from which we want to remove the 
+*			leading and trailing characters.
+* @param	set Represent the set of characters that we want to remove from the 
+*			beginning and end of s1.
+* @return	It returns a new dynamically allocated string with the trimmed content.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*str;

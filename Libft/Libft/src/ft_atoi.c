@@ -10,8 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Converts the initial portion of the string pointed to by str to int
+*			representation.
+* @param	str This parameter is a pointer to a null-terminated string of 
+			characters that represents the input to be converted to an integer. 
+			It's of type const char *, indicating that the function does not 
+			modify the string.
+* @return 	It will return the str converted to int.
+*/
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -41,8 +49,10 @@ int	ft_atoi(const char *str)
 
 // int	main(void)
 // {
-// 	char str[50] = " -1234";
-// 	int	val = ft_atoi(str);
-// 	printf("%d", val);
+// 	char str[50] = "  34  -12		   -34";
+// 	int	val_myitoa = ft_atoi(str);
+//	int val_original_itoa = atoi(str);
+// 	printf("%d\n", val_myitoa);
+//	printf("%d\n", val_original_itoa);
 // 	return (0);
 // }

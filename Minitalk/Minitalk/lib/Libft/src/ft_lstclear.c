@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Delete and free all the elements of a linked list. 
+* @param	lst Represents a pointer to a pointer of the head of the linked list
+* @param	del Represents a function pointer to the function responsible for 
+*			deleting/freeing the content of each element in the list
+*/
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*node;

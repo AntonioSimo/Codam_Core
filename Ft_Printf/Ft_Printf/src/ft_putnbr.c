@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
+#include "../include/printf.h"
+/**
+* @brief	Write an integer to the standard output. 
+* @param	n Represents the integer to be written.
+* @return	The function returns the total counter, which represents the 
+*			number of characters written.
+*/
 int	ft_putnbr(int n)
 {
 	int	i;
@@ -36,10 +41,10 @@ int	ft_putnbr(int n)
 	return (counter);
 }
 
-// int	main(void)
-// {
-// 	int	i;
+ int	main(void)
+ {
+ 	int	i;
 
-// 	i = 345;
-// 	ft_putnbr(i);
-// }
+ 	i = 345;
+ 	ft_putnbr(i);
+ }

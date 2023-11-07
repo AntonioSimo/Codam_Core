@@ -10,10 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-/*The function writes n zeroed bytes to the string str. If n is zero, bzero() 
-does nothing */
-
+#include "../include/libft.h"
+/**
+* @brief	Writes n zeroed bytes to the string str. If n is zero, bzero() 
+*			does nothing.
+* @param	str This parameter is a pointer to the start of the memory block 
+			to set to zero. It can point to any data type because it's 
+			a void pointer.
+* @param	n This parameter represents the number of bytes to set to zero 
+			starting from the memory address pointed to by str. 
+* @return 	The function doesn't return a value because it modifies the 
+*			memory block in-place.
+*/
 void	ft_bzero(void *str, size_t n)
 {
 	ft_memset(str, 0, n);

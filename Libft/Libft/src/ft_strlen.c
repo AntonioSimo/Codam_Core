@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-/*The function computes the length of the string using the while loop.*/
-
+#include "../include/libft.h"
+/**
+* @brief	Computes the length of a given string by counting the number of 
+*			characters until it reaches the null-terminating character '\0'.
+* @param	str Represent a pointer to the input string whose length we want 
+*			to calculate. 
+* @return	Represents the length of the string (excluding the null-terminating 
+*			character).
+*/
 size_t	ft_strlen(const char *str)
 {
 	int	count;
@@ -26,11 +31,11 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
-// int	main(void)
-// {
-// 	char	str[50];
+ int	main(void)
+ {
+ 	char	str[50];
 
-// 	printf("mine: %zu\n", ft_strlen("Codam"));
-// 	printf("not mine: %zu", strlen("Codam"));
-// 	return (0);
-// }
+ 	printf("mine: %zu\n", ft_strlen("Codam"));
+ 	printf("not mine: %zu", strlen("Codam"));
+ 	return (0);
+ }

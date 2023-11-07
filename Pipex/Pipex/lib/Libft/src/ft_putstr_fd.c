@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Write a string to a specified file descriptor fd.
+* @param	s Represents a pointer to the string to be written.
+* @param	fd Represents the file descriptor specifies the output stream where 
+*			the string should be written.
+* @return	Writes the string s to the file descriptor specified and returns the
+*			result of the write function.
+*/
 void	ft_putstr_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));

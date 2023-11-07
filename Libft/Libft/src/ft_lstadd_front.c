@@ -10,8 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Adds a new element to the front of a linked list. 
+* @param	lst Represents a pointer to a pointer of the head of the linked list
+* @param	new Represents a pointer to the new element to be added.
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;

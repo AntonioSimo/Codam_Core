@@ -10,17 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-/*This function writes len bytes of value c (converted to an unsigned char) 
-to the string b*/
-
+#include "../include/libft.h"
+/**
+* @brief	Writes len bytes of value c (converted to an unsigned char) to the 
+*			string str.
+* @param	str Represents a pointer to the memory block to be filled.
+* @param	c Represents the value to be set in each byte of the memory block.
+* @param	len Represents is the number of bytes to be set.
+* @return	The function returns the str pointer, which now points to the 
+*			filled memory block.
+*/
 void	*ft_memset(void *str, int c, size_t len)
 {
 	while (len > 0)
 	{
 		len--;
-		((char *)str)[len] = (char)c;
+		((char *)str)[len] = (unsigned char)c;
 	}
 	return (str);
 }

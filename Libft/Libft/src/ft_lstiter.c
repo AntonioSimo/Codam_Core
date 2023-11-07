@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	Applies a given function to each element of a linked list.
+* @param	lst Represents a pointer to the head of the linked list.
+* @param	f Rapresents a function pointer to the function that will be 
+*			applied to each element.
+*/
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (lst == NULL)

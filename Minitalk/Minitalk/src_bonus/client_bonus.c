@@ -14,6 +14,12 @@
 
 int	g_variable = 0;
 
+/**
+* @brief	Is a signal handler that is used to handle the signal SIGUSR1. When 
+*			the process receives a SIGUSR1 signal, this handler function is invoked.
+*			Prints a message using ft_printf to indicate that a message has been sent.
+* @param	sig The signal number that triggered the handler.
+*/
 void	message_handler(int sig)
 {
 	if (sig == SIGUSR1)
@@ -25,6 +31,14 @@ void	message_handler(int sig)
 	}
 }
 
+/**
+* @brief	Responsible for sending a single bit to a process identified by 
+*			its process ID (pid).
+* @param	pid The process ID of the receiving process.
+* @param	bit The bit value to be sent. It is expected to be either 0 or 1.
+* @return	- 1 if the bit is successfully sent.
+*			- 0 if there was an error in sending the bit.
+*/
 int	send_bit(pid_t pid, int bit)
 {
 	if (bit)
@@ -40,6 +54,14 @@ int	send_bit(pid_t pid, int bit)
 	return (1);
 }
 
+/**
+* @brief	Responsible for sending a message (string) character by character 
+*			to a process identified by its process ID (pid).
+* @param	pid The process ID of the receiving process.
+* @param	str The message (string) to be sent.
+* @return	- 1 if the message is successfully sent.
+*			- 0 if there was an error in sending the message.
+*/
 int	send_message(pid_t pid, char *str)
 {
 	int	i;

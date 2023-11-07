@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+#include "../include/libft.h"
+/**
+* @brief	The function is used to determine the number of elements in a 
+*			linked list.
+* @param	lst Represents a pointer to the head of the linked list.
+* @return	The number of elements in the linked list.
+*/
 int	ft_lstsize(t_list *lst)
 {
 	int	i;

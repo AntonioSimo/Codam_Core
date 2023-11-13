@@ -1,5 +1,4 @@
 .DS_STORE
 philosophers
-libft.h.gch
 *.o
-libft.a
+./philo

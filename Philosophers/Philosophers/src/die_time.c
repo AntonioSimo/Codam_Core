@@ -6,3 +6,4 @@ void	die_time(t_philo *philo, t_data *data)
 	print_message(data, RED, philo->id, DIED);
 	ft_usleep(data->time_to_die);
 }
+

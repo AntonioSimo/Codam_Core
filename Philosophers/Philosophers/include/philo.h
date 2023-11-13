@@ -18,7 +18,7 @@
 # define EXIT 1
 # define SUCCESS 0
 # define ERROR "Philo Error"
-# define TAKE_FORKS "has taken a fork"
+# define TAKE_FORK "has taken a fork"
 # define THINK "is thinking"
 # define SLEEP "is sleeping"
 # define EAT "is eating"
@@ -38,6 +38,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				is_eating;
+	int				*nb_meals;
 	int				nb_meals_had;
 	//int				*death; ??
 	u_int64_t		last_eat_time;
@@ -95,6 +96,7 @@ void		rest_time(t_philo *philo, t_data *data);
 //routine
 void		*routine(void *args);
 int 		philo_thread(t_data *data);
+void		destroy_mutex(t_data *data);
 
 //think_time
 void		think_time(t_philo *philo, t_data *data);

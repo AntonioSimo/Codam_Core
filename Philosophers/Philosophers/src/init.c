@@ -21,7 +21,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->nb_meals = 0;
 	data->start_time = 0;
-	if (argc == 5)
+	if (argc == 6)
 	{
 		data->nb_meals = ft_atoi(argv[5]);
 		if (data->nb_meals <= 0)

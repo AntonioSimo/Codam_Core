@@ -10,15 +10,15 @@ void	*routine(void *args)
 	philo = (t_philo *)args;
 	data = philo->data;
 	if (philo->id % 2)
-		usleep(500);
+		ft_usleep(500);
 	while (1)
 	{
 		meal_time(philo, data);
+		if (philo->nb_meals_had == data->nb_meals)
+			break ;
 		rest_time(philo, data);
 		think_time(philo, data);
 		die_time(philo, data);
-		if (philo->nb_meals_had == data->nb_meals)
-			break ;
 		i++;
 	}
 }
@@ -34,7 +34,6 @@ int	philo_thread(t_data *data)
 	while (i < data->num_of_philos)
 	{
 		pthread_create(&data->philos_thread, NULL, routine, &philos[i]);
-		//ft_usleep(500);
 		i++;
 	}
 	i = 0;
@@ -43,5 +42,20 @@ int	philo_thread(t_data *data)
 		pthread_join(data->philos_thread, NULL);
 		i++;
 	}
+	destroy_mutex(data);
 	return (0);
+}
+
+void	destroy_mutex(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_of_philos)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&data->mut_eat_t);
+	pthread_mutex_destroy(&data->mut_write);
 }

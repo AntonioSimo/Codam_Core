@@ -1,10 +1,8 @@
 #include "../include/philo.h"
 
-void	rest_time(t_data *data)
+void	rest_time(t_philo *philo, t_data *data)
 {
-	t_philo philo;
-
-	philo.state = SLEEPING;
-	print_message(PURPLE, data->time_to_sleep, philo.id, SLEEP);
-	ft_usleep(500);
+	philo->state = SLEEPING;
+	print_message(data, PURPLE, philo->id, SLEEP);
+	ft_usleep(data->time_to_sleep);
 }

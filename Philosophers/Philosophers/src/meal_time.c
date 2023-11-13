@@ -1,35 +1,33 @@
 #include "../include/philo.h"
 
-void	take_left_fork(t_philo *philo)
+void	take_left_fork(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(philo->left_fork);
-	philo->left_fork = 
-	pthread_mutex_unlock(philo->mut_write);
+	print_message(data, CYAN, philo->id, TAKE_FORKS);
 }
 
-void	mut_print_message(t_philo *philo)
-{
-	pthread_mutex_lock(philo->mut_write);
-	philo->	last_eat_time = get_current_time();
-	pthread_mutex_unlock(philo->mut_write);
-}
-
-void	nb_meals_had(t_philo *philo)
-{
-	pthread_mutex_lock(philo->mut_eat_t);
-	philo->nb_meals_had++;
-	pthread_mutex_unlock(philo->mut_eat_t);
-}
-
-void	meat_time(t_philo *philo)
+void	take_right_fork(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(philo->right_fork);
-	print_message(CYAN, philo->last_eat_time, philo->id, TAKE_FORKS);
-	nb_meals_had(philo->nb_meals_had);
-	philo->is_eating = 1;
-	mut_print_message(philo->last_eat_time);
-	print_message(GREEN, philo->last_eat_time, philo->id, EAT);
+	print_message(data, CYAN, philo->id, TAKE_FORKS);
+}
+
+void	leave_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+}
 
-
+void	meal_time(t_philo *philo, t_data *data)
+{
+	take_left_fork(philo, data);
+	take_right_fork(philo, data);
+	pthread_mutex_lock(philo->mut_eat_t);
+	philo->last_eat_time = data->time_to_print;
+	print_message(data, GREEN, philo->id, EAT);
+	philo->state = EATING;
+	pthread_mutex_unlock(philo->mut_eat_t);
+	ft_usleep(data->time_to_eat);
+	philo->nb_meals_had++;
+	leave_forks(philo);
 }

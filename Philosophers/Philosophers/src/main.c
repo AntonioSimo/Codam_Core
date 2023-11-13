@@ -8,5 +8,5 @@ int	main(int argc, char **argv)
 		return (write(2, ERROR, 13));
 	if (philosophers(argc, argv, &data) != 0)
 		return (write(2, ERROR, 13));
-	return (0);
+	return (SUCCESS);
 }

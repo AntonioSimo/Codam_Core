@@ -29,23 +29,28 @@ int	ft_atoi(char *str)
 
 void	ft_usleep(uint64_t sleep_time)
 {
-	u_int64_t	start;
+	u_int64_t	start_time;
 
-	start = get_current_time();
-	while ((get_current_time() - start) < sleep_time)
-		usleep(500);
+	start_time = get_current_time(0);
+	while ((get_current_time(0) - start_time) < sleep_time)
+		usleep(50);
 }
 
-u_int64_t	get_current_time(void)
+u_int64_t	get_current_time(u_int64_t start_time)
 {
 	struct timeval	time;
+	u_int64_t		current_time;
 
 	if (gettimeofday(&time, NULL) == -1)
 		return (write(2, "gettimeoftheday error\n", 23));
-	return (time.tv_sec * (u_int64_t)1000 + time.tv_usec / 1000);
+	current_time = time.tv_sec * (u_int64_t)1000 + time.tv_usec / 1000;
+	return (current_time - start_time);
 }
 
-void	print_message(char *color, uint64_t time, int id, char *state)
+void	print_message(t_data *data, char *color, int id, char *state)
 {
-	printf("%s %llu %d philosopher %s\n", color, time, id, state);
+	pthread_mutex_lock(&data->mut_write);
+	data->time_to_print = get_current_time(data->start_time);
+	printf("%s %llu %d philosopher %s\n", color, data->time_to_print, id, state);
+	pthread_mutex_unlock(&data->mut_write);
 }

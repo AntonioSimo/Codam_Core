@@ -22,19 +22,26 @@
 
 int	death_check(t_philo *philo, t_data *data)
 {
-	int i = 0;
-	pthread_mutex_lock(&data->mut_die_t);
-	while (philo->state != DEAD)
+	int	i;
+
+	i = 0;
+	pthread_mutex_lock(philo->mut_die_t);
+	while (i < data->num_of_philos && philo->state != DEAD)
 	{
-		//pthread_mutex_unlock(&data->mut_die_t);
-		if (philo->last_eat_time >= (data->time_to_die - data->time_to_print))
+		if ((data->time_to_print - philo->last_eat_time) >= data->time_to_die)
 		{
-			pthread_mutex_unlock(&data->mut_die_t);
+			printf("time_to_print: %llu\t", data->time_to_print);
+			printf("last_eat_time: %llu\t", philo->last_eat_time);
+			printf("time_to_die: %llu\n", data->time_to_die);
 			die_time(philo, data);
-			return (1);
+			printf("id: %i\t", philo->id);
+			printf("state: %i\n", philo->state);
+			pthread_mutex_unlock(philo->mut_die_t);
+			return (EXIT);
 		}
+		usleep(150);
 		i++;
 	}
-	pthread_mutex_unlock(&data->mut_die_t);
-	return (0);
+	pthread_mutex_unlock(philo->mut_die_t);
+	return (SUCCESS);
 }

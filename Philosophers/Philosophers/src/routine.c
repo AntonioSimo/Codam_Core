@@ -21,14 +21,13 @@ void	*routine(void *args)
 	data = philo->data;
 	if (philo->id % 2 == 0)
 		usleep(450);
-	while (1)
+	while (death_check(philo, data) == 0)
 	{
 		meal_time(philo, data);
 		if (philo->nb_meals_had == data->nb_meals)
 			break;
 		rest_time(philo, data);
 		think_time(philo, data);
-		// death_check(philo, data);
 	}
 }
 
@@ -47,6 +46,7 @@ int	philo_thread(t_data *data)
 		i++;
 	}
 	i = 0;
+	//usleep(600);
 	// if (pthread_create(&data->death_monitor, NULL, death_monitor, &data) != 0)
 	//   	return (EXIT);
 	while (i < data->num_of_philos)
@@ -54,12 +54,12 @@ int	philo_thread(t_data *data)
 		pthread_join(data->philos_thread, NULL);
 		i++;
 	}
-	// destroy_mutex(data);
-	return (0);
+	//destroy_mutex(data);
+	return (SUCCESS);
 }
 
-// void	destroy_mutex(t_data *data)
-// {
+//void	destroy_mutex(t_data *data)
+//{
 // 	int	i;
 
 // 	i = 0;
@@ -70,5 +70,6 @@ int	philo_thread(t_data *data)
 // 	}
 // 	pthread_mutex_destroy(&data->mut_eat_t);
 // 	pthread_mutex_destroy(&data->mut_write);
-// }
+//	pthread_mutex_destroy(&data->mut_die_t);
+//}
 

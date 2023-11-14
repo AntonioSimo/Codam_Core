@@ -5,7 +5,7 @@ HEAD := ./include/philo.h
 SOURCES := $(SRC_DIR)/*.c
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.c=.o))
 CC := cc
-CFLAGS := -g #-Wall -Wextra -Werror
+CFLAGS := -g #-fsanitize=thread #-Wall -Wextra -Werror 
 
 GREEN = \x1b[32;01m
 RED = \x1b[31;01m

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 13:34:52 by asimone           #+#    #+#             */
+/*   Updated: 2023/11/14 15:52:03 by asimone          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 int	ft_atoi(char *str)
@@ -27,23 +39,23 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-void	ft_usleep(uint64_t sleep_time)
+void	ft_usleep(long long sleep_time)
 {
-	u_int64_t	start_time;
+	long long	start_time;
 
 	start_time = get_current_time(0);
 	while ((get_current_time(0) - start_time) < sleep_time)
-		usleep(50);
+		usleep(200);
 }
 
-u_int64_t	get_current_time(u_int64_t start_time)
+long long	get_current_time(long long start_time)
 {
 	struct timeval	time;
-	u_int64_t		current_time;
+	long long		current_time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		return (write(2, "gettimeoftheday error\n", 23));
-	current_time = time.tv_sec * (u_int64_t)1000 + time.tv_usec / 1000;
+		return (write(2, GET_TIME_ERROR, 26));
+	current_time = time.tv_sec * 1000 + time.tv_usec / 1000;
 	return (current_time - start_time);
 }
 
@@ -51,6 +63,6 @@ void	print_message(t_data *data, char *color, int id, char *state)
 {
 	pthread_mutex_lock(&data->mut_write);
 	data->time_to_print = get_current_time(data->start_time);
-	printf("%s %llu %d philosopher %s\n", color, data->time_to_print, id, state);
+	printf("%s%lld %d %s\n", color, data->time_to_print, id, state);
 	pthread_mutex_unlock(&data->mut_write);
 }

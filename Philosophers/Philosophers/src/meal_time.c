@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   meal_time.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 13:34:38 by asimone           #+#    #+#             */
+/*   Updated: 2023/11/14 19:16:35 by asimone          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 void	take_left_fork(t_philo *philo, t_data *data)
@@ -24,10 +36,10 @@ void	meal_time(t_philo *philo, t_data *data)
 	take_right_fork(philo, data);
 	pthread_mutex_lock(philo->mut_eat_t);
 	philo->last_eat_time = data->time_to_print;
-	print_message(data, GREEN, philo->id, EAT);
 	philo->state = EATING;
+	print_message(data, GREEN, philo->id, EAT);
+	philo->nb_meals_had++;
 	pthread_mutex_unlock(philo->mut_eat_t);
 	ft_usleep(data->time_to_eat);
-	philo->nb_meals_had++;
 	leave_forks(philo);
 }

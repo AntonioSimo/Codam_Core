@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 13:34:40 by asimone           #+#    #+#             */
+/*   Updated: 2023/11/14 13:34:41 by asimone          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philo.h"
 
 int	check_input(int argc, char **argv)
@@ -36,8 +48,12 @@ int	valid_input(int argc, char **argv)
 	int	i;
 
 	i = 1;
-	if (argc == 6 && ft_atoi(argv[i]) <= 0)
-		return (EXIT);
+	while (argv[i])
+	{
+		if (ft_atoi(argv[i]) <= 0)
+			return (EXIT);
+		i++;
+	}
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
 		return (EXIT);
 	return (SUCCESS);

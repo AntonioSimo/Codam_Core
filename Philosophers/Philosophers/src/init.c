@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:32 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/14 16:02:18 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:06:46 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	init_mutexes(t_data *data)
 	int		i;
 
 	i = 0;
-	if (pthread_mutex_init(&data->mut_eat_t, NULL) != 0)
+	if (pthread_mutex_init(&data->philos->mut_eat_t, NULL) != 0)
 		return (EXIT);
-	if (pthread_mutex_init(&data->mut_write, NULL) != 0)
-		return (EXIT);
-	if (pthread_mutex_init(&data->mut_die_t, NULL) != 0)
+	// if (pthread_mutex_init(&data->philos->mut_write, NULL) != 0)   ??
+	// 	return (EXIT);												  ??
+	if (pthread_mutex_init(&data->philos->mut_die_t, NULL) != 0)
 		return (EXIT);
 	while (i < data->num_of_philos)
 	{
@@ -73,15 +73,10 @@ int	init_philos(t_data *data)
 		philos[i].last_eat_time = 0;
 		philos[i].state = THINKING;
 		philos[i].data = data;
-		philos[i].mut_eat_t = &data->mut_eat_t;
-		philos[i].mut_die_t = &data->mut_die_t;
+		philos[i].mut_eat_t = data->philos->mut_eat_t;
+		philos[i].mut_die_t = data->philos->mut_die_t;
 		philos[i].left_fork = &data->forks[i];
-		if (i == 0)
-		{
-			philos[i].right_fork = &data->forks[data->num_of_philos - 1];
-		}
-		else
-			philos[i].right_fork = &data->forks[i - 1];
+		philos[i].right_fork = &data->forks[(i + 1) % data->num_of_philos];
 		i++;
 	}
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:38 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/14 19:16:35 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:32:59 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,28 @@ void	take_right_fork(t_philo *philo, t_data *data)
 
 void	leave_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(philo->left_fork);
 }
 
 void	meal_time(t_philo *philo, t_data *data)
 {
-	take_left_fork(philo, data);
-	take_right_fork(philo, data);
-	pthread_mutex_lock(philo->mut_eat_t);
+	if (philo->id % 2 == 0)
+	{
+		take_left_fork(philo, data);
+		take_right_fork(philo, data);
+	}
+	else
+	{
+		take_right_fork(philo, data);
+		take_left_fork(philo, data);
+	}
+	pthread_mutex_lock(&philo->mut_eat_t);
 	print_message(data, GREEN, philo->id, EAT);
-	philo->last_eat_time = data->time_to_print;
+	philo->last_eat_time = get_current_time();
 	philo->state = EATING;
 	philo->nb_meals_had++;
-	pthread_mutex_unlock(philo->mut_eat_t);
+	pthread_mutex_unlock(&philo->mut_eat_t);
 	ft_usleep(data->time_to_eat);
 	leave_forks(philo);
 }

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/14 19:41:55 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:34:43 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ typedef struct s_philo
 	struct s_data	*data;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*mut_die_t;
-	pthread_mutex_t	*mut_eat_t;
-	pthread_mutex_t	*mut_write;
+	pthread_mutex_t	mut_die_t;
+	pthread_mutex_t	mut_eat_t;
+	pthread_mutex_t	mut_write;
 }	t_philo;
 
 typedef struct s_data
@@ -70,15 +70,14 @@ typedef struct s_data
 	int				nb_meals;
 	int				num_of_philos;
 	int				death_check;
-	long long		time_to_print;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	long long		start_time;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	mut_die_t;
-	pthread_mutex_t	mut_eat_t;
-	pthread_mutex_t	mut_write;
+	// pthread_mutex_t	mut_die_t;
+	// pthread_mutex_t	mut_eat_t;
+	// pthread_mutex_t	mut_write;
 	pthread_t		death_monitor;
 	pthread_t		philos_thread;
 	t_philo			*philos;
@@ -115,14 +114,15 @@ void		rest_time(t_philo *philo, t_data *data);
 //routine
 void		*routine(void *args);
 int			philo_thread(t_data *data);
-void		destroy_mutex(t_data *data);
+// void		destroy_mutex(t_data *data);
+void		destroy_mutex(t_data *data, t_philo *philo);
 
 //think_time
 void		think_time(t_philo *philo, t_data *data);
 
 //utils
 int			ft_atoi(char *str);
-long long	get_current_time(long long start_time);
+long long	get_current_time(void);
 void		ft_usleep(long long sleep_time);
 void		print_message(t_data *data, char *color, int id, char *state);
 

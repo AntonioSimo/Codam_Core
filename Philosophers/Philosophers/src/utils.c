@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:52 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/14 15:52:03 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:13:17 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,23 @@ void	ft_usleep(long long sleep_time)
 {
 	long long	start_time;
 
-	start_time = get_current_time(0);
-	while ((get_current_time(0) - start_time) < sleep_time)
+	start_time = get_current_time();
+	while ((get_current_time() - start_time) < sleep_time)
 		usleep(200);
 }
 
-long long	get_current_time(long long start_time)
+long long	get_current_time(void)
 {
 	struct timeval	time;
-	long long		current_time;
 
 	if (gettimeofday(&time, NULL) == -1)
 		return (write(2, GET_TIME_ERROR, 26));
-	current_time = time.tv_sec * 1000 + time.tv_usec / 1000;
-	return (current_time - start_time);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 void	print_message(t_data *data, char *color, int id, char *state)
 {
-	pthread_mutex_lock(&data->mut_write);
-	data->time_to_print = get_current_time(data->start_time);
-	printf("%s%lld %d %s\n", color, data->time_to_print, id, state);
-	pthread_mutex_unlock(&data->mut_write);
+	// pthread_mutex_lock(&data->philos->mut_write); ??
+	printf("%s%lld %d %s\n", color, get_current_time() - data->start_time, id, state);
+	// pthread_mutex_unlock(&data->philos->mut_write); ??
 }

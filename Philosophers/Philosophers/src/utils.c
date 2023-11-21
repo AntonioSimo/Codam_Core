@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:52 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 13:50:50 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:39:34 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(char *str)
 	i = 0;
 	result = 0;
 	neg = 1;
-	while (str[i] >= 9 && str[i] <= 13 || str[i] == ' ')
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
@@ -65,8 +65,5 @@ void	print_message(t_philo *philo, char *color, char *state)
 	pthread_mutex_unlock(philo->mut_die_t);
 	if (isDead == 1)
 		return ;
-	// pthread_mutex_lock(&->mut_write);
-	//if (data->philos[id - 1].death != 1)
 	printf("%s%lld %d %s\n", color, get_current_time() - philo->start_time, philo->id, state);
-	// pthread_mutex_unlock(&data->mut_write);
 }

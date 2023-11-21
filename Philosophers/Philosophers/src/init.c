@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:32 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 14:21:29 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:26:07 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	philosophers(int argc, char **argv, t_data *data)
 {
 	if (init_data(data, argc, argv) != 0)
 		return (EXIT);
+	if (data->num_of_philos == 1)
+	{
+		ft_handle_one_philo(data);
+		return (SUCCESS);
+	}
 	if (init_mutexes(data) != 0)
 		return (EXIT);
 	if (init_philos(data) != 0)
@@ -32,7 +37,6 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->nb_meals = 0;
-	// data->start_time = 0;
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);
 	return (malloc_philos(data));

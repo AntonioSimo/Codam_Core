@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:40 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/14 13:34:41 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:41:01 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_input(int argc, char **argv)
 		return (EXIT);
 	if (ft_is_digit(argc, argv) != 0)
 		return (EXIT);
-	if (valid_input(argc, argv) != 0)
+	if (valid_input(argv) != 0)
 		return (EXIT);
 	return (SUCCESS);
 }
@@ -43,7 +43,7 @@ int	ft_is_digit(int argc, char **argv)
 	return (SUCCESS);
 }
 
-int	valid_input(int argc, char **argv)
+int	valid_input(char **argv)
 {
 	int	i;
 

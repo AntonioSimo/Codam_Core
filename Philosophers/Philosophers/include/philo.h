@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 14:20:40 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 18:03:12 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@
 # define EAT "is eating"
 # define DIED "died"
 
-typedef enum e_philo_state
-{
-	EATING = 0,
-	SLEEPING = 1,
-	THINKING = 2,
-	DEAD = 3,
-	// FULL = 4, ??
-	// ALIVE = 5 ??
-}	t_philo_state;
-
 typedef struct s_philo
 {
 	int				id;
@@ -58,7 +48,6 @@ typedef struct s_philo
 	long long		last_eat_time;
 	long long		start_time;
 	long long		time_diff;
-	t_philo_state	state;
 	struct s_data	*data;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
@@ -86,7 +75,7 @@ typedef struct s_data
 //parse
 int			check_input(int argc, char **argv);
 int			ft_is_digit(int argc, char **argv);
-int			valid_input(int argc, char **argv);
+int			valid_input(char **argv);
 
 //init
 int			init_data(t_data *data, int argc, char **argv);
@@ -96,8 +85,7 @@ int			malloc_philos(t_data *data);
 int			philosophers(int argc, char **argv, t_data	*data);
 
 //death_monitor
-int			death_monitor(t_data *data);
-int			death_check(t_philo *philo, t_data *data);
+void		*check_monitor(void *args);
 
 //die_time
 void		die_time(t_philo *philo, t_data *data);
@@ -105,8 +93,8 @@ void		die_time(t_philo *philo, t_data *data);
 //meal_time
 void		leave_forks(t_philo *philo);
 void		meal_time(t_philo *philo, t_data *data);
-void		take_left_fork(t_philo *philo, t_data *data);
-void		take_right_fork(t_philo *philo, t_data *data);
+void		take_left_fork(t_philo *philo);
+void		take_right_fork(t_philo *philo);
 
 //rest_time
 void		rest_time(t_philo *philo, t_data *data);
@@ -114,12 +102,12 @@ void		rest_time(t_philo *philo, t_data *data);
 //routine
 void		*routine(void *args);
 int			philo_thread(t_data *data);
-int	join_thread(t_data *data, t_philo *philo);
-// void		destroy_mutex(t_data *data);
+int			join_thread(t_data *data, t_philo *philo);
 void		destroy_mutex(t_data *data, t_philo *philo);
+int			check_check(t_philo *philo);
 
 //think_time
-void		think_time(t_philo *philo, t_data *data);
+void		think_time(t_philo *philo);
 
 //utils
 int			ft_atoi(char *str);
@@ -127,9 +115,8 @@ long long	get_current_time(void);
 void		ft_usleep(long long sleep_time);
 void		print_message(t_philo *philo, char *color, char *state);
 
-int	check_check(t_philo *philo);
-void	test(t_philo *philo, t_data *data);
-long long	time_diff(long long current_time, long long start_time);
-void		*check_monitor(void *args);
+//main
+int			ft_handle_one_philo(t_data *data);
+void		ft_free_philo(t_data *data);
 
 #endif

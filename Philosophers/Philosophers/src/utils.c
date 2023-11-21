@@ -59,7 +59,8 @@ long long	get_current_time(void)
 
 void	print_message(t_data *data, char *color, int id, char *state)
 {
-	// pthread_mutex_lock(&data->philos->mut_write); ??
+	pthread_mutex_lock(&data->mut_write);
+	//if (data->philos[id - 1].death != 1)
 	printf("%s%lld %d %s\n", color, get_current_time() - data->start_time, id, state);
-	// pthread_mutex_unlock(&data->philos->mut_write); ??
+	pthread_mutex_unlock(&data->mut_write);
 }

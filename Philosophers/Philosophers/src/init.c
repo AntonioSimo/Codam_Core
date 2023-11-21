@@ -43,15 +43,15 @@ int	init_mutexes(t_data *data)
 	int		i;
 
 	i = 0;
-	if (pthread_mutex_init(&data->philos->mut_eat_t, NULL) != 0)
+	if (pthread_mutex_init(&data->mut_die_t, NULL) != 0)
 		return (EXIT);
-	// if (pthread_mutex_init(&data->philos->mut_write, NULL) != 0)   ??
-	// 	return (EXIT);												  ??
-	if (pthread_mutex_init(&data->philos->mut_die_t, NULL) != 0)
+	if (pthread_mutex_init(&data->mut_write, NULL) != 0)
 		return (EXIT);
 	while (i < data->num_of_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (EXIT);
+		if (pthread_mutex_init(&data->philos->mut_eat_t, NULL) != 0)
 			return (EXIT);
 		i++;
 	}
@@ -69,12 +69,11 @@ int	init_philos(t_data *data)
 	{
 		philos[i].id = i + 1;
 		philos[i].is_eating = 0;
+		philos[i].death = 0;
 		philos[i].nb_meals_had = 0;
-		philos[i].last_eat_time = 0;
-		philos[i].state = THINKING;
+		philos[i].last_eat_time = get_current_time();
 		philos[i].data = data;
-		philos[i].mut_eat_t = data->philos->mut_eat_t;
-		philos[i].mut_die_t = data->philos->mut_die_t;
+		philos[i].mut_die_t = &data->mut_die_t;
 		philos[i].left_fork = &data->forks[i];
 		philos[i].right_fork = &data->forks[(i + 1) % data->num_of_philos];
 		i++;

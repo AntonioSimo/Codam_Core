@@ -15,29 +15,49 @@
 void	*death_monitor(void *args)
 {
 	t_data	*data;
-	t_philo *philo;
+	t_philo	*philo;
 	int	i;
 
-	i = 0;
 	data = (t_data *)args;
-	pthread_mutex_lock(&philo->mut_die_t);
-	while (i < data->num_of_philos && philo->state != DEAD)
+	philo = data->philos;
+	while (1)
 	{
-		if ((get_current_time() - philo->last_eat_time) >= data->time_to_die)
+		i = 0;
+		while (i < data->num_of_philos)
 		{
-			pthread_mutex_unlock(&philo->mut_die_t);
-			die_time(philo, data);
-			break;
+			pthread_mutex_lock(&data->mut_die_t);
+			pthread_mutex_lock(&philo->mut_eat_t);
+			if ((get_current_time() - philo[i].last_eat_time) >= data->time_to_die)
+			{
+				die_time(&philo[i], data);
+				pthread_mutex_unlock(&data->mut_die_t);
+				pthread_mutex_unlock(&philo->mut_eat_t);
+				return (NULL);
+			}
+			pthread_mutex_unlock(&data->mut_die_t);
+			pthread_mutex_unlock(&philo->mut_eat_t);
+			i++;
 		}
-		usleep(150);
-		i++;
 	}
-	pthread_mutex_unlock(&philo->mut_die_t);
+	//usleep(150);
+	return (NULL);
 }
 
-// int	death_check(t_philo *philo, t_data *data)
-// {
 
+void	test(t_philo *philo, t_data *data)
+{
+	long long test1 = 0;
+	long long test2 = 0;
+	long long test3 = 0;
+	long long test4 = 0;
+	long long time = get_current_time();
 
-// 	return (SUCCESS);
-// }
+	test1 = time - data->start_time;
+	test2 = time - philo->last_eat_time;
+	test3 = time;
+	test4 = data->time_to_die;
+	printf("test1: %llu\n", test1);
+	printf("test2: %llu\n", test2);
+	printf("test3: %llu\n", test3);
+	printf("test4: %llu\n", test4);
+}

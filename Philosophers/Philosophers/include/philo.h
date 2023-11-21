@@ -54,32 +54,30 @@ typedef struct s_philo
 	int				is_eating;
 	int				*nb_meals;
 	int				nb_meals_had;
-	int				*death;
+	int				death;
 	long long		last_eat_time;
+	long long		time_diff;
 	t_philo_state	state;
 	struct s_data	*data;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	mut_die_t;
+	pthread_mutex_t	*mut_die_t;
 	pthread_mutex_t	mut_eat_t;
-	pthread_mutex_t	mut_write;
+	pthread_t		philos_thread;
 }	t_philo;
 
 typedef struct s_data
 {
 	int				nb_meals;
 	int				num_of_philos;
-	int				death_check;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	long long		start_time;
 	pthread_mutex_t	*forks;
-	// pthread_mutex_t	mut_die_t;
-	// pthread_mutex_t	mut_eat_t;
-	// pthread_mutex_t	mut_write;
+	pthread_mutex_t	mut_die_t;
+	pthread_mutex_t	mut_write;
 	pthread_t		death_monitor;
-	pthread_t		philos_thread;
 	t_philo			*philos;
 }	t_data;
 
@@ -114,6 +112,7 @@ void		rest_time(t_philo *philo, t_data *data);
 //routine
 void		*routine(void *args);
 int			philo_thread(t_data *data);
+int	join_thread(t_data *data, t_philo *philo);
 // void		destroy_mutex(t_data *data);
 void		destroy_mutex(t_data *data, t_philo *philo);
 
@@ -125,5 +124,9 @@ int			ft_atoi(char *str);
 long long	get_current_time(void);
 void		ft_usleep(long long sleep_time);
 void		print_message(t_data *data, char *color, int id, char *state);
+
+int	check_check(t_philo *philo);
+void	test(t_philo *philo, t_data *data);
+long long	time_diff(long long current_time, long long start_time);
 
 #endif

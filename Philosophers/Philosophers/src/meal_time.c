@@ -43,11 +43,12 @@ void	meal_time(t_philo *philo, t_data *data)
 		take_left_fork(philo, data);
 	}
 	pthread_mutex_lock(&philo->mut_eat_t);
+	pthread_mutex_lock(philo->mut_die_t);
 	print_message(data, GREEN, philo->id, EAT);
 	philo->last_eat_time = get_current_time();
-	philo->state = EATING;
 	philo->nb_meals_had++;
 	pthread_mutex_unlock(&philo->mut_eat_t);
+	pthread_mutex_unlock(philo->mut_die_t);
 	ft_usleep(data->time_to_eat);
 	leave_forks(philo);
 }

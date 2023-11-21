@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:38 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/15 18:32:59 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:33:31 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	meal_time(t_philo *philo, t_data *data)
 		take_left_fork(philo, data);
 	}
 	pthread_mutex_lock(&philo->mut_eat_t);
-	pthread_mutex_lock(philo->mut_die_t);
-	print_message(data, GREEN, philo->id, EAT);
 	philo->last_eat_time = get_current_time();
-	philo->nb_meals_had++;
 	pthread_mutex_unlock(&philo->mut_eat_t);
-	pthread_mutex_unlock(philo->mut_die_t);
+	philo->nb_meals_had++;
+	// pthread_mutex_lock(philo->mut_die_t);
+	// pthread_mutex_unlock(philo->mut_die_t);
+	print_message(data, GREEN, philo->id, EAT);
 	ft_usleep(data->time_to_eat);
 	leave_forks(philo);
 }

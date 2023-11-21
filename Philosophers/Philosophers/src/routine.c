@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/15 19:21:11 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:08:53 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ int	check_check(t_philo *philo)
 	pthread_mutex_lock(philo->mut_die_t);
 	if (philo->death == 1)
 	{
-		//printf("first_check%i\n", philo->death);
 		check = 1;
 	}
-	//printf("second_check%i\n", philo->death);
 	pthread_mutex_unlock(philo->mut_die_t);
 	return (check);
 }
@@ -64,7 +62,7 @@ int	philo_thread(t_data *data)
 			return (EXIT_FAILURE);
 		i++;
 	}
-	if (pthread_create(&data->death_monitor, NULL, death_monitor, data) != 0)
+	if (pthread_create(&data->death_monitor, NULL, check_monitor, data) != 0)
 		return (EXIT_FAILURE);
 	if (pthread_join(data->death_monitor, NULL) != 0)
 		return (EXIT);

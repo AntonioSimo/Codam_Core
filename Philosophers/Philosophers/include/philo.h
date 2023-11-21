@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/15 18:34:43 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:05:45 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int			malloc_philos(t_data *data);
 int			philosophers(int argc, char **argv, t_data	*data);
 
 //death_monitor
-void		*death_monitor(void *args);
+int			death_monitor(t_data *data);
 int			death_check(t_philo *philo, t_data *data);
 
 //die_time
@@ -128,5 +128,6 @@ void		print_message(t_data *data, char *color, int id, char *state);
 int	check_check(t_philo *philo);
 void	test(t_philo *philo, t_data *data);
 long long	time_diff(long long current_time, long long start_time);
+void		*check_monitor(void *args);
 
 #endif

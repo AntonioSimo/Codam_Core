@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:28 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/15 17:39:39 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 12:29:22 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	die_time(t_philo *philo, t_data *data)
 {
-	//pthread_mutex_lock(philo->mut_die_t);
-	philo->death = 1;
 	print_message(data, RED, philo->id, DIED);
-	//pthread_mutex_unlock(philo->mut_die_t);
-	//ft_usleep(data->time_to_die);
+	int i = 0;
+	while (i < data->num_of_philos)
+	{
+		pthread_mutex_lock(data->philos[i].mut_die_t);
+		data->philos[i].death = 1;
+		pthread_mutex_unlock(data->philos[i].mut_die_t);
+		i++;
+	}
+	// ft_usleep(data->time_to_die);
 }

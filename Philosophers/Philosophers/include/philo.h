@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 12:05:45 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 14:20:40 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_philo
 	int				nb_meals_had;
 	int				death;
 	long long		last_eat_time;
+	long long		start_time;
 	long long		time_diff;
 	t_philo_state	state;
 	struct s_data	*data;
@@ -63,6 +64,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*mut_die_t;
 	pthread_mutex_t	mut_eat_t;
+	pthread_mutex_t mut_fully_eat;
 	pthread_t		philos_thread;
 }	t_philo;
 
@@ -123,7 +125,7 @@ void		think_time(t_philo *philo, t_data *data);
 int			ft_atoi(char *str);
 long long	get_current_time(void);
 void		ft_usleep(long long sleep_time);
-void		print_message(t_data *data, char *color, int id, char *state);
+void		print_message(t_philo *philo, char *color, char *state);
 
 int	check_check(t_philo *philo);
 void	test(t_philo *philo, t_data *data);

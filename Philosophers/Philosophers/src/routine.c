@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 12:08:53 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 14:26:26 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	*routine(void *args)
 	data = philo->data;
 	if (philo->id % 2 == 0)
 		usleep(450);
+	pthread_mutex_lock(&philo->mut_eat_t);
+	philo->last_eat_time = get_current_time();
+	pthread_mutex_unlock(&philo->mut_eat_t);
 	while (check_check(philo) != 1)
 	{
 		meal_time(philo, data);
@@ -51,13 +54,14 @@ int	philo_thread(t_data *data)
 	t_philo	*philos;
 
 	philos = (t_philo *)data->philos;
-	data->start_time = get_current_time();
+	// data->start_time = get_current_time();
 	//	i = 0;
 	//while (i < data->num_of_philos)
 	//	philos[i++].last_eat_time = data->start_time;
 	i = 0;
 	while (i < data->num_of_philos)
 	{
+		philos[i].start_time = get_current_time();
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, &philos[i]) != 0)
 			return (EXIT_FAILURE);
 		i++;

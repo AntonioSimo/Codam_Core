@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:32 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/15 19:06:46 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 14:21:29 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->nb_meals = 0;
-	data->start_time = 0;
+	// data->start_time = 0;
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);
 	return (malloc_philos(data));
@@ -53,6 +53,8 @@ int	init_mutexes(t_data *data)
 			return (EXIT);
 		if (pthread_mutex_init(&data->philos->mut_eat_t, NULL) != 0)
 			return (EXIT);
+		if (pthread_mutex_init(&data->philos->mut_fully_eat, NULL) != 0)
+			return (EXIT);
 		i++;
 	}
 	return (SUCCESS);
@@ -70,6 +72,7 @@ int	init_philos(t_data *data)
 		philos[i].id = i + 1;
 		philos[i].is_eating = 0;
 		philos[i].death = 0;
+		philos[i].start_time = 0;
 		philos[i].nb_meals_had = 0;
 		philos[i].last_eat_time = get_current_time();
 		philos[i].data = data;

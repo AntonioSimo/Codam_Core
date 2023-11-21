@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:28 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 12:29:22 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/21 13:53:26 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	die_time(t_philo *philo, t_data *data)
 {
-	print_message(data, RED, philo->id, DIED);
+	print_message(philo, RED, DIED);
 	int i = 0;
 	while (i < data->num_of_philos)
 	{

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:52 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:39:34 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:33:13 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ long long	get_current_time(void)
 
 void	print_message(t_philo *philo, char *color, char *state)
 {
-	int isDead;
+	int	is_dead;
+
 	pthread_mutex_lock(philo->mut_die_t);
-	isDead = philo->death;
+	is_dead = philo->death;
 	pthread_mutex_unlock(philo->mut_die_t);
-	if (isDead == 1)
+	if (is_dead == 1)
 		return ;
-	printf("%s%lld %d %s\n", color, get_current_time() - philo->start_time, philo->id, state);
+	printf("%s%lld %d %s\n", color, get_current_time() - philo->start_time, \
+			philo->id, state);
 }

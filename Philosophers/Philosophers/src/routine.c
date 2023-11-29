@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:40:50 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:34:33 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*routine(void *args)
 	{
 		meal_time(philo, data);
 		if (philo->nb_meals_had == data->nb_meals)
-			break;
+			break ;
 		rest_time(philo, data);
 		think_time(philo);
 	}
@@ -37,13 +37,12 @@ void	*routine(void *args)
 
 int	check_check(t_philo *philo)
 {
-	int	check = 0;
+	int	check;
 
+	check = 0;
 	pthread_mutex_lock(philo->mut_die_t);
 	if (philo->death == 1)
-	{
 		check = 1;
-	}
 	pthread_mutex_unlock(philo->mut_die_t);
 	return (check);
 }
@@ -58,7 +57,8 @@ int	philo_thread(t_data *data)
 	while (i < data->num_of_philos)
 	{
 		philos[i].start_time = get_current_time();
-		if (pthread_create(&philos[i].philos_thread, NULL, routine, &philos[i]) != 0)
+		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
+			&philos[i]) != 0)
 			return (EXIT_FAILURE);
 		i++;
 	}
@@ -77,7 +77,7 @@ int	philo_thread(t_data *data)
 
 int	join_thread(t_data *data, t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->num_of_philos)
@@ -103,4 +103,3 @@ void	destroy_mutex(t_data *data, t_philo *philo)
 	}
 	pthread_mutex_destroy(philo->mut_die_t);
 }
-

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 18:03:12 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:35:13 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*mut_die_t;
 	pthread_mutex_t	mut_eat_t;
-	pthread_mutex_t mut_fully_eat;
+	pthread_mutex_t	mut_fully_eat;
 	pthread_t		philos_thread;
 }	t_philo;
 

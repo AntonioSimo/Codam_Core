@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:17:00 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:25:54 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:33:34 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		*check_monitor(void *args)
 			pthread_mutex_lock(&philo[i].mut_fully_eat);
 			n_meals = philo[i].nb_meals_had;
 			pthread_mutex_unlock(&philo[i].mut_fully_eat);
-			if (n_meals == max_meals)
+			if (data->nb_meals && n_meals == max_meals)
 				philo_fully_ate++;
 			else
 			{

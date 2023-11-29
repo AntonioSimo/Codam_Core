@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:35 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:59:45 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:57:24 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	ft_handle_one_philo(t_data *data)
 {
 	printf(CYAN "0 1 has taken a fork\n" RESET);
 	ft_usleep(data->time_to_die);
-	printf(RED "0 1 died\n" RESET);
+	printf(RED "%lld 1 died\n" RESET, data->time_to_die);
+	ft_free_philo(data);
 	return (0);
 }
 
@@ -36,6 +37,6 @@ int	main(int argc, char **argv)
 		return (write(2, ERROR, 12));
 	if (philosophers(argc, argv, &data) != 0)
 		return (write(2, ERROR, 12));
-	ft_free_philo(&data);
+	// ft_free_philo(&data);
 	return (SUCCESS);
 }

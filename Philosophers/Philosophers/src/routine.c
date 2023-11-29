@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:34:33 by asimone          ###   ########.fr       */
+/*   Updated: 2023/11/29 17:51:35 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	join_thread(t_data *data, t_philo *philo)
 		i++;
 	}
 	destroy_mutex(data, philo);
+	ft_free_philo(data);
 	return (SUCCESS);
 }
 

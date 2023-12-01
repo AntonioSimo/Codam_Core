@@ -59,6 +59,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
+	int				philo_fully_ate;
 	int				nb_meals;
 	int				num_of_philos;
 	long long		time_to_die;
@@ -112,6 +113,7 @@ void		think_time(t_philo *philo);
 //utils
 int			ft_atoi(char *str);
 long long	get_current_time(void);
+void		ft_usleep2(long long sleep_time, t_philo *philo);
 void		ft_usleep(long long sleep_time);
 void		print_message(t_philo *philo, char *color, char *state);
 

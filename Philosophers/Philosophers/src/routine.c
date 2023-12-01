@@ -67,7 +67,10 @@ int	philo_thread(t_data *data)
 	if (pthread_join(data->death_monitor, NULL) != 0 || philos->death == 1)
 	{
 		if (philos->death == 1)
-			return (EXIT_SUCCESS);
+		{
+			if (join_thread(data, philos) == 0)
+				return (EXIT_SUCCESS);
+		}
 		return (EXIT);
 	}
 	if (join_thread(data, philos) != 0)

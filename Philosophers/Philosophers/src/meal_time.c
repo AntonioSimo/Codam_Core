@@ -49,6 +49,6 @@ void	meal_time(t_philo *philo, t_data *data)
 	philo->nb_meals_had++;
 	pthread_mutex_unlock(&philo->mut_fully_eat);
 	print_message(philo, GREEN, EAT);
-	ft_usleep(data->time_to_eat);
+	ft_usleep2(data->time_to_eat, philo);
 	leave_forks(philo);
 }

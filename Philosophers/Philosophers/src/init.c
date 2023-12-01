@@ -36,6 +36,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
+	data->philo_fully_ate = 0;
 	data->nb_meals = 0;
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);

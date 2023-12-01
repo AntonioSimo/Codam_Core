@@ -16,13 +16,14 @@ void	die_time(t_philo *philo, t_data *data)
 {
 	int	i;
 
-	print_message(philo, RED, DIED);
-	i = 0;
-	while (i < data->num_of_philos)
+	i = -1;
+	while (++i < data->num_of_philos)
 	{
 		pthread_mutex_lock(data->philos[i].mut_die_t);
 		data->philos[i].death = 1;
 		pthread_mutex_unlock(data->philos[i].mut_die_t);
-		i++;
 	}
+	usleep(500);
+	printf("%s%lld %d %s\n", RED, get_current_time() - philo->start_time, \
+				philo->id, DIED);
 }

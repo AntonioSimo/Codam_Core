@@ -20,7 +20,7 @@ void	*routine(void *args)
 	philo = (t_philo *)args;
 	data = philo->data;
 	if (philo->id % 2 == 0)
-		usleep(450);
+		usleep(3000);
 	pthread_mutex_lock(&philo->mut_eat_t);
 	philo->last_eat_time = get_current_time();
 	pthread_mutex_unlock(&philo->mut_eat_t);
@@ -29,6 +29,10 @@ void	*routine(void *args)
 		meal_time(philo, data);
 		if (philo->nb_meals_had == data->nb_meals)
 			break ;
+		//pthread_mutex_lock(&philo->mut_fully_eat);
+		//if (philo->nb_meals_had == data->nb_meals)
+		//	break ;
+		//pthread_mutex_unlock(&philo->mut_fully_eat);
 		rest_time(philo, data);
 		think_time(philo);
 	}
@@ -102,7 +106,8 @@ void	destroy_mutex(t_data *data, t_philo *philo)
 	while (i < data->num_of_philos)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
-		pthread_mutex_destroy(&philo->mut_eat_t);
+		pthread_mutex_destroy(&philo[i].mut_eat_t);
+		pthread_mutex_destroy(&philo[i].mut_fully_eat);
 		i++;
 	}
 	pthread_mutex_destroy(philo->mut_die_t);

@@ -115,7 +115,7 @@ int			ft_atoi(char *str);
 long long	get_current_time(void);
 void		ft_usleep2(long long sleep_time, t_philo *philo);
 void		ft_usleep(long long sleep_time);
-void		print_message(t_philo *philo, char *color, char *state);
+void		print_message(t_philo *philo, char *state);
 
 //main
 int			ft_handle_one_philo(t_data *data);

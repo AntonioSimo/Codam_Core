@@ -56,9 +56,9 @@ int	init_mutexes(t_data *data)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			return (EXIT);
-		if (pthread_mutex_init(&data->philos->mut_eat_t, NULL) != 0)
+		if (pthread_mutex_init(&data->philos[i].mut_eat_t, NULL) != 0)
 			return (EXIT);
-		if (pthread_mutex_init(&data->philos->mut_fully_eat, NULL) != 0)
+		if (pthread_mutex_init(&data->philos[i].mut_fully_eat, NULL) != 0)
 			return (EXIT);
 		i++;
 	}

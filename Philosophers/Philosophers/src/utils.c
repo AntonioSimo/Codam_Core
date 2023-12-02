@@ -48,7 +48,7 @@ void	ft_usleep2(long long sleep_time, t_philo *philo)
 	{
 		if (check_check(philo))
 			return ;
-		usleep(300);
+		usleep(400);
 	}
 }
 
@@ -58,7 +58,7 @@ void	ft_usleep(long long sleep_time)
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < sleep_time)
-		usleep(200);
+		usleep(300);
 }
 
 long long	get_current_time(void)
@@ -80,17 +80,20 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	print_message(t_philo *philo, char *color, char *state)
+void	print_message(t_philo *philo, char *state)
 {
+	pthread_mutex_lock(&philo->data->mut_write);
 	pthread_mutex_lock(philo->mut_die_t);
 	if (philo->death)
 	{
 		pthread_mutex_unlock(philo->mut_die_t);
+		pthread_mutex_unlock(&philo->data->mut_write);
 		return ;
 	}
-	printf("%s%lld %d %s\n", color, get_current_time() - philo->start_time, \
+	printf("%lld %d %s\n", get_current_time() - philo->start_time, \
 			philo->id, state);
 	pthread_mutex_unlock(philo->mut_die_t);
+	pthread_mutex_unlock(&philo->data->mut_write);
 	//if (is_dead == 1)
 	//{
 	//	if (strcmp(state, DIED) == 0)

@@ -31,11 +31,11 @@ size_t	ft_strlen(const char *str)
 	return (count);
 }
 
- int	main(void)
- {
- 	char	str[50];
+// int	main(void)
+// {
+// 	char	str[50];
 
- 	printf("mine: %zu\n", ft_strlen("Codam"));
- 	printf("not mine: %zu", strlen("Codam"));
- 	return (0);
- }
+// 	printf("mine: %zu\n", ft_strlen("Codam"));
+// 	printf("not mine: %zu", strlen("Codam"));
+// 	return (0);
+// }

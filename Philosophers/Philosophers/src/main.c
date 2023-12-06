@@ -37,6 +37,5 @@ int	main(int argc, char **argv)
 		return (write(2, ERROR, 12));
 	if (philosophers(argc, argv, &data) != 0)
 		return (write(2, ERROR, 12));
-	// ft_free_philo(&data);
 	return (SUCCESS);
 }

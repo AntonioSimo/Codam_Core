@@ -42,15 +42,13 @@ int	ft_atoi(char *str)
 void	ft_usleep2(long long sleep_time, t_philo *philo)
 {
 	long long	start_time;
-
+	(void) philo;
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < sleep_time)
-	{
-		if (check_check(philo))
-			return ;
-		usleep(400);
-	}
+		usleep(300);
 }
+
+
 
 void	ft_usleep(long long sleep_time)
 {
@@ -58,7 +56,7 @@ void	ft_usleep(long long sleep_time)
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < sleep_time)
-		usleep(300);
+		usleep(50);
 }
 
 long long	get_current_time(void)
@@ -94,11 +92,4 @@ void	print_message(t_philo *philo, char *state)
 			philo->id, state);
 	pthread_mutex_unlock(philo->mut_die_t);
 	pthread_mutex_unlock(&philo->data->mut_write);
-	//if (is_dead == 1)
-	//{
-	//	if (strcmp(state, DIED) == 0)
-	//		printf("%s%lld %d %s\n", color, get_current_time() - philo->start_time, \
-	//			philo->id, state);
-	//	return ;
-	//}
 }

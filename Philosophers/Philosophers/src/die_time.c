@@ -14,7 +14,8 @@
 
 void	die_time(t_philo *philo, t_data *data)
 {
-	int	i;
+	int			i;
+	long long	delta_time;
 
 	i = -1;
 	while (++i < data->num_of_philos)
@@ -23,7 +24,10 @@ void	die_time(t_philo *philo, t_data *data)
 		data->philos[i].death = 1;
 		pthread_mutex_unlock(data->philos[i].mut_die_t);
 	}
-	usleep(500);
+	usleep(250);
+	delta_time = get_current_time() - philo->start_time;
+	if (delta_time < data->time_to_die)
+		delta_time = data->time_to_die;
 	printf("%s%lld %d %s\n", RED, get_current_time() - philo->start_time, \
 				philo->id, DIED);
 }

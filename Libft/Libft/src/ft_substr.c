@@ -39,13 +39,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-// int	main(void)
-// {
-//	char a [50] = "Ciao sono Antonio.";
-//	char *b;
-//	int start = 10;
-//	size_t len = 50;
-//	b = ft_substr(a, start, len);
-//	printf("%s", b);
-// 	//system("leaks a.out");
-// }
+ int	main(void)
+ {
+	char a [50] = "Ciao son";//o Antonio.";
+	char *b;
+	int start = 10;
+	size_t len = 50;
+	b = ft_substr(a, start, len);
+	printf("%s", b);
+ 	//system("leaks a.out");
+ }

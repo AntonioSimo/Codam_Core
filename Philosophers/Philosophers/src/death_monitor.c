@@ -14,25 +14,8 @@
 
 static int	helper_check(t_philo *philo, t_data *data, int max_meals, int i)
 {
-	//int		delta_time;
-	//int		n_meals;
-	
-	//pthread_mutex_lock(&philo[i].mut_fully_eat);
-	//n_meals = philo[i].nb_meals_had;
-	//pthread_mutex_unlock(&philo[i].mut_fully_eat);
-	//if (data->nb_meals && n_meals == max_meals)
-	//	data->philo_fully_ate++;
-	//pthread_mutex_lock(&philo[i].mut_eat_t);
-	//delta_time = get_current_time() - philo[i].last_eat_time;
-	//pthread_mutex_unlock(&philo[i].mut_eat_t);
-	//if (delta_time >= data->time_to_die)
-	//{
-	//	die_time(&philo[i], data);
-	//	return (EXIT);
-	//}
-	//return (EXIT_SUCCESS);
 	int		n_meals;
-	
+
 	pthread_mutex_lock(&philo[i].mut_fully_eat);
 	n_meals = philo[i].nb_meals_had;
 	pthread_mutex_unlock(&philo[i].mut_fully_eat);

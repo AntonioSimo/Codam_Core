@@ -20,19 +20,12 @@ void	*routine(void *args)
 	philo = (t_philo *)args;
 	data = philo->data;
 	if (philo->id % 2 == 0)
-		usleep(3000);
-	pthread_mutex_lock(&philo->mut_eat_t);
-	philo->last_eat_time = get_current_time();
-	pthread_mutex_unlock(&philo->mut_eat_t);
+		usleep(1000);
 	while (check_check(philo) != 1)
 	{
 		meal_time(philo, data);
 		if (philo->nb_meals_had == data->nb_meals)
 			break ;
-		//pthread_mutex_lock(&philo->mut_fully_eat);
-		//if (philo->nb_meals_had == data->nb_meals)
-		//	break ;
-		//pthread_mutex_unlock(&philo->mut_fully_eat);
 		rest_time(philo, data);
 		think_time(philo);
 	}
@@ -57,14 +50,13 @@ int	philo_thread(t_data *data)
 	t_philo	*philos;
 
 	philos = (t_philo *)data->philos;
-	i = 0;
-	while (i < data->num_of_philos)
+	i = -1;
+	while (++i < data->num_of_philos)
 	{
 		philos[i].start_time = get_current_time();
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
 			&philos[i]) != 0)
 			return (EXIT_FAILURE);
-		i++;
 	}
 	if (pthread_create(&data->death_monitor, NULL, check_monitor, data) != 0)
 		return (EXIT_FAILURE);

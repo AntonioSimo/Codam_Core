@@ -32,18 +32,9 @@ void	leave_forks(t_philo *philo)
 
 void	meal_time(t_philo *philo, t_data *data)
 {
-	if (philo->id % 2 == 0)
-	{
-		take_left_fork(philo);
-		take_right_fork(philo);
-	}
-	else
-	{
-		take_right_fork(philo);
-		take_left_fork(philo);
-	}
+	take_left_fork(philo);
+	take_right_fork(philo);
 	pthread_mutex_lock(&philo->mut_eat_t);
-	//printf("philo %d: %p and mut eat %p \n",philo->id, philo, &philo->mut_eat_t);
 	philo->last_eat_time = get_current_time();
 	pthread_mutex_unlock(&philo->mut_eat_t);
 	print_message(philo, EAT);

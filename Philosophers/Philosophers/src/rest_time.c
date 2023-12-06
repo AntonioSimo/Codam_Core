@@ -15,5 +15,5 @@
 void	rest_time(t_philo *philo, t_data *data)
 {
 	print_message(philo, SLEEP);
-	ft_usleep2(data->time_to_sleep , philo);
+	ft_usleep2(data->time_to_sleep, philo);
 }

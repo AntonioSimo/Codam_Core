@@ -55,7 +55,7 @@ int	philo_thread(t_data *data)
 	{
 		philos[i].start_time = get_current_time();
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
-			&philos[i]) != 0)
+				&philos[i]) != 0)
 			return (EXIT_FAILURE);
 	}
 	if (pthread_create(&data->death_monitor, NULL, check_monitor, data) != 0)

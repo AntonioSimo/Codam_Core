@@ -14,6 +14,5 @@
 
 void	think_time(t_philo *philo)
 {
-	//usleep(250);
 	print_message(philo, THINK);
 }

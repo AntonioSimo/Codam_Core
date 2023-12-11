@@ -47,12 +47,12 @@ int	init_mutexes(t_data *data)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (pthread_mutex_init(&data->mut_die_t, NULL) != 0)
 		return (EXIT);
 	if (pthread_mutex_init(&data->mut_write, NULL) != 0)
 		return (EXIT);
-	while (i < data->num_of_philos)
+	while (++i < data->num_of_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			return (EXIT);
@@ -60,7 +60,6 @@ int	init_mutexes(t_data *data)
 			return (EXIT);
 		if (pthread_mutex_init(&data->philos[i].mut_fully_eat, NULL) != 0)
 			return (EXIT);
-		i++;
 	}
 	return (SUCCESS);
 }
@@ -70,21 +69,19 @@ int	init_philos(t_data *data)
 	t_philo	*philos;
 	int		i;
 
-	i = 0;
+	i = -1;
 	philos = data->philos;
-	while (i < data->num_of_philos)
+	while (++i < data->num_of_philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].is_eating = 0;
 		philos[i].death = 0;
-		philos[i].start_time = 0;
 		philos[i].nb_meals_had = 0;
 		philos[i].last_eat_time = get_current_time();
 		philos[i].data = data;
 		philos[i].mut_die_t = &data->mut_die_t;
 		philos[i].left_fork = &data->forks[i];
 		philos[i].right_fork = &data->forks[(i + 1) % data->num_of_philos];
-		i++;
 	}
 	return (SUCCESS);
 }

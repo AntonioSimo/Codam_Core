@@ -54,7 +54,6 @@ int	philo_thread(t_data *data)
 	data->start_time = get_current_time();
 	while (++i < data->num_of_philos)
 	{
-		// philos[i].start_time = get_current_time();
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
 				&philos[i]) != 0)
 			return (EXIT);
@@ -79,12 +78,11 @@ int	join_thread(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->num_of_philos)
+	i = -1;
+	while (++i < data->num_of_philos)
 	{
 		if (pthread_join(data->philos[i].philos_thread, NULL) != 0)
 			return (EXIT);
-		i++;
 	}
 	destroy_mutex(data, philo);
 	ft_free_philo(data);
@@ -95,13 +93,12 @@ void	destroy_mutex(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->num_of_philos)
+	i = -1;
+	while (++i < data->num_of_philos)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(&philo[i].mut_eat_t);
 		pthread_mutex_destroy(&philo[i].mut_fully_eat);
-		i++;
 	}
 	pthread_mutex_destroy(philo->mut_die_t);
 }

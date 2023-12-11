@@ -39,23 +39,13 @@ int	ft_atoi(char *str)
 	return (result);
 }
 
-void	ft_usleep2(long long sleep_time, t_philo *philo)
-{
-	long long	start_time;
-
-	(void) philo;
-	start_time = get_current_time();
-	while ((get_current_time() - start_time) < sleep_time)
-		usleep(300);
-}
-
 void	ft_usleep(long long sleep_time)
 {
 	long long	start_time;
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < sleep_time)
-		usleep(50);
+		usleep(300);
 }
 
 long long	get_current_time(void)

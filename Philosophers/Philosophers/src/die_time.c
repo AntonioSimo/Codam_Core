@@ -23,7 +23,6 @@ void	die_time(t_philo *philo, t_data *data)
 		data->philos[i].death = 1;
 		pthread_mutex_unlock(data->philos[i].mut_die_t);
 	}
-	usleep(250);
 	printf("%s%lld %d %s\n", RED, get_current_time() - philo->data->start_time, \
 				philo->id, DIED);
 }

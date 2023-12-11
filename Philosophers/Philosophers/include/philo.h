@@ -46,8 +46,6 @@ typedef struct s_philo
 	int				nb_meals_had;
 	int				death;
 	long long		last_eat_time;
-	long long		start_time;
-	long long		time_diff;
 	struct s_data	*data;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
@@ -113,7 +111,6 @@ void		think_time(t_philo *philo);
 //utils
 int			ft_atoi(char *str);
 long long	get_current_time(void);
-void		ft_usleep2(long long sleep_time, t_philo *philo);
 void		ft_usleep(long long sleep_time);
 void		print_message(t_philo *philo, char *state);
 

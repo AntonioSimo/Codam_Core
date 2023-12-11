@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:52 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:33:13 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/11 17:14:16 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	print_message(t_philo *philo, char *state)
 		pthread_mutex_unlock(&philo->data->mut_write);
 		return ;
 	}
-	printf("%lld %d %s\n", get_current_time() - philo->start_time, \
+	printf("%lld %d %s\n", get_current_time() - philo->data->start_time, \
 			philo->id, state);
 	pthread_mutex_unlock(philo->mut_die_t);
 	pthread_mutex_unlock(&philo->data->mut_write);

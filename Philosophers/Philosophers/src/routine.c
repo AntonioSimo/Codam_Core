@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:51:35 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/11 17:14:01 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,28 @@ int	philo_thread(t_data *data)
 
 	philos = (t_philo *)data->philos;
 	i = -1;
+	data->start_time = get_current_time();
 	while (++i < data->num_of_philos)
 	{
-		philos[i].start_time = get_current_time();
+		// philos[i].start_time = get_current_time();
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
 				&philos[i]) != 0)
-			return (EXIT_FAILURE);
+			return (EXIT);
 	}
 	if (pthread_create(&data->death_monitor, NULL, check_monitor, data) != 0)
-		return (EXIT_FAILURE);
+		return (EXIT);
 	if (pthread_join(data->death_monitor, NULL) != 0 || philos->death == 1)
 	{
 		if (philos->death == 1)
 		{
 			if (join_thread(data, philos) == 0)
-				return (EXIT_SUCCESS);
+				return (SUCCESS);
 		}
 		return (EXIT);
 	}
 	if (join_thread(data, philos) != 0)
 		return (EXIT);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
 
 int	join_thread(t_data *data, t_philo *philo)

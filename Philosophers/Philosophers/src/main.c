@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:35 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:57:24 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/11 12:21:30 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_handle_one_philo(t_data *data)
 	ft_usleep(data->time_to_die);
 	printf(RED "%lld 1 died\n" RESET, data->time_to_die);
 	ft_free_philo(data);
-	return (0);
+	return (SUCCESS);
 }
 
 int	main(int argc, char **argv)

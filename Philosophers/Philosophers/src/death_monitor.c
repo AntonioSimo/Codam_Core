@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:17:00 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 19:26:44 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/11 12:21:45 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	helper_check(t_philo *philo, t_data *data, int max_meals, int i)
 		return (EXIT);
 	}
 	pthread_mutex_unlock(&philo[i].mut_eat_t);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }
 
 void	*check_monitor(void *args)

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:28 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:35:03 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/11 17:14:22 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	die_time(t_philo *philo, t_data *data)
 		pthread_mutex_unlock(data->philos[i].mut_die_t);
 	}
 	usleep(250);
-	printf("%s%lld %d %s\n", RED, get_current_time() - philo->start_time, \
+	printf("%s%lld %d %s\n", RED, get_current_time() - philo->data->start_time, \
 				philo->id, DIED);
 }

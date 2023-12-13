@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:46 by asimone           #+#    #+#             */
-/*   Updated: 2023/12/11 17:14:01 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:50:48 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,17 @@ int	philo_thread(t_data *data)
 	t_philo	*philos;
 
 	philos = (t_philo *)data->philos;
-	i = -1;
+	i = 0;
 	data->start_time = get_current_time();
-	while (++i < data->num_of_philos)
+	while (i < data->num_of_philos)
 	{
 		if (pthread_create(&philos[i].philos_thread, NULL, routine, \
 				&philos[i]) != 0)
 			return (EXIT);
+		i++;
 	}
 	if (pthread_create(&data->death_monitor, NULL, check_monitor, data) != 0)
 		return (EXIT);
-	if (pthread_join(data->death_monitor, NULL) != 0 || philos->death == 1)
-	{
-		if (philos->death == 1)
-		{
-			if (join_thread(data, philos) == 0)
-				return (SUCCESS);
-		}
-		return (EXIT);
-	}
 	if (join_thread(data, philos) != 0)
 		return (EXIT);
 	return (SUCCESS);
@@ -78,27 +70,16 @@ int	join_thread(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	i = -1;
-	while (++i < data->num_of_philos)
+	i = 0;
+	while (i < data->num_of_philos)
 	{
 		if (pthread_join(data->philos[i].philos_thread, NULL) != 0)
 			return (EXIT);
+		i++;
 	}
+	if (pthread_join(data->death_monitor, NULL) != 0)// || philo->death == 1)
+		return (EXIT);
 	destroy_mutex(data, philo);
 	ft_free_philo(data);
 	return (SUCCESS);
-}
-
-void	destroy_mutex(t_data *data, t_philo *philo)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->num_of_philos)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-		pthread_mutex_destroy(&philo[i].mut_eat_t);
-		pthread_mutex_destroy(&philo[i].mut_fully_eat);
-	}
-	pthread_mutex_destroy(philo->mut_die_t);
 }

@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:32 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:26:07 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:42:08 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,20 @@ int	init_mutexes(t_data *data)
 {
 	int		i;
 
-	i = -1;
+	i = 0;
 	if (pthread_mutex_init(&data->mut_die_t, NULL) != 0)
 		return (EXIT);
 	if (pthread_mutex_init(&data->mut_write, NULL) != 0)
 		return (EXIT);
-	while (++i < data->num_of_philos)
+	while (i < data->num_of_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			return (EXIT);
-		if (pthread_mutex_init(&data->philos[i].mut_eat_t, NULL) != 0)
-			return (EXIT);
 		if (pthread_mutex_init(&data->philos[i].mut_fully_eat, NULL) != 0)
 			return (EXIT);
+		if (pthread_mutex_init(&data->philos[i].mut_eat_t, NULL) != 0)
+			return (EXIT);
+		i++;
 	}
 	return (SUCCESS);
 }
@@ -69,9 +70,9 @@ int	init_philos(t_data *data)
 	t_philo	*philos;
 	int		i;
 
-	i = -1;
+	i = 0;
 	philos = data->philos;
-	while (++i < data->num_of_philos)
+	while (i < data->num_of_philos)
 	{
 		philos[i].id = i + 1;
 		philos[i].is_eating = 0;
@@ -82,6 +83,7 @@ int	init_philos(t_data *data)
 		philos[i].mut_die_t = &data->mut_die_t;
 		philos[i].left_fork = &data->forks[i];
 		philos[i].right_fork = &data->forks[(i + 1) % data->num_of_philos];
+		i++;
 	}
 	return (SUCCESS);
 }

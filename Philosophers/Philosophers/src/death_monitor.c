@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:17:00 by asimone           #+#    #+#             */
-/*   Updated: 2023/12/11 12:21:45 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:41:38 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	*check_monitor(void *args)
 	philo = data->philos;
 	while (1)
 	{
-		i = -1;
+		i = 0;
 		data->philo_fully_ate = 0;
-		while (++i < data->num_of_philos)
+		while (i < data->num_of_philos)
 		{
 			if (helper_check(philo, data, max_meals, i) != 0)
 				return (NULL);
+			i++;
 		}
 		if (data->philo_fully_ate == data->num_of_philos)
 			return (NULL);

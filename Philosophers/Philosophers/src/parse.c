@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:34:40 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/21 17:41:01 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:44:37 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ int	ft_is_digit(int argc, char **argv)
 	int	i;
 	int	x;
 
-	i = 0;
-	while (++i < argc)
+	i = 1;
+	while (i < argc)
 	{
-		x = -1;
-		while (argv[i][++x] != '\0')
+		x = 0;
+		while (argv[i][x] != '\0')
 		{
 			if (argv[i][x] < '0' || argv[i][x] > '9')
 				return (EXIT);
+			x++;
 		}
+		i++;
 	}
 	return (SUCCESS);
 }
@@ -45,11 +47,12 @@ int	valid_input(char **argv)
 {
 	int	i;
 
-	i = 0;
-	while (argv[++i])
+	i = 1;
+	while (argv[i])
 	{
 		if (ft_atoi(argv[i]) <= 0)
 			return (EXIT);
+		i++;
 	}
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
 		return (EXIT);

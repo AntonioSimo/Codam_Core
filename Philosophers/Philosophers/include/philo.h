@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:35:06 by asimone           #+#    #+#             */
-/*   Updated: 2023/11/29 17:35:13 by asimone          ###   ########.fr       */
+/*   Updated: 2023/12/13 16:13:23 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ void		print_message(t_philo *philo, char *state);
 //main
 int			ft_handle_one_philo(t_data *data);
 void		ft_free_philo(t_data *data);
+void		creat_magic(t_data *data, t_philo *philo);
 
 #endif

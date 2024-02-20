@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:33:08 by asimone           #+#    #+#             */
-/*   Updated: 2024/02/20 18:00:34 by asimone          ###   ########.fr       */
+/*   Updated: 2024/02/20 18:35:58 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 void  megaphone(char *str)
 {
-  char *final_string = new char[strlen(str) + 1];
-  
+  char *final_string;
+   
+  final_string = new char[strlen(str) + 1];
   for(size_t i = 0; str[i] != '\0'; i++)
-  {
     final_string[i] = std::toupper(str[i]);
-  }
   final_string[strlen(str)] = '\0';
   std::cout << final_string;
   delete [] final_string;
@@ -31,8 +30,6 @@ void  megaphone(char *str)
 
 int main(int argc, char *argv[]) 
 {
-  std::string hello(std::string("test") + " " + "world");
-  std::cout << hello << "\n";
   if (argc == 1)
     std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
   else

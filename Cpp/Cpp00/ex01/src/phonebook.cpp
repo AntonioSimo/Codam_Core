@@ -1,19 +1,63 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:49:30 by asimone           #+#    #+#             */
-/*   Updated: 2024/02/20 18:07:20 by asimone          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "phonebook.hpp"
 
-int main()
+// void    SearchContact(Contact Phone)
+// {
+//     Phone.PrintData();
+// }
+
+void    GetData(Contact Phone)
 {
-    std::cout << "Ciao";
-    return (0);
+    Phone.GetFirstName();
+    Phone.GetLastName();
+    Phone.GetNickName();
+    Phone.GetPhoneNumber();
+    Phone.GetDarkestSecret();
+}
+
+void    Phonebook::PrintData(Phonebook Phonebook)
+{
+    Contact contact;
+
+    contact = Phonebook.PhonebookContact[0];
+     size_t index = 0;
+        while (index <= MAXCONTACT)
+        {
+            std::cout << "This is the First name: " << contact.GetFirstName() << std::endl;
+            // std::cout << "This is the Last name: " << Phonebook[index]<< std::endl;
+            // std::cout << "This is the Nick name: " << Phonebook[index]<< std::endl;
+            // std::cout << "This is the Phone number: " << Phonebook[index] << std::endl;
+            // std::cout << "This is the Darkest secret: " << Phonebook[index] << std::endl;
+            index++;
+        }
+}
+
+// void    AddingContact(Contact Phone)
+// {
+//     Phone.index = 8;
+
+//     for (size_t i = 0; i < Phone.index; i++)
+//     {
+//         GetData(Phone);
+//     }
+    
+// }
+
+void    PhonebookProgram(Phonebook Phone)
+{
+    std::string input;
+
+    std::cout << "Welcome in the Phonebook!" << std::endl;
+    while (1)
+    {
+        std::cout << "Select one of the option between: ADD, SEARCH and EXIT" << std::endl;
+        std::getline (std::cin, input);
+        if (input == "ADD")
+            GetData(Phone::PhonebookContact);
+        else if (input == "SEARCH")
+            Phonebook.PrintData(Phonebook);
+        else if (input == "EXIT")
+           break;
+        else
+            std::cout << "You select an invalid option. Please try again!" << std::endl;
+    }
 }

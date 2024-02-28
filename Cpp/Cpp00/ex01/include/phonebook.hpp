@@ -1,20 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 16:51:00 by asimone           #+#    #+#             */
-/*   Updated: 2024/02/20 18:11:54 by asimone          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #pragma once
 
-// #ifndef aaa
-// # define aaa
- 
+# include "contact.hpp"
 # include <iostream>
+# define MAXCONTACT 8
 
-// #endif
+class Phonebook
+{
+private:
+    Contact PhonebookContact[MAXCONTACT];
+public:
+    void    PrintData(Phonebook Phonebook);
+    void    PhonebookProgram(Phonebook Phone);
+};

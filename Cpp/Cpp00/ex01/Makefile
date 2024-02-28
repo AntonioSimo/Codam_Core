@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/02/20 18:14:16 by asimone          ###   ########.fr        #
+#    Updated: 2024/02/28 17:48:36 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,12 @@ CMP := c++
 FLAGS := -Wall -Wextra -Werror 
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES := $(SRC_DIR)/phonebook.cpp
+SOURCES :=	$(SRC_DIR)/contact.cpp \
+			$(SRC_DIR)/main.cpp \
+			$(SRC_DIR)/phonebook.cpp
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := $(LIB_DIR)/phonebook.hpp
+HEADER := 	$(LIB_DIR)/contact.hpp \
+			$(LIB_DIR)/phonebook.hpp
 
 GREEN = \033[32m
 RED = \033[31m

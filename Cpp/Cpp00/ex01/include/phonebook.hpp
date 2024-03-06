@@ -9,8 +9,8 @@ class Phonebook
 {
 private:
     Contact     PhonebookContact[MAXCONTACT];
-    size_t      contact;
-    size_t      pos;
+    int         contact;
+    int         pos;
 public:
     //int         AddingContact(const Contact &NewContact);
     void        PhonebookProgram();

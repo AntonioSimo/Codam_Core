@@ -17,37 +17,42 @@ std::string getOptions(const std::string &option)
 
 void    Phonebook::setData()
 {
-    int i = this->contact;
+    // int i = this->contact;
 
     Contact contact;
-    
-    
+
     contact.SetFirstName(getOptions("First Name"));
     contact.SetLastName(getOptions("Last Name"));
     contact.SetNickName(getOptions("Nickname"));
     contact.SetPhoneNumber(getOptions("Phone number"));
     contact.SetDarkestSecret(getOptions("Darkest secret"));
-    this->PhonebookContact[i] = contact;
-    if (this->contact >= MAXCONTACT)
-        pos = 0;
-    else
+    if (pos >= MAXCONTACT)
     {
-        pos++;
+        pos = 0;
+    }   
+    this->PhonebookContact[pos++] = contact;
+    if (this->contact < MAXCONTACT)
+    {
+        // pos++;
+        std::cout << "When the pos is < MAX_CONTACT:" << pos << std::endl;
         this->contact++;
+        std::cout << "When the contact is < MAX_CONTACT:" << this->contact << std::endl;
     }
 }
 
 void    Phonebook::SearchContact()
 {
-    size_t  i = 0;
+    int  i = 0;
 
+    std::cout << "This is the pos:" << i << std::endl;
+    std::cout << "This is the contact:" << contact << std::endl;
     while (i < this->contact)
     {
-        std::cout << "This is the First name: " << this->PhonebookContact[i].GetFirstName() << std::endl;
-        std::cout << "This is the Last name: " << this->PhonebookContact[i].GetLastName() << std::endl;
-        std::cout << "This is the Nick name: " << this->PhonebookContact[i].GetNickName() << std::endl;
-        std::cout << "This is the Phone number: " << this->PhonebookContact[i].GetPhoneNumber() << std::endl;
-        std::cout << "This is the Darkest secret: " << this->PhonebookContact[i].GetDarkestSecret() << std::endl;
+        std::cout << "First name: " << this->PhonebookContact[i].GetFirstName() << std::endl;
+        std::cout << "Last name: " << this->PhonebookContact[i].GetLastName() << std::endl;
+        std::cout << "Nick name: " << this->PhonebookContact[i].GetNickName() << std::endl;
+        std::cout << "Phone number: " << this->PhonebookContact[i].GetPhoneNumber() << std::endl;
+        std::cout << "Darkest secret: " << this->PhonebookContact[i].GetDarkestSecret() << std::endl;
         i++;
     }
 }
@@ -73,6 +78,6 @@ void    Phonebook::PhonebookProgram()
         else if (input == "EXIT")
            break;
         else
-            std::cout << "You select an invalid option. Please try again!" << std::endl;
+            std::cout << "\033[31mYou select an invalid option. Please try again!\033[0m" << std::endl;
     }
 }

@@ -12,7 +12,6 @@ private:
     int         contact;
     int         pos;
 public:
-    //int         AddingContact(const Contact &NewContact);
     void        PhonebookProgram();
     void        SearchContact();
     void        setData();

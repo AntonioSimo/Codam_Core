@@ -17,8 +17,6 @@ std::string getOptions(const std::string &option)
 
 void    Phonebook::setData()
 {
-    // int i = this->contact;
-
     Contact contact;
 
     contact.SetFirstName(getOptions("First Name"));
@@ -27,32 +25,36 @@ void    Phonebook::setData()
     contact.SetPhoneNumber(getOptions("Phone number"));
     contact.SetDarkestSecret(getOptions("Darkest secret"));
     if (pos >= MAXCONTACT)
-    {
         pos = 0;
-    }   
     this->PhonebookContact[pos++] = contact;
     if (this->contact < MAXCONTACT)
-    {
-        // pos++;
-        std::cout << "When the pos is < MAX_CONTACT:" << pos << std::endl;
         this->contact++;
-        std::cout << "When the contact is < MAX_CONTACT:" << this->contact << std::endl;
-    }
+}
+
+void    PrintTab()
+{
+    std::cout << "\t-------------------------------------------------" << std::endl;
+    std::cout << "\t\033[33mID\t";
+    std::cout << "First name\t"; 
+    std::cout << "Last name\t"; 
+    std::cout << "Nick name\033[0m" << std::endl;
+    std::cout << "\t-------------------------------------------------" << std::endl;
 }
 
 void    Phonebook::SearchContact()
 {
     int  i = 0;
 
-    std::cout << "This is the pos:" << i << std::endl;
-    std::cout << "This is the contact:" << contact << std::endl;
+    PrintTab();
     while (i < this->contact)
     {
-        std::cout << "First name: " << this->PhonebookContact[i].GetFirstName() << std::endl;
-        std::cout << "Last name: " << this->PhonebookContact[i].GetLastName() << std::endl;
-        std::cout << "Nick name: " << this->PhonebookContact[i].GetNickName() << std::endl;
-        std::cout << "Phone number: " << this->PhonebookContact[i].GetPhoneNumber() << std::endl;
-        std::cout << "Darkest secret: " << this->PhonebookContact[i].GetDarkestSecret() << std::endl;
+        std::cout << "Phone number: "; 
+        std::cout << "Darkest secret: "; 
+        std::cout << this->PhonebookContact[i].GetFirstName() << std::endl;
+        std::cout << this->PhonebookContact[i].GetLastName() << std::endl;
+        std::cout << this->PhonebookContact[i].GetNickName() << std::endl;
+        std::cout << this->PhonebookContact[i].GetPhoneNumber() << std::endl;
+        std::cout << this->PhonebookContact[i].GetDarkestSecret() << std::endl;
         i++;
     }
 }

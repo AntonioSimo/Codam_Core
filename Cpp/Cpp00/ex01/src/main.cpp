@@ -4,6 +4,6 @@ int main()
 {
     Phonebook Phone;
     
-    Phone.PhonebookProgram(Phone);
+    Phone.PhonebookProgram();
     return (0);
 }

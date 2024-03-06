@@ -17,7 +17,7 @@ OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror 
+FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
 IFLAGS := -I$(LIB_DIR)
 
 SOURCES :=	$(SRC_DIR)/contact.cpp \

@@ -23,5 +23,5 @@ public:
     void            SetNickName(const std::string &element);
     void            SetPhoneNumber(const std::string &element);
     void            SetDarkestSecret(const std::string &element);
-    void            PrintData();
+    void            PrintInfo();
 };

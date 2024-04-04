@@ -2,8 +2,8 @@
 
 int main()
 {
-    Phonebook Phone;
+    Phonebook Phone; //create an object Phone of Phonebook type
     
-    Phone.PhonebookProgram();
+    Phone.phonebookProgram(); //access to the member function "phonebookProgram"
     return (0);
 }

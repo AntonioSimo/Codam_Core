@@ -14,4 +14,4 @@ public:
     Harl(/* args */);
     ~Harl();
     void    complain(std::string level);
-};
+} Har;

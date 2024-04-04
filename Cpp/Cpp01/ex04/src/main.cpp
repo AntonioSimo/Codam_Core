@@ -2,45 +2,42 @@
 
 int main(int argc, char* argv[])
 {
-    (void) argc;
-    std::string   file = argv[1];
-    std::string   s1 = argv[2];
-    std::string   s2 = argv[3];
-    file.append(".replace");
+    if (argc == 4)
+    {
+        std::string   file = argv[1];
+        std::string   s1 = argv[2];
+        std::string   s2 = argv[3];
+        std::string   buffer; //create a text string, which is used to copy the text inside argv[1]
 
-    std::ofstream newFile(file);
-
-    newFile << s1.swap(s2);
-
-    newFile.close();
-
-    // std::string   myText;
-
-    // std::ifstream fileToRead(file);
-    // while (getline(fileToRead, myText))
-    // {                                  
-    //     std::cout << myText << std::endl;
-    // }  
-    // fileToRead.close();
-    //std::cout << file << std::endl;
+        std::ifstream fileToRead(file); //read from the text file 
+        if (!fileToRead) //if the reading fails
+        {
+            std::cerr << "Error: Unable to open the input file." << std::endl;
+            return (1);
+        }
+        file.append(".replace"); //add the string ".replace" to the filename
+        std::ofstream newFile(file); //create and open a text file
+        if (!newFile) //if the creation fails
+        {
+            std::cerr << "Error: Unable to create the new file." << std::endl;
+            return (1);
+        }
+        while (getline(fileToRead, buffer)) //read all the file lines and write into buffer.
+        {
+            size_t pos = 0;
+            while ((pos = buffer.find(s1, pos)) != std::string::npos) //std::string::npos = "until the end of the string."
+            {                                                         //It's the greatest possible value for an element of type size_t.
+                buffer.replace(pos, s1.length(), s2); //replace the s1 with s2 at starting from pos.
+                pos += s2.length(); // Move past the replaced substring
+            }
+            newFile << buffer << std::endl; //write the buffer content in newFile
+        }
+        fileToRead.close(); //close the file to read
+        newFile.close(); //close the file to write
+    }
+    else
+    {
+        std::cerr << "Usage: " << argv[0] << " <filename> <stringtoreplace> <newstring>" << std::endl;
+        return (1);
+    }
 }
-
-// int main()
-// {
-//     std::string   myText; //create a text string, which is used to output the text file
-
-//     std::ofstream NewFile("filename.txt"); //create and open a text file
-
-//     NewFile << "Hello World! My name is The Real Slim Shady."; //write to the file
-
-//     NewFile.close(); //close the file
-
-//     std::ifstream MyReadFile("filename.txt"); //read from the text file
-
-//     while (getline(MyReadFile, myText)) //Use a while loop together with the getline() 
-//     {                                   //function to read the file line by line
-//         std::cout << myText << std::endl; //output the text from the file
-//     }
-    
-//     MyReadFile.close(); //close the file
-// }

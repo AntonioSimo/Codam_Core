@@ -2,26 +2,28 @@
 
 # include <iostream>
 
-class Contact
+class Contact //Class name
 {
-private:
-    std::string     _firstName;
-    std::string     _lastName;
-    std::string     _nickname;
-    std::string     _phoneNumber;
-    std::string     _darkestSecret;
+private: //Access specifier 
+    // Data  Members 
+    std::string     _firstName; //Attribute
+    std::string     _lastName; //Attribute
+    std::string     _nickname; //Attribute
+    std::string     _phoneNumber; //Attribute
+    std::string     _darkestSecret; //Attribute
     
-public:
-    void            AddingData(std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string darkest_secret);
-    std::string     GetFirstName();
-    std::string     GetLastName();
-    std::string     GetNickName();
-    std::string     GetPhoneNumber();
-    std::string     GetDarkestSecret();
-    void            SetFirstName(const std::string &element);
-    void            SetLastName(const std::string &element);
-    void            SetNickName(const std::string &element);
-    void            SetPhoneNumber(const std::string &element);
-    void            SetDarkestSecret(const std::string &element);
-    void            PrintInfo();
+public: //Access specifier
+    // Member Functions() -> These functions can be defined inside or outside the class definition and have access to 
+    // the data members and other member functions.
+    std::string     getFirstName();
+    std::string     getLastName();
+    std::string     getNickName();
+    std::string     getPhoneNumber();
+    std::string     getDarkestSecret();
+    void            setFirstName(const std::string &firstName);
+    void            setLastName(const std::string &lastName);
+    void            setNickname(const std::string &nickname);
+    void            setPhoneNumber(const std::string &phoneNumber);
+    void            setDarkestSecret(const std::string &darkestSecret);
+    void            printInfo();
 };

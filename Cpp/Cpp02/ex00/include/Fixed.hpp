@@ -10,8 +10,8 @@
 class Fixed //Class
 {
 private: //Access specifier
-    int     _fixedpointNumber; //Attribute
-    static const int    _fractionalBits; //Attribute
+                 int    _fixedpointNumber; //Attribute
+    static const int    _fractionalBits = 8; //Attribute
 
 public: //Access specifier
     Fixed(); //Default Constructor

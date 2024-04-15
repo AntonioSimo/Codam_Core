@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <string>
+#include <cmath>
+
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"
 #define MAGENTA "\033[35m"
@@ -8,17 +11,16 @@
 #define YELLOW	"\033[33m"
 #define RESET	"\033[0m"
 
-class Fixed //Class
+class Fixed//Class
 {
 private: //Access specifier
-                 int    _fixedpointNumber; //Attribute
-         const float    _floatingpointNumber = 8; //Attribute
+                 int    _raw; //Attribute
     static const int    _fractionalBits = 8; //Attribute
 
 public: //Access specifier
     Fixed(); //Default Constructor
-    Fixed(const int number); //Integer Constructor
-    Fixed(const float number); //Float Constructor
+    Fixed(const int); //Integer Constructor
+    Fixed(const float); //Float Constructor
     Fixed(const Fixed& other); //Copy Constructor
     Fixed& operator=(const Fixed& other); //Copy assignment operator overload
     ~Fixed(); //Destructor
@@ -28,4 +30,4 @@ public: //Access specifier
     int     toInt(void) const; //Member function
 };
     
-std::ostream& operator<<(std::ostream& out, Fixed& number);
+std::ostream& operator<<(std::ostream& out, const Fixed& other);

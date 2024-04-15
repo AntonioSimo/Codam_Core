@@ -7,7 +7,7 @@
 # define YELLOW  "\033[33m"
 # define RESET  "\033[0m"
 
-int main()
+int main(void)
 {
 	std::string	 string = "HI THIS IS BRAIN";
 	std::string* stringPTR = &string; //Pointer to the string.

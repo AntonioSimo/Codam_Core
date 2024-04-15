@@ -3,18 +3,19 @@
 Fixed::Fixed()
 {
     std::cout << CYAN << "Default constructor called." << RESET << std::endl;
+    this->_raw = 0;
 }
 
-Fixed::Fixed(const int number)
+Fixed::Fixed(const int intNumber)
 {
-    (void) number;
     std::cout << MAGENTA << "Int constructor called." << RESET << std::endl;
+    this->_raw = intNumber <<  this->_fractionalBits;
 }
 
-Fixed::Fixed(const float number)
+Fixed::Fixed(const float floatNumber)
 {
-    (void) number;
     std::cout << CYAN << "Float constructor called." << RESET << std::endl;
+    this->_raw = roundf(floatNumber * (1 << this->_fractionalBits));
 }
 
 Fixed::Fixed(const Fixed& other)
@@ -27,7 +28,7 @@ Fixed::Fixed(const Fixed& other)
 Fixed& Fixed::operator=(const Fixed& other)
 {
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
-    this->_fixedpointNumber = other._fixedpointNumber;
+    this->_raw = other._raw;
     return (*this);
 }
 
@@ -39,23 +40,25 @@ Fixed::~Fixed()
 int     Fixed::getRawBits(void)
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (this->_fixedpointNumber);
+    return (this->_raw);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
-    this->_fixedpointNumber = raw;
-}
-
-std::ostream& operator<<(std::ostream& out, Fixed& number)
-{
-    out << number.getRawBits(); // for example
-    return out;
+    this->_raw = raw;
 }
 
 float   Fixed::toFloat(void) const
 {
-    float floatingPointNumber = static_cast<float>(this->_fixedpointNumber) / (1 << this->_fractionalBits);
-    std::cout << "This is float " << floatingPointNumber << std::endl;
-    return (floatingPointNumber);
+    return ((static_cast<float>(this->_raw)) / (1 << this->_raw));
+}
+
+int     Fixed::toInt(void) const
+{
+    return (_raw >> this->_fractionalBits);
+}
+
+std::ostream& operator<<(std::ostream& out, const Fixed& other)
+{
+    return (out << other.toFloat());
 }

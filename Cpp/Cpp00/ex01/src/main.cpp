@@ -1,6 +1,6 @@
 #include "phonebook.hpp"
 
-int main()
+int main(void)
 {
     Phonebook Phone; //create an object Phone of Phonebook type
     

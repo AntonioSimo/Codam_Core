@@ -22,9 +22,9 @@ public: //Access specifier
     Fixed(const int); //Integer Constructor
     Fixed(const float); //Float Constructor
     Fixed(const Fixed& other); //Copy Constructor
-    Fixed& operator=(const Fixed& other); //Copy assignment operator overload
+    Fixed& operator=(const Fixed& ); //Copy assignment operator overload
     ~Fixed(); //Destructor
-    int     getRawBits(void); //Member function
+    int     getRawBits(void) const; //Member function
     void    setRawBits(int const raw); //Member function
     float   toFloat(void) const; //Member function
     int     toInt(void) const; //Member function

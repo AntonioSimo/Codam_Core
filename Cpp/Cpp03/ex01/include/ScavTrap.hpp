@@ -11,17 +11,19 @@
 //                         in the derived class.
 // private inheritance –   makes the public and protected members of the base class private 
 //                         in the derived class.
+// Derived Class (child) – The class that inherits properties from another class is called Subclass 
+//                         or Derived Class. 
+// Base Class (parent) –   The class being inherited fromis called Base Class or Superclass. 
 
-class ScavTrap // class
+class ScavTrap : public ClapTrap // Derived Class
 {
-private:  //Access specifier
-    /* data */
 public:  //Access specifier
     ScavTrap(/* args */); //Default constructor
+    ScavTrap(std::string name); //
     ScavTrap(const ScavTrap& other); //Copy Constructor
-    ScavTrap operator=(const ScavTrap& other); //Copy assignment operator overload
+    ScavTrap& operator=(const ScavTrap& other); //Copy assignment operator overload
     ~ScavTrap(); //Destructor
-
+    void guardGate(); //Member function
 
 };
 

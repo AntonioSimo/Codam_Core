@@ -19,8 +19,8 @@ private: //Access specifier
 
 public: //Access specifier
     Fixed(); //Default Constructor
-    Fixed(const int); //Integer Constructor
-    Fixed(const float); //Float Constructor
+    Fixed(const int); //Parameterized Constructor
+    Fixed(const float); //Parameterized Constructor
     Fixed(const Fixed& other); //Copy Constructor
     Fixed&  operator=(const Fixed& other); //Copy assignment operator overload
     bool    operator>(const Fixed& other); //Comparison > operator overload

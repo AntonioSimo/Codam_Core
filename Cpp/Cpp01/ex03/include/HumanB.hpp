@@ -3,15 +3,15 @@
 #include <iostream>
 #include "Weapon.hpp"
 
-class HumanB
+class HumanB //Class
 {
-private:
-    std::string _name;
-    Weapon      *_weaponType;
+private: //Access specifier
+    std::string _name; //Attribute
+    Weapon      *_weaponType; //Attribute
 
-public:
-    HumanB(const std::string &name);
-    ~HumanB();
-    void    attack();
-    void    setWeapon(Weapon &);
+public: //Access specifier
+    HumanB(const std::string &name); //Parameterized Constructor
+    ~HumanB(); //Destructor
+    void    attack(); //Member function
+    void    setWeapon(Weapon &); //Member function
 };

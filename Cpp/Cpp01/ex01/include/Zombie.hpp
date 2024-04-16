@@ -2,16 +2,16 @@
 
 #include <iostream>
 
-class Zombie
+class Zombie //Class
 {
-private:
-	std::string _name;
+private: //Access specifier
+	std::string _name; //Attribute
 	
 public:
-	Zombie();
-	Zombie(std::string name);
-	~Zombie();
-	void	announce();
+	Zombie(); //Default Constructor
+	Zombie(std::string name); //Parameterized Constructor
+	~Zombie(); //Destructor
+	void	announce(); //Member function
 };
 
 Zombie* zombieHorde(int N, std::string name);

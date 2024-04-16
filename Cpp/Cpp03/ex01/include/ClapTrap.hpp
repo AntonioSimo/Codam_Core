@@ -17,9 +17,9 @@
 // protected – members cannot be accessed from outside the class, but, 
 //             they can be accessed in inherited classes or derived classes.
 
-class ClapTrap //Class
+class ClapTrap //Base Class
 {
-private: //Access specifier
+protected: //Access specifier
     std::string     _name; //Attribute
     unsigned int    _attackDamage; //Attribute
     unsigned int    _energyPoints; //Attribute

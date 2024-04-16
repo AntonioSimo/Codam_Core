@@ -1,25 +1,26 @@
 #include "ScavTrap.hpp"
 
-ClapTrap::ClapTrap()
+ScavTrap::ScavTrap()
 {
     std::cout << "Default constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name)
+ScavTrap::ScavTrap(std::string name)
 {
     std::cout << MAGENTA <<"Parameterized constructor called." << RESET << std::endl;
-    this->_attackDamage = 0;
-    this->_energyPoints = 1;
-    this->_hitPoints = 10;
+    this->_name = name;
+    this->_attackDamage = 10;
+    this->_energyPoints = 50;
+    this->_hitPoints = 100;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& other)
+ScavTrap::ScavTrap(const ScavTrap& other)
 {
     std::cout << CYAN << "Copy Constructor called." << RESET << std::endl;
     *this = other;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
     if (this != &other)
     {
@@ -32,7 +33,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
     return (*this);
 }
 
-ClapTrap::~ClapTrap()
+ScavTrap::~ScavTrap()
 {
     std::cout  << RED << "Destructor called." << RESET << std::endl;
 }

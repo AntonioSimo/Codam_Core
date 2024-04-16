@@ -13,9 +13,9 @@ private: //Access specifier
 
 public: //Access specifier
 	Zombie(); //Default Constructor
-	Zombie(std::string name); //Constructor
+	Zombie(std::string name); //Parameterized Constructor
 	~Zombie(); //Destructor
-	void	announce();
+	void	announce(); //Member function
 };
 
 Zombie*		newZombie(std::string name);

@@ -9,7 +9,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
 {
     std::cout << MAGENTA <<"Parameterized constructor called." << RESET << std::endl;
     this->_attackDamage = 0;
-    this->_energyPoints = 1;
+    this->_energyPoints = 10;
     this->_hitPoints = 10;
 }
 

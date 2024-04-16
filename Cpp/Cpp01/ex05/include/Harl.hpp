@@ -7,17 +7,17 @@
 #define YELLOW	"\033[33m"
 #define RESET	"\033[0m"
 
-class Harl
+class Harl //Class
 {
-private:
+private: //Access specifier
     void    debug(void);
     void    info(void);
     void    warning(void);
     void    error(void);
 
-public:
-    Harl();
-    ~Harl();
-    void    complain(std::string level);
+public: //Access specifier
+    Harl(); //Default Constructor
+    ~Harl(); //Destructor
+    void    complain(std::string level); //Member function
 };
 

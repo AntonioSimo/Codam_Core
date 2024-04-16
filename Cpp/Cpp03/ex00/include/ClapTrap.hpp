@@ -19,7 +19,7 @@ private: //Access specifier
     unsigned int    _hitPoints; //Attribute
 public: //Access specifier
     ClapTrap(); //Default Constructor
-    ClapTrap(std::string _name); // Name constructor
+    ClapTrap(std::string _name); //Parameterized Constructor
     ClapTrap(const ClapTrap& other); //Copy Constructor
     ClapTrap& operator=(const ClapTrap& other); //Copy assignment operator overload
     ~ClapTrap(); //Destructor

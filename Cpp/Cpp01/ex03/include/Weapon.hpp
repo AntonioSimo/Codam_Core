@@ -2,14 +2,14 @@
 
 #include <iostream>
 
-class Weapon
+class Weapon //Class
 {
-private:
-    std::string _type;
+private: //Access specifier
+    std::string _type; //Attribute
 
-public:
-    Weapon(std::string type);
-    ~Weapon();
-    void    setType(const std::string &newType);
-    const   std::string &getType();
+public: //Access specifier
+    Weapon(std::string type); //Parameterized Constructor
+    ~Weapon(); //Destructor
+    void    setType(const std::string &newType); //Member function
+    const   std::string &getType(); //Member function
 };

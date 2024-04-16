@@ -2,10 +2,11 @@
 
 int main(void)
 {
-    ClapTrap Trap("ISLY");
-    ClapTrap Trap2(Trap);
+    ClapTrap Trap("Isly");
+    ClapTrap Trap2("Antonio");
 
-    std::cout << Trap.getName() << std::endl;
-    std::cout << Trap2.getName() << std::endl;
+    Trap.attack("Antonio");
+    Trap.takeDamage(9);
+    // Trap.beRepaired(100);
     return (0);
 }

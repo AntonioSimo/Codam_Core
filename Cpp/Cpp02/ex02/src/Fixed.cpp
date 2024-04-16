@@ -8,27 +8,29 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int intNumber)
 {
-    std::cout << MAGENTA << "Int constructor called." << RESET << std::endl;
+    std::cout << MAGENTA << "Int parameterized constructor called." << RESET << std::endl;
     this->_raw = intNumber <<  this->_fractionalBits;
 }
 
 Fixed::Fixed(const float floatNumber)
 {
-    std::cout << CYAN << "Float constructor called." << RESET << std::endl;
+    std::cout << CYAN << "Float parameterized constructor called." << RESET << std::endl;
     this->_raw = roundf(floatNumber * (1 << this->_fractionalBits));
 }
 
 Fixed::Fixed(const Fixed& other)
 {
     std::cout << GREEN << "Copy constructor called." << RESET << std::endl;
-
     *this = other;
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
-    this->_raw = other._raw;
+    if (this != &other)
+    {
+        this->_raw = other._raw;
+    }
     return (*this);
 }
 

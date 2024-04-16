@@ -15,7 +15,10 @@ Fixed::Fixed(const Fixed& other)
 Fixed& Fixed::operator=(const Fixed& other)
 {
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
-    this->_raw = other._raw;
+    if (this != &other)
+    {
+        this->_raw = other._raw;
+    }
     return (*this);
 }
 

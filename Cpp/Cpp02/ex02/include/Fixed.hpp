@@ -21,18 +21,18 @@ public: //Access specifier
     Fixed(); //Default Constructor
     Fixed(const int); //Parameterized Constructor
     Fixed(const float); //Parameterized Constructor
-    Fixed(const Fixed& other); //Copy Constructor
-    Fixed&  operator=(const Fixed& other); //Copy assignment operator overload
-    bool    operator>(const Fixed& other); //Comparison > operator overload
-    bool    operator<(const Fixed& other); //Comparison < operator overload
-    bool    operator<=(const Fixed& other); //Comparison <= operator overload
-    bool    operator>=(const Fixed& other); //Comparison >= operator overload
-    bool    operator==(const Fixed& other); //Comparison == operator overload
-    bool    operator!=(const Fixed& other); //Comparison != operator overload
-    Fixed   operator+(const Fixed& other); //Arithmetic operators +
-    Fixed   operator-(const Fixed& other); //Arithmetic operators -
-    Fixed   operator*(const Fixed& other); //Arithmetic operators *
-    Fixed   operator/(const Fixed& other); //Arithmetic operators /
+    Fixed(const Fixed& obj); //Copy Constructor
+    Fixed&  operator=(const Fixed& obj); //Copy assignment operator overload
+    bool    operator>(const Fixed& obj); //Comparison > operator overload
+    bool    operator<(const Fixed& obj); //Comparison < operator overload
+    bool    operator<=(const Fixed& obj); //Comparison <= operator overload
+    bool    operator>=(const Fixed& obj); //Comparison >= operator overload
+    bool    operator==(const Fixed& obj); //Comparison == operator overload
+    bool    operator!=(const Fixed& obj); //Comparison != operator overload
+    Fixed   operator+(const Fixed& obj); //Arithmetic operators +
+    Fixed   operator-(const Fixed& obj); //Arithmetic operators -
+    Fixed   operator*(const Fixed& obj); //Arithmetic operators *
+    Fixed   operator/(const Fixed& obj); //Arithmetic operators /
     Fixed&  operator++(); //Pre-increment operator
     Fixed   operator++(int); //Post-increment operator
     Fixed&  operator--(); //Pre-decrement operator
@@ -48,4 +48,4 @@ public: //Access specifier
     int     toInt(void) const; //Member function
 };
     
-std::ostream& operator<<(std::ostream& out, const Fixed& other);
+std::ostream& operator<<(std::ostream& out, const Fixed& obj);

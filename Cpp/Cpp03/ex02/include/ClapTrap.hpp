@@ -24,7 +24,6 @@ protected: //Access specifier
     unsigned int    _attackDamage; //Attribute
     unsigned int    _energyPoints; //Attribute
     unsigned int    _hitPoints; //Attribute
-    
 public: //Access specifier
     ClapTrap(); //Default Constructor
     ClapTrap(std::string _name); //Parameterized Constructor

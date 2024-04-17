@@ -13,9 +13,9 @@
 //                         or Derived Class. 
 // Base Class (parent) –   The class being inherited fromis called Base Class or Superclass. 
 
-class ScavTrap : public ClapTrap // Derived Class
+class ScavTrap : public ClapTrap //Derived Class
 {
-public:  //Access specifier
+public: //Access specifier
     ScavTrap(); //Default constructor
     ScavTrap(std::string name); //Parameterized Constructor
     ScavTrap(const ScavTrap& obj); //Copy Constructor

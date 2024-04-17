@@ -6,26 +6,27 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/02/28 17:48:36 by asimone          ###   ########.fr        #
+#    Updated: 2024/04/17 15:24:15 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := phonebook
+NAME := My_Awesome_PhoneBook
 
 SRC_DIR := src
 OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS := -Wall -Wextra -Werror -std=c++98
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES :=	$(SRC_DIR)/contact.cpp \
+SOURCES :=	$(SRC_DIR)/Contact.cpp \
 			$(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/phonebook.cpp
+			$(SRC_DIR)/Phonebook.cpp
+			
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/contact.hpp \
-			$(LIB_DIR)/phonebook.hpp
+HEADER := 	$(LIB_DIR)/Contact.hpp \
+			$(LIB_DIR)/Phonebook.hpp
 
 GREEN = \033[32m
 RED = \033[31m

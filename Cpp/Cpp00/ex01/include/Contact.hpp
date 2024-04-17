@@ -14,7 +14,7 @@ private: //Access specifier
     
 public: //Access specifier
     // Member Functions() -> These functions can be defined inside or outside the class definition and have access to 
-    // the data members and other member functions.
+    // the data members and obj member functions.
     std::string     getFirstName();
     std::string     getLastName();
     std::string     getNickName();

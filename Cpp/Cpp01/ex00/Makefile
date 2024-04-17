@@ -9,8 +9,8 @@ FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
 IFLAGS := -I$(LIB_DIR)
 
 SOURCES :=	$(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/newZombie.cpp \
-			$(SRC_DIR)/randomChump.cpp \
+			$(SRC_DIR)/NewZombie.cpp \
+			$(SRC_DIR)/RandomChump.cpp \
 			$(SRC_DIR)/Zombie.cpp
 
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))

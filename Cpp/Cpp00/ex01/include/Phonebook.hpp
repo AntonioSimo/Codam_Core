@@ -1,8 +1,8 @@
 #pragma once
 
-# include "contact.hpp"
-# include <iostream>
+# include "Contact.hpp"
 # include <iomanip>
+# include <string>
 
 # define MAXCONTACT 8
 # define GREEN  "\033[32m"

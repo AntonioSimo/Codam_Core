@@ -1,4 +1,4 @@
-#include "phonebook.hpp"
+#include "Phonebook.hpp"
 
 std::string Phonebook::getOptions(const std::string &option)
 {
@@ -81,7 +81,7 @@ void    Phonebook::search()
 
 void    Phonebook::getContactId(const std::string input)
 {
-    int x = std::stoi(input); //standard library function that turns a string into an integer
+    int x = std::stoi(input);//standard library function that turns a string into an integer
     x = x - 1;
 
     if (x >= 0 && x < this->_contact)

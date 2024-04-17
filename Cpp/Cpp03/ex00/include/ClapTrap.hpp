@@ -17,11 +17,12 @@ private: //Access specifier
     unsigned int    _attackDamage; //Attribute
     unsigned int    _energyPoints; //Attribute
     unsigned int    _hitPoints; //Attribute
+    
 public: //Access specifier
     ClapTrap(); //Default Constructor
     ClapTrap(std::string _name); //Parameterized Constructor
-    ClapTrap(const ClapTrap& other); //Copy Constructor
-    ClapTrap& operator=(const ClapTrap& other); //Copy assignment operator overload
+    ClapTrap(const ClapTrap& obj); //Copy Constructor
+    ClapTrap& operator=(const ClapTrap& obj); //Copy assignment operator overload
     ~ClapTrap(); //Destructor
     void    attack(const std::string& target); //Member function
     void    takeDamage(unsigned int amount); //Member function

@@ -10,7 +10,7 @@ IFLAGS := -I$(LIB_DIR)
 
 SOURCES := 	$(SRC_DIR)/main.cpp \
 			$(SRC_DIR)/Zombie.cpp \
-			$(SRC_DIR)/zombieHorde.cpp
+			$(SRC_DIR)/ZombieHorde.cpp
 
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
 HEADER := $(LIB_DIR)/Zombie.hpp

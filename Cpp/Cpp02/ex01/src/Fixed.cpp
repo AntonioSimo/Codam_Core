@@ -18,18 +18,18 @@ Fixed::Fixed(const float floatNumber)
     this->_raw = roundf(floatNumber * (1 << this->_fractionalBits));
 }
 
-Fixed::Fixed(const Fixed& other)
+Fixed::Fixed(const Fixed& obj)
 {
     std::cout << GREEN << "Copy constructor called." << RESET << std::endl;
-    *this = other;
+    *this = obj;
 }
 
-Fixed& Fixed::operator=(const Fixed& other)
+Fixed& Fixed::operator=(const Fixed& obj)
 {
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
-    if (this != &other)
+    if (this != &obj)
     {
-        this->_raw = other._raw;
+        this->_raw = obj._raw;
     }
     return (*this);
 }
@@ -60,7 +60,7 @@ int     Fixed::toInt(void) const
     return (_raw >> this->_fractionalBits);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& other)
+std::ostream& operator<<(std::ostream& out, const Fixed& obj)
 {
-    return (out << other.toFloat());
+    return (out << obj.toFloat());
 }

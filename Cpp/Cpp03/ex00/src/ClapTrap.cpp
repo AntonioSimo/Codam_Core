@@ -13,20 +13,20 @@ ClapTrap::ClapTrap(std::string name) : _name(name)
     this->_hitPoints = 10;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& other)
+ClapTrap::ClapTrap(const ClapTrap& obj)
 {
     std::cout << CYAN << "Copy Constructor called." << RESET << std::endl;
-    *this = other;
+    *this = obj;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+ClapTrap& ClapTrap::operator=(const ClapTrap& obj)
 {
-    if (this != &other)
+    if (this != &obj)
     {
-        this->_name = other._name;
-        this->_attackDamage = other._attackDamage;
-        this->_energyPoints = other._energyPoints;
-        this->_hitPoints = other._hitPoints;
+        this->_name = obj._name;
+        this->_attackDamage = obj._attackDamage;
+        this->_energyPoints = obj._energyPoints;
+        this->_hitPoints = obj._hitPoints;
     }
     std::cout << "Copy assignment operator called." << std::endl;
     return (*this);

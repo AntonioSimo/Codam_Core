@@ -6,7 +6,7 @@
 /*   By: asimone <asimone@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 12:33:08 by asimone           #+#    #+#             */
-/*   Updated: 2024/02/20 18:35:58 by asimone          ###   ########.fr       */
+/*   Updated: 2024/04/17 14:38:16 by asimone          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string>
 
 
-void  megaphone(char *str)
+void  getLoud(char *str)
 {
   char *final_string;
    
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
   else
   {
     for (int i = 1; i < argc; i++)
-      megaphone(argv[i]);
+      getLoud(argv[i]);
     std::cout << "\n";
   }
   return (0);

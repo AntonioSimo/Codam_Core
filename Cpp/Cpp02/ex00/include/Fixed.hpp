@@ -15,8 +15,8 @@ private: //Access specifier
 
 public: //Access specifier
     Fixed(); //Default Constructor
-    Fixed(const Fixed& other); //Copy Constructor
-    Fixed& operator=(const Fixed& other); //Copy assignment operator overload
+    Fixed(const Fixed& obj); //Copy Constructor
+    Fixed& operator=(const Fixed& obj); //Copy assignment operator overload
     ~Fixed(); //Destructor
     int     getRawBits(void) const; //Member function
     void    setRawBits(int const raw); //Member function

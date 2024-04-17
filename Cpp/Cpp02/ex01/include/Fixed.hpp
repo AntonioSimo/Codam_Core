@@ -21,7 +21,7 @@ public: //Access specifier
     Fixed(); //Default Constructor
     Fixed(const int); //Parameterized Constructor
     Fixed(const float); //Parameterized Constructor
-    Fixed(const Fixed& other); //Copy Constructor
+    Fixed(const Fixed& obj); //Copy Constructor
     Fixed& operator=(const Fixed& ); //Copy assignment operator overload
     ~Fixed(); //Destructor
     int     getRawBits(void) const; //Member function
@@ -30,4 +30,4 @@ public: //Access specifier
     int     toInt(void) const; //Member function
 };
     
-std::ostream& operator<<(std::ostream& out, const Fixed& other);
+std::ostream& operator<<(std::ostream& out, const Fixed& obj);

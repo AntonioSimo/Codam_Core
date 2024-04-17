@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/04/16 16:17:38 by asimone          ###   ########.fr        #
+#    Updated: 2024/04/17 10:22:44 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SOURCES :=	$(SRC_DIR)/ClapTrap.cpp \
 			$(SRC_DIR)/ScavTrap.cpp
 			
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/ClapTrap.hpp
+HEADER := 	$(LIB_DIR)/ClapTrap.hpp \
 			$(LIB_DIR)/ScavTrap.hpp
 
 GREEN = \033[32m

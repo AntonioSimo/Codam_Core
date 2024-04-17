@@ -6,18 +6,18 @@ Fixed::Fixed()
     this->_raw = 0;
 }
 
-Fixed::Fixed(const Fixed& other)
+Fixed::Fixed(const Fixed& obj)
 {
     std::cout << GREEN << "Copy Constructor called." << RESET << std::endl;
-    *this = other;
+    *this = obj;
 }
 
-Fixed& Fixed::operator=(const Fixed& other)
+Fixed& Fixed::operator=(const Fixed& obj)
 {
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
-    if (this != &other)
+    if (this != &obj)
     {
-        this->_raw = other._raw;
+        this->_raw = obj._raw;
     }
     return (*this);
 }

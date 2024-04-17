@@ -1,4 +1,4 @@
-#include "contact.hpp"
+#include "Contact.hpp"
 
 //scope operator (::, two colons) Here it is used in the definition of functions set... get... and get_values to define
 //member of a class (Contact) outside the class itself.

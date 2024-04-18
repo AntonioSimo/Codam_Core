@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : public Animal //Derived Class
 {
+private: //Access specifier
+    // Brain* Brain; //Attribute
+
 public: //Access specifier
     Dog(); //Default Constructor
     Dog(const Dog& obj); //Copy Constructor

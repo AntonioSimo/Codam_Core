@@ -4,6 +4,7 @@ Cat::Cat()
 {
     std::cout << "Default Cat constructor called." << std::endl;
     this->_type = "Cat";
+    new Brain();
 }
 
 Cat::Cat(const Cat& obj)

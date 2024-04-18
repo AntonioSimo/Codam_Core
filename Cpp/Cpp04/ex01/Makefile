@@ -6,11 +6,11 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/04/18 14:04:03 by asimone          ###   ########.fr        #
+#    Updated: 2024/04/18 14:41:06 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=  Polymorphism
+NAME :=  I_dont_want_to_set_the_world_on_fire
 
 SRC_DIR := src
 OBJ_DIR := obj

@@ -6,11 +6,11 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/04/22 15:25:30 by asimone          ###   ########.fr        #
+#    Updated: 2024/04/22 15:26:08 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=  I_dont_want_to_set_the_world_on_fire
+NAME :=  Abstract_class
 
 SRC_DIR := src
 OBJ_DIR := obj

@@ -19,6 +19,6 @@ public: //Access specifier
     Animal(const Animal& obj); //Copy Constructor
     virtual Animal& operator=(const Animal& obj); //Copy assignment operator overload
     virtual ~Animal(); //Virtual destructor
-    virtual void makeSound() const; //Virtual function
+    virtual void makeSound() const = 0; //Virtual function
     std::string getType() const; //Member function
 };

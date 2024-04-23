@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 12:31:36 by asimone           #+#    #+#              #
-#    Updated: 2024/04/17 15:16:25 by asimone          ###   ########.fr        #
+#    Updated: 2024/04/23 17:18:35 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror -std=c++98 
+FLAGS := -Wall -Wextra -Werror -std=c++11 
 
 SOURCES :=  $(SRC_DIR)/megaphone.cpp
 OBJECTS := $(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))

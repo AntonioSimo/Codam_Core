@@ -6,6 +6,8 @@ std::string Phonebook::getOptions(const std::string &option)
 
     while (1)
     {
+        if (!std::cin.good())
+            return(line);
         std::cout << "What's your " << option << "? ";
         std::getline (std::cin, line);
         if(!line.empty()) //Returns a bool value whether the string is empty 
@@ -18,7 +20,6 @@ std::string Phonebook::getOptions(const std::string &option)
 void    Phonebook::setData()
 {
     Contact contact; //create an object contact
-
     //set the contact attributes of the new contact
     contact.setFirstName(getOptions("First Name"));
     contact.setLastName(getOptions("Last Name"));
@@ -62,7 +63,7 @@ void    Phonebook::search()
 
     std::cout << "\t";
     std::getline (std::cin, line);
-    if(line.empty())
+    if(line.empty() || !std::cin.good())
         std::cerr << RED << "\tIt's a YES or NO question." << RESET << std::endl;
     if (line == "YES")
     {
@@ -98,7 +99,7 @@ void    Phonebook::phonebookProgram()
     std::cout << "Welcome in the Phonebook!" << std::endl; //write in the standard output
     this->_pos = 0; //set the attribute pos
     this->_contact = 0; //set the attribute contact
-    while (1)
+    while (std::cin.good())
     {
         std::cout << "Select one of the option between: ADD, SEARCH and EXIT." << std::endl;
         std::getline (std::cin, _input); //read a string or a line from an input stream (cin) and store in the object
@@ -106,17 +107,18 @@ void    Phonebook::phonebookProgram()
         if (_input == "ADD")
         {
             setData(); //member function
-            std::cout << GREEN << "Contact added successfully!" << RESET << std::endl; //write in the standard output
+            if (std::cin.good())
+                std::cout << GREEN << "Contact added successfully!" << RESET << std::endl; //write in the standard output
         }
         else if (_input == "SEARCH")
             search(); //member function
         else if (_input == "EXIT")
         {
-           std::cout << "Thank you to use Phonebook." << std::endl; //write in the standard output
            break;
         }
         else
             std::cerr << RED << "You select an invalid option. Please try again!" << RESET << std::endl; //write in the
                                                                                                         //standard error
     }
+    std::cout << "Thank you to use Phonebook." << std::endl; //write in the standard output
 }

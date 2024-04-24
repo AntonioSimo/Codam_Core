@@ -62,8 +62,8 @@ void    Phonebook::search()
     {
         std::cout << "\t|" << std::setw(10) << i + 1 << "|";
         std::cout << std::setw(10) << trunc_string(this->_phonebookContact[i].getFirstName()) << "|";
-        std::cout << std::setw(10) << this->_phonebookContact[i].getLastName() << "|";
-        std::cout << std::setw(10) << this->_phonebookContact[i].getNickName() << "\t|" <<std::endl;
+        std::cout << std::setw(10) << trunc_string(this->_phonebookContact[i].getLastName()) << "|";
+        std::cout << std::setw(10) << trunc_string(this->_phonebookContact[i].getNickName()) << "\t|" <<std::endl;
         std::cout << "\t-------------------------------------------------" << std::endl;
         i++;
     }

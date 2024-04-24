@@ -43,6 +43,15 @@ void    printTab()
     std::cout << "\t-------------------------------------------------" << std::endl;
 }
 
+std::string    trunc_string(std::string stringToPrint)
+{
+    std::string trunc;
+
+    trunc = stringToPrint.substr(0, 10);
+    trunc[9] = '.';
+    return (trunc);
+}
+
 void    Phonebook::search()
 {
     int  i = 0;
@@ -52,7 +61,7 @@ void    Phonebook::search()
     while (i < this->_contact)
     {
         std::cout << "\t|" << std::setw(10) << i + 1 << "|";
-        std::cout << std::setw(10) << this->_phonebookContact[i].getFirstName() << "|";
+        std::cout << std::setw(10) << trunc_string(this->_phonebookContact[i].getFirstName()) << "|";
         std::cout << std::setw(10) << this->_phonebookContact[i].getLastName() << "|";
         std::cout << std::setw(10) << this->_phonebookContact[i].getNickName() << "\t|" <<std::endl;
         std::cout << "\t-------------------------------------------------" << std::endl;
@@ -70,7 +79,7 @@ void    Phonebook::search()
         std::cout << "\tSelect the ID to get them." << std::endl;
         std::cout << "\t";
         std::getline (std::cin, line);
-        if(!line.empty())
+        if(!line.empty() || !std::cin.good())
             getContactId(line);
         return;
     }

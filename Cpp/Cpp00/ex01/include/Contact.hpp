@@ -20,10 +20,10 @@ public: //Access specifier
     std::string     getNickName();
     std::string     getPhoneNumber();
     std::string     getDarkestSecret();
-    void            setFirstName(const std::string &firstName);
-    void            setLastName(const std::string &lastName);
-    void            setNickname(const std::string &nickname);
-    void            setPhoneNumber(const std::string &phoneNumber);
-    void            setDarkestSecret(const std::string &darkestSecret);
+    void            setFirstName(const std::string &t_firstName);
+    void            setLastName(const std::string &t_lastName);
+    void            setNickname(const std::string &t_nickname);
+    void            setPhoneNumber(const std::string &t_phoneNumber);
+    void            setDarkestSecret(const std::string &t_darkestSecret);
     void            printInfo();
 };

@@ -21,8 +21,8 @@ private: //Access specifier
 
 public: //Access specifier 
     // Member Functions()
-    void        getContactId(const std::string input);
-    std::string getOptions(const std::string &option);
+    void        getContactId(const std::string t_input);
+    std::string getOptions(const std::string &t_option);
     void        phonebookProgram();
     void        search();
     void        setData();

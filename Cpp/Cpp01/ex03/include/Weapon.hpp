@@ -5,11 +5,11 @@
 class Weapon //Class
 {
 private: //Access specifier
-    std::string _type; //Attribute
+    std::string m_type; //Attribute
 
 public: //Access specifier
-    Weapon(std::string type); //Parameterized Constructor
+    Weapon(std::string t_type); //Parameterized Constructor
     ~Weapon(); //Destructor
-    void    setType(const std::string &newType); //Member function
+    void    setType(const std::string &t_newType); //Member function
     const   std::string &getType(); //Member function
 };

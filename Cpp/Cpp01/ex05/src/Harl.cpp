@@ -30,7 +30,7 @@ void    Harl::error()
     std::cout << RED << "This is unacceptable! I want to speak to the manager now." << RESET << std::endl;
 }
 
-void    Harl::complain(std::string level)
+void    Harl::complain(std::string t_level)
 {
     int i = 0;
 
@@ -42,7 +42,7 @@ void    Harl::complain(std::string level)
         "Error"
     };
 
-    while(i < 4 && criticize[i].compare(level) != 0)
+    while(i < 4 && criticize[i].compare(t_level) != 0)
         i++;
 
     switch (i)

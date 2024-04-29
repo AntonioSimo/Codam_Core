@@ -2,13 +2,13 @@
 
 Zombie::Zombie()
 {
-	this->_name = "No name";
-	std::cout << "Zombie " << this->_name << " has been created." << std::endl;
+	this->m_name = "No name";
+	std::cout << "Zombie " << this->m_name << " has been created." << std::endl;
 }
 
-Zombie::Zombie(std::string name) : _name(name)
+Zombie::Zombie(std::string t_name) : m_name(t_name)
 {
-	std::cout << "Zombie " << this->_name << " has been created." << std::endl;
+	std::cout << "Zombie " << this->m_name << " has been created." << std::endl;
 }
 
 Zombie::~Zombie()
@@ -18,6 +18,6 @@ Zombie::~Zombie()
 
 void	Zombie::announce()
 {
-	std::cout << this->_name << " has been created." << std::endl;
+	std::cout << this->m_name << " has been created." << std::endl;
 	return ;
 }

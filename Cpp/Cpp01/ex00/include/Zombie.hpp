@@ -9,14 +9,14 @@
 class Zombie //Class
 {
 private: //Access specifier
-	std::string	_name; //Attribute
+	std::string	m_name; //Attribute
 
 public: //Access specifier
 	Zombie(); //Default Constructor
-	Zombie(std::string name); //Parameterized Constructor
+	Zombie(std::string t_name); //Parameterized Constructor
 	~Zombie(); //Destructor
 	void	announce(); //Member function
 };
 
-Zombie*		newZombie(std::string name);
-void		randomChump(std::string name);
+Zombie*		newZombie(std::string t_name);
+void		randomChump(std::string t_name);

@@ -18,6 +18,6 @@ private: //Access specifier
 public: //Access specifier
     Harl(); //Default Constructor
     ~Harl(); //Destructor
-    void    complain(std::string level); //Member function
+    void    complain(std::string t_level); //Member function
 };
 

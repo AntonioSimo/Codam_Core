@@ -5,13 +5,13 @@
 class Zombie //Class
 {
 private: //Access specifier
-	std::string _name; //Attribute
+	std::string m_name; //Attribute
 	
 public:
 	Zombie(); //Default Constructor
-	Zombie(std::string name); //Parameterized Constructor
+	Zombie(std::string t_name); //Parameterized Constructor
 	~Zombie(); //Destructor
 	void	announce(); //Member function
 };
 
-Zombie* zombieHorde(int N, std::string name);
+Zombie* zombieHorde(int N, std::string t_name);

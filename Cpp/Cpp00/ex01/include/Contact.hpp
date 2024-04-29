@@ -6,11 +6,11 @@ class Contact //Class name
 {
 private: //Access specifier 
     // Data  Members 
-    std::string     _firstName; //Attribute
-    std::string     _lastName; //Attribute
-    std::string     _nickname; //Attribute
-    std::string     _phoneNumber; //Attribute
-    std::string     _darkestSecret; //Attribute
+    std::string     m_firstName; //Attribute
+    std::string     m_lastName; //Attribute
+    std::string     m_nickname; //Attribute
+    std::string     m_phoneNumber; //Attribute
+    std::string     m_darkestSecret; //Attribute
     
 public: //Access specifier
     // Member Functions() -> These functions can be defined inside or outside the class definition and have access to 

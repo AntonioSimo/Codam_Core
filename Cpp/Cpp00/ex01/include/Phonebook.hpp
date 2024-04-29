@@ -14,10 +14,10 @@ class Phonebook //Class name
 {
 private: //Access specifier 
     //Data  Members 
-    Contact     _phonebookContact[MAXCONTACT]; //Create object array of Contact
-    std::string _input; //Attribute
-    int         _contact; //Attribute
-    int         _pos; //Attribute
+    Contact     m_phonebookContact[MAXCONTACT]; //Create object array of Contact
+    std::string m_input; //Attribute
+    int         m_contact; //Attribute
+    int         m_pos; //Attribute
 
 public: //Access specifier 
     // Member Functions()

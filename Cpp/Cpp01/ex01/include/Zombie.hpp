@@ -14,4 +14,4 @@ public:
 	void	announce(); //Member function
 };
 
-Zombie* zombieHorde(int N, std::string t_name);
+Zombie* zombieHorde(int t_n, std::string t_name);

@@ -1,5 +1,10 @@
 #include "HumanA.hpp"
 
+HumanA::HumanA()
+{
+	std::cout << "Human A " << this->m_name << " has been created." << std::endl;
+}
+
 HumanA::HumanA(const std::string& t_name, Weapon& t_weapon) : m_name(t_name), m_weaponType(&t_weapon)
 {
 }

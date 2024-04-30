@@ -1,5 +1,10 @@
 #include "Weapon.hpp"
 
+Weapon::Weapon()
+{
+	std::cout << "Weapon " << this->m_type << " has been created." << std::endl;
+}
+
 Weapon::Weapon(std::string t_type) : m_type(t_type)
 {
 }

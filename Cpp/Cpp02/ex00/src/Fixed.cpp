@@ -3,7 +3,7 @@
 Fixed::Fixed() 
 {
     std::cout << CYAN << "Default Constructor called." << RESET << std::endl;
-    this->_raw = 0;
+    this->m_raw = 0;
 }
 
 Fixed::Fixed(const Fixed& obj)
@@ -17,7 +17,7 @@ Fixed& Fixed::operator=(const Fixed& obj)
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
     if (this != &obj)
     {
-        this->_raw = obj._raw;
+        this->m_raw = obj.m_raw;
     }
     return (*this);
 }
@@ -30,10 +30,10 @@ Fixed::~Fixed()
 int     Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (this->_raw);
+    return (this->m_raw);
 }
 
-void    Fixed::setRawBits(int const raw)
+void    Fixed::setRawBits(int const t_raw)
 {
-    this->_raw = raw;
+    this->m_raw = t_raw;
 }

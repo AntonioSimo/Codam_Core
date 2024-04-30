@@ -3,19 +3,19 @@
 Fixed::Fixed()
 {
     std::cout << CYAN << "Default constructor called." << RESET << std::endl;
-    this->_raw = 0;
+    this->m_raw = 0;
 }
 
-Fixed::Fixed(const int intNumber)
+Fixed::Fixed(const int t_intNumber)
 {
     std::cout << MAGENTA << "Int parameterized constructor called." << RESET << std::endl;
-    this->_raw = intNumber <<  this->_fractionalBits;
+    this->m_raw = t_intNumber <<  this->m_fractionalBits;
 }
 
-Fixed::Fixed(const float floatNumber)
+Fixed::Fixed(const float t_floatNumber)
 {
     std::cout << CYAN << "Float parameterized constructor called." << RESET << std::endl;
-    this->_raw = roundf(floatNumber * (1 << this->_fractionalBits));
+    this->m_raw = roundf(t_floatNumber * (1 << this->m_fractionalBits));
 }
 
 Fixed::Fixed(const Fixed& obj)
@@ -29,7 +29,7 @@ Fixed& Fixed::operator=(const Fixed& obj)
     std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
     if (this != &obj)
     {
-        this->_raw = obj._raw;
+        this->m_raw = obj.m_raw;
     }
     return (*this);
 }
@@ -42,25 +42,25 @@ Fixed::~Fixed()
 int     Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (this->_raw);
+    return (this->m_raw);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
-    this->_raw = raw;
+    this->m_raw = raw;
 }
 
 float   Fixed::toFloat(void) const
 {
-    return ((static_cast<float>(this->_raw)) / (1 << this->_fractionalBits));
+    return ((static_cast<float>(this->m_raw)) / (1 << this->m_fractionalBits));
 }
 
 int     Fixed::toInt(void) const
 {
-    return (_raw >> this->_fractionalBits);
+    return (m_raw >> this->m_fractionalBits);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj)
+std::ostream& operator<<(std::ostream& t_out, const Fixed& obj)
 {
-    return (out << obj.toFloat());
+    return (t_out << obj.toFloat());
 }

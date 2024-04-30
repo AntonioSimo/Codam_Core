@@ -13,7 +13,7 @@ Zombie::Zombie(std::string t_name) : m_name(t_name)
 
 Zombie::~Zombie()
 {
-	std::cout << "The zombie horde has been destroyed." << std::endl;
+	std::cout << "The zombie " << this->m_name << " horde has been destroyed." << std::endl;
 }
 
 void	Zombie::announce()

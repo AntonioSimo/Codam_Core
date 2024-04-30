@@ -10,8 +10,8 @@
 class Fixed //Class
 {
 private: //Access specifier
-                 int    _raw; //Attribute
-    static const int    _fractionalBits = 8; //Attribute
+                 int    m_raw; //Attribute
+    static const int    m_fractionalBits {8}; //Attribute
 
 public: //Access specifier
     Fixed(); //Default Constructor
@@ -19,5 +19,5 @@ public: //Access specifier
     Fixed& operator=(const Fixed& obj); //Copy assignment operator overload
     ~Fixed(); //Destructor
     int     getRawBits(void) const; //Member function
-    void    setRawBits(int const raw); //Member function
+    void    setRawBits(int const t_raw); //Member function
 };

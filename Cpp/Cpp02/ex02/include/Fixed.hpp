@@ -14,8 +14,8 @@
 class Fixed//Class
 {
 private: //Access specifier
-                 int    _raw; //Attribute
-    static const int    _fractionalBits = 8; //Attribute
+                 int    m_raw; //Attribute
+    static const int    m_fractionalBits {8}; //Attribute
 
 public: //Access specifier
     Fixed(); //Default Constructor
@@ -37,13 +37,13 @@ public: //Access specifier
     Fixed   operator++(int); //Post-increment operator
     Fixed&  operator--(); //Pre-decrement operator
     Fixed   operator--(int); //Post-decrement operator
-    static const Fixed& min(Fixed& a, Fixed& b);
-    static const Fixed& min(const Fixed& a, const Fixed& b);
-    static const Fixed& max(Fixed& a, Fixed& b);
-    static const Fixed& max(const Fixed& a, const Fixed& b);
+    static const Fixed& min(Fixed& t_a, Fixed& t_b);
+    static const Fixed& min(const Fixed& t_a, const Fixed& t_b);
+    static const Fixed& max(Fixed& t_a, Fixed& t_b);
+    static const Fixed& max(const Fixed& t_a, const Fixed& t_b);
     ~Fixed(); //Destructor
     int     getRawBits(void) const; //Member function
-    void    setRawBits(int const raw); //Member function
+    void    setRawBits(int const t_raw); //Member function
     float   toFloat(void) const; //Member function
     int     toInt(void) const; //Member function
 };

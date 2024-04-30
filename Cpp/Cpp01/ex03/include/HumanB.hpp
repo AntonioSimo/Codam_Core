@@ -10,6 +10,7 @@ private: //Access specifier
     Weapon      *m_weaponType; //Attribute
 
 public: //Access specifier
+    HumanB(); //Default Constructor
     HumanB(const std::string &t_name); //Parameterized Constructor
     ~HumanB(); //Destructor
     void    attack(); //Member function

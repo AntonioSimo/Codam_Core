@@ -141,9 +141,9 @@ int     Fixed::getRawBits(void) const
     return (this->m_raw);
 }
 
-void    Fixed::setRawBits(int const raw)
+void    Fixed::setRawBits(int const t_raw)
 {
-    this->m_raw = raw;
+    this->m_raw = t_raw;
 }
 
 float   Fixed::toFloat(void) const
@@ -156,7 +156,7 @@ int     Fixed::toInt(void) const
     return (m_raw >> this->m_fractionalBits);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj)
+std::ostream& operator<<(std::ostream& t_out, const Fixed& obj)
 {
-    return (out << obj.toFloat());
+    return (t_out << obj.toFloat());
 }

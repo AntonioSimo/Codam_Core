@@ -48,4 +48,4 @@ public: //Access specifier
     int     toInt(void) const; //Member function
 };
     
-std::ostream& operator<<(std::ostream& out, const Fixed& obj);
+std::ostream& operator<<(std::ostream& t_out, const Fixed& obj);

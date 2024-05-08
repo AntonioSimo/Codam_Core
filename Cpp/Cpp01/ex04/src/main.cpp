@@ -9,7 +9,6 @@ int main(int argc, char* argv[])
         std::string   s2 = argv[3];
         std::string   buffer; //create a text string, which is used to copy the text inside argv[1]
         std::string   new_string;
-        // size_t        foundPos;
 
         std::ifstream fileToRead(file); //read from the text file 
         if (!fileToRead) //if the reading fails

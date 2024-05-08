@@ -30,10 +30,8 @@ void    Harl::error()
     std::cout << RED << "This is unacceptable! I want to speak to the manager now." << RESET << std::endl;
 }
 
-void    Harl::complain(std::string t_level)
+int search_complain(int i, std::string t_level)
 {
-    void (Harl::*array[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-
     std::string criticize[4]
     {
         "DEBUG", 
@@ -42,13 +40,34 @@ void    Harl::complain(std::string t_level)
         "ERROR"
     };
 
-    for (int i = 0; i < 4; i++)
+    for (i = 0; i < 4; i++)
     {
         if (criticize[i].compare(t_level) == 0)
-        {
-            (this->*array[i])();
-            return;
-        }
+            return(i);
     }
+    return (-1);
+}
 
+void    Harl::complain(std::string t_level)
+{
+    int i = 0;
+
+    void (Harl::*array[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+    i = search_complain(i, t_level);
+    switch (i)
+    {
+        case 0: (this->*array[i])();
+            i++;
+    
+        case 1: (this->*array[i])();
+            i++;
+
+        case 2: (this->*array[i])();
+            i++;
+
+        case 3: (this->*array[i])();
+           break;
+    }
+    std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }

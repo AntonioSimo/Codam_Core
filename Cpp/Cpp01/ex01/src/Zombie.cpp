@@ -19,5 +19,4 @@ Zombie::~Zombie()
 void	Zombie::announce()
 {
 	std::cout << this->m_name << " has been created." << std::endl;
-	return ;
 }

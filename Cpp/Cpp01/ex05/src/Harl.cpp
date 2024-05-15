@@ -42,12 +42,22 @@ void    Harl::complain(std::string t_level)
         "ERROR"
     };
 
-    for (int i = 0; i < 4; i++)
+    int i;
+
+    for (i = 0; i < 4; i++)
     {
         if (criticize[i].compare(t_level) == 0)
         {
             (this->*array[i])();
-            return;
+            break;
+        }
+    }
+
+    for (int j = i; j < 4; j++)
+    {
+        if (criticize[j].compare(t_level) != 0)
+        {
+            (this->*array[j])();
         }
     }
 

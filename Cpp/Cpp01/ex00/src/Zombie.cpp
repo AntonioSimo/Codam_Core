@@ -8,13 +8,11 @@ Zombie::Zombie() //Default Construoctor
 Zombie::Zombie(std::string t_name) : m_name(t_name) //Allocation in the Stack memory
 {
 	std::cout << GREEN << "Zombie " << this->m_name << " has been created" << RESET << std::endl;
-	return ;
 }
 
 Zombie::~Zombie() //Deallocation of the Heap memory
 {
 	std::cout << YELLOW << this->m_name << " has been destroyed." << RESET << std::endl;
-	return ;
 }
 
 void	Zombie::announce()

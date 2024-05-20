@@ -34,7 +34,7 @@ void    Harl::complain(std::string t_level)
 {
     void (Harl::*array[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
-    std::string criticize[4]
+    std::string criticize[4] =
     {
         "DEBUG", 
         "INFO", 
@@ -48,7 +48,7 @@ void    Harl::complain(std::string t_level)
     {
         if (criticize[i].compare(t_level) == 0)
         {
-            (this->*array[i])();
+            //(this->*array[i])();
             break;
         }
     }

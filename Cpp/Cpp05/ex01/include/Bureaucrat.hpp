@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "Form.hpp"
 
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"
@@ -28,6 +29,7 @@ public:
 	void	gradeCheck(int t_grade); //Member function
 	void 	incrementGrade();
 	void	decrementGrade();
+	void	signForm(const Form &);
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{
@@ -39,7 +41,6 @@ public:
     public: //Access specifier
         const char *what() const throw(); //Member function
     };
-
 };
 
 std::ostream& operator<<(std::ostream& t_out, const Bureaucrat& obj); //overload of the insertion («) operator

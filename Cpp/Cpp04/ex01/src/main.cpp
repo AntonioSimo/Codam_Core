@@ -5,8 +5,8 @@
 
 int main(void)
 {
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const Animal* hachiko = new Dog();
+    const Animal* tom = new Cat();
     const Animal* animals[100];
 
     for (size_t x = 0; x < 100; x++)
@@ -20,7 +20,7 @@ int main(void)
     for (size_t z = 0; z < 100; z++)
         delete animals[z];
 
-    delete j;
-    delete i;
+    delete hachiko;
+    delete tom;
     return (0);
 }

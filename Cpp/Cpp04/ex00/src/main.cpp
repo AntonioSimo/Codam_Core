@@ -7,13 +7,13 @@
 int main(void)
 {
     const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const Animal* hachiko = new Dog();
+    const Animal* tom = new Cat();
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
+    std::cout << hachiko->getType() << " " << std::endl;
+    std::cout << tom->getType() << " " << std::endl;
+    tom->makeSound();
+    hachiko->makeSound();
     meta->makeSound();
 
     const WrongAnimal* beta = new WrongAnimal();
@@ -24,8 +24,8 @@ int main(void)
     beta->makeSound();
     
     delete meta;
-    delete j;
-    delete i;
+    delete hachiko;
+    delete tom;
     delete beta;
     delete x;
     return (0);

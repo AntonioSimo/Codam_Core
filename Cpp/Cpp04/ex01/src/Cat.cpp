@@ -3,14 +3,14 @@
 Cat::Cat()
 {
     std::cout << "Default Cat constructor called." << std::endl;
-    this->_type = "Cat";
-    this->_brain = new Brain();
+    this->m_type = "Cat";
+    this->m_brain = new Brain();
 }
 
-Cat::Cat(const Cat& obj) : _brain(obj._brain)
+Cat::Cat(const Cat& obj) : m_brain(obj.m_brain)
 {
     std::cout << "Copy Cat constructor called." << std::endl;
-
+    this->m_brain = new Brain();
     *this = obj;
 }
 
@@ -18,8 +18,8 @@ Cat& Cat::operator=(const Cat& obj)
 {
     if (this != &obj)
     {
-        this->_type = obj._type;
-        this->_brain = obj._brain;
+        this->m_type = obj.m_type;
+        *this->m_brain = *obj.m_brain;
     }
     std::cout << "Copy Cat assignment operator called." << std::endl;
     return (*this);
@@ -28,7 +28,7 @@ Cat& Cat::operator=(const Cat& obj)
 Cat::~Cat()
 {
     std::cout  << RED << "Destructor Cat called." << RESET << std::endl;
-    delete this->_brain;
+    delete this->m_brain;
 }
 
 void Cat::makeSound() const

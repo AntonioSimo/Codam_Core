@@ -1,20 +1,26 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
     std::cout << "Default FragTrap constructor called." << std::endl;
+
+    this->m_name = "default";
+    this->m_attackDamage = 30;
+    this->m_energyPoints = 100;
+    this->m_hitPoints = 100;
 }
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string t_name) : ClapTrap()
 {
     std::cout << MAGENTA << "Parameterized FragTrap constructor called." << RESET << std::endl;
-    this->_name = name;
-    this->_attackDamage = 30;
-    this->_energyPoints = 100;
-    this->_hitPoints = ClapTrap::_hitPoints;
+    
+    this->m_name = t_name;
+    this->m_attackDamage = 30;
+    this->m_energyPoints = 100;
+    this->m_hitPoints = 100;
 }
 
-FragTrap::FragTrap(const FragTrap& obj)
+FragTrap::FragTrap(const FragTrap& obj) : ClapTrap(obj)
 {
     std::cout << CYAN << "Copy FragTrap Constructor called." << RESET << std::endl;
     *this = obj;
@@ -23,12 +29,7 @@ FragTrap::FragTrap(const FragTrap& obj)
 FragTrap& FragTrap::operator=(const FragTrap& obj)
 {
     if (this != &obj)
-    {
-        this->_name = obj._name;
-        this->_attackDamage = obj._attackDamage;
-        this->_energyPoints = obj._energyPoints;
-        this->_hitPoints = obj._hitPoints;
-    }
+        ClapTrap::operator=(obj);
     std::cout << "Copy FragTrap assignment operator called." << std::endl;
     return (*this);
 }

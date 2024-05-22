@@ -8,11 +8,14 @@
 class Brain
 {
 private: //Access specifier
-    std::string _ideas[100]; //Attribute
+    std::string m_ideas[100]; //Attribute
 
 public: //Access specifier
     Brain(); //Default Constructor
     Brain(const Brain& obj); //Copy Constructor
     Brain& operator=(const Brain& obj); //Copy assignment operator overload
     virtual ~Brain(); //Default destructor
+    void fillBrain();
+    void fillBrain1();
+    void printBrain();
 };

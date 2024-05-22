@@ -6,7 +6,7 @@
 class Cat : public Animal //Derived Class
 {
 private: //Access specifier
-    Brain*  _brain; //Attribute
+    Brain*  m_brain; //Attribute
 
 public: //Access specifier
     Cat(); //Default Constructor

@@ -12,10 +12,11 @@
 class Animal //Base Class
 {
 protected: //Access specifier
-    std::string _type; //Attribute
+    std::string m_type; //Attribute
 
 public: //Access specifier
     Animal(); //Default Constructor
+    Animal(std::string t_type);
     Animal(const Animal& obj); //Copy Constructor
     Animal& operator=(const Animal& obj); //Copy assignment operator overload
     virtual ~Animal(); //Virtual destructor

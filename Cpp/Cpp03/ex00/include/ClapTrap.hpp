@@ -20,7 +20,7 @@ private: //Access specifier
     
 public: //Access specifier
     ClapTrap(); //Default Constructor
-    ClapTrap(std::string m_name); //Parameterized Constructor
+    ClapTrap(std::string t_name); //Parameterized Constructor
     ClapTrap(const ClapTrap& obj); //Copy Constructor
     ClapTrap& operator=(const ClapTrap& obj); //Copy assignment operator overload
     ~ClapTrap(); //Destructor

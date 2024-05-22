@@ -1,8 +1,7 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie() : m_name("default")
 {
-	this->m_name = "No name";
 	std::cout << "Zombie " << this->m_name << " has been created." << std::endl;
 }
 

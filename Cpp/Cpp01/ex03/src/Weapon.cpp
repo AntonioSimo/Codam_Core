@@ -1,6 +1,6 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon()
+Weapon::Weapon() : m_type("default")
 {
 	std::cout << "Weapon " << this->m_type << " has been created." << std::endl;
 }

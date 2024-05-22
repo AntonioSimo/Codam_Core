@@ -9,7 +9,7 @@
 class WrongAnimal //Base Class
 {
 protected: //Access specifier
-    std::string _type; //Attribute
+    std::string m_type; //Attribute
 
 public: //Access specifier
     WrongAnimal(); //Default Constructor

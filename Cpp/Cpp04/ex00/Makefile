@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/04/18 14:04:03 by asimone          ###   ########.fr        #
+#    Updated: 2024/05/22 13:52:45 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS := -Wall -Wextra -Werror -fsanitize=address -g -Wpedantic -std=c++11
 IFLAGS := -I$(LIB_DIR)
 
 SOURCES :=	$(SRC_DIR)/Animal.cpp \

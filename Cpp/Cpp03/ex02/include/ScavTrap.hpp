@@ -17,11 +17,11 @@ class ScavTrap : public ClapTrap //Derived Class
 {
 public: //Access specifier
     ScavTrap(); //Default constructor
-    ScavTrap(std::string name); //Parameterized Constructor
+    ScavTrap(std::string t_name); //Parameterized Constructor
     ScavTrap(const ScavTrap& obj); //Copy Constructor
     ScavTrap& operator=(const ScavTrap& obj); //Copy assignment operator overload
     ~ScavTrap(); //Destructor
-    void attack(const std::string& target); //Member function
+    void attack(const std::string& t_target); //Member function
     void guardGate(); //Member function
 };
 

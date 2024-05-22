@@ -1,6 +1,6 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB()
+HumanB::HumanB() : m_name("default"), m_weaponType(nullptr)
 {
 	std::cout << "Human B " << this->m_name << " has been created." << std::endl;
 }

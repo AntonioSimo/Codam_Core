@@ -3,7 +3,7 @@
 Cat::Cat()
 {
     std::cout << "Default Cat constructor called." << std::endl;
-    this->_type = "Cat";
+    this->m_type = "Cat";
 }
 
 Cat::Cat(const Cat& obj)
@@ -17,7 +17,7 @@ Cat& Cat::operator=(const Cat& obj)
 {
     if (this != &obj)
     {
-        this->_type = obj._type;
+        this->m_type = obj.m_type;
     }
     std::cout << "Copy Cat assignment operator called." << std::endl;
     return (*this);

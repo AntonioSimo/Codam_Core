@@ -3,7 +3,7 @@
 Dog::Dog()
 {
     std::cout << "Default Dog constructor called." << std::endl;
-    this->_type = "Dog";
+    this->m_type = "Dog";
 }
 
 Dog::Dog(const Dog& obj)
@@ -17,7 +17,7 @@ Dog& Dog::operator=(const Dog& obj)
 {
     if (this != &obj)
     {
-        this->_type = obj._type;
+        this->m_type = obj.m_type;
     }
     std::cout << "Copy Dog assignment operator called." << std::endl;
     return (*this);

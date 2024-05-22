@@ -1,6 +1,6 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie() //Default Construoctor
+Zombie::Zombie() : m_name("default") //Default Construoctor
 {
 	std::cout << "Zombie " << this->m_name << " has been created" << std::endl;
 }

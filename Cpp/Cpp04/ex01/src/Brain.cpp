@@ -25,23 +25,6 @@ Brain& Brain::operator=(const Brain& obj)
     return (*this);
 }
 
-void Brain::fillBrain()
-{
-    for (int i = 0; i < 5; i++)
-        this->m_ideas[i] = "a";
-}
-void Brain::fillBrain1()
-{
-    for (int i = 0; i < 5; i++)
-        this->m_ideas[i] = "b";
-}
-
-void Brain::printBrain()
-{
-    for (int i = 0; i < 5; i++)
-        std::cout << this << " :" << this->m_ideas[i] << std::endl;
-}
-
 Brain::~Brain()
 {
     std::cout  << RED << "Destructor Brain called." << RESET << std::endl;

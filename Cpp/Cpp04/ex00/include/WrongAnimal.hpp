@@ -16,8 +16,8 @@ public: //Access specifier
     WrongAnimal(const WrongAnimal& obj); //Copy Constructor
     WrongAnimal& operator=(const WrongAnimal& obj); //Copy assignment operator overload
     ~WrongAnimal(); //Default Destructor
-    std::string getType() const;
-    void makeSound() const;
+    std::string getType() const; //Member function
+    void makeSound() const; //Member function
 };
 
 

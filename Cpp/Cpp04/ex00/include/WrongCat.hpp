@@ -9,5 +9,5 @@ public: //Access specifier
     WrongCat(const WrongCat& obj); //Copy Constructor
     WrongCat& operator=(const WrongCat& obj); //Copy assignment operator overload
     ~WrongCat(); //Default Destructor
-    void makeSound() const;
+    void makeSound() const; //Member function
 };

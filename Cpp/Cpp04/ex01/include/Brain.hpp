@@ -15,7 +15,4 @@ public: //Access specifier
     Brain(const Brain& obj); //Copy Constructor
     Brain& operator=(const Brain& obj); //Copy assignment operator overload
     virtual ~Brain(); //Default destructor
-    void fillBrain();
-    void fillBrain1();
-    void printBrain();
 };

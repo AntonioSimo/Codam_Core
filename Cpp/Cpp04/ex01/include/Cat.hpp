@@ -6,9 +6,9 @@
 class Cat : public Animal //Derived Class
 {
 private: //Access specifier
+    Brain*  m_brain; //Attribute
 
 public: //Access specifier
-    Brain*  m_brain; //Attribute
     Cat(); //Default Constructor
     Cat(const Cat& obj); //Copy Constructor
     Cat& operator=(const Cat& obj); //Copy assignment operator overload

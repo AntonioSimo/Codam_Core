@@ -30,7 +30,7 @@ Dog& Dog::operator=(const Dog& obj)
 Dog::~Dog()
 {
     std::cout  << RED << "Destructor Dog called." << RESET << std::endl;
-    delete m_brain;
+    delete this->m_brain;
 }
 
 void Dog::makeSound() const

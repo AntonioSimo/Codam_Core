@@ -1,0 +1,12 @@
+NO ./textures/elmoonfire.png
+SO ./textures/Pino.png
+EA      ./textures/CookieMonster.png
+WE ./textures/grover.png
+
+F 0,128,0
+C 0,60,119
+
+11111
+10001
+10N01
+11111

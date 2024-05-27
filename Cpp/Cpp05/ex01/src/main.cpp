@@ -13,21 +13,9 @@ int main(void)
         f.beSigned(b);
         std::cout << "Bureaucrat " << b.getName() << " is "<< f.getSigned() << " that he can sign the Form."<< std::endl;
     }
-    catch(const Form::GradeTooHighException& e)
+    catch(std::exception& e)
     {
-        std::cerr << e.what() << " first catch" << std::endl;
-    }
-    catch(const Form::GradeTooLowException& e)
-    {
-        std::cerr << e.what() << " second catch" << std::endl;
-    }
-    catch(const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << e.what() << " first catch" << std::endl;
-    }
-    catch(const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << e.what() << " second catch" << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
     return (0);
 }

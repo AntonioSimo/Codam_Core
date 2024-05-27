@@ -9,22 +9,23 @@ class Bureaucrat; // Forward declaration
 
 class Form
 {
-private:
-	const std::string m_name;
-		  bool m_signed;
-	const int m_gradeToSign;
-	const int m_gradeToExecute;
-public:
+private: //Access specifier
+	const std::string m_name; //Attribute
+		  bool m_signed; //Attribute
+	const int m_gradeToSign; //Attribute
+	const int m_gradeToExecute; //Attribute
+
+public: //Access specifier
 	Form(); //Default Constructor
 	Form(std::string t_name, bool t_signed, int t_gradeToSign, int t_gradeToExecute); //Parameterized Constructor
 	Form(const Form& obj); //Copy Constructor
 	Form& operator=(const Form& obj); //Copy assignment operator overload
 	~Form(); //Destructor
-	std::string getName() const;
-	bool getSigned() const;
-	int getGradeToSign() const;
-	int getGradeToExecute() const;
-	void beSigned(const Bureaucrat &);
+	std::string getName() const; //Member function
+	bool getSigned() const; //Member function
+	int getGradeToSign() const; //Member function
+	int getGradeToExecute() const; //Member function
+	void beSigned(const Bureaucrat &); //Member function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

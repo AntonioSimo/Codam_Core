@@ -17,7 +17,8 @@ class Bureaucrat //Base Class
 private: //Access specifier
 	const std::string	m_name; //Attribute
 				int		m_grade; //Attribute
-public:
+
+public: //Access specifier
 	Bureaucrat(); //Default Constructor
 	Bureaucrat(std::string t_name, int t_grade); //Parameterized Constructor
 	Bureaucrat(const Bureaucrat& obj); //Copy Constructor
@@ -26,8 +27,8 @@ public:
 	std::string getName() const; //Member function
 	int		getGrade() const; //Member function
 	void	gradeCheck(int t_grade); //Member function
-	void 	incrementGrade();
-	void	decrementGrade();
+	void 	incrementGrade(); //Member function
+	void	decrementGrade(); //Member function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

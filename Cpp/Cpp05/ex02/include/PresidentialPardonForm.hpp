@@ -5,12 +5,13 @@
 
 class PresidentialPardonForm : public AForm
 {
-private:
-	std::string m_target;
-public:
-	PresidentialPardonForm();
-	PresidentialPardonForm(std::string t_target);
+private: //Access specifier
+	std::string m_target; //Attribute
+
+public: //Access specifier
+	PresidentialPardonForm(); //Default Constructor
+	PresidentialPardonForm(std::string t_target); //Parameterized Constructor
 	PresidentialPardonForm(const PresidentialPardonForm& obj); //Copy Constructor
-	PresidentialPardonForm& operator=(const PresidentialPardonForm& obj); 
-	virtual ~PresidentialPardonForm();
+	PresidentialPardonForm& operator=(const PresidentialPardonForm& obj); //Copy assignment operator overload
+	virtual ~PresidentialPardonForm(); //Destructor
 };

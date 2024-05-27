@@ -8,7 +8,7 @@ PresidentialPardonForm::PresidentialPardonForm() : m_target("default")
 
 PresidentialPardonForm::PresidentialPardonForm(std::string t_target) : m_target(t_target)
 {
-    std::cout << MAGENTA <<"Parameterized PresidentialPardonForm constructor called." << RESET << std::endl;
+    std::cout << MAGENTA << "Parameterized PresidentialPardonForm constructor called." << RESET << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj)

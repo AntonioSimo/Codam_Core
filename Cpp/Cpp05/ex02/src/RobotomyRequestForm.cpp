@@ -6,6 +6,11 @@ RobotomyRequestForm::RobotomyRequestForm() : m_target("default")
 	std::cout << "Default RobotomyRequestForm constructor called." << std::endl;
 }
 
+RobotomyRequestForm::RobotomyRequestForm(std::string t_target) : m_target(t_target)
+{
+	std::cout << MAGENTA << "Parameterized RobotomyRequestForm constructor called." << RESET << std::endl;
+}
+
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj)
 {
     std::cout << "Copy RobotomyRequestForm constructor called." << std::endl;

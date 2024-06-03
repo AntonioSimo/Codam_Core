@@ -83,3 +83,13 @@ const char *AForm::GradeTooHighException::what() const throw()
 {
     return ("AForm grade too high Exception") ;
 }
+
+void AForm::execute(Bureaucrat const & executor)
+{
+    if (executor.getGrade() > this->getGradeToExecute())
+        throw (GradeTooLowException());
+    if (m_signed == true)
+        std::cout << "The " << m_name << " is already signed." << std::endl;
+    else
+        std::cout << "The " << m_name << " is not executed because is not signed." << std::endl;
+}

@@ -14,4 +14,5 @@ public: //Access specifier
 	RobotomyRequestForm(const RobotomyRequestForm& obj); //Copy Constructor
 	RobotomyRequestForm& operator=(const RobotomyRequestForm& obj); //Copy assignment operator overload
 	virtual ~RobotomyRequestForm(); //Destructor
+	virtual void execute(Bureaucrat const & executor);
 };

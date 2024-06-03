@@ -1,12 +1,12 @@
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : m_target("default")
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", false, 145, 137), m_target("default")
 {
 	std::cout << "Default ShrubberyCreationForm constructor called." << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string t_target) : m_target(t_target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string t_target) : AForm("ShrubberyCreationForm", false, 145, 137), m_target(t_target)
 {
 	std::cout << MAGENTA << "Parameterized ShrubberyCreationForm constructor called." << RESET << std::endl;
 }
@@ -33,12 +33,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << RED << "Destructor ShrubberyCreationForm called." << RESET << std::endl;
 }
 
-void ShrubberyCreationForm::execute()
+void ShrubberyCreationForm::execute(Bureaucrat const & executor)
 {
-    std::ofstream   File;
+    AForm::execute(executor);
+    std::fstream    File;
     std::string     FileName;
 
     FileName = m_target.append("_shrubbery");
+
+    File.open(FileName, std::ios::trunc | std::ios::out);
 
     File << "            .        +          .      .          .\n"
                  "     .            _        .                    .\n"
@@ -59,7 +62,7 @@ void ShrubberyCreationForm::execute()
                  "                      /:. _/ ,  |\n"
                  "                   . (|::.     ,`                  .\n"
                  "     .                |::.    {\\\n"
-                 "                      |::.\  \\ `.\n"
+                 "                      |::.  \\ `.\n"
                  "                      |:::(\\    |\n"
                  "              O       |:::/{ }  |                  (o\n"
                  "               )  ___/#\\::`/ (O \"==._____   O, (O  /`\n"

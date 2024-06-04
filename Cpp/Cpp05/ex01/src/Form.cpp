@@ -57,12 +57,12 @@ int Form::getGradeToExecute() const
 	return (this->m_gradeToExecute);
 }
 
-void Form::beSigned(const Bureaucrat &b)
+void Form::beSigned(const Bureaucrat &t_bureaucrat)
 {
 
-	if (b.getGrade() > getGradeToSign())
+	if (t_bureaucrat.getGrade() > getGradeToSign())
 	{
-		std::cout << CYAN << b.getName() << " bureaucrat can't sign the Form." << RESET << std::endl;
+		std::cout << CYAN << t_bureaucrat.getName() << " bureaucrat can't sign the Form." << RESET << std::endl;
 		m_signed = false;
         throw GradeTooLowException();
 	}

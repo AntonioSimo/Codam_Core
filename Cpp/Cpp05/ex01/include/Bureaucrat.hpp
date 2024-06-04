@@ -30,7 +30,7 @@ public: //Access specifier
 	void	gradeCheck(int t_grade); //Member function
 	void 	incrementGrade(); //Member function
 	void	decrementGrade(); //Member function
-	void	signForm(const Form &); //Member function
+	void	signForm(const Form &t_form); //Member function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

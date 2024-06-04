@@ -1,5 +1,6 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -27,16 +28,28 @@ int main(void)
     //     form->execute(b);
     //     delete (form);
     // }
+    // try
+    // {
+    //     Bureaucrat a("Jack", 3);
+    //     Bureaucrat b("Paul", 56);
+    //     AForm *form = new ShrubberyCreationForm("Paul");
+
+    //     form->beSigned(a);
+    //     form->execute(b);
+    //     delete (form);
+    // }
     try
     {
         Bureaucrat a("Jack", 3);
         Bureaucrat b("Paul", 56);
-        AForm *form = new ShrubberyCreationForm("Paul");
+        Intern intern;
+        AForm *form;
 
+        form = intern.makeForm("ShrubberyCreationForm", "Tom");
         form->beSigned(a);
         form->execute(b);
         delete (form);
-    }
+    }    
     catch(std::exception& e)
     {
         std::cout << "Exception: " << e.what() << std::endl;

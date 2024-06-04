@@ -60,12 +60,12 @@ void Bureaucrat::decrementGrade()
     this->m_grade++;
 }
 
-void Bureaucrat::signForm(const Form &f)
+void Bureaucrat::signForm(const Form &t_form)
 {
-    if (f.getSigned() == true)
-        std::cout << CYAN << getName() << " bureaucrat signed form " << f.getName() << RESET << std::endl;
+    if (t_form.getSigned() == true)
+        std::cout << CYAN << getName() << " bureaucrat signed form " << t_form.getName() << RESET << std::endl;
     else
-        std::cout << CYAN << getName() << "couldn’t sign form " << f.getName() << RESET << std::endl;
+        std::cout << CYAN << getName() << "couldn’t sign form " << t_form.getName() << RESET << std::endl;
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()

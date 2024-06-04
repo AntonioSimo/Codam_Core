@@ -84,7 +84,7 @@ const char *AForm::GradeTooHighException::what() const throw()
     return ("AForm grade too high Exception") ;
 }
 
-void AForm::execute(Bureaucrat const & t_executor)
+void AForm::execute(Bureaucrat const &t_executor)
 {
     if (t_executor.getGrade() > this->getGradeToExecute())
         throw (GradeTooLowException());

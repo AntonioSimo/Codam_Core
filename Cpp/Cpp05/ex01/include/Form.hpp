@@ -25,7 +25,7 @@ public: //Access specifier
 	bool getSigned() const; //Member function
 	int getGradeToSign() const; //Member function
 	int getGradeToExecute() const; //Member function
-	void beSigned(const Bureaucrat &); //Member function
+	void beSigned(const Bureaucrat &t_bureaucrat); //Member function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

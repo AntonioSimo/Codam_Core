@@ -29,7 +29,7 @@ public: //Access specifier
 	int getGradeToExecute() const; //Member function
 	void beSigned(const Bureaucrat &t_bureaucrat); //Member function
 	void execute(Bureaucrat const & t_executor); //Member function
-	virtual void execution() = 0;  //Pure virtual function
+	virtual void execution() = 0; //Pure virtual function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

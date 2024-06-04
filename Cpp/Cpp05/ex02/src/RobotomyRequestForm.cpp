@@ -33,9 +33,11 @@ RobotomyRequestForm::~RobotomyRequestForm()
 	std::cout << RED << "Destructor RobotomyRequestForm called." << RESET << std::endl;
 }
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor)
+void RobotomyRequestForm::execution()
 {
-    AForm::execute(executor);
-    
-    std::cout << m_target << " has been robotomized successfully 50% of the time." << std::endl;
+    std::cout << "DRRRIIIIIIIILLLLLLLLLL!!!!!!!! (some drilling noises)" << std::endl;
+    if (rand() % 10 > 5)
+		std::cout << m_target << " has been robotomized successfully!" << std::endl;
+	else
+		std::cout << "The robotomization failed." << std::endl;
 }

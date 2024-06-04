@@ -14,5 +14,5 @@ public: //Access specifier
 	PresidentialPardonForm(const PresidentialPardonForm& obj); //Copy Constructor
 	PresidentialPardonForm& operator=(const PresidentialPardonForm& obj); //Copy assignment operator overload
 	virtual ~PresidentialPardonForm(); //Destructor
-	virtual void execute(Bureaucrat const & executor);
+	virtual void execution();
 };

@@ -33,9 +33,7 @@ PresidentialPardonForm::~PresidentialPardonForm()
 	std::cout << RED << "Destructor PresidentialPardonForm called." << RESET << std::endl;
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor)
+void PresidentialPardonForm::execution()
 {
-    AForm::execute(executor);
-
     std::cout << m_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

@@ -15,5 +15,5 @@ public: //Access specifier
 	ShrubberyCreationForm(const ShrubberyCreationForm& obj); //Copy Constructor
 	ShrubberyCreationForm& operator=(const ShrubberyCreationForm& obj); //Copy assignment operator overload
 	virtual ~ShrubberyCreationForm(); //Destructor
-	virtual void execute(Bureaucrat const & executor);
+	virtual void execution();
 };

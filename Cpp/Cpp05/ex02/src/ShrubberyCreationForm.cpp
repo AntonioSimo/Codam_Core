@@ -33,14 +33,12 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << RED << "Destructor ShrubberyCreationForm called." << RESET << std::endl;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor)
+void ShrubberyCreationForm::execution()
 {
-    AForm::execute(executor);
     std::fstream    File;
     std::string     FileName;
 
     FileName = m_target.append("_shrubbery");
-
     File.open(FileName, std::ios::trunc | std::ios::out);
 
     File << "            .        +          .      .          .\n"

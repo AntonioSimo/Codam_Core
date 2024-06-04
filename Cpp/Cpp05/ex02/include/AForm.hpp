@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <cstdlib> 
+#include <ctime> 
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150
@@ -26,7 +28,8 @@ public: //Access specifier
 	virtual int getGradeToSign() const; //Member function
 	virtual int getGradeToExecute() const; //Member function
 	virtual void beSigned(const Bureaucrat &); //Member function
-	virtual void execute(Bureaucrat const & executor) = 0; //Pure virtual function
+	virtual void execute(Bureaucrat const & executor); //Member function
+	virtual void execution() = 0;  //Pure virtual function
 
 	class GradeTooHighException : public std::exception //Exception Class
 	{

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <cstring> 
+#include <cctype> 
 
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"

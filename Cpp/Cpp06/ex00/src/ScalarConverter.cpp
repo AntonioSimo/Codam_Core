@@ -28,32 +28,31 @@ ScalarConverter::~ScalarConverter()
 void    printChar(char c)
 {
     if (c == '0')
-    {;
+    {
         std::cout << "char: Non displayable" << std::endl;
         std::cout << "int: " << c << std::endl;
-        std::cout << "float: " << c << std::endl;
+        std::cout << "float: " << c << "f" << std::endl;
         std::cout << "double: " << c << std::endl;
     }
     else
     {
         std::cout << "char: '" << c << "'" << std::endl;
         std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << std::endl;
+        std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(c) << std::endl;
     }
 }
 
-int    checkFloat(std::string t_stringToConvert)
+int    isFloat(std::string t_stringToConvert)
 {
     int f = 0;
 
     for (size_t i = 0; i < t_stringToConvert.length(); i++)
     {
-        //std::cout << f << std::endl;
         if (t_stringToConvert[i] == 102)
             f++;
         if (f >= 2)
-            return (1);
+            return (3);
     }
     return (f);
 }
@@ -65,60 +64,51 @@ int    checkSignAndDot(std::string t_stringToConvert)
 
     for (size_t i = 0; i < t_stringToConvert.length(); i++)
     {
-        if (t_stringToConvert[i] == '-' || t_stringToConvert[i] == '.')
-        {
+        if (t_stringToConvert[i] == 45)
             sign++;
+        if (t_stringToConvert[i] == 46)
             dot++;
-        }
-        else if (dot == 1) // || dot == 0)
-        {
-            //std::cout << "This is checkFloat: " << checkFloat(t_stringToConvert) << std::endl;
-            //std::cout << t_stringToConvert[i] << std::endl;
-            if (checkFloat(t_stringToConvert) == 0)
-            {
-
-            }
-                
-            std::cout << "Ciao" << std::endl;
-            //if (checkFloat(t_stringToConvert) == 1)
-            //    return (1);
-            //else if (checkFloat(t_stringToConvert) == 0)
-            //    return (2);
-            //else if (((t_stringToConvert[i] >= 33 && t_stringToConvert[i] <= 44) && (t_stringToConvert[i] >= 58 && t_stringToConvert[i] <= 126)) || (t_stringToConvert[i] == 47))
-            //    return (3);
-        }
         if (sign >= 2 || dot >= 2)
             return (3);
     }
+    if (dot == 1)
+        return (2);
     return (0);
 }
 
 int isPrintable(std::string t_stringToConvert)
 {
+
     for (size_t i = 0; i < t_stringToConvert.length(); i++)
     {
-        if (t_stringToConvert[i] == '-')
+        if (t_stringToConvert[i] == 45)
             i++;
-        if (((t_stringToConvert[i] >= 33 && t_stringToConvert[i] <= 45) && (t_stringToConvert[i] >= 58 && t_stringToConvert[i] <= 126)) || (t_stringToConvert[i] == 47))
-        {
+        else if ((t_stringToConvert[i] >= 33 && t_stringToConvert[i] <= 44) || (t_stringToConvert[i] == 47) || (t_stringToConvert[i] >= 58 && t_stringToConvert[i] <= 101) || (t_stringToConvert[i] >= 103 && t_stringToConvert[i] <= 126))
             return (3);
-        }
-            std::cout << t_stringToConvert[i] << std::endl;
     }
     return (0);
 }
 
 int    checkValue(std::string t_stringToConvert)
 {
-    if (isPrintable(t_stringToConvert) == 3)
+    int dataType = 0;
+
+    if (isPrintable(t_stringToConvert) == 0)
     {
-        std::cout << "Sono Qui!" << std::endl;
-        return (3);
+        dataType = checkSignAndDot(t_stringToConvert);
+        if (dataType == 2)
+        {
+            if (isFloat(t_stringToConvert) == 1)
+                return (1);
+            if (isFloat(t_stringToConvert) == 3)
+                return (3);
+            else
+                return (2);
+        }
+        if (dataType == 0)
+            return (0);
     }
-    //else if (isPrintable(t_stringToConvert) == 0)
-    //    std::cout << "Ciao" << std::endl;
-    //    return (0);
-    return (0);
+    return (3);
 }
 
 void    printInt(std::string t_stringToConvert)
@@ -133,7 +123,7 @@ void    printInt(std::string t_stringToConvert)
         std::cout << "int: Non displayable" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(longNumber) << std::endl;
-    std::cout << "float: " << static_cast<float>(longNumber) << std::endl;
+    std::cout << "float: " << static_cast<float>(longNumber) << "f" << std::endl;
     std::cout << "double: " << static_cast<double>(longNumber) << std::endl;
 }
 
@@ -146,16 +136,23 @@ void    printFloat(std::string t_stringToConvert)
         std::cout << "char: '"<< static_cast<char>(asciiValue) << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    //std::cout << "char: '" << static_cast<char>(floatNumber) << "'" << std::endl;
     std::cout << "int: " << static_cast<int>(floatNumber) << std::endl;
-    std::cout << "float: " << roundf(floatNumber) << "f" << std::endl;
+    std::cout << "float: " << floatNumber << "f" << std::endl;
     std::cout << "double: " << static_cast<double>(floatNumber) << std::endl;
 }
 
 void    printDouble(std::string t_stringToConvert)
 {
-    (void) t_stringToConvert;
-    std::cout << "Ciao" << std::endl;
+    int     asciiValue = stoi(t_stringToConvert);
+    float   doubleNumber = stod(t_stringToConvert);
+
+    if (asciiValue >= 33 && asciiValue <= 126)
+        std::cout << "char: '"<< static_cast<char>(asciiValue) << "'" << std::endl;
+    else
+        std::cout << "char: Non displayable" << std::endl;
+    std::cout << "int: " << static_cast<int>(doubleNumber) << std::endl;
+    std::cout << "float: " << static_cast<float>(doubleNumber) << "f" << std::endl;
+    std::cout << "double: " << doubleNumber << std::endl;
 }
 
 void    printError()
@@ -194,22 +191,3 @@ void ScalarConverter::convert(std::string t_stringToConvert)
         }
     }
 }
-
-
-
-
-/*
-
-Fare un programma che converte una stringa in char, int, float, double
-
-1. Controllare se gli argomenti sono 2 e passare la stringa
-
-2. controllare la lunghezza della stringa. Se è 1 è un char >= 2 può essere int, float o double. Controllare che non sia una parola
-
-2.1. Se è un char,bisogna controllare se è un carattere che si può printare o meno. Se è un char semplicemnete stamparlo a video.
-    Per int, float e double bisogna fare il typecasting del char per quei determinati datatype.
-
-2.2. Se la stringa è più grande o uguale a 2 bisogna controllare se è più grande del MAX_INT, controllare se non ci sono più di un "." o "-" o "+"
-    Se è 0 bisogna fare dei casi speciali.
-
-*/

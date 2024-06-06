@@ -6,11 +6,11 @@
 #    By: antoniosimone <antoniosimone@student.42      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/20 16:42:36 by asimone       #+#    #+#                  #
-#    Updated: 2024/06/05 11:43:31 by antoniosimo   ########   odam.nl          #
+#    Updated: 2024/06/05 10:46:30 by antoniosimo   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := Serialization
+NAME := Conversion_of_scalar_types
 
 SRC_DIR := src
 OBJ_DIR := obj
@@ -20,13 +20,11 @@ CMP := c++
 FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES :=	$(SRC_DIR)/Data.cpp \
-			$(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/Serializer.cpp
+SOURCES :=	$(SRC_DIR)/ScalarConverter.cpp \
+			$(SRC_DIR)/main.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/Data.hpp \
-			$(LIB_DIR)/Serializer.hpp
+HEADER := 	$(LIB_DIR)/ScalarConverter.hpp
 
 GREEN = \033[32m
 RED = \033[31m

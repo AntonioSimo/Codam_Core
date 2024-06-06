@@ -1,11 +1,13 @@
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main(int argc, char **argv)
+int main(void)
 {
-    if (argc == 2)
-    {
-        ScalarConverter test;
-        test.convert(argv[1]);
-    }
-    return (0);
+	Serializer test1;
+	Data mydata;
+
+	mydata.myNum = 10;
+
+	std::cout << mydata.myNum << std::endl;
+
+	return (0);
 }

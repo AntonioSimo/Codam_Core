@@ -11,15 +11,14 @@
 
 class Data
 {
-private:
-	uint	m_number;
+private: //Access specifier
+	uint	m_number; //Attribute
 
-public:
+public: //Access specifier
 	Data(); //Default Constructor
 	Data(const Data& obj); //Copy Constructor
 	Data& operator=(const Data& obj); //Copy assignment operator overload
 	~Data(); //Destructor
-
-	void setData(uint t_number);
-	uint getData();
+	void setData(uint t_number); //Member function
+	uint getData(); //Member function
 };

@@ -2,12 +2,18 @@
 
 int main(void)
 {
-	Serializer test1;
-	Data mydata;
+	Data *mydata = new Data;
 
-	mydata.myNum = 10;
+	mydata->setData(10);
+	std::cout << "This is m_number in Data: " << mydata->getData() << std::endl;
+	std::cout << "Value of mydata obj: " << &mydata << std::endl;
+	uintptr_t serialized = Serializer::serialize(mydata);
+	std::cout << "Result of serialize function: " << serialized << std::endl;
+	mydata = Serializer::deserialize(serialized);
+	std::cout << "Result of the deserialize function: " << &mydata << std::endl;
+	std::cout << "This is m_number in Data: " << mydata->getData() << std::endl;
 
-	std::cout << mydata.myNum << std::endl;
+	delete mydata;
 
 	return (0);
 }

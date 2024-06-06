@@ -9,7 +9,17 @@
 #define YELLOW	"\033[33m"
 #define RESET	"\033[0m"
 
-typedef struct
+class Data
 {
-	int myNum;
-} Data;
+private:
+	uint	m_number;
+
+public:
+	Data(); //Default Constructor
+	Data(const Data& obj); //Copy Constructor
+	Data& operator=(const Data& obj); //Copy assignment operator overload
+	~Data(); //Destructor
+
+	void setData(uint t_number);
+	uint getData();
+};

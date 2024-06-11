@@ -5,12 +5,13 @@ Bureaucrat::Bureaucrat() : m_name("default"), m_grade(MIN_GRADE)
     std::cout << "Default Bureaucrat constructor called." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string t_name, int t_grade) : m_name(t_name), m_grade(t_grade)
+Bureaucrat::Bureaucrat(std::string t_name, int t_grade) : m_name(t_name)
 {
     if (t_grade < MAX_GRADE)
         throw(GradeTooHighException());
     else if (t_grade > MIN_GRADE)
         throw(GradeTooLowException());
+    this->m_grade = t_grade;
     std::cout << MAGENTA <<"Parameterized Bureaucrat constructor called." << RESET << std::endl;
 }
 
@@ -41,7 +42,7 @@ int Bureaucrat::getGrade() const
     return (this->m_grade);
 }
 
-std::string Bureaucrat::getName() const
+const std::string& Bureaucrat::getName() const
 {
     return (this->m_name);
 }

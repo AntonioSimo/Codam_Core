@@ -6,7 +6,7 @@ Form::Form() : m_name("default"), m_signed(false), m_gradeToSign(MIN_GRADE), m_g
 	std::cout << "Default Form constructor called." << std::endl;
 }
 
-Form::Form(std::string t_name, bool t_signed, int t_gradeToSign, int t_gradeToExecute) : m_name(t_name), m_signed(t_signed), m_gradeToSign(t_gradeToSign), m_gradeToExecute(t_gradeToExecute) 
+Form::Form(std::string t_name, int t_gradeToSign, int t_gradeToExecute) : m_name(t_name), m_signed(false), m_gradeToSign(t_gradeToSign), m_gradeToExecute(t_gradeToExecute) 
 {
     if (t_gradeToSign < MAX_GRADE || t_gradeToExecute < MAX_GRADE)
         throw(GradeTooHighException());
@@ -59,14 +59,12 @@ int Form::getGradeToExecute() const
 
 void Form::beSigned(const Bureaucrat &t_bureaucrat)
 {
-
 	if (t_bureaucrat.getGrade() > getGradeToSign())
 	{
 		std::cout << CYAN << t_bureaucrat.getName() << " bureaucrat can't sign the Form." << RESET << std::endl;
-		m_signed = false;
         throw GradeTooLowException();
 	}
-	m_signed = true;
+	this->m_signed = true;
 }
 
 std::ostream& operator<<(std::ostream& t_out, const Form& obj)

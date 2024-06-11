@@ -17,7 +17,7 @@ private: //Access specifier
 
 public: //Access specifier
 	Form(); //Default Constructor
-	Form(std::string t_name, bool t_signed, int t_gradeToSign, int t_gradeToExecute); //Parameterized Constructor
+	Form(std::string t_name, int t_gradeToSign, int t_gradeToExecute); //Parameterized Constructor
 	Form(const Form& obj); //Copy Constructor
 	Form& operator=(const Form& obj); //Copy assignment operator overload
 	~Form(); //Destructor

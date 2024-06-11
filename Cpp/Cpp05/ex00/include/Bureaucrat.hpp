@@ -20,16 +20,17 @@ private: //Access specifier
 
 public: //Access specifier
 	Bureaucrat(); //Default Constructor
-	Bureaucrat(std::string t_name, int t_grade); //Parameterized Constructor
+	Bureaucrat(const std::string t_name, int t_grade); //Parameterized Constructor
 	Bureaucrat(const Bureaucrat& obj); //Copy Constructor
 	Bureaucrat& operator=(const Bureaucrat& obj); //Copy assignment operator overload
 	~Bureaucrat(); //Destructor
-	std::string getName() const; //Member function
+	const std::string& getName() const; //Member function
 	int		getGrade() const; //Member function
 	void	gradeCheck(int t_grade); //Member function
 	void 	incrementGrade(); //Member function
 	void	decrementGrade(); //Member function
-
+// string a = getName()
+// a;
 	class GradeTooHighException : public std::exception //Exception Class
 	{
     public: //Access specifier

@@ -9,4 +9,8 @@ class Base
 {
 public:
 	virtual ~Base(); //Destructor
+
+	Base * generate(void); //Member function
+	void identify(Base *p); //Member function
+	void identify(Base& p); //Member function
 };

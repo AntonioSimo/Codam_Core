@@ -27,6 +27,8 @@ ScalarConverter::~ScalarConverter()
 
 void    printChar(char c)
 {
+    //Se ci sono le virgolette e' un char
+    //se non ci sono le virgolette e' un int
     if (c == '0')
     {
         std::cout << "char: Non displayable" << std::endl;
@@ -137,7 +139,8 @@ void    printFloat(std::string t_stringToConvert)
     else
         std::cout << "char: Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(floatNumber) << std::endl;
-    std::cout << "float: " << floatNumber << "f" << std::endl;
+    // std::cout << "float: " << floatNumber << "f" << std::endl;
+    std::cout << "float: " << std::setprecision(6) << floatNumber << std::endl;
     std::cout << "double: " << static_cast<double>(floatNumber) << std::endl;
 }
 

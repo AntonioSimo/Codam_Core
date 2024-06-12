@@ -23,3 +23,5 @@ public: //Access specifier
 	~ScalarConverter(); //Destructor
     static void convert(std::string t_stringToConvert); //Static method function
 };
+
+void	printError();

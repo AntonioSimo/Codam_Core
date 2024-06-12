@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include <limits>
 
 ScalarConverter::ScalarConverter()
 {
@@ -25,24 +26,17 @@ ScalarConverter::~ScalarConverter()
     std::cout << RED << "Destructor ScalarConverter called." << RESET << std::endl;
 }
 
-void    printChar(char c)
+bool    isChar(std::string t_stringToConvert)
 {
-    //Se ci sono le virgolette e' un char
-    //se non ci sono le virgolette e' un int
-    if (c == '0')
+    for(size_t i = 0; i < t_stringToConvert.length(); i++)
     {
-        std::cout << "char: Non displayable" << std::endl;
-        std::cout << "int: " << c << std::endl;
-        std::cout << "float: " << c << "f" << std::endl;
-        std::cout << "double: " << c << std::endl;
+        if (isprint(t_stringToConvert[i]) != 0)
+        {
+            if (t_stringToConvert[0] == 39 && t_stringToConvert[2] == 39)
+                return(true);
+        }
     }
-    else
-    {
-        std::cout << "char: '" << c << "'" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << std::endl;
-    }
+    return (false);
 }
 
 int    isFloat(std::string t_stringToConvert)
@@ -54,9 +48,21 @@ int    isFloat(std::string t_stringToConvert)
         if (t_stringToConvert[i] == 102)
             f++;
         if (f >= 2)
-            return (3);
+            return (2);
     }
     return (f);
+}
+
+bool isNumber(std::string t_stringToConvert)
+{
+    for (size_t i = 0; i < t_stringToConvert.length(); i++)
+    {
+        if (t_stringToConvert[i] == 45 || t_stringToConvert[i] == 46)
+            i++;
+        if ((t_stringToConvert[i] <= 47 || t_stringToConvert[i] >= 58) && t_stringToConvert[i] != 102)
+            return (true);
+    }
+    return (false);
 }
 
 int    checkSignAndDot(std::string t_stringToConvert)
@@ -73,44 +79,33 @@ int    checkSignAndDot(std::string t_stringToConvert)
         if (sign >= 2 || dot >= 2)
             return (3);
     }
+    
     if (dot == 1)
-        return (2);
-    return (0);
-}
-
-int isPrintable(std::string t_stringToConvert)
-{
-
-    for (size_t i = 0; i < t_stringToConvert.length(); i++)
     {
-        if (t_stringToConvert[i] == 45)
-            i++;
-        else if ((t_stringToConvert[i] >= 33 && t_stringToConvert[i] <= 44) || (t_stringToConvert[i] == 47) || (t_stringToConvert[i] >= 58 && t_stringToConvert[i] <= 101) || (t_stringToConvert[i] >= 103 && t_stringToConvert[i] <= 126))
-            return (3);
-    }
-    return (0);
-}
+        int floatNumber = isFloat(t_stringToConvert);
 
-int    checkValue(std::string t_stringToConvert)
-{
-    int dataType = 0;
-
-    if (isPrintable(t_stringToConvert) == 0)
-    {
-        dataType = checkSignAndDot(t_stringToConvert);
-        if (dataType == 2)
+        switch (floatNumber)
         {
-            if (isFloat(t_stringToConvert) == 1)
-                return (1);
-            if (isFloat(t_stringToConvert) == 3)
-                return (3);
-            else
-                return (2);
+        case 0:
+            return (2);
+
+        case 1:
+            return (1);
+
+        case 2:
+            return (3);
         }
-        if (dataType == 0)
-            return (0);
     }
-    return (3);
+    return (0);
+}
+
+void    printChar(char c)
+{
+
+    std::cout << "char: '" << c << "'" << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << std::endl;
 }
 
 void    printInt(std::string t_stringToConvert)
@@ -121,7 +116,7 @@ void    printInt(std::string t_stringToConvert)
         std::cout << "char: '"<< static_cast<char>(longNumber) << "'" << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
-    if (longNumber >= 2147483647)
+    if (longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max())
         std::cout << "int: Non displayable" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(longNumber) << std::endl;
@@ -139,8 +134,10 @@ void    printFloat(std::string t_stringToConvert)
     else
         std::cout << "char: Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(floatNumber) << std::endl;
-    // std::cout << "float: " << floatNumber << "f" << std::endl;
-    std::cout << "float: " << std::setprecision(6) << floatNumber << std::endl;
+    if (floatNumber < std::numeric_limits<float>::min() || floatNumber > std::numeric_limits<float>::max())
+        std::cout << "float: Non displayable" << std::endl;
+    else
+        std::cout << "float: " << std::setprecision(6) << floatNumber << "f" << std::endl;
     std::cout << "double: " << static_cast<double>(floatNumber) << std::endl;
 }
 
@@ -154,8 +151,11 @@ void    printDouble(std::string t_stringToConvert)
     else
         std::cout << "char: Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(doubleNumber) << std::endl;
-    std::cout << "float: " << static_cast<float>(doubleNumber) << "f" << std::endl;
-    std::cout << "double: " << doubleNumber << std::endl;
+    std::cout << "float: " << std::setprecision(6) << static_cast<float>(doubleNumber) << "f" << std::endl;
+    if (doubleNumber < std::numeric_limits<double>::min() || doubleNumber > std::numeric_limits<double>::max())
+        std::cout << "double: Non displayable" << std::endl;
+    else
+        std::cout << "double: " << std::setprecision(6) << doubleNumber << std::endl;
 }
 
 void    printError()
@@ -166,31 +166,59 @@ void    printError()
     std::cout << "double: nan" << std::endl;
 }
 
-void ScalarConverter::convert(std::string t_stringToConvert)
+int    checkValue(std::string t_stringToConvert)
 {
-    int i = checkValue(t_stringToConvert);
-
-    if (t_stringToConvert.length() == 1)
-        printChar(t_stringToConvert[0]);
+    if (isChar(t_stringToConvert) == 1)
+        return (0);
     else
     {
-        switch (i)
+        if (isNumber(t_stringToConvert) == 0)
         {
-        case 0:
-            printInt(t_stringToConvert);
-            break;
+            int dataType = checkSignAndDot(t_stringToConvert);
+            switch (dataType)
+            {
+            case 0:
+                return (1);
 
-        case 1:
-            printFloat(t_stringToConvert);
-            break;
+            case 1:
+                return (2);
 
-        case 2:
-            printDouble(t_stringToConvert);
-            break;
-
-        case 3:
-            printError();
-            break;
+            case 2:
+                return (3);
+            
+            case 3:
+                return (4);
+            }
         }
+    }
+    return (4);
+}
+
+void ScalarConverter::convert(std::string t_stringToConvert)
+{
+   
+    int i = checkValue(t_stringToConvert);
+
+    switch (i)
+    {
+    case 0:
+        printChar(t_stringToConvert[1]);
+        break;
+
+    case 1:
+        printInt(t_stringToConvert);
+        break;
+
+    case 2:
+        printFloat(t_stringToConvert);
+        break;
+
+    case 3:
+        printDouble(t_stringToConvert);
+        break;
+
+    case 4:
+        printError();
+        break;
     }
 }

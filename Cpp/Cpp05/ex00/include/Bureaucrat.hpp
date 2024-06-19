@@ -29,8 +29,7 @@ public: //Access specifier
 	void	gradeCheck(int t_grade); //Member function
 	void 	incrementGrade(); //Member function
 	void	decrementGrade(); //Member function
-// string a = getName()
-// a;
+
 	class GradeTooHighException : public std::exception //Exception Class
 	{
     public: //Access specifier

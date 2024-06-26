@@ -1,11 +1,12 @@
 #include "Span.hpp"
+#include <iterator>
 
-Span::Span() : m_container(0, 0)
+Span::Span() : m_size(0), m_container()
 {
     std::cout << "Default Span constructor called." << std::endl;
 }
 
-Span::Span(unsigned int t_numbers) : m_container(t_numbers)
+Span::Span(unsigned int t_numbers) : m_size(t_numbers), m_container()
 {
     std::cout << "Parameterized Span constructor called." << std::endl;
 }
@@ -21,7 +22,8 @@ Span& Span::operator=(const Span& obj)
 {
     if (this != &obj)
     {
-        this->m_numbers = obj.m_numbers;
+        this->m_size = obj.m_size;
+        this->m_container = obj.m_container;
     }
     std::cout << "Copy Span assignment operator called." << std::endl;
     return (*this);
@@ -32,12 +34,51 @@ Span::~Span()
     std::cout << "Destructor Span called." << std::endl;
 }
 
-std::vector<int>& Span::getContainer()
+std::set<int>& Span::getContainer()
 {
     return (this->m_container);
 }
 
 void Span::addNumber(int x)
 {
-    m_container.push_back(x);
+    if (m_container.size() + 1 <= this->m_size)
+        m_container.insert(x);
+    else
+        throw std::invalid_argument ("There is not enough space in the container");
+}
+
+int Span::shortestSpan()
+{
+    if (m_container.empty())
+        throw std::invalid_argument("The container is empty!");
+    else if (m_container.size() == 1)
+        throw std::invalid_argument ("The container has only one element.");
+    int shortestDistance = *m_container.rbegin() - *m_container.begin();
+    for (auto i = m_container.begin(); i != m_container.end(); i++)
+    {
+        auto next = std::next(i);
+        if (next != m_container.end())
+        {
+            int distance = *next - *i;
+            if (distance < shortestDistance)
+                shortestDistance = distance;
+        }
+        else
+            break;
+    }
+    return (shortestDistance);
+};
+
+int Span::longestSpan()
+{
+
+    if (m_container.empty())
+        throw std::invalid_argument("The container is empty!");
+    else if (m_container.size() == 1)
+        throw std::invalid_argument ("The container has only one element.");
+
+    auto first = *m_container.begin();
+    auto end = *m_container.rbegin();
+    
+    return (end - first);
 }

@@ -6,7 +6,7 @@
 #    By: antoniosimone <antoniosimone@student.42      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/20 16:42:36 by asimone       #+#    #+#                  #
-#    Updated: 2024/06/18 13:52:17 by antoniosimo   ########   odam.nl          #
+#    Updated: 2024/06/20 11:45:25 by antoniosimo   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS := -Wall -Wextra -Werror -fsanitize=address -g -std=c++11
 IFLAGS := -I$(LIB_DIR)
 
 SOURCES :=	$(SRC_DIR)/main.cpp

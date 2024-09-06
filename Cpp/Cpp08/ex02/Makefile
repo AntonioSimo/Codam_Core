@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: antoniosimone <antoniosimone@student.42      +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/02/20 16:42:36 by asimone       #+#    #+#                  #
-#    Updated: 2024/06/18 13:56:25 by antoniosimo   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
+#    Updated: 2024/07/01 15:06:07 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ IFLAGS := -I$(LIB_DIR)
 SOURCES :=	$(SRC_DIR)/main.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/MutantStack.hpp
+HEADER := 	$(LIB_DIR)/MutantStack.hpp \
+			$(SRC_DIR)/MutantStack.tpp
 
 GREEN = \033[32m
 RED = \033[31m

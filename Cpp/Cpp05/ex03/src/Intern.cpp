@@ -30,7 +30,7 @@ Intern::~Intern()
 AForm* Intern::makeForm(std::string t_form, std::string t_target)
 {
     std::string formsType[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
-    int found = 0;
+    int found = -1;
 
     for (int i = 0; i < 3; i++)
     {
@@ -44,12 +44,15 @@ AForm* Intern::makeForm(std::string t_form, std::string t_target)
     switch (found)
     {
         case 0:
+            std::cout << "Intern creates " << formsType[0] << std::endl;
             return (new PresidentialPardonForm(t_target));
 
         case 1:
+            std::cout << "Intern creates " << formsType[1] << std::endl;
             return (new RobotomyRequestForm(t_target));
 
         case 2:
+            std::cout << "Intern creates " << formsType[2] << std::endl;
             return (new ShrubberyCreationForm(t_target));
 
         default:

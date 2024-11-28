@@ -71,8 +71,7 @@ void Bureaucrat::signForm(Form &t_form) const
         std::cerr << e.what() << '\n';
         return;
     }
-    // if (t_form.getSigned() == true)
-        std::cout << CYAN << getName() << " bureaucrat signed form " << t_form.getName() << RESET << std::endl;
+    std::cout << CYAN << getName() << " bureaucrat signed " << t_form.getName() << RESET << std::endl;
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()

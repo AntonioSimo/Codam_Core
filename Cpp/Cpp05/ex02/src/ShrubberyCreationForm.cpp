@@ -67,7 +67,5 @@ void ShrubberyCreationForm::execution()
                  "          ~~~w/w~\"~~,\\` `:/,-(~`\"~~~~~~~~\"~o~\\~/~w|/~\n"
                  "dew   ~~~~~~~~~~~~~~~~~~~~~~~\\\\W~~~~~~~~~~~~\\|/~~\"";
 
-    std::cout << FileName << std::endl;
-
     File.close();
 }

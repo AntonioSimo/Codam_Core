@@ -90,7 +90,7 @@ void AForm::execute(Bureaucrat const & t_executor)
         throw (GradeTooLowException());
     this->execution();
     if (m_signed == true)
-        std::cout << "The " << m_name << " is already signed." << std::endl;
+        std::cout << "The " << m_name << " is signed." << std::endl;
     else
         std::cout << "The " << m_name << " is not executed because is not signed." << std::endl;
 }

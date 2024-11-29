@@ -28,14 +28,18 @@ ScalarConverter::~ScalarConverter()
 
 bool    isChar(std::string t_stringToConvert)
 {
-    for(size_t i = 0; i < t_stringToConvert.length(); i++)
-    {
-        if (isprint(t_stringToConvert[i]) != 0)
+    // for(size_t i = 0; i < t_stringToConvert.length(); i++)
+    // {
+        if (isprint(t_stringToConvert[0]) != 0)
         {
-            if (t_stringToConvert[0] == 39 && t_stringToConvert[2] == 39)
-                return(true);
+            // if (t_stringToConvert[0] == 39 && t_stringToConvert[2] == 39)
+                return (true);
         }
-    }
+    // }
+    // if (t_stringToConvert.length() != 3)
+    //     return (false);
+    
+    // if ()
     return (false);
 }
 
@@ -168,8 +172,12 @@ void    printError()
 
 int    checkValue(std::string t_stringToConvert)
 {
-    if (isChar(t_stringToConvert) == 1)
+    std::cout << "given : " << t_stringToConvert << std::endl;
+    if (t_stringToConvert.size() == 1)
+    {
+       if (isChar(t_stringToConvert) == true)
         return (0);
+    }
     else
     {
         if (isNumber(t_stringToConvert) == 0)
@@ -196,13 +204,12 @@ int    checkValue(std::string t_stringToConvert)
 
 void ScalarConverter::convert(std::string t_stringToConvert)
 {
-   
     int i = checkValue(t_stringToConvert);
 
     switch (i)
     {
     case 0:
-        printChar(t_stringToConvert[1]);
+        printChar(t_stringToConvert[i]);
         break;
 
     case 1:

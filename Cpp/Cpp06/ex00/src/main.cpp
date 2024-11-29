@@ -7,13 +7,15 @@
 
 int main(int argc, char **argv)
 {
-    if (argc == 2)
-    {
-        ScalarConverter test;
-        
-        test.convert(argv[1]);
-    }
-    else
+    int arg = 1;
+    if (argc < 1){
         std::cout << RED << "Too many arguments. Usage: " << argv[0] << " <string to convert>" << RESET << std::endl;
+        return 0;
+    }
+    while (arg < argc){
+        ScalarConverter test;
+        test.convert(argv[arg]);
+        arg++;
+    }
     return (0);
 }

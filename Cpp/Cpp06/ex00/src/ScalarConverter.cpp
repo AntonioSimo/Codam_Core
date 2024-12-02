@@ -28,18 +28,10 @@ ScalarConverter::~ScalarConverter()
 
 bool    isChar(std::string t_stringToConvert)
 {
-    // for(size_t i = 0; i < t_stringToConvert.length(); i++)
-    // {
-        if (isprint(t_stringToConvert[0]) != 0)
-        {
-            // if (t_stringToConvert[0] == 39 && t_stringToConvert[2] == 39)
-                return (true);
-        }
-    // }
-    // if (t_stringToConvert.length() != 3)
-    //     return (false);
-    
-    // if ()
+    if (isprint(t_stringToConvert[0]) != 0)
+    {
+        return (true);
+    }
     return (false);
 }
 
@@ -141,7 +133,7 @@ void    printFloat(std::string t_stringToConvert)
     if (floatNumber < std::numeric_limits<float>::min() || floatNumber > std::numeric_limits<float>::max())
         std::cout << "float: Non displayable" << std::endl;
     else
-        std::cout << "float: " << std::setprecision(6) << floatNumber << "f" << std::endl;
+        std::cout << "float: " << floatNumber << "f" << std::endl;
     std::cout << "double: " << static_cast<double>(floatNumber) << std::endl;
 }
 
@@ -155,11 +147,11 @@ void    printDouble(std::string t_stringToConvert)
     else
         std::cout << "char: Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(doubleNumber) << std::endl;
-    std::cout << "float: " << std::setprecision(6) << static_cast<float>(doubleNumber) << "f" << std::endl;
+    std::cout << "float: " << static_cast<float>(doubleNumber) << "f" << std::endl;
     if (doubleNumber < std::numeric_limits<double>::min() || doubleNumber > std::numeric_limits<double>::max())
         std::cout << "double: Non displayable" << std::endl;
     else
-        std::cout << "double: " << std::setprecision(6) << doubleNumber << std::endl;
+        std::cout << "double: " << doubleNumber << std::endl;
 }
 
 void    printError()
@@ -172,7 +164,6 @@ void    printError()
 
 int    checkValue(std::string t_stringToConvert)
 {
-    std::cout << "given : " << t_stringToConvert << std::endl;
     if (t_stringToConvert.size() == 1)
     {
        if (isChar(t_stringToConvert) == true)
@@ -205,7 +196,10 @@ int    checkValue(std::string t_stringToConvert)
 void ScalarConverter::convert(std::string t_stringToConvert)
 {
     int i = checkValue(t_stringToConvert);
+    
 
+    std::cout << std::fixed << std::showpoint;
+    std::cout << std::setprecision(2);
     switch (i)
     {
     case 0:

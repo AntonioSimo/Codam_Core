@@ -1,5 +1,22 @@
 #include "Serializer.hpp"
 
+Data::Data()
+{
+	this->m_number = 0;
+
+	std::cout << GREEN << "Default Data Constructor called.\n" << RESET;
+}
+
+Data::Data(int number) : m_number(number)
+{
+	std::cout << GREEN << "Parameterized Data Constructor called.\n" << RESET;
+}
+
+Data::~Data()
+{
+	std::cout << RED << "Data Destructor called\n" << RESET;
+}
+
 Serializer::Serializer()
 {
 	std::cout << GREEN << "Default Serializer Constructor called." << RESET << std::endl;

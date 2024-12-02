@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/06/06 15:40:50 by asimone          ###   ########.fr        #
+#    Updated: 2024/12/02 16:20:26 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,17 @@ CMP := c++
 FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES :=	$(SRC_DIR)/Data.cpp \
-			$(SRC_DIR)/main.cpp \
-			$(SRC_DIR)/Serializer.cpp
+SOURCES :=	$(SRC_DIR)/A.cpp \
+			$(SRC_DIR)/B.cpp \
+			$(SRC_DIR)/Base.cpp \
+			$(SRC_DIR)/C.cpp \
+			$(SRC_DIR)/main.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/Data.hpp \
-			$(LIB_DIR)/Serializer.hpp
+HEADER := 	$(LIB_DIR)/A.hpp \
+			$(LIB_DIR)/B.hpp \
+			$(LIB_DIR)/Base.hpp \
+			$(LIB_DIR)/B.hpp
 
 GREEN = \033[32m
 RED = \033[31m

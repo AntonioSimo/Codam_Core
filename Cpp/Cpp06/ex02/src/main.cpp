@@ -4,13 +4,14 @@ int main(void)
 {
     srand(static_cast<unsigned int>(time(0)));
 
-    Base* test = nullptr;
-    Base ident;
-    
-    test = test->generate();
-    ident.identify(test);
+    Base test;
+    Base* ptr;
 
-    delete test;
+    ptr = test.generate();
+    test.identify(ptr);
+    test.identify(*ptr);
+
+    delete ptr;
     
     return (0);
 }

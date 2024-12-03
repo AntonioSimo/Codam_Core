@@ -22,18 +22,20 @@ class Array
 			std::cout << "Default Array templates constructor called." << std::endl;
 		}
 
-		Array(unsigned int n) : m_size(n) //Parameteruzed constructor
+		Array(unsigned int n) : m_elements(nullptr), m_size(n) //Parameteruzed constructor
 		{
 			m_elements = new T[n]();
 
 			std::cout << GREEN <<  "Parameterized Array templates constructor called." << RESET << std::endl;
 		}
 
-		Array(const Array& obj) : m_elements(nullptr), m_size(0) //Copy Constructor
+		Array(const Array& obj) : m_elements(nullptr), m_size(obj.m_size) //Copy Constructor
 		{
-        	std::cout << "Copy Array template constructor called." << std::endl;
+        	m_elements = new T[m_size];
+        	for (unsigned int i = 0; i < m_size; ++i)
+            	m_elements[i] = obj.m_elements[i];
 
-        	*this = obj;
+        	std::cout << "Copy Array template constructor called." << std::endl;
     	}
 
     	Array& operator=(const Array& obj) //Copy assignment operator overload
@@ -48,9 +50,9 @@ class Array
                 	m_elements[i] = obj.m_elements[i];
         }
 
-        std::cout << "Copy Array assignment operator called." << std::endl;
+        	std::cout << "Copy Array assignment operator called." << std::endl;
 
-        return *this;
+        	return *this;
     	}
 
 		T& operator[](unsigned int index) //Access operator
@@ -63,6 +65,7 @@ class Array
 
 		~Array() //Destructtor
 		{
+			delete[] m_elements;
 			std::cout << RED << "Default Array templates destructor called." << RESET << std::endl;
     	}
 

@@ -2,8 +2,14 @@
 
 #include <iostream>
 
-template <typename T, typename Func> void iter(T *array, int size, Func func)
+template <typename T, typename Func> void iter(T *array, size_t size, Func func)
 {
-	for (int i = 0; i < size; i++)
+	if (array == nullptr)
+	{
+		std::cerr << "Error: Null pointer passed to iter." << std::endl;
+        return;
+	}
+
+	for (size_t i = 0; i < size; i++)
 		func(array[i]);
 }

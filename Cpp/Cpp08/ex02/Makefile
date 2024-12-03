@@ -6,7 +6,7 @@
 #    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
-#    Updated: 2024/07/01 15:06:07 by asimone          ###   ########.fr        #
+#    Updated: 2024/12/03 16:04:54 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ IFLAGS := -I$(LIB_DIR)
 SOURCES :=	$(SRC_DIR)/main.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/MutantStack.hpp \
-			$(SRC_DIR)/MutantStack.tpp
+HEADER := 	$(LIB_DIR)/MutantStack.hpp
 
 GREEN = \033[32m
 RED = \033[31m

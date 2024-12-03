@@ -1,18 +1,27 @@
 #pragma once
 
 #include <iostream>
+#include <iterator>
 #include <stack>
-#include "../src/MutantStack.tpp"
 
-class MutantStack
+template<typename T>
+class MutantStack : public std::stack<T>
 {
-    private:
-
-
     public: //Access specifier
+        using iterator = typename std::stack<T>::container_type::iterator;
+
         MutantStack(); //Default Constructor
-        MutantStack(unsigned int t_size); //Parameterized Constructor
-        MutantStack(const MutantStack& obj); //Copy Constructor
-        MutantStack& operator=(const MutantStack& ob); //Copy assignment operator overload
         ~MutantStack(); //Destructor
+
+        iterator begin()
+        {
+            return(this->c.begin());
+        }
+        
+        iterator end()
+        {
+            return(this->c.end());
+        }
 };
+
+#include "../src/MutantStack.tpp"

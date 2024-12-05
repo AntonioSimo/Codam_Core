@@ -14,6 +14,16 @@
 #define YELLOW	"\033[33m"
 #define RESET	"\033[0m"
 
+enum valueType
+{
+    ERROR, 
+    INT,
+    CHAR,
+    FLOAT,
+    DOUBLE,
+    NAN_PRINT 
+};
+
 class ScalarConverter
 {
 public: //Access specifier

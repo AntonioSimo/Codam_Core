@@ -26,200 +26,180 @@ ScalarConverter::~ScalarConverter()
     std::cout << RED << "Destructor ScalarConverter called." << RESET << std::endl;
 }
 
-bool    isChar(std::string t_stringToConvert)
+void    printNan()
 {
-    if (isprint(t_stringToConvert[0]) != 0)
-    {
-        return (true);
-    }
-    return (false);
-}
-
-int    isFloat(std::string t_stringToConvert)
-{
-    int f = 0;
-
-    for (size_t i = 0; i < t_stringToConvert.length(); i++)
-    {
-        if (t_stringToConvert[i] == 102)
-            f++;
-        if (f >= 2)
-            return (2);
-    }
-    return (f);
-}
-
-bool isNumber(std::string t_stringToConvert)
-{
-    for (size_t i = 0; i < t_stringToConvert.length(); i++)
-    {
-        if (t_stringToConvert[i] == 45 || t_stringToConvert[i] == 46)
-            i++;
-        if ((t_stringToConvert[i] <= 47 || t_stringToConvert[i] >= 58) && t_stringToConvert[i] != 102)
-            return (true);
-    }
-    return (false);
-}
-
-int    checkSignAndDot(std::string t_stringToConvert)
-{
-    int sign = 0;
-    int dot = 0;
-
-    for (size_t i = 0; i < t_stringToConvert.length(); i++)
-    {
-        if (t_stringToConvert[i] == 45)
-            sign++;
-        if (t_stringToConvert[i] == 46)
-            dot++;
-        if (sign >= 2 || dot >= 2)
-            return (3);
-    }
-    
-    if (dot == 1)
-    {
-        int floatNumber = isFloat(t_stringToConvert);
-
-        switch (floatNumber)
-        {
-        case 0:
-            return (2);
-
-        case 1:
-            return (1);
-
-        case 2:
-            return (3);
-        }
-    }
-    return (0);
+    std::cout << CYAN << "char: " << RESET << "impossible" << std::endl;
+    std::cout << YELLOW << "int: " << RESET << "impossible" << std::endl;
+    std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+    std::cout << GREEN << "double: " << RESET << "nan" << std::endl;
 }
 
 void    printChar(char c)
 {
 
-    std::cout << "char: '" << c << "'" << std::endl;
-    std::cout << "int: " << static_cast<int>(c) << std::endl;
-    std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(c) << std::endl;
+    std::cout << CYAN << "char: " << RESET "'" <<  c << "'" << std::endl;
+    std::cout << YELLOW << "int: " << RESET <<  static_cast<int>(c) << std::endl;
+    std::cout << MAGENTA << "float: " << RESET << static_cast<float>(c) << "f" << std::endl;
+    std::cout << GREEN << "double: " << RESET << static_cast<double>(c) << std::endl;
 }
 
 void    printInt(std::string t_stringToConvert)
 {
-    long longNumber = stol(t_stringToConvert);
+    try
+    {
+        int intNumber = stoi(t_stringToConvert);
 
-    if (longNumber >= 33 && longNumber <= 126)
-        std::cout << "char: '"<< static_cast<char>(longNumber) << "'" << std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    if (longNumber < std::numeric_limits<int>::min() || longNumber > std::numeric_limits<int>::max())
-        std::cout << "int: Non displayable" << std::endl;
-    else
-        std::cout << "int: " << static_cast<int>(longNumber) << std::endl;
-    std::cout << "float: " << static_cast<float>(longNumber) << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(longNumber) << std::endl;
+        if (intNumber >= 33 && intNumber <= 126)
+            std::cout << CYAN <<  "char: " << RESET << "'" << static_cast<char>(intNumber) << "'" << std::endl;
+        else
+            std::cout << CYAN << "char:" << RESET << " Non displayable" << RESET << std::endl;
+
+        std::cout << YELLOW << "int: " << RESET << intNumber << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << static_cast<float>(intNumber) << "f" << std::endl;
+        std::cout << GREEN << "double: " << RESET << static_cast<double>(intNumber) << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void    printFloat(std::string t_stringToConvert)
 {
-    int     asciiValue = stoi(t_stringToConvert);
-    float   floatNumber = stof(t_stringToConvert);
+    try
+    {
+        float   floatNumber = stof(t_stringToConvert);
 
-    if (asciiValue >= 33 && asciiValue <= 126)
-        std::cout << "char: '"<< static_cast<char>(asciiValue) << "'" << std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << static_cast<int>(floatNumber) << std::endl;
-    if (floatNumber < std::numeric_limits<float>::min() || floatNumber > std::numeric_limits<float>::max())
-        std::cout << "float: Non displayable" << std::endl;
-    else
-        std::cout << "float: " << floatNumber << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(floatNumber) << std::endl;
+        if (floatNumber >= 33 && floatNumber <= 126)
+            std::cout << CYAN << "char: " << RESET << "'"<< static_cast<char>(floatNumber) << "'" << std::endl;
+        else
+            std::cout << CYAN << "char: " << RESET <<  "Non displayable" << RESET << std::endl;
+
+        std::cout << YELLOW << "int: " << RESET << static_cast<int>(floatNumber) << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << floatNumber << "f" << std::endl;
+        std::cout << GREEN <<"double: " << RESET << static_cast<double>(floatNumber) << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void    printDouble(std::string t_stringToConvert)
 {
-    int     asciiValue = stoi(t_stringToConvert);
-    float   doubleNumber = stod(t_stringToConvert);
+    try
+    {
+        double     double_number = stod(t_stringToConvert);
 
-    if (asciiValue >= 33 && asciiValue <= 126)
-        std::cout << "char: '"<< static_cast<char>(asciiValue) << "'" << std::endl;
-    else
-        std::cout << "char: Non displayable" << std::endl;
-    std::cout << "int: " << static_cast<int>(doubleNumber) << std::endl;
-    std::cout << "float: " << static_cast<float>(doubleNumber) << "f" << std::endl;
-    if (doubleNumber < std::numeric_limits<double>::min() || doubleNumber > std::numeric_limits<double>::max())
-        std::cout << "double: Non displayable" << std::endl;
-    else
-        std::cout << "double: " << doubleNumber << std::endl;
+        if (double_number >= 33 && double_number <= 126)
+            std::cout << CYAN << "char: " << "'" << static_cast<char>(double_number) << "'" << std::endl;    // for(size_t i = 0; t_stringToConvert[i]; i++)
+        else
+            std::cout << CYAN << "char: " << RESET <<  "Non displayable" << std::endl;
+
+        std::cout << YELLOW << "int: " << RESET << static_cast<int>(double_number) << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << static_cast<float>(double_number) << "f" << std::endl;
+        std::cout << GREEN << "double: " << RESET << double_number << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+}
+
+int checkValue(std::string t_stringToConvert)
+{
+    size_t sign = 0;
+    size_t dot = 0;
+    size_t float_sign = 0;
+    size_t letters = 0;
+    size_t lenght = t_stringToConvert.size();
+
+    if (t_stringToConvert.compare("nan") == 0)
+        return (NAN_PRINT);
+
+    for (size_t i = 0; t_stringToConvert[i]; i++)
+    {
+
+        if (t_stringToConvert[i] == '-' || t_stringToConvert[i] == '+')
+        {
+            i++;
+            sign++;
+        }
+        if (isalpha(t_stringToConvert[i]))
+            letters++;
+        if (t_stringToConvert[i] == 'f')
+            float_sign++;
+        if (t_stringToConvert[i] == '.')
+            dot++;
+        if (sign > 1 || dot > 1 || float_sign > 1 || letters > 1)
+            return(ERROR);
+    }
+    for (size_t i = 0; t_stringToConvert[i]; i++)
+    {
+        if (isdigit(t_stringToConvert[i]) && t_stringToConvert[lenght - 1] == 'f')
+            return (FLOAT);
+        else if (isdigit(t_stringToConvert[i]) && dot == 1)
+            return (DOUBLE);
+        else if (isdigit(t_stringToConvert[i]))
+            return (INT);
+    }
+    return (ERROR);
+}
+
+int checkLenghtOne(std::string t_stringToConvert)
+{
+    if (isdigit(t_stringToConvert[0]))
+        return (INT);
+    else if (isprint(t_stringToConvert[0]) && !isdigit(t_stringToConvert[0]))
+        return (CHAR);
+    return (ERROR);
 }
 
 void    printError()
 {
-    std::cout << "char: impossible" << std::endl;
-    std::cout << "int: impossible" << std::endl;
-    std::cout << "float: nanf" << std::endl;
-    std::cout << "double: nan" << std::endl;
-}
-
-int    checkValue(std::string t_stringToConvert)
-{
-    if (t_stringToConvert.size() == 1)
-    {
-       if (isChar(t_stringToConvert) == true)
-        return (0);
-    }
-    else
-    {
-        if (isNumber(t_stringToConvert) == 0)
-        {
-            int dataType = checkSignAndDot(t_stringToConvert);
-            switch (dataType)
-            {
-            case 0:
-                return (1);
-
-            case 1:
-                return (2);
-
-            case 2:
-                return (3);
-            
-            case 3:
-                return (4);
-            }
-        }
-    }
-    return (4);
+    std::cerr << "Invalid input. Write a char, int, float or double." << std::endl;
 }
 
 void ScalarConverter::convert(std::string t_stringToConvert)
 {
-    int i = checkValue(t_stringToConvert);
-    
+    size_t stringToConvertLenght = t_stringToConvert.size();
+    int i = 0;
 
     std::cout << std::fixed << std::showpoint;
     std::cout << std::setprecision(2);
+
+    if (stringToConvertLenght == 1)
+        i = checkLenghtOne(t_stringToConvert);
+    else
+        i = checkValue(t_stringToConvert);
+
     switch (i)
     {
-    case 0:
-        printChar(t_stringToConvert[i]);
+    case ERROR:
+        printError();
         break;
 
-    case 1:
+    case INT:
         printInt(t_stringToConvert);
         break;
 
-    case 2:
+    case CHAR:
+        printChar(t_stringToConvert[0]);
+        break;
+
+    case FLOAT:
         printFloat(t_stringToConvert);
         break;
-
-    case 3:
+    
+    case DOUBLE:
         printDouble(t_stringToConvert);
         break;
+    
+    case NAN_PRINT:
+        printNan();
+        break;
 
-    case 4:
-        printError();
+    default:
         break;
     }
 }

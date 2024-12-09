@@ -34,6 +34,14 @@ void    printNan()
     std::cout << GREEN << "double: " << RESET << "nan" << std::endl;
 }
 
+void    printInf()
+{
+    std::cout << CYAN << "char: " << RESET << "impossible" << std::endl;
+    std::cout << YELLOW << "int: " << RESET << "impossible" << std::endl;
+    std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+    std::cout << GREEN << "double: " << RESET << "nan" << std::endl;
+}
+
 void    printChar(char c)
 {
 
@@ -60,7 +68,10 @@ void    printInt(std::string t_stringToConvert)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << CYAN << "char: " << RESET << "Non displayable" << std::endl;
+        std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+        std::cout << GREEN <<"double: " << RESET << "nan" << std::endl;
     }
 }
 
@@ -75,13 +86,16 @@ void    printFloat(std::string t_stringToConvert)
         else
             std::cout << CYAN << "char: " << RESET <<  "Non displayable" << RESET << std::endl;
 
-        std::cout << YELLOW << "int: " << RESET << static_cast<int>(floatNumber) << std::endl;
+        std::cout << YELLOW << "int: " << RESET << round(floatNumber) << std::endl;
         std::cout << MAGENTA << "float: " << RESET << floatNumber << "f" << std::endl;
         std::cout << GREEN <<"double: " << RESET << static_cast<double>(floatNumber) << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << CYAN << "char: " << RESET << "Non displayable" << std::endl;
+        std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+        std::cout << GREEN <<"double: " << RESET << "nan" << std::endl;
     }
 }
 
@@ -92,17 +106,20 @@ void    printDouble(std::string t_stringToConvert)
         double     double_number = stod(t_stringToConvert);
 
         if (double_number >= 33 && double_number <= 126)
-            std::cout << CYAN << "char: " << "'" << static_cast<char>(double_number) << "'" << std::endl;    // for(size_t i = 0; t_stringToConvert[i]; i++)
+            std::cout << CYAN << "char: " << "'" << static_cast<char>(double_number) << "'" << std::endl;
         else
             std::cout << CYAN << "char: " << RESET <<  "Non displayable" << std::endl;
 
-        std::cout << YELLOW << "int: " << RESET << static_cast<int>(double_number) << std::endl;
+        std::cout << YELLOW << "int: " << RESET << round(double_number) << std::endl;
         std::cout << MAGENTA << "float: " << RESET << static_cast<float>(double_number) << "f" << std::endl;
         std::cout << GREEN << "double: " << RESET << double_number << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cout << CYAN << "char: " << RESET << "Non displayable" << std::endl;
+        std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+        std::cout << GREEN <<"double: " << RESET << "nan" << std::endl;
     }
 }
 
@@ -114,8 +131,13 @@ int checkValue(std::string t_stringToConvert)
     size_t letters = 0;
     size_t lenght = t_stringToConvert.size();
 
-    if (t_stringToConvert.compare("nan") == 0)
+
+    if (t_stringToConvert.compare("nan") == 0 || t_stringToConvert.compare("nanf") == 0)
         return (NAN_PRINT);
+    if (t_stringToConvert.compare("-inff") == 0 || t_stringToConvert.compare("+inff") == 0 || t_stringToConvert.compare("-inf") == 0 || t_stringToConvert.compare("+inf") == 0)
+        return (INF_PRINT);
+    if (t_stringToConvert[0] == '\'' && isprint(t_stringToConvert[1]) && t_stringToConvert[2] == '\'')
+        return (CHAR);
 
     for (size_t i = 0; t_stringToConvert[i]; i++)
     {
@@ -125,33 +147,26 @@ int checkValue(std::string t_stringToConvert)
             i++;
             sign++;
         }
-        if (isalpha(t_stringToConvert[i]))
+        if (isalpha(t_stringToConvert[i]) && t_stringToConvert[i] != 'f')
             letters++;
         if (t_stringToConvert[i] == 'f')
             float_sign++;
         if (t_stringToConvert[i] == '.')
             dot++;
-        if (sign > 1 || dot > 1 || float_sign > 1 || letters > 1)
+        if (t_stringToConvert[i] == 'f' && t_stringToConvert[lenght - 1] != 'f')
+            return (ERROR);
+        if (sign > 1 || dot > 1 || float_sign > 1 || letters > 0)
             return(ERROR);
     }
     for (size_t i = 0; t_stringToConvert[i]; i++)
     {
         if (isdigit(t_stringToConvert[i]) && t_stringToConvert[lenght - 1] == 'f')
             return (FLOAT);
-        else if (isdigit(t_stringToConvert[i]) && dot == 1)
+        else if (isdigit(t_stringToConvert[i]) && dot == 1 && !isalpha(t_stringToConvert[i]))
             return (DOUBLE);
         else if (isdigit(t_stringToConvert[i]))
             return (INT);
     }
-    return (ERROR);
-}
-
-int checkLenghtOne(std::string t_stringToConvert)
-{
-    if (isdigit(t_stringToConvert[0]))
-        return (INT);
-    else if (isprint(t_stringToConvert[0]) && !isdigit(t_stringToConvert[0]))
-        return (CHAR);
     return (ERROR);
 }
 
@@ -162,16 +177,12 @@ void    printError()
 
 void ScalarConverter::convert(std::string t_stringToConvert)
 {
-    size_t stringToConvertLenght = t_stringToConvert.size();
     int i = 0;
 
     std::cout << std::fixed << std::showpoint;
     std::cout << std::setprecision(2);
 
-    if (stringToConvertLenght == 1)
-        i = checkLenghtOne(t_stringToConvert);
-    else
-        i = checkValue(t_stringToConvert);
+    i = checkValue(t_stringToConvert);
 
     switch (i)
     {
@@ -184,7 +195,7 @@ void ScalarConverter::convert(std::string t_stringToConvert)
         break;
 
     case CHAR:
-        printChar(t_stringToConvert[0]);
+        printChar(t_stringToConvert[1]);
         break;
 
     case FLOAT:
@@ -197,6 +208,10 @@ void ScalarConverter::convert(std::string t_stringToConvert)
     
     case NAN_PRINT:
         printNan();
+        break;
+
+    case INF_PRINT:
+        printInf();
         break;
 
     default:

@@ -21,7 +21,8 @@ enum valueType
     CHAR,
     FLOAT,
     DOUBLE,
-    NAN_PRINT 
+    NAN_PRINT,
+    INF_PRINT
 };
 
 class ScalarConverter

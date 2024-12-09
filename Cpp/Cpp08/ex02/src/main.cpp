@@ -31,4 +31,4 @@ int main()
     }
     std::stack<int> s(mstack);
     return (0);
-}
+} 

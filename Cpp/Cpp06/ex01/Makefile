@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: antoniosimone <antoniosimone@student.42      +#+                      #
-#                                                    +#+                       #
-#    Created: 2024/02/20 16:42:36 by asimone       #+#    #+#                  #
-#    Updated: 2024/06/05 11:43:31 by antoniosimo   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: asimone <asimone@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/20 16:42:36 by asimone           #+#    #+#              #
+#    Updated: 2024/12/09 11:38:49 by asimone          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,11 @@ CMP := c++
 FLAGS := -Wall -Wextra -Werror -fsanitize=address -g
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES :=	$(SRC_DIR)/Data.cpp \
-			$(SRC_DIR)/main.cpp \
+SOURCES :=	$(SRC_DIR)/main.cpp \
 			$(SRC_DIR)/Serializer.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
-HEADER := 	$(LIB_DIR)/Data.hpp \
-			$(LIB_DIR)/Serializer.hpp
+HEADER := 	$(LIB_DIR)/Serializer.hpp
 
 GREEN = \033[32m
 RED = \033[31m

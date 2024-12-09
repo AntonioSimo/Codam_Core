@@ -7,11 +7,11 @@ int main(void)
 	std::cout << "This is m_number in Data: " << mydata.m_number << std::endl;
 	
 	uintptr_t serialized = Serializer::serialize(&mydata);
-	std::cout << "Value of mydata obj: " << &mydata << std::endl;
-	std::cout << "Result of serialize function: " << serialized << std::endl;
+	std::cout << "Address of mydata: " << &mydata << std::endl;
+	std::cout << "Address of serialize: " << &serialized << std::endl;
 
 	Data* deserialize = Serializer::deserialize(serialized);
-	std::cout << "Result of the deserialize function: " << deserialize << std::endl;
+	std::cout << "Address of the deserialize function: " << deserialize << std::endl;
 	std::cout << "This is m_number in Data: " << deserialize->m_number << std::endl;
 
 	if (deserialize == &mydata) 

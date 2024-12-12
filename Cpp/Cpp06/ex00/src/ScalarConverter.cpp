@@ -62,7 +62,10 @@ void    printInt(std::string t_stringToConvert)
         else
             std::cout << CYAN << "char:" << RESET << " Non displayable" << RESET << std::endl;
 
-        std::cout << YELLOW << "int: " << RESET << intNumber << std::endl;
+        if (intNumber > std::numeric_limits<int>::max() || intNumber < std::numeric_limits<int>::min())
+            std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        else 
+            std::cout << YELLOW << "int: " << RESET << round(intNumber) << std::endl;
         std::cout << MAGENTA << "float: " << RESET << static_cast<float>(intNumber) << "f" << std::endl;
         std::cout << GREEN << "double: " << RESET << static_cast<double>(intNumber) << std::endl;
     }
@@ -86,7 +89,11 @@ void    printFloat(std::string t_stringToConvert)
         else
             std::cout << CYAN << "char: " << RESET <<  "Non displayable" << RESET << std::endl;
 
-        std::cout << YELLOW << "int: " << RESET << round(floatNumber) << std::endl;
+        if (floatNumber > static_cast<float>(std::numeric_limits<int>::max()) || floatNumber < static_cast<float>(std::numeric_limits<int>::min()))
+            std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        else 
+            std::cout << YELLOW << "int: " << RESET << round(floatNumber) << std::endl;
+
         std::cout << MAGENTA << "float: " << RESET << floatNumber << "f" << std::endl;
         std::cout << GREEN <<"double: " << RESET << static_cast<double>(floatNumber) << std::endl;
     }
@@ -109,9 +116,14 @@ void    printDouble(std::string t_stringToConvert)
             std::cout << CYAN << "char: " << "'" << static_cast<char>(double_number) << "'" << std::endl;
         else
             std::cout << CYAN << "char: " << RESET <<  "Non displayable" << std::endl;
-
-        std::cout << YELLOW << "int: " << RESET << round(double_number) << std::endl;
-        std::cout << MAGENTA << "float: " << RESET << static_cast<float>(double_number) << "f" << std::endl;
+        if (double_number > std::numeric_limits<int>::max() || double_number < std::numeric_limits<int>::min())
+            std::cout << YELLOW << "int: " << RESET << "Impossible" << std::endl;
+        else 
+            std::cout << YELLOW << "int: " << RESET << round(double_number) << std::endl;
+        if (double_number > std::numeric_limits<float>::max() || double_number < -std::numeric_limits<float>::max())
+            std::cout << MAGENTA << "float: " << RESET << "nanf" << std::endl;
+        else 
+            std::cout << MAGENTA << "float: " << RESET << static_cast<float>(double_number) << "f" << std::endl;
         std::cout << GREEN << "double: " << RESET << double_number << std::endl;
     }
     catch(const std::exception& e)

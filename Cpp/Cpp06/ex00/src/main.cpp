@@ -12,8 +12,7 @@ int main(int argc, char **argv)
     {
         while (arg < argc)
         {
-            ScalarConverter test;
-            test.convert(argv[1]);
+            ScalarConverter::convert(argv[1]);
             arg++;
         }
     }

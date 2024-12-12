@@ -12,6 +12,11 @@ Data::Data(int number) : m_number(number)
 	std::cout << GREEN << "Parameterized Data Constructor called.\n" << RESET;
 }
 
+void	Data::printData()
+{
+	std::cout << "This is m_number in Data: " << m_number << std::endl;
+}
+
 Data::~Data()
 {
 	std::cout << RED << "Data Destructor called\n" << RESET;

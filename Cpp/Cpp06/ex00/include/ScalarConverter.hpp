@@ -27,12 +27,14 @@ enum valueType
 
 class ScalarConverter
 {
-public: //Access specifier
-    ScalarConverter(); //Default Constructor
-	ScalarConverter(const ScalarConverter& obj); //Copy Constructor
-	ScalarConverter& operator=(const ScalarConverter& obj); //Copy assignment operator overload
-	~ScalarConverter(); //Destructor
-    static void convert(std::string t_stringToConvert); //Static method function
+    private:
+        ScalarConverter(); //Default Constructor
+	    ScalarConverter(const ScalarConverter& obj); //Copy Constructor
+	    ScalarConverter& operator=(const ScalarConverter& obj); //Copy assignment operator overload
+	    ~ScalarConverter(); //Destructor
+
+    public: //Access specifier
+        static void convert(std::string t_stringToConvert); //Static method function
 };
 
 void	printError();

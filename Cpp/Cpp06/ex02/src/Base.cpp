@@ -45,9 +45,7 @@ void Base::identify(Base& p)
         std::cout << "A address: " << &a << std::endl;
         return;
     } 
-    catch (std::bad_cast&) 
-    {
-    }
+    catch (std::bad_cast&) {}
 
     try 
     {

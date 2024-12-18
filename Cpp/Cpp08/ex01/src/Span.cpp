@@ -34,7 +34,7 @@ Span::~Span()
     std::cout << "Destructor Span called." << std::endl;
 }
 
-std::set<int>& Span::getContainer()
+std::vector<int>& Span::getContainer()
 {
     return (this->m_container);
 }
@@ -42,7 +42,7 @@ std::set<int>& Span::getContainer()
 void Span::addNumber(int x)
 {
     if (m_container.size() + 1 <= this->m_size)
-        m_container.insert(x);
+        m_container.push_back(x);
     else
         throw std::invalid_argument ("There is not enough space in the container");
 }
@@ -81,4 +81,12 @@ int Span::longestSpan()
     auto end = *m_container.rbegin();
     
     return (end - first);
+}
+
+void Span::addNumberRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) 
+{
+    size_t rangeSize = std::distance(begin, end);
+    if (m_container.size() + rangeSize > m_size) 
+        throw std::invalid_argument("There is not enough space in the container");
+    m_container.insert(m_container.end(), begin, end);
 }

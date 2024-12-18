@@ -2,14 +2,14 @@
 
 #include <algorithm>
 #include <iostream>
-#include <set>
+#include <vector>
 #include <stdexcept>
 
 class Span
 {
 private: //Access specifier
     unsigned int     m_size; //Attribute
-    std::set<int>   m_container; //Attribute
+    std::vector<int>   m_container; //Attribute
 
 public: //Access specifier
     Span(); //Default Constructor
@@ -19,7 +19,8 @@ public: //Access specifier
     ~Span(); //Destructor
 
     void addNumber(int x); //Member function
-    std::set<int>& getContainer(); //Member function
+    void addNumberRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);  //Member function
+    std::vector<int>& getContainer(); //Member function
     int longestSpan(); //Member function
     int shortestSpan(); //Member function
 

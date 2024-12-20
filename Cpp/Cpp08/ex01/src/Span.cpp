@@ -54,6 +54,7 @@ int Span::shortestSpan()
     else if (m_container.size() == 1)
         throw std::invalid_argument ("The container has only one element.");
     int shortestDistance = *m_container.rbegin() - *m_container.begin();
+    std::sort(m_container.begin(), m_container.end());
     for (auto i = m_container.begin(); i != m_container.end(); i++)
     {
         auto next = std::next(i);

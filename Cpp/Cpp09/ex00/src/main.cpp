@@ -3,8 +3,18 @@
 int main(int argc, char** argv)
 {
     (void) argv;
-    if (argc == 2)
-        std::cout << "Ciao" << std::endl;
-    else
-        std::cerr << "You should give me a parameter" << std::endl;
+    try
+    {
+        if (argc == 2)
+        {
+            BitcoinExchange Bitcoin;
+            Bitcoin.BitcoinExe(argv[1]);
+        }
+        else
+            throw BitcoinExchange::BadArgumentException();
+    }
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
 }

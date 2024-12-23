@@ -3,11 +3,11 @@
 template<typename T>
 MutantStack<T>::MutantStack()
 {
-    std::cout << "Default MutantStack constructor called." << std::endl;
+    std::cout << GREEN << "Default MutantStack constructor called." << RESET << std::endl;
 }
 
 template<typename T>
 MutantStack<T>::~MutantStack()
 {
-    std::cout << "Destructor MutantStack called." << std::endl;
+    std::cout << RED << "Destructor MutantStack called." << RESET << std::endl;
 }

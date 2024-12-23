@@ -3,17 +3,17 @@
 
 Span::Span() : m_size(0), m_container()
 {
-    std::cout << "Default Span constructor called." << std::endl;
+    std::cout << GREEN << "Default Span constructor called." << RESET << std::endl;
 }
 
 Span::Span(unsigned int t_numbers) : m_size(t_numbers), m_container()
 {
-    std::cout << "Parameterized Span constructor called." << std::endl;
+    std::cout << GREEN << "Parameterized Span constructor called." << RESET << std::endl;
 }
 
 Span::Span(const Span& obj)
 {
-    std::cout << "Copy Span constructor called." << std::endl;
+    std::cout << YELLOW << "Copy Span constructor called." << RESET << std::endl;
 
     *this = obj;
 }
@@ -25,13 +25,13 @@ Span& Span::operator=(const Span& obj)
         this->m_size = obj.m_size;
         this->m_container = obj.m_container;
     }
-    std::cout << "Copy Span assignment operator called." << std::endl;
+    std::cout << CYAN << "Copy Span assignment operator called." << RESET << std::endl;
     return (*this);
 }
 
 Span::~Span()
 {
-    std::cout << "Destructor Span called." << std::endl;
+    std::cout << RED << "Destructor Span called." << RESET << std::endl;
 }
 
 std::vector<int>& Span::getContainer()

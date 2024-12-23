@@ -19,7 +19,7 @@ class Array
    	public:
 		Array() : m_elements(nullptr), m_size(0) //Default constructor
 		{
-			std::cout << "Default Array templates constructor called." << std::endl;
+			std::cout << GREEN << "Default Array templates constructor called." << RESET << std::endl;
 		}
 
 		Array(unsigned int n) : m_elements(nullptr), m_size(n) //Parameteruzed constructor
@@ -35,7 +35,7 @@ class Array
         	for (unsigned int i = 0; i < m_size; ++i)
             	m_elements[i] = obj.m_elements[i];
 
-        	std::cout << "Copy Array template constructor called." << std::endl;
+        	std::cout << YELLOW << "Copy Array template constructor called." << RESET << std::endl;
     	}
 
     	Array& operator=(const Array& obj) //Copy assignment operator overload
@@ -50,7 +50,7 @@ class Array
                 	m_elements[i] = obj.m_elements[i];
         }
 
-        	std::cout << "Copy Array assignment operator called." << std::endl;
+        	std::cout << CYAN << "Copy Array assignment operator called." << RESET << std::endl;
 
         	return *this;
     	}

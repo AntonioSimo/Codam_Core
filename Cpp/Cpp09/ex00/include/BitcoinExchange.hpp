@@ -1,6 +1,10 @@
 #pragma once
 
+#include <fstream>
 #include <iostream>
+#include <map>
+#include <set>
+#include <sstream>
 
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"
@@ -11,15 +15,35 @@
 
 class BitcoinExchange
 {
-public:
-    BitcoinExchange();
-    ~BitcoinExchange();
+public: //Access specifier
+    std::unordered_map <std::string, double> bitcoinData; //Attribute
 
-    void    BitcoinExe(char* file);
+    BitcoinExchange(); //Default Constructor
+    BitcoinExchange(const BitcoinExchange& obj); //Copy Constructor
+    BitcoinExchange& operator=(const BitcoinExchange& obj); //Copy assignment operator overload
+    ~BitcoinExchange(); //Destructor
 
-    class BadArgumentException : public std::exception
+    void    BitcoinExe(char* file); //Static function
+    void    calculateValue(const std::string& date, const std::string& value); //Static function
+    void    loadExchangeRates(const std::string& file); //Static function
+    void	validDate(std::string input); //Static function
+    void	validValue(std::string input); //Static function
+
+    class BadArgumentException : public std::exception //Bad argument exception
 	{
-		public:
+		public: //Access specifier
             const char* what() const throw() override;
 	};
+
+    class invalidDateException : public std::exception //Invalid data exception
+    {
+    	public: //Access specifier
+            const char* what() const throw() override;
+    };
+
+     class invalidBitcoinValueException : public std::exception //Invalid Bitcoin value exception
+    {
+    	public: //Access specifier
+            const char* what() const throw() override;
+    };
 };

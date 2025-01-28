@@ -6,26 +6,26 @@
 #    By: antoniosimone <antoniosimone@student.42      +#+                      #
 #                                                    +#+                       #
 #    Created: 2024/02/20 16:42:36 by asimone       #+#    #+#                  #
-#    Updated: 2024/12/27 17:37:07 by antoniosimo   ########   odam.nl          #
+#    Updated: 2025/01/17 17:17:38 by antoniosimo   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := btc
+NAME := RPN
 
 SRC_DIR := src
 OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS := -Wall -Wextra -Werror -fsanitize=address -g -std=c++11
+FLAGS :=  -g -std=c++11 #-Wall -Wextra -Werror -fsanitize=address
 IFLAGS := -I$(LIB_DIR)
 
-SOURCES :=	$(SRC_DIR)/BitcoinExchange.cpp \
+SOURCES :=	$(SRC_DIR)/RPN.cpp \
 			$(SRC_DIR)/main.cpp
 			
 OBJECTS := 	$(patsubst $(SRC_DIR)%,$(OBJ_DIR)%,$(SOURCES:.cpp=.o))
 
-HEADER := 	$(LIB_DIR)/BitcoinExchange.hpp
+HEADER := 	$(LIB_DIR)/RPN.hpp
 
 GREEN = \033[32m
 RED = \033[31m

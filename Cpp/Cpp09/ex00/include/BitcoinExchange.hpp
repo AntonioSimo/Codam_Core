@@ -1,10 +1,13 @@
 #pragma once
 
+#include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <map>
-#include <set>
+#include <string>
 #include <sstream>
+#include <stdexcept>
 
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"
@@ -16,7 +19,7 @@
 class BitcoinExchange
 {
 public: //Access specifier
-    std::unordered_map <std::string, double> bitcoinData; //Attribute
+    std::map <std::string, double> bitcoinData; //Attribute
 
     BitcoinExchange(); //Default Constructor
     BitcoinExchange(const BitcoinExchange& obj); //Copy Constructor
@@ -24,6 +27,7 @@ public: //Access specifier
     ~BitcoinExchange(); //Destructor
 
     void    BitcoinExe(char* file); //Static function
+    std::string findNearestDate(const std::string& inputDate); //Static function
     void    calculateValue(const std::string& date, const std::string& value); //Static function
     void    loadExchangeRates(const std::string& file); //Static function
     void	validDate(std::string input); //Static function

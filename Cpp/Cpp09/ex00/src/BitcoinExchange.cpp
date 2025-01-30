@@ -70,50 +70,23 @@ void	BitcoinExchange::validDate(std::string input)
 {
     if (input.size() != 10 || input[4] != '-' || input[7] != '-')
         throw BitcoinExchange::invalidDateException();
-        // std::cerr << "Error: bad input => " << input << std::endl;
 }
 
 void	BitcoinExchange::validValue(std::string input)
 {
 	if (input.empty())
-        return;
-    //     std::cout << "Error: bad input" << std::endl;
-    if (input[0] == '-')
     {
-        std::cerr << "Error: not a positive number." << std::endl;
         return;
     }
-		// throw BitcoinExchange::invalidBitcoinValueException();
+    if (input[0] == '-')
+    {
+        return;
+    }
 	for (size_t i = 0; i < input.size(); i++)
 	{
 		if (!std::isdigit(input[i]) && input[i] != '.')
 			throw BitcoinExchange::invalidBitcoinValueException();
 	}
-    // double value = std::stod(input);
-    // std::cout << "This is the value: " << value << std::endl;
-
-    // if (value < 0)
-    //     std::cerr << "Error: not a positive number." << std::endl;
-    // if (value > 100000)
-    // {
-    //     std::cerr << "Error: too large a number" << std::endl;
-    // }
-        // throw BitcoinExchange::invalidBitcoinValueException();
-
-    // try {
-    //     double value = std::stod(input);
-    //     // std::cout << "This is the value: " << value << std::endl;
-
-    //     if (value > 100000) {
-    //         std::cerr << "Error: too large a number" << std::endl;
-    //     }
-    // }
-    // catch (const std::invalid_argument& e) {
-    //     std::cerr << "Error: invalid number format" << std::endl;
-    // }
-    // catch (const std::out_of_range& e) {
-    //     std::cerr << "Error: number out of range" << std::endl;
-    // }
 }
 
 std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
@@ -148,10 +121,8 @@ void BitcoinExchange::calculateValue(const std::string& date, const std::string&
     std::string nearestDate = findNearestDate(date);
     double nearestValue = bitcoinData[nearestDate];
 
-    // double bitcoinValue = std::stod(value);
     try {
         double bitcoinValue = std::stod(value);
-        // std::cout << "This is the value: " << value << std::endl;
         if (bitcoinValue < 0)
         {
             std::cerr << "Error: not a positive number." << std::endl;
@@ -163,17 +134,16 @@ void BitcoinExchange::calculateValue(const std::string& date, const std::string&
             return ;
         }
         double finalValue = bitcoinValue * nearestValue;
-        std::cout << date << " => " << bitcoinValue << " = " << finalValue << std::endl;
+        std::cerr << date << " => " << bitcoinValue << " = " << finalValue << std::endl;
     }
-    catch (const std::invalid_argument& e) {
-        std::cerr << "Error: invalid number format" << std::endl;
+    catch (const std::invalid_argument& e) 
+    {
+        return;
     }
-    catch (const std::out_of_range& e) {
+    catch (const std::out_of_range& e) 
+    {
         std::cerr << "Error: number out of range" << std::endl;
     }
-    // if (bitcoinValue < 0 || bitcoinValue > 100000)
-    //     return;
-
 }
 
 void BitcoinExchange::BitcoinExe( char* file)
@@ -193,11 +163,6 @@ void BitcoinExchange::BitcoinExe( char* file)
     headerDate = deleteSpace(headerDate);
     headerExchangeRate = deleteSpace(headerExchangeRate);
 
-    if (headerDate != "date" || headerExchangeRate != "value")
-    {
-        // throw BitcoinExchange::BadArgumentException();
-    }
-
 	try
 	{
 		while (std::getline(myFile, line))
@@ -210,7 +175,6 @@ void BitcoinExchange::BitcoinExe( char* file)
             {
                 std::cerr << "Error: bad input => " << date << std::endl;
             }
-        	    // throw BitcoinExchange::BadArgumentException();
 
             date = deleteSpace(date);
             value = deleteSpace(value);

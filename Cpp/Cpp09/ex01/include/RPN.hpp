@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <exception>
-#include <queue>
+#include <stack>
 #include <stdlib.h>
 #include <vector>
 
@@ -16,17 +16,15 @@
 class RPN
 {
 public:
-
-    std::queue<int> operationVector;
-    std::queue<int> math_operator;
+    std::stack<int> operands; //Attribute
     int m_result; //Attribute
 
     RPN(); //Default Constructor
     ~RPN(); //Destructor
 
-    void    RpnExe(char* argv);
-    void	makeOperation();
-    void	makeOtherOperation();
+    void    RpnExe(char* expression);
+    void    performOperation(std::stack<int>& operands, char operation);
+    int     getResult() const;
 
     class RPNException : public std::exception
     {

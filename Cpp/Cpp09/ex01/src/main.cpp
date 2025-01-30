@@ -2,19 +2,28 @@
 
 int main(int argc, char **argv)
 {
-	    try
+    try 
     {
-        if (argc == 2)
+        RPN rpn;
+        
+        if (argc > 2) 
         {
-            RPN Rpn;
-
-            Rpn.RpnExe(argv[1]);
+            throw RPN::RPNException("Error: Too many arguments provided. The expression should be enclosed in double quotes.");
+            return (1);
         }
-        else
-            throw RPN::RPNException("Error: The argument is out of the valid range. You should include the argument inside the double quotes.");
+        if (argc < 2) 
+        {
+            throw RPN::RPNException("Error: Missing expression. Please provide a valid RPN expression enclosed in double quotes.");
+            return (1);
+        }
+
+        rpn.RpnExe(argv[1]);
+        std::cout << rpn.getResult() << std::endl;
+    } 
+    catch (const RPN::RPNException& e) 
+    {
+        std::cerr << "Error " << e.what() << std::endl;
+        return (1);
     }
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-	}
+    return (0);
 }

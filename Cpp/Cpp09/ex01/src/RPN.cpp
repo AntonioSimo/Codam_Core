@@ -10,120 +10,61 @@ RPN::~RPN()
     std::cout << RED <<"Destructor RPN called." <<  RESET << std::endl;
 }
 
-//void	RPN::makeOtherOperation(std::queue<int> data)
-//{
-//	int other_result = 0;
 
-//	for (; !data.empty();)
-//	{
-//		if (data.back() == 43)
-//		{
-//			other_result = m_result + data.front();
-//			data.pop();
-//		}
-//		if (data.front() == 43 && data.size() == 1)
-//			data.pop();
-//	}
-//	std::cout << other_result << std::endl;
-//}
-
-//void	RPN::makeOperation()
-//{
-//	int number = 0;
-
-
-//	if (data.empty())
-//		throw RPN::RPNException("Error: the container is empty.");
-//	else 
-//	{
-//		for (; !data.empty();)
-//		{
-//			number = data.front();
-//			//std::cout << number << std::endl;
-//			if (data.back() == 43)
-//			{
-//				data.pop();
-//				//std::cout << "This is number: " << number << std::endl;
-//				//std::cout << "This is the data.front: " << data.front() << std::endl;
-//				m_result = number + data.front();
-//				break;
-//			}
-//			if (data.back() == 42)
-//			{
-//				data.pop();
-//				m_result = number * data.front();
-//			}
-//			else 
-//				m_result = 0;
-//		}
-//		std::cout << m_result << std::endl;
-//		data.pop();
-//		if (data.size() == 1)
-//			return ;
-//		for (; !data.empty();)
-//		{
-//			if (data.front() == 43)
-//			{
-//				data.pop();
-//			}
-//			makeOtherOperation(data);
-//			break;
-//		}
-//	}
-//}
-
-void	RPN::makeOperation()
+void RPN::RpnExe(char* expression) 
 {
-	for (; !operationVector.empty();)
+    for (int i = 0; expression[i] != '\0'; ++i) 
 	{
-  		{
-  			std::cout << operationVector.front() << " ";
-  			operationVector.pop();
-  		}
-  			std::cout << std::endl;
-	}
+        char c = expression[i];
 
-	for (; !math_operator.empty();)
-	{
-  		{
-  			std::cout << math_operator.front() << " ";
-  			math_operator.pop();
-  		}
-  			std::cout << std::endl;
-	}
+        if (isdigit(c)) 
+            operands.push(c - '0');
+		else if (c == '+' || c == '-' || c == '*' || c == '/') {
+            if (operands.size() < 2) 
+                throw RPNException("There are not enough operands for the operator.");
+            performOperation(operands, c);
+        } 
+		else if (c != ' ' && c != '\t')
+            throw RPNException("Invalid character in the notation.");
+    }
+    if (operands.size() != 1) 
+        throw RPNException("Syntax error in the expression.");
+
+    m_result = operands.top();
 }
 
-void	RPN::RpnExe(char* argv)
+void RPN::performOperation(std::stack<int>& operands, char operation) 
 {
-	int i = 0;
-	size_t number = 0;
+    int b = operands.top(); operands.pop();
+    int a = operands.top(); operands.pop();
 
-	while (argv[i])
+    int result;
+    switch (operation) 
 	{
-		if (isdigit(argv[i]))
-		{
-			number = argv[i] - '0';
-			operationVector.push(number);
-			i++;
-		}
-		else if (isspace(argv[i]) && !isdigit(argv[i - 2]))
-			i++;
-		else if (argv[i] == '+' || argv[i] == '-' || argv[i] == '*' || argv[i] == '/')
-		{
-			math_operator.push(argv[i]);
-			i++;
-		}	
-		else
-			throw RPN::RPNException("Error: the only arguments can be number or math operators");
-	}
-
-	makeOperation();
+        case '+': 
+			result = a + b; 
+			break;
+        case '-': 
+			result = a - b; 
+			break;
+        case '*': 
+			result = a * b; 
+			break;
+        case '/': 
+            if (b == 0) 
+				throw RPNException("Division by zero!");
+            result = a / b; 
+            break;
+        default:
+            throw RPNException("Unknown operator");
+    }
+    operands.push(result);
 }
 
-//const char* RPN::RPNException::what() const throw()
-//{
-//	return ("Error: The following numbers, to apply the mathematical notation, should be less than 10.");
-//}
+int RPN::getResult() const 
+{
+    return m_result;
+}
 
 const char* RPN::RPNException::what() const throw()
 {

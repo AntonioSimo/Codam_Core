@@ -10,7 +10,6 @@ RPN::~RPN()
     std::cout << RED <<"Destructor RPN called." <<  RESET << std::endl;
 }
 
-
 void RPN::RpnExe(char* expression) 
 {
     for (int i = 0; expression[i] != '\0'; ++i) 
@@ -19,7 +18,8 @@ void RPN::RpnExe(char* expression)
 
         if (isdigit(c)) 
             operands.push(c - '0');
-		else if (c == '+' || c == '-' || c == '*' || c == '/') {
+		else if (c == '+' || c == '-' || c == '*' || c == '/') 
+		{
             if (operands.size() < 2) 
                 throw RPNException("There are not enough operands for the operator.");
             performOperation(operands, c);

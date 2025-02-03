@@ -4,6 +4,7 @@
 #include <iostream>
 #include <exception>
 #include <stdlib.h>
+#include <vector>
 
 #define CYAN	"\033[36m"
 #define GREEN	"\033[32m"
@@ -16,10 +17,13 @@ class PmergeMe
 {
 public:
 
+    std::vector<int> _container;
+
     PmergeMe(); //Default Constructor
     ~PmergeMe(); //Destructor
 
-    void    PmergeMeExe(char* argv);
+    void    PmergeMeExe(int argc, char* argv[]);
+    void    fordJohnsonSort(std::vector<int>& vec);
 
     class PmergeMeException : public std::exception
     {

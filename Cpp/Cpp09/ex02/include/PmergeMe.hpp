@@ -1,7 +1,8 @@
 #pragma once
 
-
+#include <algorithm>
 #include <iostream>
+#include <chrono>
 #include <exception>
 #include <stdlib.h>
 #include <vector>

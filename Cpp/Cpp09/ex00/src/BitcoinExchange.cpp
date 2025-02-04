@@ -63,6 +63,8 @@ void BitcoinExchange::loadExchangeRates(const std::string& file)
             continue;
 		}
     }
+    if (bitcoinData.size() == 0)
+        throw BitcoinExchange::BadArgumentException();
     myFile.close();
 }
 
@@ -128,7 +130,7 @@ void BitcoinExchange::calculateValue(const std::string& date, const std::string&
             std::cerr << "Error: not a positive number." << std::endl;
             return;
         }
-        if (bitcoinValue > 100000) 
+        if (bitcoinValue > 1000) 
         {
             std::cerr << "Error: too large a number" << std::endl;
             return ;
@@ -163,10 +165,10 @@ void BitcoinExchange::BitcoinExe( char* file)
     headerDate = deleteSpace(headerDate);
     headerExchangeRate = deleteSpace(headerExchangeRate);
 
-	try
+	while (std::getline(myFile, line))
 	{
-		while (std::getline(myFile, line))
-		{
+	    try
+	    {
 	        std::stringstream ss(line);
 	        std::string date;
 	        std::string value;
@@ -183,14 +185,14 @@ void BitcoinExchange::BitcoinExe( char* file)
 
 			calculateValue(date, value);
 		}
-	}
-	catch (const BitcoinExchange::invalidDateException& e)
-	{
-		std::cerr << RED <<  e.what() << RESET << std::endl;
-	}
-	catch (const BitcoinExchange::invalidBitcoinValueException& e)
-	{
-		std::cerr << RED <<  e.what() << RESET << std::endl;
+    	catch (const BitcoinExchange::invalidDateException& e)
+    	{
+    		std::cerr << RED <<  e.what() << RESET << std::endl;
+    	}
+    	catch (const BitcoinExchange::invalidBitcoinValueException& e)
+    	{
+    		std::cerr << RED <<  e.what() << RESET << std::endl;
+    	}
 	}
 	myFile.close();
 }

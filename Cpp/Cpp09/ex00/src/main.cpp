@@ -10,10 +10,11 @@ int main(int argc, char** argv)
             Bitcoin.BitcoinExe(argv[1]);
         }
         else
-            throw BitcoinExchange::BadArgumentException();
+            throw BitcoinExchange::BitcoinExchangeException("Error: could not open file.");
     }
-	catch(const std::exception& e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-	}
+    catch (const BitcoinExchange::BitcoinExchangeException& e) 
+    {
+        std::cerr << RED << "Error " << e.what() << RESET << std::endl;
+        return (1);
+    }
 }

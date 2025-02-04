@@ -33,21 +33,14 @@ public: //Access specifier
     void	validDate(std::string input); //Static function
     void	validValue(std::string input); //Static function
 
-    class BadArgumentException : public std::exception //Bad argument exception
-	{
-		public: //Access specifier
-            const char* what() const throw() override;
-	};
-
-    class invalidDateException : public std::exception //Invalid data exception
+    class BitcoinExchangeException : public std::exception
     {
-    	public: //Access specifier
-            const char* what() const throw() override;
-    };
+    private:
+        std::string message;
 
-     class invalidBitcoinValueException : public std::exception //Invalid Bitcoin value exception
-    {
-    	public: //Access specifier
-            const char* what() const throw() override;
+    public:
+        explicit BitcoinExchangeException(const std::string& msg) : message(msg) {}
+
+        const char* what() const throw() override;
     };
 };

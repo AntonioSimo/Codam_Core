@@ -41,55 +41,115 @@ void BitcoinExchange::loadExchangeRates(const std::string& file)
 {
     std::ifstream myFile(file);
     if (myFile.fail()) 
-        throw BitcoinExchange::BitcoinExchangeException("Error: could not open file.");
+        throw BitcoinExchange::BitcoinExchangeException("could not open file.");
 
     std::string line;
+    std::getline(myFile, line);
+    if (line != "date,exchange_rate")
+    {
+        throw BitcoinExchange::BitcoinExchangeException("invalid file.");
+    }
     while (std::getline(myFile, line))
     {
-        std::stringstream ss(line);
-        std::string date;
-        std::string rateStr;
-
-        if (!std::getline(ss, date, ',') || !std::getline(ss, rateStr, ','))
-            continue;
-
         try
         {
+            std::stringstream ss(line);
+            std::string date;
+            std::string rateStr;
+
+            if (!std::getline(ss, date, ',') || !std::getline(ss, rateStr))
+                continue;
+            
+            if (validDate(date) == 1)
+                return;
+            if (validValue(rateStr) == 1)
+                return;
             double rate = std::stod(rateStr);
             bitcoinData[date] = rate;
         }
-        catch (const std::invalid_argument& e)
+        catch (const BitcoinExchange::BitcoinExchangeException& e)
 		{
+            std::cerr << RED << "Error inside the database: " << e.what() << RESET << std::endl;
             continue;
 		}
     }
     if (bitcoinData.size() == 0)
-        throw BitcoinExchange::BitcoinExchangeException("Error: the file is empty.");;
+        throw BitcoinExchange::BitcoinExchangeException("Error: the file is empty.");
     myFile.close();
 }
 
-void	BitcoinExchange::validDate(std::string input)
+int BitcoinExchange::validDate(std::string input)
 {
-    if (input.size() != 10 || input[4] != '-' || input[7] != '-')
-        // throw BitcoinExchange::invalidDateException();
-        std::cout << "Ciao!" << std::endl;
+    try
+    {
+        for (size_t i = 0; i < input.size(); i++)
+        {
+            if (input[i] == '-' || input[i] == '.')
+                i++;
+            if (!isdigit(input[i]))
+            {
+                std::cerr << "Error: bad input => " << input << std::endl;
+                return (1);
+            }
+        }       
+        int year = std::stoi(input.substr(0, 4));
+        int month = std::stoi(input.substr(5, 2));
+        int day = std::stoi(input.substr(8, 2));
+        if (year < 2009)
+        {
+            std::cerr << "Error: bad input => " << input << std::endl;
+            return (1);
+        }
+        if (month < 1 || month > 12)
+        {
+            std::cerr << "Error: bad input => " << input << std::endl;
+            return (1);
+        }   
+        if (day < 1 || day > 31)
+        {
+            std::cerr << "Error: bad input => " << input << std::endl;
+            return (1);
+        }
+        if (input.size() != 10 || input[4] != '-' || input[7] != '-')
+        {
+            throw BitcoinExchange::BitcoinExchangeException(("Invalid date inside the file."));
+            return (1);
+        }
+    }
+    catch(const BitcoinExchange::BitcoinExchangeException& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    return (0);
 }
 
-void	BitcoinExchange::validValue(std::string input)
+int	BitcoinExchange::validValue(std::string input)
 {
-	if (input.empty())
+    try
     {
-        return;
+    	if (input.empty())
+        {
+            throw BitcoinExchange::BitcoinExchangeException(("Invalid value inside the file."));
+            return (1);
+        }
+        if (input[0] == '-')
+            throw BitcoinExchange::BitcoinExchangeException("Error: not a positive number.");
+        for (size_t i = 0; i < input.size(); i++)
+        {
+            if (input[i] == '.')
+                i++;
+            if (!isdigit(input[i]))
+            {
+                std::cerr << "Error: bad input => " << input << std::endl;
+                return (1);
+            }
+        }     
     }
-    if (input[0] == '-')
+    catch(const BitcoinExchange::BitcoinExchangeException& e)
     {
-        return;
+        std::cerr << e.what() << '\n';
     }
-	// for (size_t i = 0; i < input.size(); i++)
-	// {
-	// 	if (!std::isdigit(input[i]) && input[i] != '.')
-	// 		throw BitcoinExchange::invalidBitcoinValueException();
-	// }
+    return (0);
 }
 
 std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
@@ -113,22 +173,24 @@ std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
                 closestDate = entry.first;
             }
         }
-        // else
-        //     throw BitcoinExchange::invalidDateException();
     }
     return closestDate;
 }
 
 void BitcoinExchange::calculateValue(const std::string& date, const std::string& value)
 {
+    if (validDate(date) == 1)
+        return;
+    if (validValue(value) == 1)
+        return;
     std::string nearestDate = findNearestDate(date);
     double nearestValue = bitcoinData[nearestDate];
 
-    try {
+    try 
+    {
         double bitcoinValue = std::stod(value);
         if (bitcoinValue < 0)
         {
-            std::cerr << "Error: not a positive number." << std::endl;
             return;
         }
         if (bitcoinValue > 1000) 
@@ -155,17 +217,14 @@ void BitcoinExchange::BitcoinExe( char* file)
 
 	std::ifstream myFile(file);
 	if (!myFile.is_open())
-		throw BitcoinExchange::BitcoinExchangeException("Error: could not open file.");
+		throw BitcoinExchange::BitcoinExchangeException("could not open file.");
 
 	std::string line;
 	std::getline(myFile, line);
-    std::cout << line << std::endl;
-    std::stringstream headerStream(line);
-    std::string headerDate, headerExchangeRate;
-    std::getline(headerStream, headerDate, '|');
-    std::getline(headerStream, headerExchangeRate);
-    headerDate = deleteSpace(headerDate);
-    headerExchangeRate = deleteSpace(headerExchangeRate);
+    if (line != "date | value")
+    {
+        throw BitcoinExchange::BitcoinExchangeException("invalid file.");
+    }
 
 	while (std::getline(myFile, line))
 	{
@@ -175,22 +234,17 @@ void BitcoinExchange::BitcoinExe( char* file)
 	        std::string date;
 	        std::string value;
 
-        	if (!std::getline(ss, date, '|') || !std::getline(ss, value, '|'))
+        	if (!std::getline(ss, date, '|') || !std::getline(ss, value))
             {
                 std::cerr << "Error: bad input => " << date << std::endl;
+                continue;
             }
 
             date = deleteSpace(date);
             value = deleteSpace(value);
-			validDate(date);
-			validValue(value);
 
 			calculateValue(date, value);
 		}
-    	// catch (const BitcoinExchange::invalidDateException& e)
-    	// {
-    	// 	std::cerr << RED <<  e.what() << RESET << std::endl;
-    	// }
     	catch (const BitcoinExchange::BitcoinExchangeException& e)
     	{
     		std::cerr << RED <<  e.what() << RESET << std::endl;
@@ -198,21 +252,6 @@ void BitcoinExchange::BitcoinExe( char* file)
 	}
 	myFile.close();
 }
-
-// const char* BitcoinExchange::BadArgumentException::what() const throw()
-// {
-// 	return ("Error: could not open file.");
-// }
-
-// const char* BitcoinExchange::invalidDateException::what() const throw()
-// {
-// 	return ("Error: Invalid date inside the file.");
-// }
-
-// const char* BitcoinExchange::invalidBitcoinValueException::what() const throw()
-// {
-// 	return ("Error: Invalid Bitcoin value inside the file.");
-// }
 
 const char* BitcoinExchange::BitcoinExchangeException::what() const throw()
 {

@@ -30,8 +30,8 @@ public: //Access specifier
     std::string findNearestDate(const std::string& inputDate); //Static function
     void    calculateValue(const std::string& date, const std::string& value); //Static function
     void    loadExchangeRates(const std::string& file); //Static function
-    void	validDate(std::string input); //Static function
-    void	validValue(std::string input); //Static function
+    int     validDate(std::string input); //Static function
+    int     validValue(std::string input); //Static function
 
     class BitcoinExchangeException : public std::exception
     {

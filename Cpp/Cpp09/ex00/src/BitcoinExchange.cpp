@@ -157,14 +157,9 @@ std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
     if (bitcoinData.find(inputDate) != bitcoinData.end())
         return inputDate;
 
-    // auto closestDate;
-
-    for (const auto& entry : bitcoinData)
-    {
-        auto closestDate = std::lower_bound(bitcoinData.begin(), bitcoinData.end(), entry.first);
-    }
-    std::cout << "This is the closest date: " << closestDate << std::endl;
-    return (inputDate);
+    auto closestDate = bitcoinData.lower_bound(inputDate);
+    closestDate--;
+    return (closestDate->first);
 }
 
 void BitcoinExchange::calculateValue(const std::string& date, const std::string& value)

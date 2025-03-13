@@ -18,15 +18,17 @@ class PmergeMe
 {
 public:
 
-    std::vector<int> _container;
+    std::vector<int> _container; //Attribute
 
     PmergeMe(); //Default Constructor
     ~PmergeMe(); //Destructor
 
-    void    PmergeMeExe(int argc, char* argv[]);
-    void    fordJohnsonSort(std::vector<int>& vec);
+    void    fordJohnsonSort(std::vector<int>& vec); //Static function
+    std::vector<int> matchTheNumbers(const std::vector<int> &container); //Static function
+    void    PmergeMeExe(int argc, char* argv[]); //Static function
+    void    JacobsthalSequence(int containerSize); //Static function
 
-    class PmergeMeException : public std::exception
+    class PmergeMeException : public std::exception //Exception class
     {
     private:
         std::string message;

@@ -63,7 +63,7 @@ void RPN::performOperation(std::stack<int>& operands, char operation)
 
 int RPN::getResult() const 
 {
-    return m_result;
+    return (m_result);
 }
 
 const char* RPN::RPNException::what() const throw()

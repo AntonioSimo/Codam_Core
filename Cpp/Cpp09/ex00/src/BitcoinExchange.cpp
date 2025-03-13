@@ -157,24 +157,14 @@ std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
     if (bitcoinData.find(inputDate) != bitcoinData.end())
         return inputDate;
 
-    std::string closestDate;
-    double minDifference = std::numeric_limits<double>::max();
+    // auto closestDate;
 
     for (const auto& entry : bitcoinData)
     {
-        if (inputDate.size() >= 10 && entry.first.size() >= 10)
-        {
-            double diff = std::abs(std::stod(inputDate.substr(0, 4) + inputDate.substr(5, 2) + inputDate.substr(8, 2)) -
-                                   std::stod(entry.first.substr(0, 4) + entry.first.substr(5, 2) + entry.first.substr(8, 2)));
-
-            if (diff < minDifference)
-            {
-                minDifference = diff;
-                closestDate = entry.first;
-            }
-        }
+        auto closestDate = std::lower_bound(bitcoinData.begin(), bitcoinData.end(), entry.first);
     }
-    return closestDate;
+    std::cout << "This is the closest date: " << closestDate << std::endl;
+    return (inputDate);
 }
 
 void BitcoinExchange::calculateValue(const std::string& date, const std::string& value)

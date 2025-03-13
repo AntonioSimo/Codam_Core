@@ -33,7 +33,7 @@ public: //Access specifier
     int     validDate(std::string input); //Static function
     int     validValue(std::string input); //Static function
 
-    class BitcoinExchangeException : public std::exception
+    class BitcoinExchangeException : public std::exception //Exception class
     {
     private:
         std::string message;

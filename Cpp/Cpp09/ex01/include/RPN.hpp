@@ -22,11 +22,11 @@ public:
     RPN(); //Default Constructor
     ~RPN(); //Destructor
 
-    void    RpnExe(char* expression);
-    void    performOperation(std::stack<int>& operands, char operation);
-    int     getResult() const;
+    void    RpnExe(char* expression); //Static function
+    void    performOperation(std::stack<int>& operands, char operation); //Static function
+    int     getResult() const; //Static function
 
-    class RPNException : public std::exception
+    class RPNException : public std::exception //Exception class
     {
     private:
         std::string message;

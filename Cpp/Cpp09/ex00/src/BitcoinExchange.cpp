@@ -82,6 +82,11 @@ int BitcoinExchange::validDate(std::string input)
 {
     try
     {
+        if (input.size() < 10)
+        {
+            std::cerr << "Error: bad input => " << input << std::endl;
+            return (1);
+        }
         for (size_t i = 0; i < input.size(); i++)
         {
             if (input[i] == '-' || input[i] == '.')
@@ -157,10 +162,11 @@ std::string BitcoinExchange::findNearestDate(const std::string& inputDate)
     if (bitcoinData.find(inputDate) != bitcoinData.end())
         return inputDate;
 
+    auto closestDate = bitcoinData.lower_bound(inputDate);
+
     if (closestDate == bitcoinData.begin())
         return (closestDate->first);
 
-    auto closestDate = bitcoinData.lower_bound(inputDate);
     closestDate--;
     return (closestDate->first);
 }

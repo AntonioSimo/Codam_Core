@@ -13,6 +13,14 @@
 #define YELLOW	"\033[33m"
 #define RESET	"\033[0m"
 
+enum operations 
+{
+    ADDITION = '+',
+    SUBTRACTION = '-',
+    MULTIPLICATION = '*',
+    DIVISION = '/'
+}; 
+
 class RPN
 {
 public:

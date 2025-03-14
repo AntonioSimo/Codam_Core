@@ -6,9 +6,9 @@ int main(int argc, char **argv)
     {
         PmergeMe pmergeme;
         
-        if (argc < 2) 
+        if (argc <= 2) 
         {
-            throw PmergeMe::PmergeMeException("Missing expression. Please provide a valid PmergeMe expression enclosed in double quotes.");
+            throw PmergeMe::PmergeMeException("Missing expression. Please provide a valid PmergeMe expression.");
             return (1);
         }
         

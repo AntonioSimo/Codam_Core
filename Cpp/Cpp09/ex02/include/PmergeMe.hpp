@@ -4,6 +4,7 @@
 #include <iostream>
 #include <chrono>
 #include <exception>
+#include <list>
 #include <stdlib.h>
 #include <vector>
 
@@ -18,12 +19,14 @@ class PmergeMe
 {
 public:
 
-    std::vector<int> _container; //Attribute
+    std::vector<int> _firstContainer; //Attribute
+    std::list<int> _secondContainer; //Attribute
 
     PmergeMe(); //Default Constructor
     ~PmergeMe(); //Destructor
 
-    void    fordJohnsonSort(std::vector<int>& vec); //Static function
+    template <typename Container> void Sort(Container& container); //Template
+    template <typename Container> void insertNumber(Container& container, int number); //Template
     std::vector<int> matchTheNumbers(const std::vector<int> &container); //Static function
     void    PmergeMeExe(int argc, char* argv[]); //Static function
     void    JacobsthalSequence(int containerSize); //Static function

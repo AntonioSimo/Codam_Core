@@ -18,13 +18,13 @@ void RPN::RpnExe(char* expression)
 
         if (isdigit(c)) 
             operands.push(c - '0');
-		else if (c == '+' || c == '-' || c == '*' || c == '/') 
+		else if (c == ADDITION || c == SUBTRACTION || c == MULTIPLICATION || c == DIVISION) 
 		{
             if (operands.size() < 2) 
                 throw RPNException("There are not enough operands for the operator.");
             performOperation(operands, c);
         } 
-		else if (c != ' ' && c != '\t')
+		else if (!std::isspace(c))
             throw RPNException("Invalid character in the notation.");
     }
     if (operands.size() != 1) 
@@ -35,22 +35,22 @@ void RPN::RpnExe(char* expression)
 
 void RPN::performOperation(std::stack<int>& operands, char operation) 
 {
-    int b = operands.top(); operands.pop();
+    int b =  operands.top(); operands.pop();
     int a = operands.top(); operands.pop();
-
+    
     int result;
     switch (operation) 
 	{
-        case '+': 
+        case ADDITION: 
 			result = a + b; 
 			break;
-        case '-': 
+        case SUBTRACTION: 
 			result = a - b; 
 			break;
-        case '*': 
+        case MULTIPLICATION: 
 			result = a * b; 
 			break;
-        case '/': 
+        case DIVISION: 
             if (b == 0) 
 				throw RPNException("Division by zero!");
             result = a / b; 

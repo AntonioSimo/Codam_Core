@@ -25,11 +25,11 @@ public:
     PmergeMe(); //Default Constructor
     ~PmergeMe(); //Destructor
 
-    template <typename Container> void Sort(Container& container); //Template
-    template <typename Container> void insertNumber(Container& container, int number); //Template
-    std::vector<int> matchTheNumbers(const std::vector<int> &container); //Static function
+    template <typename Container> const std::vector<typename Container::value_type> fordJohnson(Container& container); //Template
+    template <typename Container> std::vector<std::pair<typename Container::value_type, typename Container::value_type>> creatingOrderedPairs(Container& container); //Template
     void    PmergeMeExe(int argc, char* argv[]); //Static function
-    void    JacobsthalSequence(int containerSize); //Static function
+    template <typename Container> void insertNumber(Container& container, int number);
+    std::vector<int>    JacobsthalSequence(int containerSize); //Static function
 
     class PmergeMeException : public std::exception //Exception class
     {

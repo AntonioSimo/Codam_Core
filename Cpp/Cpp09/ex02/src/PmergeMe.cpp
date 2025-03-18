@@ -75,11 +75,12 @@ template <typename Container>   std::vector<std::pair<typename Container::value_
     std::vector<std::pair<typename Container::value_type, typename Container::value_type>> pairs;
     auto it = container.begin();
 
-    while (it != container.end()) {
+    while (it != container.end()) 
+    {
         auto first = it;
         auto second = std::next(it);
 
-        if (second == container.end()) // Se c'è un numero dispari, saltiamo l'ultimo elemento per ora
+        if (second == container.end())
             break;
 
         if (*first > *second)
@@ -87,53 +88,72 @@ template <typename Container>   std::vector<std::pair<typename Container::value_
         else
             pairs.emplace_back(*first, *second);
 
-        std::advance(it, 2); // Passiamo alla coppia successiva
+        std::advance(it, 2);
     }
 
-    return pairs;
+    return (pairs);
 }
-
-std::vector<int>    PmergeMe::JacobsthalSequence(int containerSize)
+ 
+void    PmergeMe::orderPairs(std::vector<std::pair<int, int>>& pairs)
 {
-    std::vector<int> sequence = {0, 1};
+    for (size_t i = 1; i < pairs.size(); ++i) 
+    {
+        std::pair<int, int> key = pairs[i];
+        int j = i - 1;
 
-    for (int i = 2; i < containerSize; i++)
-        sequence.push_back(sequence[i-1] + 2 * sequence[i-2]);
+        while (j >= 0 && pairs[j].first > key.first) 
+        {
+            pairs[j + 1] = pairs[j];
+            --j;
+        }
+        pairs[j + 1] = key;
+    }
 
-    return (sequence);
+    for (const auto& p : pairs) 
+        std::cout << "[" << p.first << " " << p.second << "]";
+    std::cout << std::endl;
 }
 
-void binaryInsert(std::vector<int>& sorted, int element) 
+// std::vector<int>    PmergeMe::JacobsthalSequence(int containerSize)
+// {
+//     std::vector<int> sequence = {0, 1};
+
+//     for (int i = 2; i < containerSize; i++)
+//         sequence.push_back(sequence[i-1] + 2 * sequence[i-2]);
+
+//     return (sequence);
+// }
+
+void PmergeMe::binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element)
 {
     auto pos = std::lower_bound(sorted.begin(), sorted.end(), element);
     sorted.insert(pos, element);
 }
 
-template <typename Container> 
-const std::vector<typename Container::value_type> PmergeMe::fordJohnson(Container& container)
+template <typename Container> const std::vector<typename Container::value_type> PmergeMe::fordJohnson(Container& container)
 {
     std::vector<std::pair<typename Container::value_type, typename Container::value_type>> pairs = creatingOrderedPairs(container);
     std::vector<typename Container::value_type> sorted;
 
-    if (!pairs.empty())
-        sorted.push_back(pairs[0].second);  // Inseriamo il più grande della prima coppia
+    for (auto it : pairs)
+        std::cout << "[" << it.first << " " << it.second << "]";
+    std::cout << std::endl;
 
-    std::vector<int> jacobsthalIndices = JacobsthalSequence(pairs.size());
+    orderPairs(pairs);
 
-    for (int index : jacobsthalIndices) {
-        if (index < pairs.size()) {
-            binaryInsert(sorted, pairs[index].first);
-            binaryInsert(sorted, pairs[index].second);
-        }
+    for (auto& it : pairs)
+        sorted.push_back(it.first);
+
+    for (auto it : pairs)
+        binaryInsert(sorted, pairs, it.second);
+
+    if (container.size() % 2 != 0) 
+    {
+        int lastElement = *(std::prev(container.end()));
+        binaryInsert(sorted, pairs, lastElement);
     }
 
-    // Se il numero di elementi è dispari, inseriamo l'ultimo numero rimasto
-    if (container.size() % 2 != 0) {
-        int lastElement = *(std::prev(container.end()));  // Ultimo elemento non accoppiato
-        binaryInsert(sorted, lastElement);
-    }
-
-    return sorted;
+    return (sorted);
 }
 
 const char* PmergeMe::PmergeMeException::what() const throw()

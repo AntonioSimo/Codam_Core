@@ -27,6 +27,8 @@ public:
 
     template <typename Container> const std::vector<typename Container::value_type> fordJohnson(Container& container); //Template
     template <typename Container> std::vector<std::pair<typename Container::value_type, typename Container::value_type>> creatingOrderedPairs(Container& container); //Template
+     void   orderPairs( std::vector<std::pair<int, int>>& pairs);
+    void    binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element);
     void    PmergeMeExe(int argc, char* argv[]); //Static function
     template <typename Container> void insertNumber(Container& container, int number);
     std::vector<int>    JacobsthalSequence(int containerSize); //Static function

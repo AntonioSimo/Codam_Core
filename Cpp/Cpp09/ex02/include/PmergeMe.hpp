@@ -25,12 +25,13 @@ public:
     PmergeMe(); //Default Constructor
     ~PmergeMe(); //Destructor
 
-    template <typename Container> const std::vector<typename Container::value_type> fordJohnson(Container& container); //Template
-    template <typename Container> std::vector<std::pair<typename Container::value_type, typename Container::value_type>> creatingOrderedPairs(Container& container); //Template
-     void   orderPairs( std::vector<std::pair<int, int>>& pairs);
-    void    binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element);
-    void    PmergeMeExe(int argc, char* argv[]); //Static function
-    template <typename Container> void insertNumber(Container& container, int number);
+    template <typename T> std::vector<int> fordJohnson(T& container); //Template
+    template <typename T> std::vector<std::pair<int, int>> creatingOrderedPairs(T& container); //Template
+    void   orderPairs( std::vector<std::pair<int, int>>& pairs); //Static function
+    void   binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element); //Static function
+    void   recursiveInsert(std::vector<std::pair<int, int>>& pairs, size_t n); //Static function
+    void   PmergeMeExe(int argc, char* argv[]); //Static function
+    template <typename T> void insertNumber(T& container, int number); //Template
     std::vector<int>    JacobsthalSequence(int containerSize); //Static function
 
     class PmergeMeException : public std::exception //Exception class

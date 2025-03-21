@@ -11,6 +11,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj)
 
    *this = obj;
 }
+
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj)
 {
     if (this != &obj)
@@ -20,6 +21,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj)
 
    return (*this);
 }
+
 BitcoinExchange::~BitcoinExchange()
 {
     std::cout << RED <<"Destructor BitcoinExchange called." <<  RESET << std::endl;

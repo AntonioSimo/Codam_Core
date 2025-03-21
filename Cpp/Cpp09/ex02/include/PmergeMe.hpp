@@ -1,10 +1,10 @@
 #pragma once
 
 #include <algorithm>
-#include <iostream>
 #include <chrono>
+#include <deque>
 #include <exception>
-#include <list>
+#include <iostream>
 #include <stdlib.h>
 #include <vector>
 
@@ -19,19 +19,21 @@ class PmergeMe
 {
 public:
 
-    std::vector<int> _firstContainer; //Attribute
-    std::list<int> _secondContainer; //Attribute
+    std::vector<int> _vector; //Attribute
+    std::deque<int> _deque; //Attribute //DA MODIFICARE IN DEQUE
 
     PmergeMe(); //Default Constructor
+    PmergeMe(const PmergeMe& obj); //Copy Constructor
+    PmergeMe& operator=(const PmergeMe& obj); //Copy assignment operator overload
     ~PmergeMe(); //Destructor
 
-    template <typename T> std::vector<int> fordJohnson(T& container); //Template
-    template <typename T> std::vector<std::pair<int, int>> creatingOrderedPairs(T& container); //Template
-    void   orderPairs( std::vector<std::pair<int, int>>& pairs); //Static function
-    void   binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element); //Static function
-    void   recursiveInsert(std::vector<std::pair<int, int>>& pairs, size_t n); //Static function
-    void   PmergeMeExe(int argc, char* argv[]); //Static function
-    template <typename T> void insertNumber(T& container, int number); //Template
+    template <typename T, typename P> T fordJohnson(T& container, P& pair_container); //Template
+    template <typename T, typename P> P creatingOrderedPairs(T& container, P& pair_container); //Template
+    template <typename P> void orderPairs(P& pairs) ; //Static function
+    template <typename T, typename P> size_t  binaryInsert(T& sorted, P& pairs, int element); //Static function
+    template <typename P> void recursiveInsert(P& pairs, size_t pairSize); //Static function
+    void    PmergeMeExe(int argc, char* argv[]); //Static function
+    void    insertNumber(int number); //Template
     std::vector<int>    JacobsthalSequence(int containerSize); //Static function
 
     class PmergeMeException : public std::exception //Exception class

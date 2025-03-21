@@ -5,6 +5,23 @@ RPN::RPN() : m_result(0)
     std::cout << GREEN << "Default RPN constructor called." << RESET << std::endl;
 }
 
+RPN::RPN(const RPN& obj)
+{
+    std::cout << "Copy RPN constructor called." << std::endl;
+
+   *this = obj;
+}
+
+RPN& RPN::operator=(const RPN& obj)
+{
+    if (this != &obj)
+        *this = obj;
+
+   std::cout << "Copy RPN assignment operator called." << std::endl;
+
+   return (*this);
+}
+
 RPN::~RPN()
 {
     std::cout << RED <<"Destructor RPN called." <<  RESET << std::endl;

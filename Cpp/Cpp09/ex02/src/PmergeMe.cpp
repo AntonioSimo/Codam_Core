@@ -5,6 +5,23 @@ PmergeMe::PmergeMe()
     std::cout << GREEN << "Default PmergeMe constructor called." << RESET << std::endl;
 }
 
+PmergeMe::PmergeMe(const PmergeMe& obj)
+{
+    std::cout << "Copy PmergeMe constructor called." << std::endl;
+
+   *this = obj;
+}
+
+PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
+{
+    if (this != &obj)
+        *this = obj;
+
+   std::cout << "Copy PmergeMe assignment operator called." << std::endl;
+
+   return (*this);
+}
+
 PmergeMe::~PmergeMe()
 {
     std::cout << RED <<"Destructor PmergeMe called." <<  RESET << std::endl;
@@ -19,8 +36,7 @@ void    PmergeMe::PmergeMeExe(int argc, char* argv[])
             int number = std::stoi(argv[i]);
             if (number < 0)
                 throw PmergeMe::PmergeMeException("Invalid argument.");
-            insertNumber(_firstContainer, number);
-            insertNumber(_secondContainer, number);
+            insertNumber(number);
         }
         catch(const PmergeMe::PmergeMeException& e)
         {
@@ -39,40 +55,49 @@ void    PmergeMe::PmergeMeExe(int argc, char* argv[])
         }
     }
 
-    std::cout << "Before: ";
-    for (auto i = _firstContainer.begin(); i != _firstContainer.end(); ++i)
+    std::cout << "Before Vector: ";
+    for (auto i = _vector.begin(); i != _vector.end(); ++i)
+        std::cout << *i << " ";
+    std::cout << std::endl;
+    std::cout << "Before Deque: ";
+    for (auto i = _deque.begin(); i != _deque.end(); ++i)
         std::cout << *i << " ";
     std::cout << std::endl;
 
     auto start = std::chrono::high_resolution_clock::now();
-    std::vector<int> sorted_vector = fordJohnson(_firstContainer);
+    std::vector<std::pair<int, int>> vecotr_pair;
+    std::vector<int> sorted_vector = fordJohnson(_vector, vecotr_pair);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 
-    std::cout << "After: ";
+    std::cout << "After Vector: ";
+    for (auto i = sorted_vector.begin(); i != sorted_vector.end(); ++i)
+        std::cout << *i << " ";
+    std::cout << std::endl;
+
+    start = std::chrono::high_resolution_clock::now();
+    std::deque<std::pair<int, int>> deque_pair;
+    std::deque<int> sorted_deque = fordJohnson(_deque, deque_pair);
+    end = std::chrono::high_resolution_clock::now();
+    duration = end - start;
+    std::cout << "After Deque: ";
     for (auto i = sorted_vector.begin(); i != sorted_vector.end(); ++i)
         std::cout << *i << " ";
     std::cout << std::endl;
     std::cout << "Time to process a range of " << sorted_vector.size() << " elements with std::vector : " << duration.count() * 1000000 << " us" << std::endl;
-
-    start = std::chrono::high_resolution_clock::now();
-    std::vector<int> sorted = fordJohnson(_secondContainer);
-    std::list<int> sorted_list(sorted.begin(), sorted.end()); 
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - start;
-    std::cout << "Time to process a range of " << _secondContainer.size() << " elements with std::list : " << duration.count() * 1000000 << " us" << std::endl;
+    std::cout << "Time to process a range of " << sorted_deque.size() << " elements with std::list : " << duration.count() * 1000000 << " us" << std::endl;
 }
 
-template <typename T> void PmergeMe::insertNumber(T& container, int number)
+void PmergeMe::insertNumber(int number)
 {
-    if (std::find(container.begin(), container.end(), number) != container.end()) 
+    if (std::find(_vector.begin(), _vector.end(), number) != _vector.end() || std::find(_deque.begin(), _deque.end(), number) != _deque.end()) 
         throw PmergeMe::PmergeMeException("Duplicate found.");
-    container.push_back(number);
+    _vector.push_back(number);
+    _deque.push_back(number);
 }
 
-template <typename T> std::vector<std::pair<int, int>> PmergeMe::creatingOrderedPairs(T& container)
+template <typename T, typename P> P PmergeMe::creatingOrderedPairs(T& container, P& pair_container)
 {
-    std::vector<std::pair<int, int>> pairs;
     auto it = container.begin();
 
     while (it != container.end()) 
@@ -84,25 +109,35 @@ template <typename T> std::vector<std::pair<int, int>> PmergeMe::creatingOrdered
             break;
 
         if (*first > *second)
-            pairs.emplace_back(*second, *first);
+            pair_container.emplace_back(std::make_pair(*second, *first));
         else
-            pairs.emplace_back(*first, *second);
+            pair_container.emplace_back(std::make_pair(*first, *second));
 
         std::advance(it, 2);
     }
 
-    return (pairs);
+    return (pair_container);
 }
 
-void PmergeMe::recursiveInsert(std::vector<std::pair<int, int>>& pairs, size_t n) 
+std::vector<int>    PmergeMe::JacobsthalSequence(int containerSize)
 {
-    if (n == 0)
+    std::vector<int> sequence = {0, 1};
+
+    for (int i = 2; i < containerSize; i++)
+        sequence.push_back(sequence[i-1] + 2 * sequence[i-2]);
+
+    return (sequence);
+}
+
+template <typename P> void PmergeMe::recursiveInsert(P& pairs, size_t pairSize) 
+{
+    if (pairSize == 0)
         return;
     
-    recursiveInsert(pairs, n - 1);
-    std::pair<int, int> key = pairs[n];
+    recursiveInsert(pairs, pairSize - 1);
+    std::pair<int, int> key = pairs[pairSize];
     
-    int j = n - 1;
+    int j = pairSize - 1;
 
     while (j >= 0 && pairs[j].first > key.first) 
     {
@@ -113,38 +148,61 @@ void PmergeMe::recursiveInsert(std::vector<std::pair<int, int>>& pairs, size_t n
     pairs[j + 1] = key;
 }
 
-void PmergeMe::orderPairs(std::vector<std::pair<int, int>>& pairs) 
+template <typename P> void PmergeMe::orderPairs(P& pairs) 
 {
     recursiveInsert(pairs, pairs.size() - 1);
+}
+
+template <typename T, typename P> size_t  PmergeMe::binaryInsert(T& sorted, P& pairs, int element)
+{
+    std::vector<int> temp_vec = this->JacobsthalSequence(pairs.size());
+
+    size_t i = sorted.size() - 1;
+    int e = 0;
+    while (i >= temp_vec[e])
+    {
+        if (element >= sorted[i])
+        {
+            return i + 1;
+        }
+        else
+        {
+            while (i >= 0)
+            {
+                if (element >= sorted[i])
+                    break ;
+                i--;
+            }
+            return i + 1;
+        }
+        e++;
+    }
     
-    for (const auto& p : pairs) 
-        std::cout << "[" << p.first << " " << p.second << "]";
-    std::cout << std::endl;
+    return (i);
 }
 
-void PmergeMe::binaryInsert(std::vector<int>& sorted, const std::vector<std::pair<int, int>>& pairs, int element)
+template <typename T, typename P> T PmergeMe::fordJohnson(T& container, P& pair_container)
 {
-    auto pos = std::lower_bound(sorted.begin(), sorted.end(), element);
-    sorted.insert(pos, element);
-}
+    pair_container = creatingOrderedPairs(container, pair_container);
+    T sorted;
 
-template <typename T> std::vector<int> PmergeMe::fordJohnson(T& container)
-{
-    std::vector<std::pair<int, int>> pairs = creatingOrderedPairs(container);
-    std::vector<int> sorted;
+    orderPairs(pair_container);
 
-    orderPairs(pairs);
-
-    for (auto& it : pairs)
+    for (auto& it : pair_container)
         sorted.push_back(it.first);
 
-    for (auto it : pairs)
-        binaryInsert(sorted, pairs, it.second);
+    auto it = pair_container.begin();
+    for (; it != pair_container.end(); it++)
+    {
+        size_t pos = binaryInsert(sorted, pair_container, it->second);
+        sorted.insert(sorted.begin() + pos, it->second);
+    }
 
     if (container.size() % 2 != 0) 
     {
         int lastElement = *(std::prev(container.end()));
-        binaryInsert(sorted, pairs, lastElement);
+        auto pos = std::lower_bound(sorted.begin(), sorted.end(), lastElement);
+        sorted.insert(pos, lastElement);;
     }
 
     return (sorted);

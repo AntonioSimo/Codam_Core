@@ -28,6 +28,8 @@ public:
     int m_result; //Attribute
 
     RPN(); //Default Constructor
+    RPN(const RPN& obj); //Copy Constructor
+    RPN& operator=(const RPN& obj); //Copy assignment operator overload
     ~RPN(); //Destructor
 
     void    RpnExe(char* expression); //Static function

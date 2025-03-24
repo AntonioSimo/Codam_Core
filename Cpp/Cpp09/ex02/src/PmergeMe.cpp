@@ -58,11 +58,11 @@ void    PmergeMe::PmergeMeExe(int argc, char* argv[])
     std::cout << "Before Vector: ";
     for (auto i = _vector.begin(); i != _vector.end(); ++i)
         std::cout << *i << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
     std::cout << "Before Deque: ";
     for (auto i = _deque.begin(); i != _deque.end(); ++i)
         std::cout << *i << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
 
     auto start = std::chrono::high_resolution_clock::now();
     std::vector<std::pair<int, int>> vecotr_pair;
@@ -74,6 +74,8 @@ void    PmergeMe::PmergeMeExe(int argc, char* argv[])
     for (auto i = sorted_vector.begin(); i != sorted_vector.end(); ++i)
         std::cout << *i << " ";
     std::cout << std::endl;
+    std::cout << "Time to process a range of " << sorted_vector.size() << " elements with std::vector : " << duration.count() * 1000000 << " us" << std::endl;
+    std::cout << std::endl;
 
     start = std::chrono::high_resolution_clock::now();
     std::deque<std::pair<int, int>> deque_pair;
@@ -84,8 +86,7 @@ void    PmergeMe::PmergeMeExe(int argc, char* argv[])
     for (auto i = sorted_vector.begin(); i != sorted_vector.end(); ++i)
         std::cout << *i << " ";
     std::cout << std::endl;
-    std::cout << "Time to process a range of " << sorted_vector.size() << " elements with std::vector : " << duration.count() * 1000000 << " us" << std::endl;
-    std::cout << "Time to process a range of " << sorted_deque.size() << " elements with std::list : " << duration.count() * 1000000 << " us" << std::endl;
+    std::cout << "Time to process a range of " << sorted_deque.size() << " elements with std::deque : " << duration.count() * 1000000 << " us" << std::endl;
 }
 
 void PmergeMe::insertNumber(int number)
@@ -157,7 +158,7 @@ template <typename T, typename P> size_t  PmergeMe::binaryInsert(T& sorted, P& p
 {
     std::vector<int> temp_vec = this->JacobsthalSequence(pairs.size());
 
-    size_t i = sorted.size() - 1;
+    int i = sorted.size() - 1;
     int e = 0;
     while (i >= temp_vec[e])
     {

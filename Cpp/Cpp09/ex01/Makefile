@@ -17,7 +17,7 @@ OBJ_DIR := obj
 LIB_DIR := include
 
 CMP := c++
-FLAGS :=  -g -std=c++11 #-Wall -Wextra -Werror -fsanitize=address
+FLAGS :=  -g -std=c++11 -Wall -Wextra -Werror -fsanitize=address
 IFLAGS := -I$(LIB_DIR)
 
 SOURCES :=	$(SRC_DIR)/RPN.cpp \

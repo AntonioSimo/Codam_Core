@@ -15,7 +15,7 @@ NAME := inception
 DATA_DIR := /home/asimone/data
 
 GREEN = \033[32m
-RED = \033[31m
+RED = \033[31m0
 YELLOW = \033[33m
 BOLD = \033[1m
 RESET = \033[0m

@@ -1,0 +1,19 @@
+#setting up the nginx service
+version: "3.8"
+
+services: 
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www/html
+#To have access to the container, type"http://127.0.0.1:9090/"
+
+#setting up the wordpress container that will contain the php service
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wp-php
+    volumes:
+      - ./web:/var/www/html

@@ -1,19 +1,38 @@
-#setting up the nginx service
-version: "3.8"
-
 services: 
+#setting up the wordpress container that will contain the php service
+  wordpress:
+    build: 
+      context: ./requirements/wordpress
+    container_name: wordpress
+    environment:
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_NAME: ${DB_NAME}             # Usa la variabile dal file .env
+      WORDPRESS_DB_USER: ${DB_USER}           # Usa la variabile dal file .env
+      WORDPRESS_DB_PASSWORD: ${DB_PASS}  
+    volumes:
+      - ./srcs/requirements/wordpress:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - inception
+
+#setting up the nginx service
   nginx:
-    build: requirements/nginx/.
+    #buil the nginx image
+    build: 
+      context: ./requirements/nginx
     container_name: nginx
     ports:
       - "8080:80"
+      #link the directory "./web:/var/www/html" to the container
+    depends_on:
+      - wordpress
     volumes:
-      - ./web:/var/www/html
-#To have access to the container, type"http://127.0.0.1:9090/"
+      - ./srcs/requirements/wordpress:/var/www/html
+    networks:
+      - inception
+#To have access to the container, type"http://127.0.0.1:8080/"
 
-#setting up the wordpress container that will contain the php service
-  wordpress:
-    build: requirements/wordpress/.
-    container_name: wp-php
-    volumes:
-      - ./web:/var/www/html
+networks:
+  inception:
+    driver: bridge

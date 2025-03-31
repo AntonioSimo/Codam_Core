@@ -1,38 +1,54 @@
 services: 
-#setting up the wordpress container that will contain the php service
-  wordpress:
-    build: 
-      context: ./requirements/wordpress
-    container_name: wordpress
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
     environment:
-      WORDPRESS_DB_HOST: ${DB_HOST}
-      WORDPRESS_DB_NAME: ${DB_NAME}             # Usa la variabile dal file .env
-      WORDPRESS_DB_USER: ${DB_USER}           # Usa la variabile dal file .env
-      WORDPRESS_DB_PASSWORD: ${DB_PASS}  
-    volumes:
-      - ./srcs/requirements/wordpress:/var/www/html
-    env_file:
-      - .env
-    networks:
-      - inception
-
-#setting up the nginx service
-  nginx:
-    #buil the nginx image
-    build: 
-      context: ./requirements/nginx
-    container_name: nginx
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
     ports:
-      - "8080:80"
-      #link the directory "./web:/var/www/html" to the container
-    depends_on:
-      - wordpress
-    volumes:
-      - ./srcs/requirements/wordpress:/var/www/html
-    networks:
-      - inception
-#To have access to the container, type"http://127.0.0.1:8080/"
+      - 3306:3306
+#    volumes:
+#      - mariadb_data:/var/lib/mysql
+#    networks:
+#      - inception
+    restart: always
 
-networks:
-  inception:
-    driver: bridge
+#setting up the wordpress container that will contain the php service
+#  wordpress:
+#    build: 
+#      context: ./requirements/wordpress
+#    container_name: wordpress
+#    environment:
+#      WORDPRESS_DB_HOST: ${DB_HOST}
+#      WORDPRESS_DB_NAME: ${DB_NAME}             # Usa la variabile dal file .env
+#      WORDPRESS_DB_USER: ${DB_USER}           # Usa la variabile dal file .env
+#      WORDPRESS_DB_PASSWORD: ${DB_PASS}  
+#    volumes:
+#      - ./srcs/requirements/wordpress:/var/www/html
+#    env_file:
+#      - .env
+#    networks:
+#      - inception
+#
+##setting up the nginx service
+#  nginx:
+#    #buil the nginx image
+#    build: 
+#      context: ./requirements/nginx
+#    container_name: nginx
+#    ports:
+#      - "8080:80"
+#      #link the directory "./web:/var/www/html" to the container
+#    depends_on:
+#      - wordpress
+#    volumes:
+#      - ./srcs/requirements/wordpress:/var/www/html
+#    networks:
+#      - inception
+##To have access to the container, type"http://127.0.0.1:8080/"
+#
+#networks:
+#  inception:
+#    driver: bridge

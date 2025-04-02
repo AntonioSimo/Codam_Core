@@ -27,7 +27,7 @@ RM = /bin/rm -rf
 all: up
 
 up: $(DATA_DIR)
-	@docker-compose -f $(COMPOSE_FILE) up --build -d
+	@docker-compose -f $(COMPOSE_FILE) up
 	@printf "$(GREEN)$(BOLD) Container $(NAME) started successfully$(RESET)\n"
 
 down:

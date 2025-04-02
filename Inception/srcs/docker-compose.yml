@@ -1,19 +1,34 @@
 services: 
   mariadb:
-    build: ./requirements/mariadb
+    build: ./requirements/mariadb  # Create the Docker image from the specified directory
     container_name: mariadb
-    environment:
+    environment:  # Get the environment variables from the .env file for database initialization
       MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_USER: ${DB_USER_CREDENTIALS}
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    secrets:
+      - credentials
+      - db_password
+      - db_root_password
     ports:
-      - 3306:3306
-#    volumes:
-#      - mariadb_data:/var/lib/mysql
+      - "3306:3306"  # Port to use for connecting to the database
+    volumes:
+      - mariadb_data:/var/lib/mysql  # Directory where database data is stored persistently, even if the container is removed
 #    networks:
 #      - inception
     restart: always
+
+secrets:
+  credentials:
+    file: ${DB_USER_CREDENTIALS}
+  db_password:
+    file: ${DB_USER_PASSWORD}
+  db_root_password:
+    file: ${DB_ROOT_PASSWORD}
+
+volumes:
+  mariadb_data:
 
 #setting up the wordpress container that will contain the php service
 #  wordpress:

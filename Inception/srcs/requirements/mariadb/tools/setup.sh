@@ -56,32 +56,30 @@
 
 set -e
 
-echo "Starting MariaDB setup..."
+echo "⚙️ Starting MariaDB setup..."
 
 # Set variables
 SECRETS=/run/secrets
-DB_DATABASE=${DB_NAME}
-DB_ROOT_PASSWORD=$(cat "$SECRETS/db_root_password")
 
 # Check if DB already initialized
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-    echo "Initializing MariaDB database..."
+    echo "✅ Initializing MariaDB database..."
     mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
 
-    echo "Starting mysqld to run initial setup..."
+    echo "🚀 Starting mysqld to run initial setup..."
     mysqld_safe --skip-networking &
     sleep 5
 
-    echo "Setting up database and users..."
+    echo "⚙️  Setting up database and users..."
     mysql -u root <<-EOSQL
-        CREATE DATABASE IF NOT EXISTS $DB_DATABASE;
-        CREATE USER 'user'@'%' IDENTIFIED BY '$(cat "$SECRETS/db_password")';
-        GRANT ALL PRIVILEGES ON $DB_DATABASE.* TO 'user'@'%';
-        ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD';
+        CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
+        CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+        GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
         FLUSH PRIVILEGES;
 EOSQL
 
-    echo "Database initialized!"
+    echo "✅ Database initialized!"
     killall mysqld
     sleep 5
 fi

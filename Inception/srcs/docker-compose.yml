@@ -10,7 +10,7 @@ services:
     secrets:
       - credentials  # Secret file containing DB user credentials
       - db_password  # Secret file containing the user password
-      - db_root_password  # Secret file containing the root password
+      - db_root_password #?????????
     # ports:
     #   - "3306:3306"  # Maps the container's MariaDB port to the host (optional, could be removed for security)
     volumes:
@@ -31,7 +31,7 @@ services:
   #   depends_on:
   #     - mariadb  # Ensures WordPress starts only after MariaDB is running
   #   volumes:
-  #     - wordpress_data:/var/www/html  # Persists WordPress files and uploaded content
+  #     - /home/asimone/data/wordpress_data:/var/www/html  # Persists WordPress files and uploaded content
   #   networks:
   #     - inception  # Connects WordPress to the same network as MariaDB
   #   expose:
@@ -41,21 +41,22 @@ services:
 # Secrets store sensitive information in secure files instead of environment variables (recommended for security)
 secrets:
   credentials:
-    file: ../secrets/credentials.txt  # Secret file for the database user's credentials
+    file: ${SECRETS_PATH}/credentials.txt  # Secret file for the database user's credentials
   db_password:
-    file: ../secrets/db_password.txt  # Secret file containing the database user's password
+    file: ${SECRETS_PATH}/db_password.txt  # Secret file containing the database user's password
   db_root_password:
-    file: ../secrets/db_root_password.txt  # Secret file containing the root database password
+    file: ${SECRETS_PATH}/db_root_password.txt  # Secret file containing the root database password
 
 # Volumes persist data so that it is not lost when containers are removed or updated
 volumes:
   mariadb_data:  # Persistent storage for MariaDB databases
     driver: local
-  #wordpress_data:  # Persistent storage for WordPress files
-
+  # wordpress_data:  # Persistent storage for WordPress files
+  #   driver: local
 # Custom network to ensure isolated communication between services
 # networks:
 #   inception:
+#     driver: bridge
 
 ##setting up the nginx service
 #  nginx:

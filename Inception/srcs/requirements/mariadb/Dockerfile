@@ -1,7 +1,7 @@
 # Set the base image to Debian 12 (Bookworm)
 FROM debian:bookworm
 # Update package lists and install MariaDB Server
-RUN apt-get update && apt-get install -y mariadb-server mariadb-client && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y mariadb-server && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #COPY tools/init.sql /docker-entrypoint-initdb.d/
 # Create necessary directories (to store the datas and to store the logs)
@@ -15,5 +15,6 @@ RUN chmod +x /setup.sh
 
 EXPOSE 3306
 # Define the setup script
-CMD ["/setup.sh"] 
-#, "mysqld_safe"]
+ENTRYPOINT ["sh", "/setup.sh"]
+
+CMD ["mysqld_safe"]

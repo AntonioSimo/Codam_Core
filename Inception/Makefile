@@ -15,7 +15,7 @@ NAME := inception
 DATA_DIR := /home/asimone/data
 
 GREEN = \033[32m
-RED = \033[31m0
+RED = \033[31m
 YELLOW = \033[33m
 BOLD = \033[1m
 RESET = \033[0m
@@ -24,14 +24,18 @@ COMPOSE_FILE = ./srcs/docker-compose.yml
 
 RM = /bin/rm -rf
 
-all: up
+all: build up
+
+build: 
+	@docker compose -f $(COMPOSE_FILE) build
+	@printf "$(GREEN)$(BOLD) Container $(NAME) build successfully$(RESET)\n"
 
 up: $(DATA_DIR)
-	@docker-compose -f $(COMPOSE_FILE) up
+	@docker compose -f $(COMPOSE_FILE) up
 	@printf "$(GREEN)$(BOLD) Container $(NAME) started successfully$(RESET)\n"
 
 down:
-	@docker-compose -f $(COMPOSE_FILE) down
+	@docker compose -f $(COMPOSE_FILE) down
 	@printf "$(RED) Container $(NAME) stopped$(RESET)\n"
 
 $(DATA_DIR):

@@ -63,7 +63,9 @@ The `Makefile` should support the following commands:
 - `NAME`, `all`, `clean`, `fclean`, `re`
 
 ### Required Functions
-Allow function:
+
+You are only allowed to use the following library functions:
+
 - `memset`, `printf`, `malloc`, `free`, `write`
 - `usleep`, `gettimeofday`
 - Thread-related functions: `pthread_create`, `pthread_detach`, `pthread_join`

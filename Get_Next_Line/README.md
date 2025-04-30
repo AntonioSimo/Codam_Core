@@ -1,61 +1,109 @@
 # Get_next_line
 
-> Reading a line from a file descriptor is far too tedious. This function makes it easier.
+> Reading from a file descriptor one line at a time shouldn't be so hard — so let's make it easier.
 
-`get_next_line` is a project from the 42 curriculum that challenges you to implement a function capable of reading one line at a time from a file descriptor. This function will be an essential building block for future file-based operations in C.
+This project, part of the 42 programming curriculum, is all about writing a function called `get_next_line` that can read from a file descriptor **line by line**. That means every time you call it, you get the next line of text — including the newline character if it exists.
+
+Although it might sound like a straightforward task, there's quite a bit of complexity involved. You’ll need to handle buffering, memory management, and edge cases, all while complying with strict constraints like avoiding global variables or using external libraries (not even your own `libft`!).
 
 ---
 
-## 📦 Project Information
+## Project Overview
 
-- **Function name:** `get_next_line`
-- **Prototype:** `char *get_next_line(int fd);`
-- **Authorized functions:** `read`, `malloc`, `free`
-- **Forbidden:** `lseek`, global variables, use of your `libft`
-- **Turn-in files:**  
-  - `get_next_line.c`  
-  - `get_next_line_utils.c`  
-  - `get_next_line.h`  
-- **Compilation Example:**  
-  ```bash
-  cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+Here’s what the project requires:
 
-## 🧠 How It Works
-- Reads from a file descriptor, one line at a time.
-- Returns the next line **including the newline character** `\n` if one is found.
-- Returns `NULL` on error or when there's nothing left to read.
-- Works with **standard input** as well as files.
-- Must handle varying `BUFFER_SIZE` values efficiently (e.g. 1, 42, 9999).
+- You must implement the function:
 
-## 🚫 Constraints
-- You must read **as little data as possible** on each call.
-- You may **not** use global variables or `libft`.
-- You **must not** read the entire file in advance.
-- Behavior is **undefined** when reading binary files or modifying the file externally during execution.
+  ```c
+  char *get_next_line(int fd);
+  ```
 
-## 💡 Implementation Hints
-- Use a `static` variable to persist the buffer across function calls.
-- Break the read buffer at the first newline and return that part.
-- Handle memory carefully to avoid leaks or dangling pointers.
-- Carefully manage partial lines between calls.
+## Allowed Functions
 
-## ✨ Bonus (Optional)
-If you've completed the mandatory part, you can implement these bonus features:
+You are only allowed to use the following standard library functions:
+
+- `read`
+- `malloc`
+- `free`
+
+## Forbidden
+
+The following are **not** allowed:
+
+- `lseek`
+- Global variables
+- Your `libft` or any other custom libraries
+
+## Required Files
+
+The following files must be submitted:
+
+- `get_next_line.c`
+- `get_next_line_utils.c`
+- `get_next_line.h`
+
+## Compilation
+
+You can compile your code using the following command:
+
+```bash
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+```
+The `BUFFER_SIZE` macro can be modified to test different reading behaviors.
+
+## How It Works
+
+Each time `get_next_line` is called, it reads just enough data to return the next line from the file descriptor. If a newline character is encountered, that line is returned (including the newline character). If there’s no more data to read, the function returns `NULL`.
+
+This function works not only with regular files but also with standard input (stdin). It is designed to adapt efficiently to different `BUFFER_SIZE` values — whether it’s small (like 1) or large (like 9999).
+
+## Constraints
+
+Ensure your implementation follows these important constraints:
+
+- Read as **little data as necessary** on each call.
+- Do **not** use global variables.
+- Do **not** use your `libft` or any non-standard functions**.
+- Do **not** read the entire file in advance.
+- Behavior is **undefined** if the file is modified while being read or if it’s a binary file.
+
+## Implementation Tips
+
+Here are some helpful insights for your implementation:
+
+- Use a `static` variable to store leftover data between function calls.
+- Stop reading as soon as you encounter a newline and return that portion.
+- Watch out for memory leaks — carefully manage your dynamic memory allocations.
+- Keep track of partially read lines to build the complete line correctly.
+
+## Bonus Features
+
+If you’ve completed the basic version of the function, you can enhance your implementation with the following:
+
 - Use **only one static variable**.
-- Support **multiple file descriptors** simultaneously.
-- Maintain separate read states for each `fd`.
+- Support for **multiple file descriptors** simultaneously.
+- Independent read states for each file descriptor.
 
-## 🛠 Makefile Rules
+---
 
-| Rule         | Description                                |
-|--------------|--------------------------------------------|
-| `make`       | Compile the mandatory `get_next_line.a`    |
-| `make clean` | Remove object files (`*.o`)                |
-| `make fclean`| Remove object files and binaries           |
-| `make re`    | Clean and recompile from scratch           |
-| `make bonus` | Compile the bonus version of the project   |
+## Makefile Commands
 
-## 🔍 Example Usage
+A `Makefile` is included with the following commands:
+
+| Command       | Description                                   |
+|---------------|-----------------------------------------------|
+| `make`        | Compiles the mandatory version of the project |
+| `make clean`  | Deletes object files                          |
+| `make fclean` | Deletes object files and the final binary     |
+| `make re`     | Cleans and recompiles everything from scratch |
+| `make bonus`  | Compiles the bonus version supporting multiple file descriptors |
+
+---
+
+## Example Usage
+
+Here’s how you might use `get_next_line` in a simple C program:
+
 ```c
 #include "get_next_line.h"
 #include <fcntl.h>
@@ -75,3 +123,16 @@ int main(void)
     return 0;
 }
 ```
+
+This program opens `example.txt`, reads and prints each line until the end of the file, and then closes the file. Remember to free each line after you're done with it.
+
+## What I Learned
+
+Working on `get_next_line` was a great opportunity to deepen my understanding of file I/O in C. Through this project, I learned how to:
+
+- **Manage memory dynamically and safely**: Ensuring that memory is allocated and freed correctly to prevent leaks.
+- **Use static variables to persist data across function calls**: Using static variables allowed me to maintain state between successive calls to `get_next_line`.
+- **Efficiently process input without loading the entire file into memory**: I learned how to read and process large files one line at a time, without overwhelming memory.
+- **Build a function with a clear, single-purpose utility**: `get_next_line` is designed to perform one specific task, which helped reinforce the importance of focused, modular code.
+
+This project was a strong exercise in debugging, problem-solving, and applying core C principles in a real-world-like challenge.

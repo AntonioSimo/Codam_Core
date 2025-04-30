@@ -89,9 +89,3 @@ typedef struct s_list
 - Reproducing standard behavior without relying on built-ins
 - Structuring reusable code and libraries
 - Managing projects with a strict Makefile workflow
-
-## 👤 Author
-- Antonio Simone
-- 42 Codam College
-- Project: Libft
-- Year: 2022

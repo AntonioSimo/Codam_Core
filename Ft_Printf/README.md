@@ -61,3 +61,9 @@ Tested against the behavior of the standard printf() using:
 - Memory-safe string manipulation
 - Reproducing standard library behavior
 - Building reusable code as a static library
+
+## 👤 Author
+Antonio Simone
+42 Codam College
+Project: ft_printf
+Year: 2022

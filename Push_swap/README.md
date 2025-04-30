@@ -1,6 +1,6 @@
 # Push_swap
 
-The `push_swap` project is a sorting algorithm challenge in C, where the goal is to sort a stack of integers using a minimal number of operations. The project is designed to test your understanding of sorting algorithms, memory management, and efficient problem-solving in C.
+The `push_swap` project is a sorting algorithm challenge in C, where the goal is to sort a stack of integers using a minimal number of operations. The project is designed to test the understanding of sorting algorithms, memory management, and efficient problem-solving in C.
 
 ---
 
@@ -29,7 +29,7 @@ The objective is to sort the numbers in stack `a` in ascending order using the f
 
 ## Project Rules
 
-Your project must comply with the following rules to be considered valid:
+The project must comply with the following rules to be considered valid:
 
 ### 1. Makefile
 You must include a `Makefile` that correctly compiles your source files. It's important that the `Makefile` does not perform "relinking," meaning it should not recompile the files unnecessarily each time you build the project.

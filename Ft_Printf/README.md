@@ -63,7 +63,7 @@ Tested against the behavior of the standard printf() using:
 - Building reusable code as a static library
 
 ## 👤 Author
-Antonio Simone
-42 Codam College
-Project: ft_printf
-Year: 2022
+- Antonio Simone
+- 42 Codam College
+- Project: ft_printf
+- Year: 2022

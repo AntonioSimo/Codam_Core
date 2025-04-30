@@ -1,21 +1,11 @@
 # Ft_Printf
+>Because ft_putnbr() and ft_putstr() aren’t enough
 
 ## About the Project
 
 The goal of this project is to create a custom implementation of the standard `printf()` function, written in pure C. The project is part of the 42 cursus and is designed to help deepen the understanding of variadic functions, formatted output, and low-level string manipulation. By building this library, you will gain a better grasp of how the `printf()` function works behind the scenes and how variadic arguments can be handled manually.
 
 The project involves recreating the behavior of the standard `printf()` function, while also implementing support for specific format specifiers. This will allow the user to print various types of data, from strings and characters to hexadecimal values, in a manner similar to the original `printf()` function in the C standard library.
-
----
-
-## Project Information
-
-- **Program Name**: `libftprintf.a`
-- **Turn-in Files**: `Makefile`, `*.h`, `*.c`, and `*/ *.h`, `*/ *.c`
-- **Allowed Functions**: You are allowed to use `malloc`, `free`, `write`, `va_start`, `va_arg`, `va_copy`, and `va_end`.
-- **Libft Authorized**: ✅ Yes, you can use your `libft` for utility functions.
-- **Forbidden**: The use of `libtool` and standard `printf()` buffer handling is strictly prohibited.
-- **Library Creation**: The static library is created using the `ar rc libftprintf.a *.o` command.
 
 ---
 

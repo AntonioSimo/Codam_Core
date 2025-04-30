@@ -45,32 +45,3 @@ The `ft_printf()` function supports the following format specifiers:
 | `%%`      | Prints a literal percent sign.          |
 
 Each specifier is processed to handle its corresponding data type, allowing the `ft_printf()` function to output data in the desired format.
-
-## Makefile Rules
-
-To compile and manage the project, the following Makefile rules are available:
-
-| Rule        | Description                                                 |
-|-------------|-------------------------------------------------------------|
-| `make`      | Compiles and creates the `libftprintf.a` static library.    |
-| `make clean`| Removes object files (`*.o`).                               |
-| `make fclean`| Removes object files and the `libftprintf.a` binary.       |
-| `make re`   | Cleans and recompiles the project from scratch.             |
-
-## Testing
-The implementation has been tested against the behavior of the standard `printf()` function. The tests include:
-
-- Custom test cases that cover a range of formatting scenarios.
-- Edge-case checks, such as printing `NULL` strings, handling `INT_MIN`, printing large hexadecimal values, and more.
-
-These tests help ensure that the `ft_printf()` function works as expected, and that it correctly mimics the behavior of the original `printf()`.
-
-## What I Learned
-Through this project, I have gained valuable insights into the following concepts:
-- **Manual argument parsing**: By working with the `stdarg.h` library, I learned how to handle a variable number of arguments and process them according to the format specifiers.
-- **Format parsing and branching logic**: I developed the ability to handle different types of format specifiers and implement branching logic to format each argument accordingly.
-- **Memory-safe string manipulation**: The project reinforced the importance of memory management in C, as I needed to ensure that all strings and variables were properly allocated and freed.
-- **Reproducing standard library behavior**: By recreating the `printf()` function, I gained a deeper understanding of how the standard library functions are implemented and how to mimic their behavior.
-- **Building reusable code**: I learned how to organize my code into a static library, which can be reused in other projects or contexts.
-
-This project has provided a solid foundation for working with variadic functions and formatted output in C, which is a crucial skill for low-level systems programming.

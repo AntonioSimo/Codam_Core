@@ -32,7 +32,7 @@ The following are **not** allowed:
 
 - `lseek`
 - Global variables
-- Your `libft` or any other custom libraries
+- `libft` or any other custom libraries
 
 ## Required Files
 
@@ -44,7 +44,7 @@ The following files must be submitted:
 
 ## Compilation
 
-You can compile your code using the following command:
+You can compile the code using the following command:
 
 ```bash
 cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
@@ -57,28 +57,9 @@ Each time `get_next_line` is called, it reads just enough data to return the nex
 
 This function works not only with regular files but also with standard input (stdin). It is designed to adapt efficiently to different `BUFFER_SIZE` values — whether it’s small (like 1) or large (like 9999).
 
-## Constraints
-
-Ensure your implementation follows these important constraints:
-
-- Read as **little data as necessary** on each call.
-- Do **not** use global variables.
-- Do **not** use your `libft` or any non-standard functions**.
-- Do **not** read the entire file in advance.
-- Behavior is **undefined** if the file is modified while being read or if it’s a binary file.
-
-## Implementation Tips
-
-Here are some helpful insights for your implementation:
-
-- Use a `static` variable to store leftover data between function calls.
-- Stop reading as soon as you encounter a newline and return that portion.
-- Watch out for memory leaks — carefully manage your dynamic memory allocations.
-- Keep track of partially read lines to build the complete line correctly.
-
 ## Bonus Features
 
-If you’ve completed the basic version of the function, you can enhance your implementation with the following:
+After completed the basic version of the function, I enhance my implementation with the following:
 
 - Use **only one static variable**.
 - Support for **multiple file descriptors** simultaneously.

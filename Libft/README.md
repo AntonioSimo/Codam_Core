@@ -85,14 +85,3 @@ The `Makefile` used for compiling and managing the library provides several usef
 | `make fclean`| Removes the object files and the `libft.a` static library    |
 | `make re`    | Cleans and recompiles everything from scratch                |
 | `make bonus` | Adds the bonus linked list functions to the library          |
-
----
-
-## What I Learned
-
-Working on this project offered valuable insights into core programming concepts, such as:
-
-- Manual memory handling and pointer manipulation in C.
-- Recreating the behavior of standard library functions from scratch.
-- Designing reusable code components and building custom libraries.
-- Automating build and cleanup tasks using a `Makefile`-driven workflow.

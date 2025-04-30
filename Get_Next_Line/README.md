@@ -125,14 +125,3 @@ int main(void)
 ```
 
 This program opens `example.txt`, reads and prints each line until the end of the file, and then closes the file. Remember to free each line after you're done with it.
-
-## What I Learned
-
-Working on `get_next_line` was a great opportunity to deepen my understanding of file I/O in C. Through this project, I learned how to:
-
-- **Manage memory dynamically and safely**: Ensuring that memory is allocated and freed correctly to prevent leaks.
-- **Use static variables to persist data across function calls**: Using static variables allowed me to maintain state between successive calls to `get_next_line`.
-- **Efficiently process input without loading the entire file into memory**: I learned how to read and process large files one line at a time, without overwhelming memory.
-- **Build a function with a clear, single-purpose utility**: `get_next_line` is designed to perform one specific task, which helped reinforce the importance of focused, modular code.
-
-This project was a strong exercise in debugging, problem-solving, and applying core C principles in a real-world-like challenge.

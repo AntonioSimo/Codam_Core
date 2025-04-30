@@ -86,21 +86,7 @@ If you’ve completed the basic version of the function, you can enhance your im
 
 ---
 
-## Makefile Commands
-
-A `Makefile` is included with the following commands:
-
-| Command       | Description                                   |
-|---------------|-----------------------------------------------|
-| `make`        | Compiles the mandatory version of the project |
-| `make clean`  | Deletes object files                          |
-| `make fclean` | Deletes object files and the final binary     |
-| `make re`     | Cleans and recompiles everything from scratch |
-| `make bonus`  | Compiles the bonus version supporting multiple file descriptors |
-
----
-
-## Example Usage
+## Example Usage:
 
 Here’s how you might use `get_next_line` in a simple C program:
 

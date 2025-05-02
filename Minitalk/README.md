@@ -23,8 +23,6 @@
   - `signal`, `sigemptyset`, `sigaddset`, `sigaction`
   - `kill`, `getpid`, `malloc`, `free`, `pause`, `sleep`, `usleep`, `exit`
 
-- You must include a `Makefile` that compiles your source files without unnecessary relinks.
-- You may use your own `libft`.
 - Programs must handle all errors gracefully (no segmentation faults, memory leaks, etc.).
 - Only **one global variable per program** is allowed, with justification.
 

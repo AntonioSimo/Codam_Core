@@ -1,7 +1,5 @@
 # Minitalk
 
-## Description
-
 **MiniTalk** is a small communication system built using UNIX signals. The project consists of two programs: a `server` and a `client`. The communication is performed exclusively using `SIGUSR1` and `SIGUSR2`, where each signal represents a bit (0 or 1).
 
 ## How it works

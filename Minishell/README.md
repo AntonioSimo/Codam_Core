@@ -1,4 +1,5 @@
 # Minishell
+>As beautiful as a shell
 
 This is our implementation of **Minishell**, a group project for two people from the 42 coding school curriculum. It is a project that challenges you to build your own shell in C, mimicking the behavior of **bash shell** in many fundamental aspects. The aim is to get hands-on experience with process control, input parsing, environment management, and Unix system calls—all while following strict coding and memory management standards.
 

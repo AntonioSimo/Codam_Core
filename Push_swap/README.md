@@ -1,4 +1,5 @@
 # Push_swap
+>Because Swap_push doesn’t feel as natural
 
 The `push_swap` project is a sorting algorithm challenge in C, where the goal is to sort a stack of integers using a minimal number of operations. The project is designed to test the understanding of sorting algorithms, memory management, and efficient problem-solving in C.
 

@@ -1,8 +1,6 @@
 # Philosophers
 >I never thought philosophy would be so deadly
 
-## Overview
-
 The **Philosophers Problem** is a classic synchronization problem that involves a group of philosophers sitting around a round table, with a bowl of spaghetti in the center. The challenge is to simulate the behaviors of these philosophers, who take turns eating, thinking, and sleeping while trying to avoid starvation.
 
 Here are the key points of the problem:

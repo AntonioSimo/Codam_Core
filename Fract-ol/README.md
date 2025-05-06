@@ -1,8 +1,6 @@
 # Fract’ol
 >Computer Graphics Fractals
 
-## Overview
-
 The **Fract’ol** project challenges to create a program that renders beautiful and intricate fractals using the power of computer graphics. Specifically, to work with the **Julia set** and the **Mandelbrot set**, two of the most well-known and visually striking fractals. This project requires you to display these fractals in a graphical window, allowing the user to interact with them by zooming in and out, as well as experimenting with different parameters and color schemes.
 
 ### Key Features:

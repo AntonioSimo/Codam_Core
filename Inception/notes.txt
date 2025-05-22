@@ -4,3 +4,6 @@ MARIADB COMMANDS:
 SHOW DATABASES; //mostra il databese che si utilizza
 USE asimone_inception; //se il databese esiste, si puo' fare accesso e si lavora su di esso
 SHOW TABLES; // mostra le tabelle (se esistono tramite script SQL)
+
+WORDPRESS COMMAND:
+docker exec -it wordpress bash

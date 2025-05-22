@@ -12,7 +12,7 @@
 
 NAME := inception
 
-DATA_DIR := /home/asimone/data
+DATA_DIR := ${HOME}/data
 
 GREEN = \033[32m
 RED = \033[31m
@@ -30,27 +30,39 @@ build:
 	@docker compose -f $(COMPOSE_FILE) build
 	@printf "$(GREEN)$(BOLD) Container $(NAME) build successfully$(RESET)\n"
 
-up: $(DATA_DIR)
-	@docker compose -f $(COMPOSE_FILE) up
+up: 
+	mkdir -p ${HOME}/data/wordpress ${HOME}/data/mariadb
+	@printf "$(YELLOW)Created directory $(DATA_DIR) for persistent data$(RESET)\n"
+	@docker compose -f $(COMPOSE_FILE) up --no-deps --build --force-recreate
 	@printf "$(GREEN)$(BOLD) Container $(NAME) started successfully$(RESET)\n"
 
 down:
 	@docker compose -f $(COMPOSE_FILE) down
 	@printf "$(RED) Container $(NAME) stopped$(RESET)\n"
 
-$(DATA_DIR):
-	@mkdir -p $(DATA_DIR)/wordpress $(DATA_DIR)/mariadb
-	@printf "$(YELLOW)Created directory $(DATA_DIR) for persistent data$(RESET)\n"
-
 clean: down
-	@$(RM) $(DATA_DIR)
-	@printf "$(RED)Persistent data removed$(RESET)\n"
+	@docker stop $(shell docker ps -qa) || true
+	@docker rm $(shell docker ps -qa) || true
+	@docker rmi -f $(shell docker images -qa) || true
+	@docker volume rm $(shell docker volume ls -q) || true
+	@docker network rm $(shell docker network ls -q) 2>/dev/null || true
+	@docker system prune -f || true
+	@docker volume prune -f || true
+	@docker network prune -f || true
 
 fclean: clean
 	@docker system prune -af
 	@printf "$(RED)Docker system cleanup completed$(RESET)\n"
 
+maria:
+	docker exec -it mariadb bash
+
 re: fclean all
 
-.PHONY: all up down clean fclean re
+delete:
+	docker-compose -f $(COMPOSE_FILE) -p $(PROJECT_NAME) down --volumes --remove-orphans
+
+rmf: delete fclean
+
+.PHONY: all up down clean fclean re maria
 

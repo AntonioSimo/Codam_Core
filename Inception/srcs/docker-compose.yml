@@ -1,80 +1,59 @@
 services: 
-  mariadb:
-    build: ./requirements/mariadb  # Builds the MariaDB container from the specified directory
-    container_name: mariadb  # Sets the container's name explicitly
-    environment:  
-      MYSQL_DATABASE: ${DB_NAME}  # Name of the database to be created automatically
-      MYSQL_USER: ${DB_USER_CREDENTIALS}  # Regular database user with restricted permissions
-      MYSQL_PASSWORD: ${DB_USER_PASSWORD}  # Password for the non-root database user
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}  # Root password for full database access
-    secrets:
-      - credentials  # Secret file containing DB user credentials
-      - db_password  # Secret file containing the user password
-      - db_root_password #?????????
-    # ports:
-    #   - "3306:3306"  # Maps the container's MariaDB port to the host (optional, could be removed for security)
+  wordpress:
+    build: 
+      context: ./requirements/wordpress
+    container_name: wordpress
+    env_file:
+      - .env
     volumes:
-      - /home/asimone/data/mariadb:/var/lib/mysql  # Persists database data even if the container is restarted or deleted
-    # networks:
-    #   - inception  # Connects the container to a custom network to communicate with other services
-    restart: always  # Ensures MariaDB restarts automatically if it crashes or the system reboots
+      - wp:/var/www/html
+    networks:
+      - inception
+    restart: unless-stopped
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    env_file:  
+      - .env
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - inception
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      retries: 10
+      timeout: 5s
 
-  # wordpress:
-  #   build: 
-  #     context: ./requirements/wordpress  # Builds the WordPress container from the specified directory
-  #   container_name: wordpress  # Sets the container's name explicitly
-  #   environment:
-  #     WORDPRESS_DB_HOST: mariadb:3306  # Specifies the MariaDB host (same network, so no need to expose the port)
-  #     WORDPRESS_DB_NAME: ${DB_NAME}  # The database name WordPress should use
-  #     WORDPRESS_DB_USER: ${DB_USER_CREDENTIALS}  # The database user for WordPress to connect with
-  #     WORDPRESS_DB_PASSWORD: ${DB_USER_PASSWORD}  # Password for the specified database user
-  #   depends_on:
-  #     - mariadb  # Ensures WordPress starts only after MariaDB is running
-  #   volumes:
-  #     - /home/asimone/data/wordpress_data:/var/www/html  # Persists WordPress files and uploaded content
-  #   networks:
-  #     - inception  # Connects WordPress to the same network as MariaDB
-  #   expose:
-  #     - "9000"  # Exposes PHP-FPM to be accessed by Nginx
-  #   restart: always  # Ensures WordPress restarts automatically if it crashes or the system reboots
+  nginx:
+    build: 
+      context: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - inception
 
-# Secrets store sensitive information in secure files instead of environment variables (recommended for security)
-secrets:
-  credentials:
-    file: ${SECRETS_PATH}/credentials.txt  # Secret file for the database user's credentials
-  db_password:
-    file: ${SECRETS_PATH}/db_password.txt  # Secret file containing the database user's password
-  db_root_password:
-    file: ${SECRETS_PATH}/db_root_password.txt  # Secret file containing the root database password
-
-# Volumes persist data so that it is not lost when containers are removed or updated
 volumes:
-  mariadb_data:  # Persistent storage for MariaDB databases
+  wp:
     driver: local
-  # wordpress_data:  # Persistent storage for WordPress files
-  #   driver: local
-# Custom network to ensure isolated communication between services
-# networks:
-#   inception:
-#     driver: bridge
+    driver_opts:
+      o: bind
+      type: none
+      device: ${HOME}/data/wordpress
 
-##setting up the nginx service
-#  nginx:
-#    #buil the nginx image
-#    build: 
-#      context: ./requirements/nginx
-#    container_name: nginx
-#    ports:
-#      - "8080:80"
-#      #link the directory "./web:/var/www/html" to the container
-#    depends_on:
-#      - wordpress
-#    volumes:
-#      - ./srcs/requirements/wordpress:/var/www/html
-#    networks:
-#      - inception
-##To have access to the container, type"http://127.0.0.1:8080/"
-#
-#networks:
-#  inception:
-#    driver: bridge
+  db:
+      driver: local
+      driver_opts:
+        o: bind
+        type: none
+        device: ${HOME}/data/mariadb
+
+networks:
+  inception:
+    driver: bridge

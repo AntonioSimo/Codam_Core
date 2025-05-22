@@ -1,0 +1,290 @@
+#include "Response.hpp"
+#include "Request.hpp"
+#include "Connection.hpp"
+#include <regex>
+
+const size_t MAX_BODY_SIZE = 1 * 1024 * 1024;
+const size_t MAX_RESPONSE_BUFFER_SIZE = 2 * 1024 * 1024;
+
+Response::Response(Config *config) {
+	this->_responseHandlerStatus = responseHandlerStatus::NOT_STARTED;
+	this->setHTTPVersion("HTTP/1.1");
+	this->_root = config->_rootDir;
+	this->_status = "";
+	// this->_redirectPath = "";
+	this->_body = "";
+	this->_responseBuffer = "";
+	this->_bytesWritten = 0;
+	this->_timesWriteFailed = 0;
+	return ;
+}
+
+Response::Response(const Response &obj){
+	*this = obj;
+}
+
+Response &	Response::operator=(const Response &rhs)
+{
+	if (this != &rhs)
+	{
+		_responseHandlerStatus = rhs._responseHandlerStatus;
+		_httpVersion = rhs._httpVersion;
+		_root = rhs._root;
+		_status = rhs._status;
+		_headers = rhs._headers;
+		_body = rhs._body;
+		_responseBuffer = rhs._responseBuffer;
+		_bytesWritten = rhs._bytesWritten;
+		_timesWriteFailed = rhs._timesWriteFailed;
+	}
+
+	return (*this);
+}
+
+Response::~Response(){
+	return ;
+}
+
+void	Response::autoFillResponse(std::string status, std::string path, std::string stdErrorOuput){
+	std::string	statusCode = status.substr(0, 3);
+	
+	if (path.empty())
+		path = _root + "/error/" + statusCode + ".html";
+	else
+		path = _root + path;
+	size_t			size = 0;
+	std::ifstream	file(path);
+
+	setStatus(status);
+	if (!_body.empty())
+		_body.clear();
+	if (!stdErrorOuput.empty()){
+		setHeaders("Content-Length", std::to_string(stdErrorOuput.length()));
+		setHeaders("Content-Type", "text/plain");
+		setBody(stdErrorOuput);
+	}
+	else if (file.is_open()){
+		file.seekg(0, std::ios::end);
+		size = file.tellg();
+		file.seekg(0, std::ios::beg);
+		std::vector<char> buffer(size + 1);
+		if (file.read(buffer.data(), size)){
+			setContentType(path);
+			setHeaders("Content-Length", std::to_string(size));
+			setBody(buffer.data());
+		}
+		else
+			autoFillResponse("500 Internal Server Error", "", "");
+		file.close();
+	}
+	else{
+		setHeaders("Content-Type", "text/plain");
+		setHeaders("Content-Length", std::to_string(status.length()));
+		setBody(status);
+	}
+	if (statusCode == "413" || statusCode == "504")
+		setHeaders("Connection", "close");
+	setResponseBuffer(generateResponse());
+	_responseHandlerStatus = responseHandlerStatus::READY_TO_WRITE;
+	return ;
+}
+
+std::string	Response::generateResponse() const{
+	std::string response = _httpVersion + " " + _status + "\r\n";
+	for (auto it = _headers.begin(); it != _headers.end(); it++){
+		response += it->first + ": " + it->second + "\r\n";
+	}
+	response += "\r\n";
+	response += std::string(_body.begin(), _body.end());
+
+	return response;
+}
+
+bool	Response::responseIsValid(){
+	if (_responseBuffer.empty())
+		return false;
+	std::istringstream iss(_responseBuffer);
+	std::string statusLine;
+	std::getline(iss, statusLine);
+	statusLine.erase(std::remove(statusLine.begin(), statusLine.end(), '\r'), statusLine.end());
+	std::regex statusLineRegex(R"(HTTP\/1\.1\s[1-5]\d{2}(?:\s.*)?)");
+	if (!std::regex_match(statusLine, statusLineRegex))
+		return false;
+	return true;
+}
+
+connectStatus Response::writeResponse(int FD){
+	if (!Connection::connectIsOkay(FD))
+		return connectStatus::CONNECT_CLOSED;
+	size_t n =_responseBuffer.size() - _bytesWritten;
+	if (n > BUFFER_SIZE)
+		n = BUFFER_SIZE;
+	size_t bytes = send(FD, _responseBuffer.c_str() + _bytesWritten, n, MSG_NOSIGNAL);
+	_bytesWritten += bytes;
+	if (_bytesWritten >= _responseBuffer.size()){
+		setResponseHandlerStatus(responseHandlerStatus::FINISHED);
+		return connectStatus::FINISHED;
+	}
+	if (bytes < 0){
+		if (_timesWriteFailed == 2){
+			setResponseHandlerStatus(responseHandlerStatus::FINISHED);
+			return connectStatus::FINISHED;
+		}
+		autoFillResponse("500 Internal Server Error: write", "", "");
+		_timesWriteFailed++;
+		return connectStatus::RESPONDING;
+	}
+
+	return connectStatus::RESPONDING;
+}
+
+/*	Setters	*/
+void	Response::setHTTPVersion(std::string HTTPversion){
+	_httpVersion = HTTPversion;
+	return ;
+}
+
+void	Response::setResponseHandlerStatus(responseHandlerStatus status){
+	_responseHandlerStatus = status;
+	return ;
+}
+
+void	Response::setStatus(std::string status){
+	_status = status;
+	return ;
+}
+
+void	Response::setContentType(std::string path){
+	if (path.find(".html") != std::string::npos || path.find(".htm") != std::string::npos)
+		_headers["Content-Type"] = "text/html";
+	else if (path.find(".css") != std::string::npos)
+		_headers["Content-Type"] = "text/css";
+	else if (path.find(".js") != std::string::npos)
+		_headers["Content-Type"] = "text/javascript";
+	else if (path.find(".jpeg") != std::string::npos || path.find(".jpg") != std::string::npos)
+		_headers["Content-Type"] = "image/jpeg";
+	else if (path.find(".png") != std::string::npos)
+		_headers["Content-Type"] = "image/png";
+	else if (path.find(".gif") != std::string::npos)
+		_headers["Content-Type"] = "image/gif";
+	else if (path.find(".mp3") != std::string::npos)
+		_headers["Content-Type"] = "audio/mp3";
+	else if (path.find(".mp4") != std::string::npos)
+		_headers["Content-Type"] = "video/mp4";
+	else if (path.find(".pdf") != std::string::npos)
+		_headers["Content-Type"] = "application/pdf";
+	else
+		_headers["Content-Type"] = "text/plain";
+}
+
+void	Response::setHeaders(std::string key, std::string value){
+	_headers[key] = value;
+	return ;
+}
+
+void	Response::setBody(std::string body_content){
+	if (_body.empty()) {
+		if (body_content.length() > MAX_BODY_SIZE)
+			_body.assign(body_content.begin(), body_content.begin() + MAX_BODY_SIZE);
+		else
+			_body = body_content;
+	} 
+	else {
+		if (_body.length() >= MAX_BODY_SIZE)
+			return;
+		size_t available_space = MAX_BODY_SIZE - _body.length();
+		size_t length_to_add = body_content.length();
+		if (length_to_add <= available_space)
+			_body += body_content;
+		else 
+			_body.append(body_content.c_str(), available_space);
+	}
+	return ;
+}
+void	Response::setBody(std::vector<char> body_content_vec){
+	if (_body.empty()) {
+		if (body_content_vec.size() > MAX_BODY_SIZE)
+			_body.assign(body_content_vec.begin(), body_content_vec.begin() + MAX_BODY_SIZE);
+		else 
+			_body.assign(body_content_vec.begin(), body_content_vec.end());
+	} 
+	else {
+		if (_body.length() >= MAX_BODY_SIZE) 
+			return;
+		size_t available_space = MAX_BODY_SIZE - _body.length();
+		size_t size_to_add = body_content_vec.size();
+		if (size_to_add <= available_space)
+			_body.insert(_body.end(), body_content_vec.begin(), body_content_vec.end());
+		else
+			_body.insert(_body.end(), body_content_vec.begin(), body_content_vec.begin() + available_space);
+	}
+	return ;
+}
+void	Response::setResponseBuffer(std::string buffer_content){
+	if (_responseBuffer.length() >= MAX_RESPONSE_BUFFER_SIZE)
+		return;
+	size_t available_space = MAX_RESPONSE_BUFFER_SIZE - _responseBuffer.length();
+	size_t length_to_add = buffer_content.length();
+	if (length_to_add <= available_space)
+		_responseBuffer += buffer_content;
+	else
+		_responseBuffer.append(buffer_content.c_str(), available_space);
+	return;
+}
+
+void	Response::setBytesWritten(size_t bytesWritten){
+	if (bytesWritten == 0)
+		_bytesWritten = bytesWritten;
+	else
+		_bytesWritten += bytesWritten;
+	return ;
+}
+
+/*	getters	*/
+
+responseHandlerStatus	Response::getResponseHandlerStatus() const{
+	return _responseHandlerStatus;
+}
+
+std::string	Response::getRoot() const{
+	return _root;
+}
+
+std::ofstream&	Response::getOutFile(){
+	return _outFile;
+}
+
+std::ifstream&	Response::getInFile(){
+	return _inFile;
+}
+
+/* anything that's not text has to be handled as raw bits*/
+readingMode	Response::getReadingModeFromResponse() const{
+	if (Response::getHeader("Content-type").find("text") != std::string::npos)
+		return TEXT;
+	else
+		return BINARY;
+}
+
+readingMode	Response::getReadingModeFromRequest(Request & request) const{
+	if (request._headers["Content-Type"].find("text") != std::string::npos)
+		return TEXT;
+	else
+		return BINARY;
+}
+
+/*	takes a string as key, finds it in the map and returns the value	*/
+std::string	Response::getHeader(std::string key) const{
+	auto it = _headers.find(key);
+	if (it == _headers.end())
+		return ("");
+	return it->second;
+}
+
+std::string	Response::getResponseBuffer() const{
+	return _responseBuffer;
+}
+
+size_t	Response::getBytesWritten() const{
+	return _bytesWritten;
+}

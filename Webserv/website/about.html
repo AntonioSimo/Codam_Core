@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- head is for meta info (running theme ig xd) -->
+	<meta charset="UTF-8">
+	<title>My Website</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<style>
+		.container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		}
+
+		.container .left, .container .right {
+			flex: 1;
+			margin: 10px;
+		}
+
+		.left img {
+			max-width: 100%;
+			border-radius: 8px;
+		}
+
+		.right {
+			max-width: 600px;
+		}
+	</style>
+</head>
+<body> <!-- all the actual page content -->
+	<header> <!-- usually used as introduction of page with links or a logo -->
+		<h1>hey there ;)</h1> <!-- h1 == bigger text -->
+		<nav> <!-- nav == navigation links -->
+			<ul> <!-- unorder list -->
+				<li><a href="/index.html">Home</a></li>
+				<li><a href="/about.html">About Us</a></li>
+				<li><a href="/cgi-bin/list_files.py">Uploads</a></li>
+				<li><a href="/contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main> <!-- main page content -->
+		<section>
+			<h2>Welcome to our About Us page!</h2>
+			<div class="container">
+				<div class="left">
+					<img src="/images/merlin.jpg" alt="Imaginary profile pic ;p">
+				</div>
+				<div class="right">
+					<p>Hi there!I'm Merlin! I love animals (frogs), dancing, games, and good vibes  (◕‿◕✿) ✨ 🌸</p>
+					<p>Do you like the beatifull webserv we made? :3 I hope so cause there's blood sweat and tears in it 🥵 .</p>
+					<p>I made the server core and request parsing! As well as helping a bit with the config B)</p>
+					<p>Hope you like everything! ✨</p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="left">
+					<img src="/images/michelle.jpg" alt="Imaginary profile pic ;p">
+				</div>
+				<div class="right">
+					<p>My name is Michelle and i'm part of the 2022 cohort. I like cats, board games, computer games, crafting & traveling/camping </p>
+					<p>Handling the CGI, responses and scripts were part of my responsibilities for our webserver ✨ </p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="left">
+					<img src="/images/antonio.jpg" alt="Imaginary profile pic ;p">
+				</div>
+				<div class="right">
+					<p>Hi! I'm Antonio. I love listening to music, traveling, cooking, taking photos, creating/making cocktails and Muay Thai. </p>
+					<p>I was in charge of the analysis part of our Webserver. I hope you won't break our schedule 😬 </p>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p>&copy; 2024 epic awesomesauce inc. All rights reserved.</p>
+	</footer>
+</body>
+</html>

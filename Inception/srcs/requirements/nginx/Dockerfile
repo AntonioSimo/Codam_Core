@@ -1,14 +1,15 @@
-#We are just going to install the nginx package from the apt package manager and then run nginx 
-#in the foreground using the -g command line with the argument daemon off, so that the container 
-#wont exit abruptly after we power it on
+FROM debian:bullseye
 
-FROM debian:latest
-#install Nginx
 RUN apt-get update -y
 RUN apt-get install -y nginx openssl
-#copy configuration file
-COPY conf/default.conf /etc/nginx/conf/default.conf
-#expose port 443
+
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+  -out /etc/ssl/certs/asimone.42.fr.crt \
+  -keyout /etc/ssl/certs/asimone.42.fr.key \
+  -subj "/C=NL/ST=North-Holland/L=Amsterdam/O=Codam/OU=asimone/CN=asimone.42.fr"
+
+COPY conf/default.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 443
-#run Nginix
+
 CMD ["nginx", "-g", "daemon off;"]
